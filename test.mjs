@@ -19,6 +19,17 @@ sim=E.createWorld(E.levels[1]);sim=E.move(sim,0,25);sim=E.move(sim,1,26);E.step(
 sim=E.move(sim,2,27);sim=E.move(sim,3,28);E.step(sim,1200);assert.ok(E.complete(sim),'Removing support releases caught plate');
 // Screw shafts act as actual solid collision obstacles.
 sim=E.createWorld(E.levels[0]);sim=E.move(sim,0,25);sim=E.move(sim,1,26);const blockers=[M.Bodies.circle(125,300,7.5,{isStatic:true}),M.Bodies.circle(225,300,7.5,{isStatic:true})];M.Composite.add(sim.engine.world,blockers);E.step(sim,600);assert.equal(E.complete(sim),false);assert.ok(sim.plates[0].position.y<300,'Screw-sized obstacles catch plate');blockers.forEach(b=>M.Composite.remove(sim.engine.world,b));M.Sleeping.set(sim.plates[0],false);E.step(sim,1200);assert.ok(E.complete(sim),'Moving blocking screws frees plate');
+// Live interaction: releasing the next screw must not rebuild the world or erase momentum.
+let live=E.createWorld(E.levels[0]);E.settle(live);E.move(live,0,25);E.step(live,45);assert.equal(live.settled,false);
+const engineIdentity=live.engine,bodyIdentity=live.plates[0],motionBefore=E.snapshot(live),velocityBefore={...bodyIdentity.velocity},angularBefore=bodyIdentity.angularVelocity;
+assert.ok(Math.abs(angularBefore)>.001,'Plate is visibly swinging before the next move');assert.equal(E.move(live,1,26),live);assert.equal(live.engine,engineIdentity);assert.equal(live.plates[0],bodyIdentity);assert.deepEqual(bodyIdentity.velocity,velocityBefore);assert.equal(bodyIdentity.angularVelocity,angularBefore,'Release preserves existing angular momentum');
+const undone=E.createWorld(live.level,motionBefore);assert.equal(undone.settled,false,'Mid-motion undo resumes motion');assert.deepEqual(E.snapshot(undone),motionBefore);const beforeResume={...undone.plates[0].position};E.step(undone,30);assert.notDeepEqual(undone.plates[0].position,beforeResume);
+E.step(live,900);assert.ok(E.complete(live));assert.equal(E.move(live,0,6),null,'Completion rejects late queued moves');
+// Revalidate a once-clear target after the geometry changes, without consuming a move.
+let stale=E.createWorld(E.levels[0]);E.move(stale,0,25);E.step(stale,600);assert.ok(E.destinations(stale).includes(6));M.Body.setAngle(stale.plates[0],0);M.Body.setPosition(stale.plates[0],{x:175,y:180});const oldMoves=stale.moves;assert.equal(E.move(stale,1,6),null,'Newly covered destination is rejected');assert.equal(stale.moves,oldMoves);
+let hidden=E.createWorld(E.levels[1]);M.Body.setPosition(hidden.plates[1],{x:105,y:180});assert.equal(E.accessible(hidden,0),false);assert.equal(E.move(hidden,0,25),null,'A screw occluded since selection cannot be moved');
+// Rapid successive legal releases, including while an already loose plate is sliding/falling.
+let rapid=E.createWorld(E.levels[1]);for(const [b,h] of [[0,25],[1,26],[2,27],[3,28]]){assert.ok(E.move(rapid,b,h));E.step(rapid,5)}E.step(rapid,1800);assert.ok(E.complete(rapid));
 let totalMoves=0,maxDepth=0,rampContact=false,rampSlide=0;
 for(const level of E.levels){sim=E.createWorld(level);E.settle(sim);let count=0;const startX=sim.plates[0].position.x;
  while(!E.complete(sim)&&count<30){const h=E.hint(sim);assert.notEqual(h.b,undefined,`${level.name}: authored solution has a move`);sim=E.move(sim,h.b,h.h);assert.ok(sim,`${level.name}: legal move`);
@@ -29,5 +40,5 @@ for(const level of E.levels){sim=E.createWorld(level);E.settle(sim);let count=0;
  }assert.ok(E.complete(sim),`${level.name}: actual off-board completion`);totalMoves+=count;
 }
 assert.ok(rampContact&&rampSlide>15,'Authored ramp level has real contact-driven lateral sliding');assert.ok(maxDepth<2.5,'Bounded collision penetration; no tunneling in solution replays');
-const app=fs.readFileSync(new URL('./dist/app.mjs',import.meta.url),'utf8');assert.match(app,/class:'material-hole'/);assert.match(app,/if\(busy\)return/);assert.match(app,/Math\.min\(50,now-last\)/);
+const app=fs.readFileSync(new URL('./dist/app.mjs',import.meta.url),'utf8');assert.match(app,/class:'material-hole'/);assert.doesNotMatch(app,/if\(busy\)return/);assert.doesNotMatch(app,/disabled=busy/);assert.match(app,/Math\.min\(50,now-last\)/);
 console.log(`PASS: ${E.levels.length} physical level solutions, ${totalMoves} moves; real hinges (max initial drift ${maxHinge.toFixed(7)}px), compound holes, moving occlusion, plate/screw blockers, actual sliding, completion, deterministic snapshots/undo/restart. Max replay contact overlap ${maxDepth.toFixed(2)}px; ramp lateral travel ${rampSlide.toFixed(1)}px.`);

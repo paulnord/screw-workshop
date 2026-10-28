@@ -19,7 +19,7 @@ export function localHoles(level,p){const [a,b]=level.plates[p].map(h=>cells[h])
 export function worldPoint(body,v){const c=Math.cos(body.angle),s=Math.sin(body.angle);return {x:body.position.x+v.x*c-v.y*s,y:body.position.y+v.x*s+v.y*c}}
 export function createWorld(level,snapshot=null){
  const engine=M.Engine.create({enableSleeping:true,positionIterations:12,velocityIterations:10,constraintIterations:12});engine.gravity.y=1;engine.gravity.scale=.001;
- const sim={level,engine,plates:[],pins:[],constraints:[],positions:snapshot?.positions.slice()||level.plates.flat(),removed:snapshot?.removed||0,moves:snapshot?.moves||0,elapsed:0,quiet:0,settled:!!snapshot};
+ const sim={level,engine,plates:[],pins:[],constraints:[],positions:snapshot?.positions.slice()||level.plates.flat(),removed:snapshot?.removed||0,moves:snapshot?.moves||0,elapsed:snapshot?.elapsed||0,quiet:snapshot?.quiet||0,settled:snapshot?.settled||false};
  level.plates.forEach((pair,p)=>{const a=cells[pair[0]],b=cells[pair[1]],length=Math.hypot(b.x-a.x,b.y-a.y),cx=(a.x+b.x)/2,cy=(a.y+b.y)/2;
  // Five material pieces make two genuine 20px square openings. The SVG uses the same cutouts.
  const rect=(x,y,w,h)=>M.Bodies.rectangle(cx+x,cy+y,w,h,{friction:.35,restitution:.12,slop:.02});
@@ -31,11 +31,11 @@ export function createWorld(level,snapshot=null){
  if(!body.plugin.cleared)M.Composite.add(engine.world,body);
  });
  sim.positions.forEach((h,b)=>{const pin=M.Bodies.circle(cells[h].x,cells[h].y,7.5,{isStatic:true,friction:.4,restitution:.1,label:`screw-${b}`});sim.pins.push(pin);M.Composite.add(engine.world,pin);
- if(!(sim.removed&(1<<b))){const p=Math.floor(b/2),body=sim.plates[p],local=localHoles(level,p)[b%2];const q=M.Constraint.create({bodyA:body,pointA:{x:local.x*Math.cos(body.angle),y:local.x*Math.sin(body.angle)},pointB:{...cells[h]},length:0,stiffness:1,damping:.2});sim.constraints.push(q);M.Composite.add(engine.world,q)}
+ if(!(sim.removed&(1<<b))){const p=Math.floor(b/2),body=sim.plates[p],local=localHoles(level,p)[b%2];const q=M.Constraint.create({bodyA:body,pointA:{x:local.x*Math.cos(body.angle),y:local.x*Math.sin(body.angle)},pointB:{...cells[h]},length:0,stiffness:1,damping:.2});q.plugin={screw:b};sim.constraints.push(q);M.Composite.add(engine.world,q)}
  });
  return sim;
 }
-export function snapshot(sim){return {positions:sim.positions.slice(),removed:sim.removed,moves:sim.moves,bodies:sim.plates.map(b=>({position:{...b.position},angle:b.angle,velocity:{...b.velocity},angularVelocity:b.angularVelocity,cleared:b.plugin.cleared}))}}
+export function snapshot(sim){return {positions:sim.positions.slice(),removed:sim.removed,moves:sim.moves,elapsed:sim.elapsed,quiet:sim.quiet,settled:sim.settled,bodies:sim.plates.map(b=>({position:{...b.position},angle:b.angle,velocity:{...b.velocity},angularVelocity:b.angularVelocity,cleared:b.plugin.cleared}))}}
 export function materialAt(sim,point,ignore=-1,padding=0){return sim.plates.some((b,p)=>{if(p===ignore||b.plugin.cleared)return false;const dx=point.x-b.position.x,dy=point.y-b.position.y,c=Math.cos(b.angle),s=Math.sin(b.angle),x=dx*c+dy*s,y=-dx*s+dy*c,L=b.plugin.length;
  if(Math.abs(x)>L/2+18+padding||Math.abs(y)>17+padding)return false;
  // A screw can be seen through a material opening, but parking requires clearance for its whole shaft.
@@ -50,11 +50,15 @@ export function step(sim,count=1){for(let k=0;k<count;k++){M.Engine.update(sim.e
  const still=sim.plates.filter(b=>!b.plugin.cleared&&!b.isStatic).every(b=>b.isSleeping||(b.speed+Math.abs(b.angularVelocity)*b.plugin.length/2<.35));sim.quiet=still?sim.quiet+1:0;sim.settled=sim.quiet>24||complete(sim);
  }return sim}
 export function settle(sim,maxFrames=1440){for(let k=0;k<maxFrames&&!sim.settled;k++)step(sim);return sim}
-export function move(sim,b,h){if(!Number.isInteger(b)||b<0||b>=sim.positions.length||!accessible(sim,b)||!destinations(sim).includes(h))return null;
- const s=snapshot(sim);s.positions[b]=h;s.removed|=1<<b;s.moves++;const next=createWorld(sim.level,s);next.settled=false;
+export function move(sim,b,h){
+ // Commit against this instant's geometry. Mutate the existing world so contacts and momentum survive rapid moves.
+ if(complete(sim)||!Number.isInteger(b)||b<0||b>=sim.positions.length||!accessible(sim,b)||!destinations(sim).includes(h))return null;
  const p=Math.floor(b/2),wasPinned=!(sim.removed&(1<<b)),wasDouble=(sim.removed&(3<<(p*2)))===0;
- if(wasPinned&&wasDouble){const body=next.plates[p],remaining=localHoles(next.level,p)[1-b%2],free=localHoles(next.level,p)[b%2],anchor=worldPoint(body,remaining),loose=worldPoint(body,free);if(Math.abs(loose.x-anchor.x)<.01&&loose.y<anchor.y)M.Body.setAngularVelocity(body,anchor.x<175?.025:-.025)}
- return next;
+ if(wasPinned){const joint=sim.constraints.find(c=>c.plugin.screw===b);if(joint)M.Composite.remove(sim.engine.world,joint);sim.constraints=sim.constraints.filter(c=>c!==joint);if(wasDouble)M.Body.setStatic(sim.plates[p],false)}
+ sim.positions[b]=h;sim.removed|=1<<b;sim.moves++;M.Body.setPosition(sim.pins[b],cells[h]);
+ sim.plates.forEach(body=>{if(!body.plugin.cleared)M.Sleeping.set(body,false)});sim.settled=false;sim.quiet=0;
+ if(wasPinned&&wasDouble){const body=sim.plates[p],remaining=localHoles(sim.level,p)[1-b%2],free=localHoles(sim.level,p)[b%2],anchor=worldPoint(body,remaining),loose=worldPoint(body,free);if(Math.abs(loose.x-anchor.x)<.01&&loose.y<anchor.y)M.Body.setAngularVelocity(body,anchor.x<175?.025:-.025)}
+ return sim;
 }
 export function hingeError(sim,b){const p=Math.floor(b/2),q=worldPoint(sim.plates[p],localHoles(sim.level,p)[b%2]),anchor=cells[sim.positions[b]];return Math.hypot(q.x-anchor.x,q.y-anchor.y)}
 export function hint(sim){const order=sim.level.order||sim.positions.map((_,i)=>i),targets=destinations(sim);const b=order.find(b=>!(sim.removed&(1<<b))&&accessible(sim,b));if(b!==undefined&&targets.length){const h=targets.find(h=>h>=25)??targets[0];return {b,h,text:'Try this screw and the highlighted empty hole. Watch what it was supporting.'}}
