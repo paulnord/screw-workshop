@@ -1,0 +1,7 @@
+import assert from 'node:assert/strict';
+import {levels,holes,setup,active,covered,accessible,destinations,move,complete,solve} from './dist/engine.mjs';
+let checks=0;
+for(const l of levels){let s=setup(l);assert.equal(new Set(s.positions).size,s.positions.length,`${l.name}: distinct screws`);assert.equal(destinations(l,s).length,2);const path=solve(l,s);assert.ok(path,`${l.name} solvable`);const initial=structuredClone(s),history=[];for(const b of path){const targets=destinations(l,s);assert.ok(targets.length);assert.ok(accessible(l,s,b));assert.equal(move(l,s,b,s.positions[b]),null,'Occupied targets rejected');for(const h of holes(l).filter(h=>covered(l,s,h)))assert.equal(move(l,s,b,h),null,'Covered targets rejected');const before=structuredClone(s);history.push(before);s=move(l,s,b,targets[0]);assert.ok(s);assert.deepEqual(history.at(-1),before,'History unchanged');checks++;}assert.ok(complete(l,s));while(history.length)s=history.pop();assert.deepEqual(s,initial,'Undo restores start');assert.deepEqual(setup(l),initial,'Restart restores start');}
+const cross=levels[2],c=setup(cross);assert.equal(accessible(cross,c,1),false,'Covered lower screw inaccessible');assert.equal(move(cross,c,1,25),null);
+const two=levels[1];let t=setup(two);t=move(two,t,0,25);t=move(two,t,2,26);assert.equal(destinations(two,t).length,0);assert.equal(solve(two,t),null,'Dead end detected');
+console.log(`PASS: ${levels.length} authored levels solved, ${checks} solution moves; covered/occupied holes, hidden screws, completion, dead-end hints, undo, restart.`);
