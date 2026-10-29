@@ -1,0 +1,262 @@
+[
+  {
+    "id": "v5-pendulum-relay",
+    "name": "Pendulum relay",
+    "screws": 6,
+    "moves": 6,
+    "contacts": 127,
+    "caught": 0,
+    "maxRotation": 3.2075466330250006,
+    "maxOverlap": 0.6858635725819795,
+    "wrongTwoMovesNoFreeHole": [
+      [
+        3,
+        2
+      ]
+    ],
+    "undoRecovery": true,
+    "route": [
+      [
+        1,
+        [
+          105,
+          35
+        ]
+      ],
+      [
+        0,
+        [
+          245,
+          35
+        ]
+      ],
+      [
+        5,
+        [
+          70,
+          115
+        ]
+      ],
+      [
+        2,
+        [
+          70,
+          175
+        ]
+      ],
+      [
+        3,
+        [
+          265,
+          150
+        ]
+      ],
+      [
+        4,
+        [
+          265,
+          210
+        ]
+      ]
+    ]
+  },
+  {
+    "id": "v5-cradle",
+    "name": "Cradle",
+    "screws": 5,
+    "moves": 5,
+    "contacts": 0,
+    "caught": 0,
+    "maxRotation": 0.8740735103145449,
+    "maxOverlap": 0,
+    "wrongTwoMovesNoFreeHole": [],
+    "undoRecovery": true,
+    "route": [
+      [
+        0,
+        [
+          105,
+          35
+        ]
+      ],
+      [
+        2,
+        [
+          245,
+          35
+        ]
+      ],
+      [
+        4,
+        [
+          175,
+          345
+        ]
+      ],
+      [
+        1,
+        [
+          85,
+          230
+        ]
+      ],
+      [
+        3,
+        [
+          265,
+          230
+        ]
+      ]
+    ]
+  },
+  {
+    "id": "v5-offset-key",
+    "name": "Offset key",
+    "screws": 7,
+    "moves": 7,
+    "contacts": 220,
+    "caught": 1,
+    "maxRotation": 1.65961774613994,
+    "maxOverlap": 1.180826989784407,
+    "wrongTwoMovesNoFreeHole": [],
+    "undoRecovery": true,
+    "route": [
+      [
+        6,
+        [
+          105,
+          35
+        ]
+      ],
+      [
+        4,
+        [
+          245,
+          35
+        ]
+      ],
+      [
+        5,
+        [
+          180,
+          280
+        ]
+      ],
+      [
+        2,
+        [
+          305,
+          240
+        ]
+      ],
+      [
+        1,
+        [
+          305,
+          340
+        ]
+      ],
+      [
+        0,
+        [
+          230,
+          205
+        ]
+      ],
+      [
+        3,
+        [
+          90,
+          120
+        ]
+      ]
+    ]
+  },
+  {
+    "id": "v5-locksmith",
+    "name": "Locksmith",
+    "screws": 8,
+    "moves": 8,
+    "contacts": 2376,
+    "caught": 3,
+    "maxRotation": 2.122035570987086,
+    "maxOverlap": 1.4574632819998214,
+    "wrongTwoMovesNoFreeHole": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ]
+    ],
+    "undoRecovery": true,
+    "route": [
+      [
+        2,
+        [
+          105,
+          35
+        ]
+      ],
+      [
+        5,
+        [
+          245,
+          35
+        ]
+      ],
+      [
+        1,
+        [
+          220,
+          275
+        ]
+      ],
+      [
+        0,
+        [
+          250,
+          125
+        ]
+      ],
+      [
+        7,
+        [
+          100,
+          125
+        ]
+      ],
+      [
+        3,
+        [
+          175,
+          280
+        ]
+      ],
+      [
+        6,
+        [
+          55,
+          250
+        ]
+      ],
+      [
+        4,
+        [
+          300,
+          275
+        ]
+      ]
+    ]
+  }
+]

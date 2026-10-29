@@ -5,7 +5,7 @@ const E=await import('./dist/engine.mjs');
 import {normalizeProgress,serializeProgress,recordBest,starsFor,packProgress,isLevelUnlocked} from './dist/progress.mjs';
 const {levels}=E;
 for(const l of levels){const t=l.solution.length;assert.equal(starsFor(t,t),3);assert.equal(starsFor(Math.max(1,t-1),t),3);assert.equal(starsFor(t+1,t),2);assert.equal(starsFor(t+2,t),2);assert.equal(starsFor(t+3,t),1);assert.equal(starsFor(undefined,t),0)}
-let p=normalizeProgress({},levels);assert.equal(p.index,0);assert.deepEqual(packProgress(levels,p.done).map(p=>p.unlocked),[true,false,false]);assert.equal(isLevelUnlocked(4,levels,p.done),false);assert.equal(isLevelUnlocked(12,levels,p.done),false);
+let p=normalizeProgress({},levels);assert.equal(p.index,0);assert.deepEqual(packProgress(levels,p.done).map(p=>p.unlocked),[true,false,false,false]);assert.equal(isLevelUnlocked(4,levels,p.done),false);assert.equal(isLevelUnlocked(12,levels,p.done),false);
 // Three of four, regardless of score. Sequential gates cannot be bypassed.
 p.done=new Set(levels.slice(4,7).map(l=>l.id));assert.equal(isLevelUnlocked(8,levels,p.done),false);
 p.done=new Set(levels.slice(0,2).map(l=>l.id));assert.equal(isLevelUnlocked(4,levels,p.done),false);p.done.add(levels[3].id);assert.equal(isLevelUnlocked(4,levels,p.done),true);assert.equal(isLevelUnlocked(8,levels,p.done),false);
@@ -18,4 +18,8 @@ const reordered=[levels[1],levels[0],...levels.slice(2)];assert.equal(normalizeP
 let best=recordBest({},levels[0].id,10);best=recordBest(best,levels[0].id,12);assert.equal(best[levels[0].id],10);best=recordBest(best,levels[0].id,2);assert.equal(best[levels[0].id],2);
 // Actual physics snapshots undo the route move count; hints do not spend a move.
 let sim=E.createWorld(levels[0]);E.settle(sim);const before=E.snapshot(sim);const h=E.hint(sim);assert.equal(sim.moves,0);assert.ok(h);sim=E.move(sim,...levels[0].solution[0]);assert.equal(sim.moves,1);sim=E.createWorld(levels[0],before);assert.equal(sim.moves,0);assert.equal(E.createWorld(levels[0]).moves,0);
-console.log('PASS: 12 level star boundaries, 3-of-4 sequential packs, locked resume, stable IDs, v4 migration, persistence, personal bests, free hints, Undo and restart scoring.');
+console.log('PASS: 16 level star boundaries, 3-of-4 sequential packs, locked resume, stable IDs, v4 migration, persistence, personal bests, free hints, Undo and restart scoring.');
+
+// Fourth pack unlocks with any three completions in every preceding pack.
+p.done=new Set(levels.slice(0,12).filter((l,i)=>i%4!==3).map(l=>l.id));assert.equal(isLevelUnlocked(12,levels,p.done),true);assert.equal(isLevelUnlocked(15,levels,p.done),true);p.done.delete(levels[8].id);assert.equal(isLevelUnlocked(12,levels,p.done),false);
+const legacy=normalizeProgress({campaign:'shapes-12',levelId:levels[8].id,done:levels.slice(0,12).map(l=>l.id),bests:{[levels[0].id]:2}},levels);assert.equal(legacy.index,8);assert.equal(legacy.bests[levels[0].id],2);assert.equal(isLevelUnlocked(12,levels,legacy.done),true);
