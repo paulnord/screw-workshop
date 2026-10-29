@@ -4,6 +4,10 @@ import Matter from './dist/vendor/matter-0.20.0.min.js';
 globalThis.Matter=Matter;
 const E=await import('./dist/engine.mjs');
 const M=Matter;
+const {normalizeBests,recordBest}=await import('./dist/progress.mjs');
+assert.deepEqual(normalizeBests({good:4,bad:-1,fraction:2.5,text:'3'}),{good:4});
+let scores=recordBest({},'first-opening',4);assert.equal(scores['first-opening'],4);scores=recordBest(scores,'first-opening',6);assert.equal(scores['first-opening'],4);scores=recordBest(scores,'first-opening',2);assert.equal(scores['first-opening'],2);assert.deepEqual(recordBest(scores,'first-opening',0),scores);
+
 const fixtures=[{name:"Hinge fixture",plates:[[6,8]]},{name:"Shelf fixture",plates:[[6,8],[16,18]]},{name:"Ramp fixture",plates:[[1,3],[10,13],[21,23]],order:[2,0,1,4,5,3]}];
 let sim=E.createWorld(fixtures[0]);const initial=E.snapshot(sim);
 assert.equal(E.move(sim,0,8),null,'Occupied destination rejected');
@@ -33,7 +37,7 @@ let hidden=E.createWorld(fixtures[1]);M.Body.setPosition(hidden.plates[1],{x:105
 let rapid=E.createWorld(fixtures[1]);for(const [b,h] of [[0,25],[1,26],[2,27],[3,28]]){assert.ok(E.move(rapid,b,h));E.step(rapid,5)}E.step(rapid,1800);assert.ok(E.complete(rapid));
 let totalMoves=0,maxDepth=0,rampContact=false,rampSlide=0;
 for(const level of [...E.levels,fixtures[2]]){sim=E.createWorld(level);E.settle(sim);let count=0;
- if(level.solution){assert.equal(E.destinations(sim).length,1,'One initial spare');assert.equal(E.destinations(E.createWorld({...level,spares:[]})).length,0,'Zero spares cannot start: one is minimum for this layout');for(const h of level.hidden)assert.ok(E.shaftBlocked(sim,E.cells[h]),'Hidden wood hole starts covered');for(const bad of level.deadEnds||[]){const trapped=E.createWorld(level);E.move(trapped,bad,25);E.settle(trapped,2400);assert.equal(E.destinations(trapped).length,0,level.name+' has a real wrong-first-move trap');}}
+ if(level.solution){assert.equal(new Set(sim.positions).size,sim.positions.length,'No overlapping initial screws');for(let a=0;a<sim.plates.length;a++)for(let b=a+1;b<sim.plates.length;b++)assert.equal(M.Query.collides(sim.plates[a],[sim.plates[b]]).filter(c=>c.depth>.01).length,0,level.name+' initial materials do not overlap');const hintBefore=E.snapshot(sim);E.hint(sim);assert.deepEqual(E.snapshot(sim),hintBefore,'Hints never charge moves or alter physics');assert.equal(E.destinations(sim).length,level.spares.length,'Visible parking targets match authored count');for(const h of level.hidden)assert.ok(E.shaftBlocked(sim,E.cells[h]),'Hidden wood hole starts covered');for(const bad of level.deadEnds||[]){const trapped=E.createWorld(level);E.move(trapped,bad,25);E.settle(trapped,2400);assert.equal(E.destinations(trapped).length,0,level.name+' has a real wrong-first-move trap');}}
 const startX=sim.plates[0].position.x;
  while(!E.complete(sim)&&count<30){const h=E.hint(sim);assert.notEqual(h.b,undefined,`${level.name}: authored solution has a move`);sim=E.move(sim,h.b,h.h);assert.ok(sim,`${level.name}: legal move`);
  for(let f=0;f<2400&&!sim.settled;f++){E.step(sim);for(const pair of sim.engine.pairs.list)if(pair.isActive){maxDepth=Math.max(maxDepth,pair.collision.depth);if(level.name==='Ramp fixture'&&pair.bodyA.parent.label.startsWith('plate-')&&pair.bodyB.parent.label.startsWith('plate-'))rampContact=true;}
@@ -48,3 +52,5 @@ const clearance=E.createWorld(fixtures[0]),cb=clearance.plates[0],L=cb.plugin.le
 for(const angle of [0,.33,Math.PI/4,Math.PI/2,2.2]){M.Body.setAngle(cb,angle);for(const[x,y,blocked]of [[0,17+R-.01,true],[0,17+R+.01,false],[L/2+18+R-.01,0,true],[L/2+18+R+.01,0,false],[L/2+18+(R-.01)/Math.sqrt(2),17+(R-.01)/Math.sqrt(2),true],[L/2+18+(R+.01)/Math.sqrt(2),17+(R+.01)/Math.sqrt(2),false],[-L/2,0,false],[-L/2+10-R-.01,0,false],[-L/2+10-R+.01,0,true]])assert.equal(E.shaftBlocked(clearance,E.worldPoint(cb,{x,y})),blocked)}
 const app=fs.readFileSync(new URL('./dist/app.mjs',import.meta.url),'utf8');assert.match(app,/class:'material-hole'/);assert.doesNotMatch(app,/if\(busy\)return/);assert.doesNotMatch(app,/disabled=busy/);assert.match(app,/Math\.min\(50,now-last\)/);
 console.log(`PASS: ${E.levels.length} physical level solutions, ${totalMoves} moves; real hinges (max initial drift ${maxHinge.toFixed(7)}px), compound holes, moving occlusion, plate/screw blockers, actual sliding, completion, deterministic snapshots/undo/restart. Max replay contact overlap ${maxDepth.toFixed(2)}px; ramp lateral travel ${rampSlide.toFixed(1)}px.`);
+
+await import('./test-shapes.mjs');

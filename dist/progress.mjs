@@ -1,0 +1,9 @@
+// Local, low-pressure move scores. No timers, streaks, ranks, or network storage.
+export function normalizeBests(value){const result={};if(!value||typeof value!=='object'||Array.isArray(value))return result;for(const[id,n]of Object.entries(value))if(/^[a-z0-9-]+$/.test(id)&&Number.isInteger(n)&&n>0&&n<=100000)result[id]=n;return result}
+export function recordBest(bests,id,moves){const clean=normalizeBests(bests);if(!/^[a-z0-9-]+$/.test(id)||!Number.isInteger(moves)||moves<1||moves>100000)return clean;clean[id]=Math.min(clean[id]??Infinity,moves);return clean}
+export const packNames=['First turns','Shape workshop','Master assemblies'];
+export function starsFor(moves,target){if(!Number.isInteger(moves)||moves<1)return 0;if(!Number.isInteger(target)||target<1)return 1;return moves<=target?3:moves<=target+2?2:1}
+export function packProgress(levels,done){return packNames.map((name,p)=>({name,index:p,completed:levels.slice(p*4,p*4+4).filter(l=>done.has(l.id)).length})).map((p,i,all)=>({...p,unlocked:all.slice(0,i).every(prev=>prev.completed>=3)}))}
+export function isLevelUnlocked(index,levels,done){return Number.isInteger(index)&&index>=0&&index<levels.length&&!!packProgress(levels,done)[Math.floor(index/4)]?.unlocked}
+export function normalizeProgress(saved,levels){if(!saved||typeof saved!=='object')saved={};const ids=new Set(levels.map(l=>l.id)),bests=Object.fromEntries(Object.entries(normalizeBests(saved.bests)).filter(([id])=>ids.has(id)));const done=new Set([...(Array.isArray(saved.done)?saved.done:[]),...Object.keys(bests)].filter(id=>ids.has(id)));let index=typeof saved.levelId==='string'?levels.findIndex(l=>l.id===saved.levelId):saved.level; if(!isLevelUnlocked(index,levels,done))index=0;return {bests,done,index}}
+export function serializeProgress(index,levels,done,bests){return {campaign:'shapes-12',levelId:levels[index].id,level:index,done:[...done],bests:normalizeBests(bests)}}

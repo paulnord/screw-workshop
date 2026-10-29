@@ -5,3 +5,7 @@
 
 .levelbar button{flex-shrink:0;white-space:nowrap}
 .physics-hole.available{z-index:20}.physics-hole.available:after{content:'';position:absolute;inset:24%;border:1px solid #fff2ba80;border-radius:50%;pointer-events:none}.physics-hole.available.target:after{inset:7%;border:2px dashed #fff2ba;animation:breathe 1.5s infinite}.physics-hole.available.hinted:after{inset:7%;border:3px solid #fff2ba}
+
+.scoreline{display:block;width:100%;background:none;color:#c7d4c4;min-height:44px;font-size:11px;text-align:center;border-top:1px solid #58705b70;margin-top:7px}.win-score{font-size:12px!important;color:#4a614c;line-height:1.7!important}#win h3{margin:8px 0}#win p{margin:8px 0}.levelgrid{max-height:65svh;overflow:auto;padding:3px}
+
+.complete-stars{font-size:36px;letter-spacing:5px;color:#776026}.packlist{max-height:60svh;overflow:auto;padding:3px}.pack h3{font-size:15px;margin:16px 0 8px}.pack h3 small{display:block;color:#b5c8b9;font-size:11px;font-weight:400;margin-top:4px}.pack .levelgrid{max-height:none;overflow:visible}.levelgrid button[aria-disabled="true"]{opacity:.55;border-style:dashed}#lockmessage:not(:empty){padding:10px;border:1px solid #d4b47a;border-radius:8px;color:#ebd2a0}#win .win-score{font-size:11px!important}.complete-stars{animation:none}

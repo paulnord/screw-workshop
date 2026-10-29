@@ -1,9 +1,10 @@
-// Original assemblies and tested solution routes. Targets are sufficient, not claimed optimal.
+// Original varied-shape assemblies; tested routes are examples, not claims about every timing or parking choice.
 export const levelRecipes = [
   {
-    "id": "first-opening",
-    "name": "First opening",
-    "tip": "One spare is enough. Swing the plate to reveal the round wood hole beneath it.",
+    "id": "v4-first-turn",
+    "name": "First turn",
+    "tip": "Move a screw into the spare, then reuse a mounting hole when the plate swings clear.",
+    "rationale": "A short, fully visible lesson in fixed board holes versus holes in moving material.",
     "plates": [
       [
         [
@@ -16,17 +17,13 @@ export const levelRecipes = [
         ]
       ]
     ],
-    "hidden": [
-      [
-        175,
-        180
-      ]
-    ],
+    "spareCount": 1,
+    "hidden": [],
     "solution": [
       [
         0,
         [
-          35,
+          175,
           35
         ]
       ],
@@ -40,70 +37,868 @@ export const levelRecipes = [
     ]
   },
   {
-    "id": "under-shelf",
-    "name": "Under the shelf",
-    "tip": "A hidden hole is waiting beneath the lower plate. Where should you start?",
+    "id": "v4-choose-hinge",
+    "name": "Choose the hinge",
+    "tip": "Three screws hold this triangle. The last one left decides where it pivots.",
+    "rationale": "Three anchors demonstrate that two pins fix a body, while the chosen final pin becomes the hinge.",
+    "pieces": [
+      {
+        "outline": [
+          [
+            90,
+            100
+          ],
+          [
+            260,
+            100
+          ],
+          [
+            175,
+            250
+          ]
+        ],
+        "anchors": [
+          [
+            120,
+            120
+          ],
+          [
+            230,
+            120
+          ],
+          [
+            175,
+            210
+          ]
+        ]
+      }
+    ],
+    "hidden": [],
+    "spareCount": 2,
+    "solution": [
+      [
+        0,
+        [
+          105,
+          35
+        ]
+      ],
+      [
+        1,
+        [
+          245,
+          35
+        ]
+      ],
+      [
+        2,
+        [
+          120,
+          120
+        ]
+      ]
+    ]
+  },
+  {
+    "name": "Hanging keystone",
+    "pieces": [
+      {
+        "anchors": [
+          [
+            105,
+            100
+          ],
+          [
+            245,
+            100
+          ]
+        ],
+        "outline": [
+          [
+            87,
+            83
+          ],
+          [
+            263,
+            83
+          ],
+          [
+            263,
+            117
+          ],
+          [
+            87,
+            117
+          ]
+        ],
+        "components": [
+          [
+            [
+              87,
+              83
+            ],
+            [
+              263,
+              83
+            ],
+            [
+              263,
+              117
+            ],
+            [
+              87,
+              117
+            ]
+          ]
+        ]
+      },
+      {
+        "outline": [
+          [
+            95,
+            145
+          ],
+          [
+            255,
+            145
+          ],
+          [
+            175,
+            285
+          ]
+        ],
+        "components": [
+          [
+            [
+              95,
+              145
+            ],
+            [
+              255,
+              145
+            ],
+            [
+              175,
+              285
+            ]
+          ]
+        ],
+        "anchors": [
+          [
+            175,
+            175
+          ]
+        ]
+      }
+    ],
+    "spareCount": 2,
+    "hidden": [],
+    "id": "v4-hanging-keystone",
+    "solution": [
+      [
+        0,
+        [
+          105,
+          35
+        ]
+      ],
+      [
+        1,
+        [
+          245,
+          35
+        ]
+      ],
+      [
+        2,
+        [
+          105,
+          100
+        ]
+      ]
+    ],
+    "rationale": "A single centered screw suspends a triangular support; removing it releases both the support and the loose beam resting on it.",
+    "tip": "A single centered screw suspends a triangular support; removing it releases both the support and the loose beam resting on it.",
+    "designEvidence": {
+      "pivotChoices": [],
+      "caughtAfterEachMove": [
+        0,
+        1,
+        0
+      ]
+    }
+  },
+  {
+    "name": "Catch and release",
     "plates": [
       [
         [
-          105,
-          180
+          100,
+          120
         ],
         [
-          245,
-          180
+          250,
+          120
         ]
       ],
       [
         [
-          105,
-          320
+          85,
+          175
         ],
         [
-          245,
-          320
+          140,
+          290
+        ]
+      ],
+      [
+        [
+          265,
+          175
+        ],
+        [
+          210,
+          290
         ]
       ]
     ],
-    "hidden": [
-      [
-        175,
-        320
-      ]
-    ],
+    "hidden": [],
+    "id": "v4-catch-and-release",
+    "spareCount": 2,
     "solution": [
       [
-        2,
+        0,
         [
-          35,
+          105,
           35
+        ]
+      ],
+      [
+        4,
+        [
+          245,
+          35
+        ]
+      ],
+      [
+        1,
+        [
+          265,
+          175
         ]
       ],
       [
         3,
         [
-          105,
-          320
+          250,
+          120
         ]
       ],
       [
+        2,
+        [
+          140,
+          290
+        ]
+      ],
+      [
+        5,
+        [
+          100,
+          120
+        ]
+      ]
+    ],
+    "rationale": "The upper beam is caught between two angled supports; first tip one support to open a route rather than removing screws from the top blindly.",
+    "tip": "The upper beam is caught between two angled supports; first tip one support to open a route rather than removing screws from the top blindly.",
+    "designEvidence": {
+      "alternative": {
+        "sequence": [
+          [
+            3,
+            [
+              105,
+              35
+            ]
+          ],
+          [
+            5,
+            [
+              245,
+              35
+            ]
+          ],
+          [
+            2,
+            [
+              140,
+              290
+            ]
+          ],
+          [
+            4,
+            [
+              85,
+              175
+            ]
+          ],
+          [
+            0,
+            [
+              265,
+              175
+            ]
+          ],
+          [
+            1,
+            [
+              100,
+              120
+            ]
+          ]
+        ],
+        "complete": false,
+        "unattachedRemaining": [
+          {
+            "p": 0,
+            "clear": false,
+            "attached": 0
+          }
+        ],
+        "availableTargets": 2,
+        "verifiedRecovery": [
+          [
+            0,
+            [
+              250,
+              120
+            ]
+          ]
+        ]
+      },
+      "caughtAfterEachMove": [
         0,
+        0,
+        1,
+        1,
+        1,
+        0
+      ]
+    }
+  },
+  {
+    "name": "Broken chevron",
+    "plates": [
+      [
+        [
+          65,
+          140
+        ],
+        [
+          135,
+          210
+        ]
+      ],
+      [
+        [
+          285,
+          140
+        ],
+        [
+          215,
+          210
+        ]
+      ],
+      [
+        [
+          105,
+          290
+        ],
         [
           245,
-          320
+          290
+        ]
+      ]
+    ],
+    "hidden": [],
+    "id": "v4-broken-chevron",
+    "spareCount": 2,
+    "solution": [
+      [
+        0,
+        [
+          105,
+          35
+        ]
+      ],
+      [
+        2,
+        [
+          245,
+          35
         ]
       ],
       [
         1,
         [
-          105,
-          180
+          65,
+          140
+        ]
+      ],
+      [
+        3,
+        [
+          285,
+          140
+        ]
+      ],
+      [
+        4,
+        [
+          135,
+          210
+        ]
+      ],
+      [
+        5,
+        [
+          215,
+          210
         ]
       ]
-    ]
+    ],
+    "rationale": "Two inward-pointing arms rotate apart to release space over a lower beam; a readable balance puzzle.",
+    "tip": "Two inward-pointing arms rotate apart to release space over a lower beam; a readable balance puzzle.",
+    "designEvidence": {
+      "alternative": {
+        "sequence": [
+          [
+            4,
+            [
+              105,
+              35
+            ]
+          ],
+          [
+            5,
+            [
+              245,
+              35
+            ]
+          ],
+          [
+            1,
+            [
+              105,
+              290
+            ]
+          ],
+          [
+            3,
+            [
+              135,
+              210
+            ]
+          ],
+          [
+            0,
+            [
+              215,
+              210
+            ]
+          ],
+          [
+            2,
+            [
+              65,
+              140
+            ]
+          ]
+        ],
+        "complete": true,
+        "unattachedRemaining": [],
+        "availableTargets": 2,
+        "verifiedRecovery": null
+      },
+      "caughtAfterEachMove": [
+        0,
+        0,
+        1,
+        2,
+        0,
+        0
+      ]
+    }
   },
   {
-    "id": "switchback",
+    "name": "Swing gate",
+    "plates": [
+      [
+        [
+          70,
+          140
+        ],
+        [
+          210,
+          140
+        ]
+      ],
+      [
+        [
+          280,
+          140
+        ],
+        [
+          280,
+          280
+        ]
+      ],
+      [
+        [
+          70,
+          280
+        ],
+        [
+          210,
+          280
+        ]
+      ]
+    ],
+    "hidden": [],
+    "id": "v4-swing-gate",
+    "spareCount": 2,
+    "solution": [
+      [
+        0,
+        [
+          105,
+          35
+        ]
+      ],
+      [
+        1,
+        [
+          245,
+          35
+        ]
+      ],
+      [
+        2,
+        [
+          70,
+          140
+        ]
+      ],
+      [
+        3,
+        [
+          210,
+          140
+        ]
+      ],
+      [
+        4,
+        [
+          280,
+          140
+        ]
+      ],
+      [
+        5,
+        [
+          280,
+          280
+        ]
+      ]
+    ],
+    "rationale": "Open the side gate before choosing where the lower bar can swing; the vertical plate changes the exit path.",
+    "tip": "Open the side gate before choosing where the lower bar can swing; the vertical plate changes the exit path.",
+    "designEvidence": {
+      "alternative": {
+        "sequence": [
+          [
+            3,
+            [
+              105,
+              35
+            ]
+          ],
+          [
+            4,
+            [
+              245,
+              35
+            ]
+          ],
+          [
+            5,
+            [
+              280,
+              280
+            ]
+          ],
+          [
+            0,
+            [
+              70,
+              280
+            ]
+          ],
+          [
+            1,
+            [
+              70,
+              140
+            ]
+          ],
+          [
+            2,
+            [
+              210,
+              140
+            ]
+          ]
+        ],
+        "complete": false,
+        "unattachedRemaining": [
+          {
+            "p": 1,
+            "clear": false,
+            "attached": 0
+          }
+        ],
+        "availableTargets": 1,
+        "verifiedRecovery": [
+          [
+            0,
+            [
+              210,
+              280
+            ]
+          ],
+          [
+            5,
+            [
+              70,
+              280
+            ]
+          ]
+        ]
+      },
+      "caughtAfterEachMove": [
+        0,
+        1,
+        1,
+        1,
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "name": "Three-point balance",
+    "pieces": [
+      {
+        "outline": [
+          [
+            80,
+            130
+          ],
+          [
+            270,
+            130
+          ],
+          [
+            175,
+            290
+          ]
+        ],
+        "components": [
+          [
+            [
+              80,
+              130
+            ],
+            [
+              270,
+              130
+            ],
+            [
+              175,
+              290
+            ]
+          ]
+        ],
+        "anchors": [
+          [
+            115,
+            155
+          ],
+          [
+            235,
+            155
+          ],
+          [
+            175,
+            245
+          ]
+        ]
+      },
+      {
+        "anchors": [
+          [
+            105,
+            340
+          ],
+          [
+            245,
+            340
+          ]
+        ],
+        "outline": [
+          [
+            87,
+            323
+          ],
+          [
+            263,
+            323
+          ],
+          [
+            263,
+            357
+          ],
+          [
+            87,
+            357
+          ]
+        ],
+        "components": [
+          [
+            [
+              87,
+              323
+            ],
+            [
+              263,
+              323
+            ],
+            [
+              263,
+              357
+            ],
+            [
+              87,
+              357
+            ]
+          ]
+        ]
+      }
+    ],
+    "spareCount": 2,
+    "hidden": [],
+    "id": "v4-three-point-balance",
+    "solution": [
+      [
+        0,
+        [
+          105,
+          35
+        ]
+      ],
+      [
+        1,
+        [
+          245,
+          35
+        ]
+      ],
+      [
+        2,
+        [
+          115,
+          155
+        ]
+      ],
+      [
+        3,
+        [
+          235,
+          155
+        ]
+      ],
+      [
+        4,
+        [
+          175,
+          245
+        ]
+      ]
+    ],
+    "rationale": "Three anchors make the last remaining pivot a real choice: the low anchor produces an inverted balance, while an upper anchor lets the triangle hang beside the shelf.",
+    "tip": "Three anchors make the last remaining pivot a real choice: the low anchor produces an inverted balance, while an upper anchor lets the triangle hang beside the shelf.",
+    "designEvidence": {
+      "pivotChoices": [
+        {
+          "remaining": 0,
+          "settles": true,
+          "angle": 1.1512158775183359,
+          "position": {
+            "x": 113.69740747845272,
+            "y": 221.27974889010324
+          },
+          "targets": [
+            {
+              "x": 235,
+              "y": 155
+            }
+          ]
+        },
+        {
+          "remaining": 1,
+          "settles": true,
+          "angle": -1.1512934007456144,
+          "position": {
+            "x": 236.30773073766895,
+            "y": 221.27964770979267
+          },
+          "targets": [
+            {
+              "x": 115,
+              "y": 155
+            }
+          ]
+        },
+        {
+          "remaining": 2,
+          "settles": true,
+          "angle": -1.564269111382274,
+          "position": {
+            "x": 113.1917833045714,
+            "y": 244.5965584097226
+          },
+          "targets": [
+            {
+              "x": 115,
+              "y": 155
+            },
+            {
+              "x": 235,
+              "y": 155
+            }
+          ]
+        }
+      ],
+      "caughtAfterEachMove": [
+        0,
+        0,
+        1,
+        0,
+        0
+      ]
+    }
+  },
+  {
     "name": "Switchback",
     "plates": [
       [
@@ -137,863 +932,1007 @@ export const levelRecipes = [
         ]
       ]
     ],
-    "hidden": [
-      [
-        140,
-        155
-      ],
-      [
-        210,
-        225
-      ],
-      [
-        140,
-        345
-      ]
-    ],
-    "tip": "Reveal a new opening before spending your last free hole. Plan which piece can move first.",
+    "hidden": [],
+    "id": "v4-switchback",
+    "spareCount": 2,
     "solution": [
       [
-        5,
+        0,
         [
-          35,
+          105,
           35
         ]
       ],
       [
-        4,
+        1,
         [
-          140,
-          345
-        ]
-      ],
-      [
-        2,
-        [
-          70,
-          320
+          245,
+          35
         ]
       ],
       [
         3,
         [
-          210,
-          225
+          70,
+          130
         ]
       ],
       [
-        1,
+        2,
+        [
+          210,
+          180
+        ]
+      ],
+      [
+        4,
         [
           280,
           200
         ]
       ],
       [
-        0,
+        5,
         [
           140,
           250
         ]
-      ],
+      ]
+    ],
+    "rationale": "Opposing slopes deflect a loose beam sideways; park screws outside its predicted path.",
+    "tip": "Opposing slopes deflect a loose beam sideways; park screws outside its predicted path.",
+    "designEvidence": {
+      "alternative": {
+        "sequence": [
+          [
+            5,
+            [
+              105,
+              35
+            ]
+          ],
+          [
+            4,
+            [
+              245,
+              35
+            ]
+          ],
+          [
+            2,
+            [
+              70,
+              320
+            ]
+          ],
+          [
+            3,
+            [
+              140,
+              250
+            ]
+          ],
+          [
+            1,
+            [
+              280,
+              200
+            ]
+          ],
+          [
+            0,
+            [
+              210,
+              180
+            ]
+          ]
+        ],
+        "complete": false,
+        "unattachedRemaining": [
+          {
+            "p": 0,
+            "clear": false,
+            "attached": 0
+          }
+        ],
+        "availableTargets": 2,
+        "verifiedRecovery": [
+          [
+            0,
+            [
+              70,
+              130
+            ]
+          ],
+          [
+            2,
+            [
+              210,
+              180
+            ]
+          ]
+        ]
+      },
+      "caughtAfterEachMove": [
+        0,
+        1,
+        0,
+        1,
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "name": "The hook",
+    "pieces": [
+      {
+        "outline": [
+          [
+            75,
+            120
+          ],
+          [
+            120,
+            120
+          ],
+          [
+            120,
+            245
+          ],
+          [
+            260,
+            245
+          ],
+          [
+            260,
+            290
+          ],
+          [
+            75,
+            290
+          ]
+        ],
+        "components": [
+          [
+            [
+              75,
+              120
+            ],
+            [
+              120,
+              120
+            ],
+            [
+              120,
+              245
+            ],
+            [
+              75,
+              245
+            ]
+          ],
+          [
+            [
+              75,
+              245
+            ],
+            [
+              260,
+              245
+            ],
+            [
+              260,
+              290
+            ],
+            [
+              75,
+              290
+            ]
+          ]
+        ],
+        "anchors": [
+          [
+            97.5,
+            150
+          ],
+          [
+            97.5,
+            260
+          ],
+          [
+            225,
+            267.5
+          ]
+        ]
+      },
+      {
+        "anchors": [
+          [
+            290,
+            140
+          ],
+          [
+            290,
+            210
+          ]
+        ],
+        "outline": [
+          [
+            307,
+            122
+          ],
+          [
+            307,
+            228
+          ],
+          [
+            273,
+            228
+          ],
+          [
+            273,
+            122
+          ]
+        ],
+        "components": [
+          [
+            [
+              307,
+              122
+            ],
+            [
+              307,
+              228
+            ],
+            [
+              273,
+              228
+            ],
+            [
+              273,
+              122
+            ]
+          ]
+        ]
+      }
+    ],
+    "spareCount": 2,
+    "hidden": [],
+    "id": "v4-the-hook",
+    "solution": [
       [
         2,
         [
-          140,
-          155
-        ]
-      ]
-    ],
-    "deadEnds": []
-  },
-  {
-    "id": "two-doors",
-    "name": "Two doors",
-    "plates": [
-      [
-        [
-          70,
-          140
-        ],
-        [
-          70,
-          280
+          105,
+          35
         ]
       ],
       [
+        0,
         [
-          280,
-          140
-        ],
-        [
-          280,
-          280
-        ]
-      ],
-      [
-        [
-          140,
-          210
-        ],
-        [
-          210,
-          210
-        ]
-      ]
-    ],
-    "hidden": [
-      [
-        70,
-        210
-      ],
-      [
-        280,
-        210
-      ],
-      [
-        175,
-        210
-      ]
-    ],
-    "tip": "Look for a clear path through the middle. A parked screw is an obstacle, too.",
-    "solution": [
-      [
-        4,
-        [
-          35,
+          245,
           35
         ]
       ],
       [
         1,
         [
-          140,
-          210
-        ]
-      ],
-      [
-        5,
-        [
-          175,
-          210
-        ]
-      ],
-      [
-        0,
-        [
-          210,
-          210
+          97.5,
+          150
         ]
       ],
       [
         3,
         [
-          70,
-          140
-        ]
-      ],
-      [
-        2,
-        [
-          70,
-          210
-        ]
-      ]
-    ]
-  },
-  {
-    "id": "side-gate",
-    "name": "Side gate",
-    "plates": [
-      [
-        [
-          70,
-          140
-        ],
-        [
-          210,
-          140
-        ]
-      ],
-      [
-        [
-          280,
-          140
-        ],
-        [
-          280,
-          280
-        ]
-      ],
-      [
-        [
-          70,
-          280
-        ],
-        [
-          210,
-          280
-        ]
-      ]
-    ],
-    "hidden": [
-      [
-        140,
-        140
-      ],
-      [
-        280,
-        210
-      ],
-      [
-        140,
-        280
-      ]
-    ],
-    "tip": "Look for a clear path through the middle. A parked screw is an obstacle, too.",
-    "solution": [
-      [
-        4,
-        [
-          35,
-          35
-        ]
-      ],
-      [
-        3,
-        [
-          70,
-          280
-        ]
-      ],
-      [
-        5,
-        [
-          140,
-          280
-        ]
-      ],
-      [
-        0,
-        [
-          210,
-          280
-        ]
-      ],
-      [
-        1,
-        [
-          70,
-          140
-        ]
-      ],
-      [
-        2,
-        [
-          210,
-          140
-        ]
-      ],
-      [
-        0,
-        [
-          280,
-          140
-        ]
-      ]
-    ]
-  },
-  {
-    "id": "three-deep",
-    "name": "Three deep",
-    "tip": "Tight clearances make the order matter. Reveal a hole before you spend your last open space.",
-    "plates": [
-      [
-        [
-          70,
-          130
-        ],
-        [
-          280,
-          130
-        ]
-      ],
-      [
-        [
-          70,
-          172
-        ],
-        [
-          280,
-          172
-        ]
-      ],
-      [
-        [
-          70,
-          214
-        ],
-        [
-          280,
-          214
-        ]
-      ]
-    ],
-    "hidden": [
-      [
-        175.0,
-        130
-      ],
-      [
-        175.0,
-        172
-      ],
-      [
-        175.0,
-        214
-      ]
-    ],
-    "solution": [
-      [
-        4,
-        [
-          35,
-          35
-        ]
-      ],
-      [
-        2,
-        [
-          175,
-          214
-        ]
-      ],
-      [
-        2,
-        [
-          70,
-          172
-        ]
-      ],
-      [
-        3,
-        [
-          175,
-          172
-        ]
-      ],
-      [
-        1,
-        [
-          70,
-          214
-        ]
-      ],
-      [
-        0,
-        [
-          280,
-          130
-        ]
-      ],
-      [
-        5,
-        [
-          175,
-          214
-        ]
-      ]
-    ],
-    "deadEnds": [
-      0,
-      1,
-      2,
-      3
-    ]
-  },
-  {
-    "id": "staggered-lock",
-    "name": "Staggered lock",
-    "tip": "Tight clearances make the order matter. Reveal a hole before you spend your last open space.",
-    "plates": [
-      [
-        [
-          55,
-          120
-        ],
-        [
-          265,
-          120
-        ]
-      ],
-      [
-        [
-          85,
-          164
-        ],
-        [
-          295,
-          164
-        ]
-      ],
-      [
-        [
-          45,
-          208
-        ],
-        [
-          255,
-          208
-        ]
-      ]
-    ],
-    "hidden": [
-      [
-        160.0,
-        120
-      ],
-      [
-        190.0,
-        164
-      ],
-      [
-        150.0,
-        208
-      ]
-    ],
-    "solution": [
-      [
-        5,
-        [
-          35,
-          35
-        ]
-      ],
-      [
-        3,
-        [
-          150,
-          208
-        ]
-      ],
-      [
-        2,
-        [
-          295,
-          164
-        ]
-      ],
-      [
-        1,
-        [
-          85,
-          164
-        ]
-      ],
-      [
-        0,
-        [
-          265,
-          120
+          97.5,
+          260
         ]
       ],
       [
         4,
-        [
-          55,
-          120
-        ]
-      ]
-    ],
-    "deadEnds": [
-      0,
-      1,
-      2,
-      3
-    ]
-  },
-  {
-    "id": "suspended-triangle",
-    "name": "Suspended triangle",
-    "plates": [
-      [
-        [
-          100,
-          120
-        ],
-        [
-          250,
-          120
-        ]
-      ],
-      [
-        [
-          85,
-          175
-        ],
-        [
-          140,
-          290
-        ]
-      ],
-      [
-        [
-          265,
-          175
-        ],
-        [
-          210,
-          290
-        ]
-      ]
-    ],
-    "hidden": [
-      [
-        175,
-        120
-      ],
-      [
-        112.5,
-        232.5
-      ],
-      [
-        237.5,
-        232.5
-      ]
-    ],
-    "tip": "Reveal a new opening before spending your last free hole. Plan which piece can move first.",
-    "solution": [
-      [
-        3,
-        [
-          35,
-          35
-        ]
-      ],
-      [
-        5,
-        [
-          112.5,
-          232.5
-        ]
-      ],
-      [
-        2,
-        [
-          237.5,
-          232.5
-        ]
-      ],
-      [
-        4,
-        [
-          85,
-          175
-        ]
-      ],
-      [
-        0,
-        [
-          265,
-          175
-        ]
-      ],
-      [
-        1,
-        [
-          100,
-          120
-        ]
-      ],
-      [
-        2,
-        [
-          250,
-          120
-        ]
-      ],
-      [
-        5,
-        [
-          175,
-          120
-        ]
-      ],
-      [
-        0,
-        [
-          112.5,
-          232.5
-        ]
-      ]
-    ],
-    "deadEnds": [
-      0,
-      1
-    ]
-  },
-  {
-    "id": "four-story-lock",
-    "name": "Four-story lock",
-    "tip": "Tight clearances make the order matter. Reveal a hole before you spend your last open space.",
-    "plates": [
-      [
-        [
-          60,
-          120
-        ],
-        [
-          260,
-          120
-        ]
-      ],
-      [
-        [
-          90,
-          162
-        ],
         [
           290,
-          162
+          140
         ]
+      ]
+    ],
+    "rationale": "An asymmetric L can hook around the neighboring vertical gate; choose a pivot and clear a path for the long foot.",
+    "tip": "An asymmetric L can hook around the neighboring vertical gate; choose a pivot and clear a path for the long foot.",
+    "designEvidence": {
+      "pivotChoices": [
+        {
+          "remaining": 0,
+          "settles": true,
+          "angle": 0.45059924610741064,
+          "position": {
+            "x": 98.49479683487193,
+            "y": 243.7081594520188
+          },
+          "targets": [
+            {
+              "x": 225,
+              "y": 267.5
+            }
+          ]
+        },
+        {
+          "remaining": 1,
+          "settles": true,
+          "angle": 2.0565694098016074,
+          "position": {
+            "x": 101.08937952242324,
+            "y": 309.05691356299883
+          },
+          "targets": [
+            {
+              "x": 97.5,
+              "y": 150
+            },
+            {
+              "x": 225,
+              "y": 267.5
+            }
+          ]
+        },
+        {
+          "remaining": 2,
+          "settles": true,
+          "angle": -1.934643941997184,
+          "position": {
+            "x": 224.15157270178355,
+            "y": 359.6271965169532
+          },
+          "targets": [
+            {
+              "x": 97.5,
+              "y": 150
+            },
+            {
+              "x": 97.5,
+              "y": 260
+            }
+          ]
+        }
       ],
+      "caughtAfterEachMove": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "name": "Open basket",
+    "plates": [
       [
         [
-          50,
-          204
+          100,
+          120
         ],
         [
           250,
-          204
+          120
         ]
       ],
       [
         [
-          80,
-          246
+          85,
+          175
         ],
         [
-          280,
-          246
+          140,
+          290
+        ]
+      ],
+      [
+        [
+          265,
+          175
+        ],
+        [
+          210,
+          290
+        ]
+      ],
+      [
+        [
+          105,
+          365
+        ],
+        [
+          245,
+          365
         ]
       ]
     ],
-    "hidden": [
-      [
-        160.0,
-        120
-      ],
-      [
-        190.0,
-        162
-      ],
-      [
-        150.0,
-        204
-      ],
-      [
-        180.0,
-        246
-      ]
-    ],
+    "hidden": [],
+    "id": "v4-open-basket",
+    "spareCount": 2,
     "solution": [
       [
-        7,
+        0,
         [
-          35,
+          105,
           35
+        ]
+      ],
+      [
+        4,
+        [
+          245,
+          35
+        ]
+      ],
+      [
+        1,
+        [
+          265,
+          175
+        ]
+      ],
+      [
+        3,
+        [
+          250,
+          120
+        ]
+      ],
+      [
+        2,
+        [
+          140,
+          290
         ]
       ],
       [
         5,
         [
-          280,
-          246
+          100,
+          120
         ]
       ],
       [
         6,
         [
-          250,
-          204
+          85,
+          175
         ]
       ],
       [
-        2,
+        7,
         [
-          80,
-          246
-        ]
-      ],
-      [
-        4,
-        [
-          190,
-          162
-        ]
-      ],
-      [
-        0,
-        [
-          180,
-          246
-        ]
-      ],
-      [
-        1,
-        [
-          60,
-          120
-        ]
-      ],
-      [
-        3,
-        [
-          260,
-          120
-        ]
-      ],
-      [
-        2,
-        [
-          90,
-          162
+          210,
+          290
         ]
       ]
     ],
-    "deadEnds": [
-      0,
-      1,
-      2,
-      3,
-      4,
-      5
-    ]
+    "rationale": "An angled basket catches the upper beam, and a lower shelf creates a second support stage.",
+    "tip": "An angled basket catches the upper beam, and a lower shelf creates a second support stage.",
+    "designEvidence": {
+      "alternative": {
+        "sequence": [
+          [
+            6,
+            [
+              105,
+              35
+            ]
+          ],
+          [
+            7,
+            [
+              245,
+              35
+            ]
+          ],
+          [
+            3,
+            [
+              105,
+              365
+            ]
+          ],
+          [
+            5,
+            [
+              140,
+              290
+            ]
+          ],
+          [
+            2,
+            [
+              210,
+              290
+            ]
+          ],
+          [
+            4,
+            [
+              85,
+              175
+            ]
+          ],
+          [
+            0,
+            [
+              265,
+              175
+            ]
+          ],
+          [
+            1,
+            [
+              100,
+              120
+            ]
+          ]
+        ],
+        "complete": false,
+        "unattachedRemaining": [
+          {
+            "p": 0,
+            "clear": false,
+            "attached": 0
+          }
+        ],
+        "availableTargets": 2,
+        "verifiedRecovery": [
+          [
+            0,
+            [
+              250,
+              120
+            ]
+          ],
+          [
+            2,
+            [
+              265,
+              175
+            ]
+          ]
+        ]
+      },
+      "caughtAfterEachMove": [
+        0,
+        0,
+        1,
+        1,
+        1,
+        2,
+        1,
+        0
+      ]
+    }
   },
   {
-    "id": "offset-lock",
-    "name": "Offset lock",
+    "name": "Crossbar gate",
     "plates": [
       [
         [
           70,
-          150
+          120
         ],
         [
-          210,
-          150
+          70,
+          260
+        ]
+      ],
+      [
+        [
+          280,
+          120
+        ],
+        [
+          280,
+          260
         ]
       ],
       [
         [
           140,
-          188
-        ],
-        [
-          280,
-          188
-        ]
-      ],
-      [
-        [
-          70,
-          280
+          190
         ],
         [
           210,
-          280
+          190
+        ]
+      ],
+      [
+        [
+          105,
+          330
+        ],
+        [
+          245,
+          330
         ]
       ]
     ],
-    "hidden": [
-      [
-        140,
-        150
-      ],
-      [
-        210,
-        188
-      ],
-      [
-        140,
-        280
-      ]
-    ],
-    "tip": "Some parked screws have to move again. Plan where the falling pieces will go.",
+    "hidden": [],
+    "id": "v4-crossbar-gate",
+    "spareCount": 2,
     "solution": [
       [
-        4,
+        0,
         [
-          35,
+          105,
           35
-        ]
-      ],
-      [
-        5,
-        [
-          70,
-          280
         ]
       ],
       [
         2,
         [
-          210,
-          280
+          245,
+          35
         ]
       ],
       [
-        3,
+        4,
         [
-          140,
-          188
-        ]
-      ],
-      [
-        0,
-        [
-          280,
-          188
+          70,
+          120
         ]
       ],
       [
         1,
         [
-          70,
-          150
-        ]
-      ],
-      [
-        2,
-        [
-          210,
-          188
+          280,
+          120
         ]
       ],
       [
         5,
         [
-          210,
-          280
+          140,
+          190
         ]
       ],
       [
-        5,
+        3,
         [
           70,
-          280
+          260
         ]
       ],
       [
-        5,
+        6,
         [
           210,
-          150
+          190
+        ]
+      ],
+      [
+        7,
+        [
+          280,
+          260
         ]
       ]
     ],
-    "deadEnds": [
-      0,
-      1
-    ]
+    "rationale": "Two hinged vertical gates flank a central bar; choose which gate to swing clear before letting the center drop.",
+    "tip": "Two hinged vertical gates flank a central bar; choose which gate to swing clear before letting the center drop.",
+    "designEvidence": {
+      "alternative": {
+        "sequence": [
+          [
+            6,
+            [
+              105,
+              35
+            ]
+          ],
+          [
+            7,
+            [
+              245,
+              35
+            ]
+          ],
+          [
+            1,
+            [
+              105,
+              330
+            ]
+          ],
+          [
+            3,
+            [
+              70,
+              260
+            ]
+          ],
+          [
+            4,
+            [
+              280,
+              260
+            ]
+          ],
+          [
+            5,
+            [
+              140,
+              190
+            ]
+          ],
+          [
+            0,
+            [
+              210,
+              190
+            ]
+          ],
+          [
+            2,
+            [
+              245,
+              330
+            ]
+          ]
+        ],
+        "complete": false,
+        "unattachedRemaining": [
+          {
+            "p": 0,
+            "clear": false,
+            "attached": 0
+          },
+          {
+            "p": 1,
+            "clear": false,
+            "attached": 0
+          }
+        ],
+        "availableTargets": 0,
+        "verifiedRecovery": null
+      },
+      "caughtAfterEachMove": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0
+      ]
+    }
+  },
+  {
+    "name": "Top-heavy lever",
+    "pieces": [
+      {
+        "outline": [
+          [
+            65,
+            130
+          ],
+          [
+            285,
+            130
+          ],
+          [
+            285,
+            175
+          ],
+          [
+            198,
+            175
+          ],
+          [
+            198,
+            295
+          ],
+          [
+            152,
+            295
+          ],
+          [
+            152,
+            175
+          ],
+          [
+            65,
+            175
+          ]
+        ],
+        "components": [
+          [
+            [
+              65,
+              130
+            ],
+            [
+              285,
+              130
+            ],
+            [
+              285,
+              175
+            ],
+            [
+              65,
+              175
+            ]
+          ],
+          [
+            [
+              152,
+              175
+            ],
+            [
+              198,
+              175
+            ],
+            [
+              198,
+              295
+            ],
+            [
+              152,
+              295
+            ]
+          ]
+        ],
+        "anchors": [
+          [
+            95,
+            152.5
+          ],
+          [
+            255,
+            152.5
+          ],
+          [
+            175,
+            260
+          ]
+        ]
+      },
+      {
+        "anchors": [
+          [
+            65,
+            230
+          ],
+          [
+            115,
+            280
+          ]
+        ],
+        "outline": [
+          [
+            64.29289321881345,
+            205.25126265847084
+          ],
+          [
+            139.74873734152916,
+            280.70710678118655
+          ],
+          [
+            115.70710678118654,
+            304.74873734152914
+          ],
+          [
+            40.251262658470836,
+            229.29289321881348
+          ]
+        ],
+        "components": [
+          [
+            [
+              64.29289321881345,
+              205.25126265847084
+            ],
+            [
+              139.74873734152916,
+              280.70710678118655
+            ],
+            [
+              115.70710678118654,
+              304.74873734152914
+            ],
+            [
+              40.251262658470836,
+              229.29289321881348
+            ]
+          ]
+        ]
+      }
+    ],
+    "spareCount": 2,
+    "hidden": [],
+    "id": "v4-top-heavy-lever",
+    "solution": [
+      [
+        2,
+        [
+          105,
+          35
+        ]
+      ],
+      [
+        0,
+        [
+          245,
+          35
+        ]
+      ],
+      [
+        1,
+        [
+          95,
+          152.5
+        ]
+      ],
+      [
+        3,
+        [
+          255,
+          152.5
+        ]
+      ],
+      [
+        4,
+        [
+          65,
+          230
+        ]
+      ]
+    ],
+    "rationale": "The wide T crossbar changes the center of mass and sweeps a much larger arc than its narrow stem; a diagonal prop can catch one arm.",
+    "tip": "The wide T crossbar changes the center of mass and sweeps a much larger arc than its narrow stem; a diagonal prop can catch one arm.",
+    "designEvidence": {
+      "pivotChoices": [
+        {
+          "remaining": 0,
+          "settles": true,
+          "angle": 0.09854656536503051,
+          "position": {
+            "x": 171.7585165245078,
+            "y": 189.23168067856375
+          },
+          "targets": []
+        },
+        {
+          "remaining": 1,
+          "settles": true,
+          "angle": -0.22180687507862518,
+          "position": {
+            "x": 183.3400706896019,
+            "y": 198.39026015445657
+          },
+          "targets": [
+            {
+              "x": 95,
+              "y": 152.5
+            }
+          ]
+        },
+        {
+          "remaining": 2,
+          "settles": true,
+          "angle": -0.3010719373622737,
+          "position": {
+            "x": 151.7216968349403,
+            "y": 185.03231129577713
+          },
+          "targets": []
+        }
+      ],
+      "caughtAfterEachMove": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
   }
 ];

@@ -1,0 +1,1095 @@
+{
+  "schemaVersion": 1,
+  "sourceHashes": {
+    "engine.mjs": "6907ca4033799638110a4309f9370abe801a121812fd2978ca48a60b0f28793a",
+    "levels.mjs": "200b1bf51e3ecae4b96b5537e1b32cd53962b74605e48b509b96e6d3d52b27db"
+  },
+  "model": {
+    "order": "Permutation of first releases of original anchor screws, not the parking destinations or later reparking moves.",
+    "physics": "Actual fixed-step engine, settled before first action and after every move, at most5000 steps per settle.",
+    "branching": "Every legal parking destination is explored for the fixed release order. Full structured clone preserves live-world contact history. No rounded-state merging.",
+    "tiers": [
+      0,
+      1
+    ],
+    "outcomes": "Solved means a constructive witness, rejected means exhaustive failure within the tier, unknown means a search/settle cap. All witnesses replayed from the initial world in-place.",
+    "sampling": "For8-screw levels only32 distinct orders are covered; authored order and each first screw included. This is not a probability sample or a global count.",
+    "limits": "No claim about arbitrary moving-time input, unlimited reparking, all target trajectories, or whether a narrow puzzle is fun."
+  },
+  "verification": {
+    "uniqueWitnesses": 3833,
+    "legalMoves": 23751,
+    "allComplete": true,
+    "allCoordinateBindingsMatch": true
+  },
+  "levels": [
+    {
+      "id": "v4-first-turn",
+      "name": "First turn",
+      "originalScrews": 2,
+      "possibleReleaseOrders": 2,
+      "zeroReparking": {
+        "tested": 2,
+        "exhaustiveOrders": true,
+        "extraParkingMoves": 0,
+        "solved": 2,
+        "rejected": 0,
+        "unknown": 0,
+        "first": [
+          {
+            "screw": 0,
+            "solved": 1,
+            "rejected": 0,
+            "unknown": 0
+          },
+          {
+            "screw": 1,
+            "solved": 1,
+            "rejected": 0,
+            "unknown": 0
+          }
+        ]
+      },
+      "upToOneReparking": {
+        "tested": 2,
+        "exhaustiveOrders": true,
+        "extraParkingMoves": 1,
+        "solved": 2,
+        "rejected": 0,
+        "unknown": 0,
+        "first": [
+          {
+            "screw": 0,
+            "solved": 1,
+            "rejected": 0,
+            "unknown": 0
+          },
+          {
+            "screw": 1,
+            "solved": 1,
+            "rejected": 0,
+            "unknown": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "v4-choose-hinge",
+      "name": "Choose the hinge",
+      "originalScrews": 3,
+      "possibleReleaseOrders": 6,
+      "zeroReparking": {
+        "tested": 6,
+        "exhaustiveOrders": true,
+        "extraParkingMoves": 0,
+        "solved": 6,
+        "rejected": 0,
+        "unknown": 0,
+        "first": [
+          {
+            "screw": 0,
+            "solved": 2,
+            "rejected": 0,
+            "unknown": 0
+          },
+          {
+            "screw": 1,
+            "solved": 2,
+            "rejected": 0,
+            "unknown": 0
+          },
+          {
+            "screw": 2,
+            "solved": 2,
+            "rejected": 0,
+            "unknown": 0
+          }
+        ]
+      },
+      "upToOneReparking": {
+        "tested": 6,
+        "exhaustiveOrders": true,
+        "extraParkingMoves": 1,
+        "solved": 6,
+        "rejected": 0,
+        "unknown": 0,
+        "first": [
+          {
+            "screw": 0,
+            "solved": 2,
+            "rejected": 0,
+            "unknown": 0
+          },
+          {
+            "screw": 1,
+            "solved": 2,
+            "rejected": 0,
+            "unknown": 0
+          },
+          {
+            "screw": 2,
+            "solved": 2,
+            "rejected": 0,
+            "unknown": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "v4-hanging-keystone",
+      "name": "Hanging keystone",
+      "originalScrews": 3,
+      "possibleReleaseOrders": 6,
+      "zeroReparking": {
+        "tested": 6,
+        "exhaustiveOrders": true,
+        "extraParkingMoves": 0,
+        "solved": 6,
+        "rejected": 0,
+        "unknown": 0,
+        "first": [
+          {
+            "screw": 0,
+            "solved": 2,
+            "rejected": 0,
+            "unknown": 0
+          },
+          {
+            "screw": 1,
+            "solved": 2,
+            "rejected": 0,
+            "unknown": 0
+          },
+          {
+            "screw": 2,
+            "solved": 2,
+            "rejected": 0,
+            "unknown": 0
+          }
+        ]
+      },
+      "upToOneReparking": {
+        "tested": 6,
+        "exhaustiveOrders": true,
+        "extraParkingMoves": 1,
+        "solved": 6,
+        "rejected": 0,
+        "unknown": 0,
+        "first": [
+          {
+            "screw": 0,
+            "solved": 2,
+            "rejected": 0,
+            "unknown": 0
+          },
+          {
+            "screw": 1,
+            "solved": 2,
+            "rejected": 0,
+            "unknown": 0
+          },
+          {
+            "screw": 2,
+            "solved": 2,
+            "rejected": 0,
+            "unknown": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "v4-catch-and-release",
+      "name": "Catch and release",
+      "originalScrews": 6,
+      "possibleReleaseOrders": 720,
+      "zeroReparking": {
+        "tested": 720,
+        "exhaustiveOrders": true,
+        "extraParkingMoves": 0,
+        "solved": 361,
+        "rejected": 359,
+        "unknown": 0,
+        "first": [
+          {
+            "screw": 0,
+            "solved": 21,
+            "rejected": 99,
+            "unknown": 0
+          },
+          {
+            "screw": 1,
+            "solved": 21,
+            "rejected": 99,
+            "unknown": 0
+          },
+          {
+            "screw": 2,
+            "solved": 90,
+            "rejected": 30,
+            "unknown": 0
+          },
+          {
+            "screw": 3,
+            "solved": 70,
+            "rejected": 50,
+            "unknown": 0
+          },
+          {
+            "screw": 4,
+            "solved": 89,
+            "rejected": 31,
+            "unknown": 0
+          },
+          {
+            "screw": 5,
+            "solved": 70,
+            "rejected": 50,
+            "unknown": 0
+          }
+        ]
+      },
+      "upToOneReparking": {
+        "tested": 720,
+        "exhaustiveOrders": true,
+        "extraParkingMoves": 1,
+        "solved": 480,
+        "rejected": 240,
+        "unknown": 0,
+        "first": [
+          {
+            "screw": 0,
+            "solved": 40,
+            "rejected": 80,
+            "unknown": 0
+          },
+          {
+            "screw": 1,
+            "solved": 40,
+            "rejected": 80,
+            "unknown": 0
+          },
+          {
+            "screw": 2,
+            "solved": 110,
+            "rejected": 10,
+            "unknown": 0
+          },
+          {
+            "screw": 3,
+            "solved": 90,
+            "rejected": 30,
+            "unknown": 0
+          },
+          {
+            "screw": 4,
+            "solved": 110,
+            "rejected": 10,
+            "unknown": 0
+          },
+          {
+            "screw": 5,
+            "solved": 90,
+            "rejected": 30,
+            "unknown": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "v4-broken-chevron",
+      "name": "Broken chevron",
+      "originalScrews": 6,
+      "possibleReleaseOrders": 720,
+      "zeroReparking": {
+        "tested": 720,
+        "exhaustiveOrders": true,
+        "extraParkingMoves": 0,
+        "solved": 720,
+        "rejected": 0,
+        "unknown": 0,
+        "first": [
+          {
+            "screw": 0,
+            "solved": 120,
+            "rejected": 0,
+            "unknown": 0
+          },
+          {
+            "screw": 1,
+            "solved": 120,
+            "rejected": 0,
+            "unknown": 0
+          },
+          {
+            "screw": 2,
+            "solved": 120,
+            "rejected": 0,
+            "unknown": 0
+          },
+          {
+            "screw": 3,
+            "solved": 120,
+            "rejected": 0,
+            "unknown": 0
+          },
+          {
+            "screw": 4,
+            "solved": 120,
+            "rejected": 0,
+            "unknown": 0
+          },
+          {
+            "screw": 5,
+            "solved": 120,
+            "rejected": 0,
+            "unknown": 0
+          }
+        ]
+      },
+      "upToOneReparking": {
+        "tested": 720,
+        "exhaustiveOrders": true,
+        "extraParkingMoves": 1,
+        "solved": 720,
+        "rejected": 0,
+        "unknown": 0,
+        "first": [
+          {
+            "screw": 0,
+            "solved": 120,
+            "rejected": 0,
+            "unknown": 0
+          },
+          {
+            "screw": 1,
+            "solved": 120,
+            "rejected": 0,
+            "unknown": 0
+          },
+          {
+            "screw": 2,
+            "solved": 120,
+            "rejected": 0,
+            "unknown": 0
+          },
+          {
+            "screw": 3,
+            "solved": 120,
+            "rejected": 0,
+            "unknown": 0
+          },
+          {
+            "screw": 4,
+            "solved": 120,
+            "rejected": 0,
+            "unknown": 0
+          },
+          {
+            "screw": 5,
+            "solved": 120,
+            "rejected": 0,
+            "unknown": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "v4-swing-gate",
+      "name": "Swing gate",
+      "originalScrews": 6,
+      "possibleReleaseOrders": 720,
+      "zeroReparking": {
+        "tested": 720,
+        "exhaustiveOrders": true,
+        "extraParkingMoves": 0,
+        "solved": 633,
+        "rejected": 87,
+        "unknown": 0,
+        "first": [
+          {
+            "screw": 0,
+            "solved": 100,
+            "rejected": 20,
+            "unknown": 0
+          },
+          {
+            "screw": 1,
+            "solved": 100,
+            "rejected": 20,
+            "unknown": 0
+          },
+          {
+            "screw": 2,
+            "solved": 112,
+            "rejected": 8,
+            "unknown": 0
+          },
+          {
+            "screw": 3,
+            "solved": 100,
+            "rejected": 20,
+            "unknown": 0
+          },
+          {
+            "screw": 4,
+            "solved": 111,
+            "rejected": 9,
+            "unknown": 0
+          },
+          {
+            "screw": 5,
+            "solved": 110,
+            "rejected": 10,
+            "unknown": 0
+          }
+        ]
+      },
+      "upToOneReparking": {
+        "tested": 720,
+        "exhaustiveOrders": true,
+        "extraParkingMoves": 1,
+        "solved": 701,
+        "rejected": 19,
+        "unknown": 0,
+        "first": [
+          {
+            "screw": 0,
+            "solved": 117,
+            "rejected": 3,
+            "unknown": 0
+          },
+          {
+            "screw": 1,
+            "solved": 117,
+            "rejected": 3,
+            "unknown": 0
+          },
+          {
+            "screw": 2,
+            "solved": 120,
+            "rejected": 0,
+            "unknown": 0
+          },
+          {
+            "screw": 3,
+            "solved": 113,
+            "rejected": 7,
+            "unknown": 0
+          },
+          {
+            "screw": 4,
+            "solved": 117,
+            "rejected": 3,
+            "unknown": 0
+          },
+          {
+            "screw": 5,
+            "solved": 117,
+            "rejected": 3,
+            "unknown": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "v4-three-point-balance",
+      "name": "Three-point balance",
+      "originalScrews": 5,
+      "possibleReleaseOrders": 120,
+      "zeroReparking": {
+        "tested": 120,
+        "exhaustiveOrders": true,
+        "extraParkingMoves": 0,
+        "solved": 70,
+        "rejected": 50,
+        "unknown": 0,
+        "first": [
+          {
+            "screw": 0,
+            "solved": 17,
+            "rejected": 7,
+            "unknown": 0
+          },
+          {
+            "screw": 1,
+            "solved": 17,
+            "rejected": 7,
+            "unknown": 0
+          },
+          {
+            "screw": 2,
+            "solved": 12,
+            "rejected": 12,
+            "unknown": 0
+          },
+          {
+            "screw": 3,
+            "solved": 12,
+            "rejected": 12,
+            "unknown": 0
+          },
+          {
+            "screw": 4,
+            "solved": 12,
+            "rejected": 12,
+            "unknown": 0
+          }
+        ]
+      },
+      "upToOneReparking": {
+        "tested": 120,
+        "exhaustiveOrders": true,
+        "extraParkingMoves": 1,
+        "solved": 118,
+        "rejected": 2,
+        "unknown": 0,
+        "first": [
+          {
+            "screw": 0,
+            "solved": 23,
+            "rejected": 1,
+            "unknown": 0
+          },
+          {
+            "screw": 1,
+            "solved": 23,
+            "rejected": 1,
+            "unknown": 0
+          },
+          {
+            "screw": 2,
+            "solved": 24,
+            "rejected": 0,
+            "unknown": 0
+          },
+          {
+            "screw": 3,
+            "solved": 24,
+            "rejected": 0,
+            "unknown": 0
+          },
+          {
+            "screw": 4,
+            "solved": 24,
+            "rejected": 0,
+            "unknown": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "v4-switchback",
+      "name": "Switchback",
+      "originalScrews": 6,
+      "possibleReleaseOrders": 720,
+      "zeroReparking": {
+        "tested": 720,
+        "exhaustiveOrders": true,
+        "extraParkingMoves": 0,
+        "solved": 682,
+        "rejected": 38,
+        "unknown": 0,
+        "first": [
+          {
+            "screw": 0,
+            "solved": 115,
+            "rejected": 5,
+            "unknown": 0
+          },
+          {
+            "screw": 1,
+            "solved": 109,
+            "rejected": 11,
+            "unknown": 0
+          },
+          {
+            "screw": 2,
+            "solved": 120,
+            "rejected": 0,
+            "unknown": 0
+          },
+          {
+            "screw": 3,
+            "solved": 119,
+            "rejected": 1,
+            "unknown": 0
+          },
+          {
+            "screw": 4,
+            "solved": 106,
+            "rejected": 14,
+            "unknown": 0
+          },
+          {
+            "screw": 5,
+            "solved": 113,
+            "rejected": 7,
+            "unknown": 0
+          }
+        ]
+      },
+      "upToOneReparking": {
+        "tested": 720,
+        "exhaustiveOrders": true,
+        "extraParkingMoves": 1,
+        "solved": 720,
+        "rejected": 0,
+        "unknown": 0,
+        "first": [
+          {
+            "screw": 0,
+            "solved": 120,
+            "rejected": 0,
+            "unknown": 0
+          },
+          {
+            "screw": 1,
+            "solved": 120,
+            "rejected": 0,
+            "unknown": 0
+          },
+          {
+            "screw": 2,
+            "solved": 120,
+            "rejected": 0,
+            "unknown": 0
+          },
+          {
+            "screw": 3,
+            "solved": 120,
+            "rejected": 0,
+            "unknown": 0
+          },
+          {
+            "screw": 4,
+            "solved": 120,
+            "rejected": 0,
+            "unknown": 0
+          },
+          {
+            "screw": 5,
+            "solved": 120,
+            "rejected": 0,
+            "unknown": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "v4-the-hook",
+      "name": "The hook",
+      "originalScrews": 5,
+      "possibleReleaseOrders": 120,
+      "zeroReparking": {
+        "tested": 120,
+        "exhaustiveOrders": true,
+        "extraParkingMoves": 0,
+        "solved": 72,
+        "rejected": 48,
+        "unknown": 0,
+        "first": [
+          {
+            "screw": 0,
+            "solved": 18,
+            "rejected": 6,
+            "unknown": 0
+          },
+          {
+            "screw": 1,
+            "solved": 14,
+            "rejected": 10,
+            "unknown": 0
+          },
+          {
+            "screw": 2,
+            "solved": 14,
+            "rejected": 10,
+            "unknown": 0
+          },
+          {
+            "screw": 3,
+            "solved": 20,
+            "rejected": 4,
+            "unknown": 0
+          },
+          {
+            "screw": 4,
+            "solved": 6,
+            "rejected": 18,
+            "unknown": 0
+          }
+        ]
+      },
+      "upToOneReparking": {
+        "tested": 120,
+        "exhaustiveOrders": true,
+        "extraParkingMoves": 1,
+        "solved": 112,
+        "rejected": 8,
+        "unknown": 0,
+        "first": [
+          {
+            "screw": 0,
+            "solved": 24,
+            "rejected": 0,
+            "unknown": 0
+          },
+          {
+            "screw": 1,
+            "solved": 21,
+            "rejected": 3,
+            "unknown": 0
+          },
+          {
+            "screw": 2,
+            "solved": 22,
+            "rejected": 2,
+            "unknown": 0
+          },
+          {
+            "screw": 3,
+            "solved": 23,
+            "rejected": 1,
+            "unknown": 0
+          },
+          {
+            "screw": 4,
+            "solved": 22,
+            "rejected": 2,
+            "unknown": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "v4-open-basket",
+      "name": "Open basket",
+      "originalScrews": 8,
+      "possibleReleaseOrders": 40320,
+      "zeroReparking": {
+        "tested": 32,
+        "exhaustiveOrders": false,
+        "extraParkingMoves": 0,
+        "solved": 8,
+        "rejected": 24,
+        "unknown": 0,
+        "first": [
+          {
+            "screw": 0,
+            "solved": 1,
+            "rejected": 5,
+            "unknown": 0
+          },
+          {
+            "screw": 1,
+            "solved": 0,
+            "rejected": 6,
+            "unknown": 0
+          },
+          {
+            "screw": 2,
+            "solved": 2,
+            "rejected": 0,
+            "unknown": 0
+          },
+          {
+            "screw": 3,
+            "solved": 3,
+            "rejected": 4,
+            "unknown": 0
+          },
+          {
+            "screw": 4,
+            "solved": 0,
+            "rejected": 4,
+            "unknown": 0
+          },
+          {
+            "screw": 5,
+            "solved": 1,
+            "rejected": 1,
+            "unknown": 0
+          },
+          {
+            "screw": 6,
+            "solved": 0,
+            "rejected": 2,
+            "unknown": 0
+          },
+          {
+            "screw": 7,
+            "solved": 1,
+            "rejected": 2,
+            "unknown": 0
+          }
+        ]
+      },
+      "upToOneReparking": {
+        "tested": 32,
+        "exhaustiveOrders": false,
+        "extraParkingMoves": 1,
+        "solved": 12,
+        "rejected": 20,
+        "unknown": 0,
+        "first": [
+          {
+            "screw": 0,
+            "solved": 1,
+            "rejected": 5,
+            "unknown": 0
+          },
+          {
+            "screw": 1,
+            "solved": 2,
+            "rejected": 4,
+            "unknown": 0
+          },
+          {
+            "screw": 2,
+            "solved": 2,
+            "rejected": 0,
+            "unknown": 0
+          },
+          {
+            "screw": 3,
+            "solved": 3,
+            "rejected": 4,
+            "unknown": 0
+          },
+          {
+            "screw": 4,
+            "solved": 2,
+            "rejected": 2,
+            "unknown": 0
+          },
+          {
+            "screw": 5,
+            "solved": 1,
+            "rejected": 1,
+            "unknown": 0
+          },
+          {
+            "screw": 6,
+            "solved": 0,
+            "rejected": 2,
+            "unknown": 0
+          },
+          {
+            "screw": 7,
+            "solved": 1,
+            "rejected": 2,
+            "unknown": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "v4-crossbar-gate",
+      "name": "Crossbar gate",
+      "originalScrews": 8,
+      "possibleReleaseOrders": 40320,
+      "zeroReparking": {
+        "tested": 32,
+        "exhaustiveOrders": false,
+        "extraParkingMoves": 0,
+        "solved": 22,
+        "rejected": 10,
+        "unknown": 0,
+        "first": [
+          {
+            "screw": 0,
+            "solved": 2,
+            "rejected": 0,
+            "unknown": 0
+          },
+          {
+            "screw": 1,
+            "solved": 3,
+            "rejected": 2,
+            "unknown": 0
+          },
+          {
+            "screw": 2,
+            "solved": 5,
+            "rejected": 0,
+            "unknown": 0
+          },
+          {
+            "screw": 3,
+            "solved": 1,
+            "rejected": 1,
+            "unknown": 0
+          },
+          {
+            "screw": 4,
+            "solved": 4,
+            "rejected": 1,
+            "unknown": 0
+          },
+          {
+            "screw": 5,
+            "solved": 3,
+            "rejected": 3,
+            "unknown": 0
+          },
+          {
+            "screw": 6,
+            "solved": 2,
+            "rejected": 2,
+            "unknown": 0
+          },
+          {
+            "screw": 7,
+            "solved": 2,
+            "rejected": 1,
+            "unknown": 0
+          }
+        ]
+      },
+      "upToOneReparking": {
+        "tested": 32,
+        "exhaustiveOrders": false,
+        "extraParkingMoves": 1,
+        "solved": 30,
+        "rejected": 2,
+        "unknown": 0,
+        "first": [
+          {
+            "screw": 0,
+            "solved": 2,
+            "rejected": 0,
+            "unknown": 0
+          },
+          {
+            "screw": 1,
+            "solved": 5,
+            "rejected": 0,
+            "unknown": 0
+          },
+          {
+            "screw": 2,
+            "solved": 5,
+            "rejected": 0,
+            "unknown": 0
+          },
+          {
+            "screw": 3,
+            "solved": 1,
+            "rejected": 1,
+            "unknown": 0
+          },
+          {
+            "screw": 4,
+            "solved": 5,
+            "rejected": 0,
+            "unknown": 0
+          },
+          {
+            "screw": 5,
+            "solved": 6,
+            "rejected": 0,
+            "unknown": 0
+          },
+          {
+            "screw": 6,
+            "solved": 3,
+            "rejected": 1,
+            "unknown": 0
+          },
+          {
+            "screw": 7,
+            "solved": 3,
+            "rejected": 0,
+            "unknown": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "v4-top-heavy-lever",
+      "name": "Top-heavy lever",
+      "originalScrews": 5,
+      "possibleReleaseOrders": 120,
+      "zeroReparking": {
+        "tested": 120,
+        "exhaustiveOrders": true,
+        "extraParkingMoves": 0,
+        "solved": 80,
+        "rejected": 40,
+        "unknown": 0,
+        "first": [
+          {
+            "screw": 0,
+            "solved": 16,
+            "rejected": 8,
+            "unknown": 0
+          },
+          {
+            "screw": 1,
+            "solved": 8,
+            "rejected": 16,
+            "unknown": 0
+          },
+          {
+            "screw": 2,
+            "solved": 16,
+            "rejected": 8,
+            "unknown": 0
+          },
+          {
+            "screw": 3,
+            "solved": 18,
+            "rejected": 6,
+            "unknown": 0
+          },
+          {
+            "screw": 4,
+            "solved": 22,
+            "rejected": 2,
+            "unknown": 0
+          }
+        ]
+      },
+      "upToOneReparking": {
+        "tested": 120,
+        "exhaustiveOrders": true,
+        "extraParkingMoves": 1,
+        "solved": 112,
+        "rejected": 8,
+        "unknown": 0,
+        "first": [
+          {
+            "screw": 0,
+            "solved": 21,
+            "rejected": 3,
+            "unknown": 0
+          },
+          {
+            "screw": 1,
+            "solved": 24,
+            "rejected": 0,
+            "unknown": 0
+          },
+          {
+            "screw": 2,
+            "solved": 20,
+            "rejected": 4,
+            "unknown": 0
+          },
+          {
+            "screw": 3,
+            "solved": 23,
+            "rejected": 1,
+            "unknown": 0
+          },
+          {
+            "screw": 4,
+            "solved": 24,
+            "rejected": 0,
+            "unknown": 0
+          }
+        ]
+      }
+    }
+  ]
+}
