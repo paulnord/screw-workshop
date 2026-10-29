@@ -1,1 +1,8 @@
 *.tar.gz
+
+# Local Xcode state and build products
+DerivedData/
+*.xcuserstate
+xcuserdata/
+*.ipa
+*.xcarchive
