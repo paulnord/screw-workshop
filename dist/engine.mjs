@@ -3,7 +3,7 @@ const M=globalThis.Matter;
 export const STEP=1000/120, WIDTH=350, HEIGHT=430, EXIT=490;
 export const cells=Array.from({length:31},(_,i)=>i<25?{x:35+i%5*70,y:110+Math.floor(i/5)*70}:{x:35+(i-25)*56,y:35});
 cells[25]={x:175,y:35};
-import {levelRecipes} from './levels.mjs?v=20261029-32';
+import {levelRecipes} from './levels.mjs?v=20261029-80';
 function pointId(p){if(Number.isInteger(p))return p;const [x,y]=p;let i=cells.findIndex(q=>q.x===x&&q.y===y);if(i<0){i=cells.length;cells.push({x,y})}return i}
 export function compileRecipe(r){const pieces=r.pieces,visible=r.spares||(r.spareCount===2?[[105,35],[245,35]]:[[175,35]]),spares=visible.map(pointId),target=p=>!r.spares&&r.spareCount===undefined&&Array.isArray(p)&&p[1]===35?spares[0]:pointId(p);return {...r,plates:pieces?pieces.map(p=>(p.anchors||p.bar).map(pointId)):r.plates.map(p=>p.map(pointId)),geometry:pieces?pieces.map(p=>p.outline||p.components?({outline:p.outline,components:p.components,holes:p.holes||p.anchors||p.bar}):undefined):r.geometry,hidden:(r.hidden||[]).map(pointId),spares,solution:r.solution?.map(([b,p])=>[b,target(p)])}}
 export const levels=levelRecipes.map(compileRecipe);

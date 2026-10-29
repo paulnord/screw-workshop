@@ -27,6 +27,7 @@ jobs:
           node test-progress.mjs
           node test-pack.mjs
           node test-expansion.mjs
+          node test-campaign80.mjs
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4
         with:

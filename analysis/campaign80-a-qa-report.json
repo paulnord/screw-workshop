@@ -1,0 +1,983 @@
+[
+  {
+    "id": "v7-tilted-ladder",
+    "name": "Tilted ladder",
+    "packIndex": 0,
+    "moves": 3,
+    "originalScrews": 3,
+    "maxPenetration": 0.13623254907187743,
+    "maxHingeError": 0.000006428158921322896,
+    "contactSamples": 424,
+    "caughtStages": 0,
+    "firstChoices": [
+      {
+        "screw": 0,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 1,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 2,
+        "settled": true,
+        "noParking": false
+      }
+    ],
+    "undo": true
+  },
+  {
+    "id": "v7-broad-sail",
+    "name": "Broad sail",
+    "packIndex": 0,
+    "moves": 5,
+    "originalScrews": 5,
+    "maxPenetration": 1.015768522712051,
+    "maxHingeError": 0.000008268989527075916,
+    "contactSamples": 329,
+    "caughtStages": 0,
+    "firstChoices": [
+      {
+        "screw": 0,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 1,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 2,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 3,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 4,
+        "settled": true,
+        "noParking": false
+      }
+    ],
+    "undo": true
+  },
+  {
+    "id": "v7-twin-doors",
+    "name": "Twin doors",
+    "packIndex": 0,
+    "moves": 4,
+    "originalScrews": 4,
+    "maxPenetration": 0,
+    "maxHingeError": 0.000008893928201029427,
+    "contactSamples": 0,
+    "caughtStages": 0,
+    "firstChoices": [
+      {
+        "screw": 0,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 1,
+        "settled": true,
+        "noParking": true
+      },
+      {
+        "screw": 2,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 3,
+        "settled": true,
+        "noParking": true
+      }
+    ],
+    "undo": true
+  },
+  {
+    "id": "v7-small-step",
+    "name": "Small step",
+    "packIndex": 0,
+    "moves": 4,
+    "originalScrews": 4,
+    "maxPenetration": 1.0250618350341938,
+    "maxHingeError": 0.0001213827651413747,
+    "contactSamples": 600,
+    "caughtStages": 1,
+    "firstChoices": [
+      {
+        "screw": 0,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 1,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 2,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 3,
+        "settled": true,
+        "noParking": false
+      }
+    ],
+    "undo": true
+  },
+  {
+    "id": "v7-diamond-drop",
+    "name": "Diamond drop",
+    "packIndex": 0,
+    "moves": 4,
+    "originalScrews": 4,
+    "maxPenetration": 0.3796163904176524,
+    "maxHingeError": 0.00007206014759969989,
+    "contactSamples": 108,
+    "caughtStages": 0,
+    "firstChoices": [
+      {
+        "screw": 0,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 1,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 2,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 3,
+        "settled": true,
+        "noParking": false
+      }
+    ],
+    "undo": true
+  },
+  {
+    "id": "v7-three-rungs",
+    "name": "Three rungs",
+    "packIndex": 0,
+    "moves": 6,
+    "originalScrews": 6,
+    "maxPenetration": 0.7511763308717718,
+    "maxHingeError": 0.000009330427628818419,
+    "contactSamples": 279,
+    "caughtStages": 0,
+    "firstChoices": [
+      {
+        "screw": 0,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 1,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 2,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 3,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 4,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 5,
+        "settled": true,
+        "noParking": false
+      }
+    ],
+    "undo": true
+  },
+  {
+    "id": "v7-elbow-room",
+    "name": "Elbow room",
+    "packIndex": 1,
+    "moves": 4,
+    "originalScrews": 4,
+    "maxPenetration": 0,
+    "maxHingeError": 0.000008202469970485768,
+    "contactSamples": 0,
+    "caughtStages": 0,
+    "firstChoices": [
+      {
+        "screw": 0,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 1,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 2,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 3,
+        "settled": true,
+        "noParking": false
+      }
+    ],
+    "undo": true
+  },
+  {
+    "id": "v7-kite-and-rail",
+    "name": "Kite and rail",
+    "packIndex": 1,
+    "moves": 4,
+    "originalScrews": 4,
+    "maxPenetration": 0,
+    "maxHingeError": 0.000008200790418154739,
+    "contactSamples": 0,
+    "caughtStages": 0,
+    "firstChoices": [
+      {
+        "screw": 0,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 1,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 2,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 3,
+        "settled": true,
+        "noParking": false
+      }
+    ],
+    "undo": true
+  },
+  {
+    "id": "v7-two-sails",
+    "name": "Two sails",
+    "packIndex": 1,
+    "moves": 4,
+    "originalScrews": 4,
+    "maxPenetration": 0,
+    "maxHingeError": 0.000008203020840359035,
+    "contactSamples": 0,
+    "caughtStages": 0,
+    "firstChoices": [
+      {
+        "screw": 0,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 1,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 2,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 3,
+        "settled": true,
+        "noParking": false
+      }
+    ],
+    "undo": true
+  },
+  {
+    "id": "v7-offset-elbows",
+    "name": "Offset elbows",
+    "packIndex": 1,
+    "moves": 4,
+    "originalScrews": 4,
+    "maxPenetration": 0,
+    "maxHingeError": 0.000008198973320841462,
+    "contactSamples": 0,
+    "caughtStages": 0,
+    "firstChoices": [
+      {
+        "screw": 0,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 1,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 2,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 3,
+        "settled": true,
+        "noParking": false
+      }
+    ],
+    "undo": true
+  },
+  {
+    "id": "v7-capped-spindle",
+    "name": "Capped spindle",
+    "packIndex": 1,
+    "moves": 4,
+    "originalScrews": 4,
+    "maxPenetration": 0.9029527514477991,
+    "maxHingeError": 0.00000820012762811927,
+    "contactSamples": 198,
+    "caughtStages": 0,
+    "firstChoices": [
+      {
+        "screw": 0,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 1,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 2,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 3,
+        "settled": true,
+        "noParking": false
+      }
+    ],
+    "undo": true
+  },
+  {
+    "id": "v7-wide-shoulders",
+    "name": "Wide shoulders",
+    "packIndex": 1,
+    "moves": 7,
+    "originalScrews": 7,
+    "maxPenetration": 1.6609648110092081,
+    "maxHingeError": 0.00027977541748824315,
+    "contactSamples": 653,
+    "caughtStages": 1,
+    "firstChoices": [
+      {
+        "screw": 0,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 1,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 2,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 3,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 4,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 5,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 6,
+        "settled": true,
+        "noParking": false
+      }
+    ],
+    "undo": true
+  },
+  {
+    "id": "v7-double-pendulum",
+    "name": "Double pendulum",
+    "packIndex": 2,
+    "moves": 4,
+    "originalScrews": 4,
+    "maxPenetration": 1.5550606220640475,
+    "maxHingeError": 0.0000082016955475224,
+    "contactSamples": 181,
+    "caughtStages": 0,
+    "firstChoices": [
+      {
+        "screw": 0,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 1,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 2,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 3,
+        "settled": true,
+        "noParking": false
+      }
+    ],
+    "undo": true
+  },
+  {
+    "id": "v7-crossed-intentions",
+    "name": "Crossed intentions",
+    "packIndex": 2,
+    "moves": 5,
+    "originalScrews": 5,
+    "maxPenetration": 1.7038918706310824,
+    "maxHingeError": 0.00000824209717438319,
+    "contactSamples": 145,
+    "caughtStages": 0,
+    "firstChoices": [
+      {
+        "screw": 0,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 1,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 2,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 3,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 4,
+        "settled": true,
+        "noParking": false
+      }
+    ],
+    "undo": true
+  },
+  {
+    "id": "v7-archway",
+    "name": "Archway",
+    "packIndex": 2,
+    "moves": 6,
+    "originalScrews": 6,
+    "maxPenetration": 0.2359243018015036,
+    "maxHingeError": 0.00000819510974157249,
+    "contactSamples": 103,
+    "caughtStages": 0,
+    "firstChoices": [
+      {
+        "screw": 0,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 1,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 2,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 3,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 4,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 5,
+        "settled": true,
+        "noParking": false
+      }
+    ],
+    "undo": true
+  },
+  {
+    "id": "v7-forked-landing",
+    "name": "Forked landing",
+    "packIndex": 2,
+    "moves": 6,
+    "originalScrews": 6,
+    "maxPenetration": 0.6048271869311037,
+    "maxHingeError": 0.000020971892210203528,
+    "contactSamples": 42,
+    "caughtStages": 0,
+    "firstChoices": [
+      {
+        "screw": 0,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 1,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 2,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 3,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 4,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 5,
+        "settled": true,
+        "noParking": false
+      }
+    ],
+    "undo": true
+  },
+  {
+    "id": "v7-bracket-bridge",
+    "name": "Bracket bridge",
+    "packIndex": 2,
+    "moves": 6,
+    "originalScrews": 6,
+    "maxPenetration": 0.4153602273895416,
+    "maxHingeError": 0.000008199863278155752,
+    "contactSamples": 587,
+    "caughtStages": 0,
+    "firstChoices": [
+      {
+        "screw": 0,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 1,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 2,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 3,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 4,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 5,
+        "settled": true,
+        "noParking": false
+      }
+    ],
+    "undo": true
+  },
+  {
+    "id": "v7-keel-and-cradle",
+    "name": "Keel and cradle",
+    "packIndex": 2,
+    "moves": 7,
+    "originalScrews": 7,
+    "maxPenetration": 0.5508202475936059,
+    "maxHingeError": 0.00009178255078755183,
+    "contactSamples": 201,
+    "caughtStages": 0,
+    "firstChoices": [
+      {
+        "screw": 0,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 1,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 2,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 3,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 4,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 5,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 6,
+        "settled": true,
+        "noParking": false
+      }
+    ],
+    "undo": true
+  },
+  {
+    "id": "v7-balance-exchange",
+    "name": "Balance exchange",
+    "packIndex": 3,
+    "moves": 6,
+    "originalScrews": 6,
+    "maxPenetration": 1.3439345730809578,
+    "maxHingeError": 0.0000082567057492011,
+    "contactSamples": 701,
+    "caughtStages": 0,
+    "firstChoices": [
+      {
+        "screw": 0,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 1,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 2,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 3,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 4,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 5,
+        "settled": true,
+        "noParking": false
+      }
+    ],
+    "undo": true
+  },
+  {
+    "id": "v7-hinged-chute",
+    "name": "Hinged chute",
+    "packIndex": 3,
+    "moves": 6,
+    "originalScrews": 6,
+    "maxPenetration": 0.5758584130908275,
+    "maxHingeError": 0.000008269377466026182,
+    "contactSamples": 2,
+    "caughtStages": 0,
+    "firstChoices": [
+      {
+        "screw": 0,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 1,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 2,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 3,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 4,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 5,
+        "settled": true,
+        "noParking": false
+      }
+    ],
+    "undo": true
+  },
+  {
+    "id": "v7-nested-fall",
+    "name": "Nested fall",
+    "packIndex": 3,
+    "moves": 7,
+    "originalScrews": 7,
+    "maxPenetration": 1.7574169528700168,
+    "maxHingeError": 0.000010691049680347997,
+    "contactSamples": 303,
+    "caughtStages": 0,
+    "firstChoices": [
+      {
+        "screw": 0,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 1,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 2,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 3,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 4,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 5,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 6,
+        "settled": true,
+        "noParking": false
+      }
+    ],
+    "undo": true
+  },
+  {
+    "id": "v7-shoulder-transfer",
+    "name": "Shoulder transfer",
+    "packIndex": 3,
+    "moves": 7,
+    "originalScrews": 7,
+    "maxPenetration": 1.0712753203484908,
+    "maxHingeError": 0.0001393451190121924,
+    "contactSamples": 194,
+    "caughtStages": 0,
+    "firstChoices": [
+      {
+        "screw": 0,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 1,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 2,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 3,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 4,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 5,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 6,
+        "settled": true,
+        "noParking": false
+      }
+    ],
+    "undo": true
+  },
+  {
+    "id": "v7-relay-tower",
+    "name": "Relay tower",
+    "packIndex": 3,
+    "moves": 7,
+    "originalScrews": 7,
+    "maxPenetration": 2.439193230488229,
+    "maxHingeError": 0.000008220577426776117,
+    "contactSamples": 337,
+    "caughtStages": 0,
+    "firstChoices": [
+      {
+        "screw": 0,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 1,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 2,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 3,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 4,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 5,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 6,
+        "settled": true,
+        "noParking": false
+      }
+    ],
+    "undo": true
+  },
+  {
+    "id": "v7-four-way-handoff",
+    "name": "Four-way handoff",
+    "packIndex": 3,
+    "moves": 9,
+    "originalScrews": 9,
+    "maxPenetration": 2.175809457576179,
+    "maxHingeError": 0.00011394683730548417,
+    "contactSamples": 2133,
+    "caughtStages": 1,
+    "firstChoices": [
+      {
+        "screw": 0,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 1,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 2,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 3,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 4,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 5,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 6,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 7,
+        "settled": true,
+        "noParking": false
+      },
+      {
+        "screw": 8,
+        "settled": true,
+        "noParking": false
+      }
+    ],
+    "undo": true
+  }
+]

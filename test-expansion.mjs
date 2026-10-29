@@ -11,8 +11,8 @@ for(let pack=5;pack<=8;pack++){
   }
  }
 }
-assert.equal(E.levels.length,32);assert.equal(new Set(E.levels.map(l=>l.id)).size,32);
-for(const l of E.levels.slice(16)){const s=E.createWorld(l);E.settle(s);const start=E.snapshot(s);assert.ok(E.move(s,...l.solution[0]));E.step(s,20);const undone=E.createWorld(l,start);assert.deepEqual(E.snapshot(undone),start);for(const[b,h]of l.solution){assert.ok(E.move(undone,b,h));E.settle(undone,5000)}assert.ok(E.complete(undone));}
-console.log(`PASS: ${wins} expansion witness routes and16 Undo recoveries;32 distinct levels.`);
+assert.equal(E.levels.length,80);assert.equal(new Set(E.levels.map(l=>l.id)).size,80);
+for(const l of E.levels.filter(l=>l.id.startsWith('v6-'))){const s=E.createWorld(l);E.settle(s);const start=E.snapshot(s);assert.ok(E.move(s,...l.solution[0]));E.step(s,20);const undone=E.createWorld(l,start);assert.deepEqual(E.snapshot(undone),start);for(const[b,h]of l.solution){assert.ok(E.move(undone,b,h));E.settle(undone,5000)}assert.ok(E.complete(undone));}
+console.log(`PASS: ${wins} expansion witness routes and16 Undo recoveries;80 distinct levels.`);
 
-assert.equal(crypto.createHash('sha256').update(JSON.stringify(levelRecipes.slice(0,16))).digest('hex'),'feb090b5e0487a7bc344d941e3edefb44a131c025838da00ad1cf90f988b758f','Original16 recipes, IDs and routes must stay unchanged');
+assert.equal(crypto.createHash('sha256').update(JSON.stringify(levelRecipes.filter(r=>!r.id.startsWith('v7-')).slice(0,16))).digest('hex'),'feb090b5e0487a7bc344d941e3edefb44a131c025838da00ad1cf90f988b758f','Original16 recipes, IDs and routes must stay unchanged');

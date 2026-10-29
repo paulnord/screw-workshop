@@ -1,0 +1,482 @@
+[
+  {
+    "id": "v7-offset-pendulum",
+    "name": "Offset pendulum",
+    "packIndex": 4,
+    "screws": 5,
+    "moves": 5,
+    "contacts": 1290,
+    "caught": 2,
+    "maxOverlap": 0.5848349811555522,
+    "maxHingeDrift": 0.000033216697738359266,
+    "hiddenUsed": false,
+    "undoRecovery": true,
+    "reverseProbe": {
+      "status": "solved",
+      "nodes": 15,
+      "cap": 100,
+      "noRepark": true,
+      "settleFrames": 2400
+    }
+  },
+  {
+    "id": "v7-suspended-sail",
+    "name": "Suspended sail",
+    "packIndex": 4,
+    "screws": 7,
+    "moves": 7,
+    "contacts": 722,
+    "caught": 2,
+    "maxOverlap": 2.0985738404160657,
+    "maxHingeDrift": 0.00035302126893814293,
+    "hiddenUsed": false,
+    "undoRecovery": true,
+    "reverseProbe": {
+      "status": "unknown",
+      "nodes": 100,
+      "cap": 100,
+      "noRepark": true,
+      "settleFrames": 2400
+    }
+  },
+  {
+    "id": "v7-double-elbow",
+    "name": "Double elbow",
+    "packIndex": 4,
+    "screws": 6,
+    "moves": 6,
+    "contacts": 2873,
+    "caught": 3,
+    "maxOverlap": 1.0368575104428714,
+    "maxHingeDrift": 0.00010124715761580019,
+    "hiddenUsed": false,
+    "undoRecovery": true,
+    "reverseProbe": {
+      "status": "unknown",
+      "nodes": 100,
+      "cap": 100,
+      "noRepark": true,
+      "settleFrames": 2400
+    }
+  },
+  {
+    "id": "v7-counterweight",
+    "name": "Counterweight",
+    "packIndex": 4,
+    "screws": 7,
+    "moves": 7,
+    "contacts": 929,
+    "caught": 0,
+    "maxOverlap": 0.8472433162578739,
+    "maxHingeDrift": 0.00013132419499328,
+    "hiddenUsed": false,
+    "undoRecovery": true,
+    "reverseProbe": {
+      "status": "unknown",
+      "nodes": 100,
+      "cap": 100,
+      "noRepark": true,
+      "settleFrames": 2400
+    }
+  },
+  {
+    "id": "v7-three-hinges",
+    "name": "Three hinges",
+    "packIndex": 4,
+    "screws": 7,
+    "moves": 7,
+    "contacts": 2687,
+    "caught": 4,
+    "maxOverlap": 2.062482093321762,
+    "maxHingeDrift": 0.0003468726438727346,
+    "hiddenUsed": false,
+    "undoRecovery": true,
+    "reverseProbe": {
+      "status": "unknown",
+      "nodes": 100,
+      "cap": 100,
+      "noRepark": true,
+      "settleFrames": 2400
+    }
+  },
+  {
+    "id": "v7-turning-fork",
+    "name": "Turning fork",
+    "packIndex": 4,
+    "screws": 7,
+    "moves": 7,
+    "contacts": 1186,
+    "caught": 0,
+    "maxOverlap": 0.9291420373123742,
+    "maxHingeDrift": 0.00018193990625520293,
+    "hiddenUsed": false,
+    "undoRecovery": true,
+    "reverseProbe": {
+      "status": "unknown",
+      "nodes": 100,
+      "cap": 100,
+      "noRepark": true,
+      "settleFrames": 2400
+    }
+  },
+  {
+    "id": "v7-covered-pocket",
+    "name": "Covered pocket",
+    "packIndex": 5,
+    "screws": 6,
+    "moves": 6,
+    "contacts": 2266,
+    "caught": 2,
+    "maxOverlap": 0.7377659065968487,
+    "maxHingeDrift": 0.000084744827017141,
+    "hiddenUsed": true,
+    "undoRecovery": true,
+    "reverseProbe": {
+      "status": "solved",
+      "nodes": 6,
+      "cap": 100,
+      "noRepark": true,
+      "settleFrames": 2400
+    }
+  },
+  {
+    "id": "v7-window-shutter",
+    "name": "Window shutter",
+    "packIndex": 5,
+    "screws": 6,
+    "moves": 6,
+    "contacts": 1985,
+    "caught": 3,
+    "maxOverlap": 1.5497418352671275,
+    "maxHingeDrift": 0.00001713544382149993,
+    "hiddenUsed": true,
+    "undoRecovery": true,
+    "reverseProbe": {
+      "status": "rejected",
+      "nodes": 31,
+      "cap": 100,
+      "noRepark": true,
+      "settleFrames": 2400
+    }
+  },
+  {
+    "id": "v7-small-vault",
+    "name": "Small vault",
+    "packIndex": 5,
+    "screws": 6,
+    "moves": 6,
+    "contacts": 1754,
+    "caught": 2,
+    "maxOverlap": 1.0723131401392436,
+    "maxHingeDrift": 0.00014317689573247285,
+    "hiddenUsed": false,
+    "undoRecovery": true,
+    "reverseProbe": {
+      "status": "unknown",
+      "nodes": 100,
+      "cap": 100,
+      "noRepark": true,
+      "settleFrames": 2400
+    }
+  },
+  {
+    "id": "v7-one-key-two-doors",
+    "name": "One key, two doors",
+    "packIndex": 5,
+    "screws": 7,
+    "moves": 7,
+    "contacts": 2240,
+    "caught": 6,
+    "maxOverlap": 1.3957472575201564,
+    "maxHingeDrift": 0.00010444271905847509,
+    "hiddenUsed": false,
+    "undoRecovery": true,
+    "reverseProbe": {
+      "status": "solved",
+      "nodes": 7,
+      "cap": 100,
+      "noRepark": true,
+      "settleFrames": 2400
+    }
+  },
+  {
+    "id": "v7-high-window",
+    "name": "High shoulder",
+    "packIndex": 5,
+    "screws": 7,
+    "moves": 7,
+    "contacts": 486,
+    "caught": 1,
+    "maxOverlap": 1.4300413198994306,
+    "maxHingeDrift": 0.0002585823471040647,
+    "hiddenUsed": false,
+    "undoRecovery": true,
+    "reverseProbe": {
+      "status": "rejected",
+      "nodes": 67,
+      "cap": 100,
+      "noRepark": true,
+      "settleFrames": 2400
+    }
+  },
+  {
+    "id": "v7-side-door",
+    "name": "Side door",
+    "packIndex": 5,
+    "screws": 7,
+    "moves": 7,
+    "contacts": 168,
+    "caught": 1,
+    "maxOverlap": 1.243177895748147,
+    "maxHingeDrift": 0.0002132907577544472,
+    "hiddenUsed": false,
+    "undoRecovery": true,
+    "reverseProbe": {
+      "status": "unknown",
+      "nodes": 100,
+      "cap": 100,
+      "noRepark": true,
+      "settleFrames": 2400
+    }
+  },
+  {
+    "id": "v7-shelf-and-sail",
+    "name": "Shelf and sail",
+    "packIndex": 6,
+    "screws": 7,
+    "moves": 7,
+    "contacts": 1955,
+    "caught": 3,
+    "maxOverlap": 1.4674208386848022,
+    "maxHingeDrift": 0.00002507802022154608,
+    "hiddenUsed": false,
+    "undoRecovery": true,
+    "reverseProbe": {
+      "status": "unknown",
+      "nodes": 100,
+      "cap": 100,
+      "noRepark": true,
+      "settleFrames": 2400
+    }
+  },
+  {
+    "id": "v7-two-storeys",
+    "name": "Two storeys",
+    "packIndex": 6,
+    "screws": 8,
+    "moves": 8,
+    "contacts": 2295,
+    "caught": 8,
+    "maxOverlap": 1.9703988404694428,
+    "maxHingeDrift": 0.00005959960347108291,
+    "hiddenUsed": false,
+    "undoRecovery": true,
+    "reverseProbe": {
+      "status": "unknown",
+      "nodes": 100,
+      "cap": 100,
+      "noRepark": true,
+      "settleFrames": 2400
+    }
+  },
+  {
+    "id": "v7-diagonal-chute",
+    "name": "Diagonal chute",
+    "packIndex": 6,
+    "screws": 8,
+    "moves": 8,
+    "contacts": 1648,
+    "caught": 3,
+    "maxOverlap": 1.0544382807732404,
+    "maxHingeDrift": 0.0001437445543179733,
+    "hiddenUsed": false,
+    "undoRecovery": true,
+    "reverseProbe": {
+      "status": "solved",
+      "nodes": 8,
+      "cap": 100,
+      "noRepark": true,
+      "settleFrames": 2400
+    }
+  },
+  {
+    "id": "v7-bridge-pier",
+    "name": "Bridge pier",
+    "packIndex": 6,
+    "screws": 7,
+    "moves": 7,
+    "contacts": 1805,
+    "caught": 3,
+    "maxOverlap": 1.2101168868253467,
+    "maxHingeDrift": 0.00013041774423656015,
+    "hiddenUsed": false,
+    "undoRecovery": true,
+    "reverseProbe": {
+      "status": "solved",
+      "nodes": 70,
+      "cap": 100,
+      "noRepark": true,
+      "settleFrames": 2400
+    }
+  },
+  {
+    "id": "v7-stepped-load",
+    "name": "Stepped load",
+    "packIndex": 6,
+    "screws": 8,
+    "moves": 8,
+    "contacts": 3145,
+    "caught": 3,
+    "maxOverlap": 1.830691131944775,
+    "maxHingeDrift": 0.00034065703108796485,
+    "hiddenUsed": false,
+    "undoRecovery": true,
+    "reverseProbe": {
+      "status": "unknown",
+      "nodes": 100,
+      "cap": 100,
+      "noRepark": true,
+      "settleFrames": 2400
+    }
+  },
+  {
+    "id": "v7-three-floor-release",
+    "name": "Three-floor release",
+    "packIndex": 6,
+    "screws": 8,
+    "moves": 8,
+    "contacts": 2577,
+    "caught": 7,
+    "maxOverlap": 1.4796674352307377,
+    "maxHingeDrift": 0.0001150964879465795,
+    "hiddenUsed": false,
+    "undoRecovery": true,
+    "reverseProbe": {
+      "status": "unknown",
+      "nodes": 100,
+      "cap": 100,
+      "noRepark": true,
+      "settleFrames": 2400
+    }
+  },
+  {
+    "id": "v7-split-lock",
+    "name": "Split lock",
+    "packIndex": 7,
+    "screws": 8,
+    "moves": 8,
+    "contacts": 2184,
+    "caught": 1,
+    "maxOverlap": 1.7459146148643754,
+    "maxHingeDrift": 0.0003195428165371097,
+    "hiddenUsed": false,
+    "undoRecovery": true,
+    "reverseProbe": {
+      "status": "unknown",
+      "nodes": 100,
+      "cap": 100,
+      "noRepark": true,
+      "settleFrames": 2400
+    }
+  },
+  {
+    "id": "v7-crown-and-key",
+    "name": "Crown and key",
+    "packIndex": 7,
+    "screws": 8,
+    "moves": 8,
+    "contacts": 505,
+    "caught": 0,
+    "maxOverlap": 0.5101028059941655,
+    "maxHingeDrift": 0.000013857820972341337,
+    "hiddenUsed": false,
+    "undoRecovery": true,
+    "reverseProbe": {
+      "status": "unknown",
+      "nodes": 100,
+      "cap": 100,
+      "noRepark": true,
+      "settleFrames": 2400
+    }
+  },
+  {
+    "id": "v7-double-crossing",
+    "name": "Double crossing",
+    "packIndex": 7,
+    "screws": 8,
+    "moves": 8,
+    "contacts": 589,
+    "caught": 1,
+    "maxOverlap": 1.0488207457282215,
+    "maxHingeDrift": 0.0001425870400466521,
+    "hiddenUsed": false,
+    "undoRecovery": true,
+    "reverseProbe": {
+      "status": "unknown",
+      "nodes": 100,
+      "cap": 100,
+      "noRepark": true,
+      "settleFrames": 2400
+    }
+  },
+  {
+    "id": "v7-nested-corners",
+    "name": "Nested corners",
+    "packIndex": 7,
+    "screws": 8,
+    "moves": 8,
+    "contacts": 2317,
+    "caught": 3,
+    "maxOverlap": 2.262742967889409,
+    "maxHingeDrift": 0.00031819732160778596,
+    "hiddenUsed": false,
+    "undoRecovery": true,
+    "reverseProbe": {
+      "status": "unknown",
+      "nodes": 100,
+      "cap": 100,
+      "noRepark": true,
+      "settleFrames": 2400
+    }
+  },
+  {
+    "id": "v7-long-way-round",
+    "name": "Long way round",
+    "packIndex": 7,
+    "screws": 8,
+    "moves": 8,
+    "contacts": 2669,
+    "caught": 6,
+    "maxOverlap": 1.2837061464175008,
+    "maxHingeDrift": 0.00017158160553864318,
+    "hiddenUsed": false,
+    "undoRecovery": true,
+    "reverseProbe": {
+      "status": "solved",
+      "nodes": 15,
+      "cap": 100,
+      "noRepark": true,
+      "settleFrames": 2400
+    }
+  },
+  {
+    "id": "v7-last-assembly",
+    "name": "Last assembly",
+    "packIndex": 7,
+    "screws": 9,
+    "moves": 9,
+    "contacts": 217,
+    "caught": 0,
+    "maxOverlap": 1.0470614992622131,
+    "maxHingeDrift": 0.00015670087472440222,
+    "hiddenUsed": false,
+    "undoRecovery": true,
+    "reverseProbe": {
+      "status": "rejected",
+      "nodes": 89,
+      "cap": 100,
+      "noRepark": true,
+      "settleFrames": 2400
+    }
+  }
+]
