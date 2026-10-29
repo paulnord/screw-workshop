@@ -1,0 +1,176 @@
+{
+  "schemaVersion": 1,
+  "rulesetVersion": "matter020-workshop-v1",
+  "id": "daily-2026-10-29-v1",
+  "name": "Six-stage cascade",
+  "recipe": {
+    "id": "daily-2026-10-29-v1",
+    "name": "Six-stage cascade",
+    "rationale": "A broad upper beam lands on staggered pair supports and a low exit gate.",
+    "pieces": [
+      {
+        "bar": [
+          [
+            90,
+            100
+          ],
+          [
+            260,
+            100
+          ]
+        ]
+      },
+      {
+        "bar": [
+          [
+            62.5,
+            160
+          ],
+          [
+            127.5,
+            180
+          ]
+        ]
+      },
+      {
+        "bar": [
+          [
+            222.5,
+            185
+          ],
+          [
+            287.5,
+            165
+          ]
+        ]
+      },
+      {
+        "bar": [
+          [
+            90,
+            245
+          ],
+          [
+            260,
+            245
+          ]
+        ]
+      },
+      {
+        "bar": [
+          [
+            62.5,
+            335
+          ],
+          [
+            127.5,
+            315
+          ]
+        ]
+      },
+      {
+        "bar": [
+          [
+            222.5,
+            320
+          ],
+          [
+            287.5,
+            340
+          ]
+        ]
+      }
+    ],
+    "spareCount": 2,
+    "hidden": [],
+    "solution": [
+      [
+        0,
+        [
+          105,
+          35
+        ]
+      ],
+      [
+        1,
+        [
+          245,
+          35
+        ]
+      ],
+      [
+        11,
+        [
+          90,
+          100
+        ]
+      ],
+      [
+        10,
+        [
+          260,
+          100
+        ]
+      ],
+      [
+        9,
+        [
+          287.5,
+          340
+        ]
+      ],
+      [
+        8,
+        [
+          127.5,
+          315
+        ]
+      ],
+      [
+        7,
+        [
+          62.5,
+          335
+        ]
+      ],
+      [
+        6,
+        [
+          260,
+          245
+        ]
+      ],
+      [
+        5,
+        [
+          90,
+          245
+        ]
+      ],
+      [
+        4,
+        [
+          287.5,
+          165
+        ]
+      ],
+      [
+        3,
+        [
+          222.5,
+          320
+        ]
+      ],
+      [
+        2,
+        [
+          127.5,
+          180
+        ]
+      ]
+    ],
+    "tip": "A broad upper beam lands on staggered pair supports and a low exit gate."
+  },
+  "targetMoves": 12,
+  "witnessPolicy": "settle-after-each-move-2400"
+}

@@ -1,0 +1,53 @@
+[
+  {
+    "name": "Six-stage cascade",
+    "blocks": 6,
+    "screws": 12,
+    "moves": 12,
+    "parts": 30,
+    "steps": 2786,
+    "cpuStepMeanMs": 0.025802788226848457,
+    "cpuStepP95Ms": 0.06720100000001139,
+    "cpuStepMaxMs": 0.5950399999999973,
+    "maxOverlap": 1.7241989658403156,
+    "hinge": 0.00030788742312825386,
+    "contacts": 5576,
+    "spacingWorldPx": 66.00189391222042,
+    "spacingAt320pxBoard": 52.424361450277935,
+    "spacingAt390pxBoard": 65.62474023272202
+  },
+  {
+    "name": "Eight-piece switchyard",
+    "blocks": 8,
+    "screws": 14,
+    "moves": 14,
+    "parts": 46,
+    "steps": 2990,
+    "cpuStepMeanMs": 0.02126628461538441,
+    "cpuStepP95Ms": 0.055543999999997595,
+    "cpuStepMaxMs": 0.5640240000000176,
+    "maxOverlap": 1.0208258436878168,
+    "hinge": 0.000008323828092631396,
+    "contacts": 820,
+    "spacingWorldPx": 55.901699437494734,
+    "spacingAt320pxBoard": 44.401921267495815,
+    "spacingAt390pxBoard": 55.58226115499477
+  },
+  {
+    "name": "Ten-piece workshop",
+    "blocks": 10,
+    "screws": 16,
+    "moves": 16,
+    "parts": 62,
+    "steps": 3334,
+    "cpuStepMeanMs": 0.016724987402519403,
+    "cpuStepP95Ms": 0.028392999999994117,
+    "cpuStepMaxMs": 1.7556670000000167,
+    "maxOverlap": 1.6906089828038944,
+    "hinge": 0.000008323439729645303,
+    "contacts": 995,
+    "spacingWorldPx": 55.901699437494734,
+    "spacingAt320pxBoard": 44.401921267495815,
+    "spacingAt390pxBoard": 55.58226115499477
+  }
+]

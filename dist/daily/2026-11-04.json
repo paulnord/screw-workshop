@@ -1,0 +1,225 @@
+{
+  "schemaVersion": 1,
+  "rulesetVersion": "matter020-workshop-v1",
+  "id": "daily-2026-11-04-v1",
+  "name": "Last assembly",
+  "recipe": {
+    "id": "daily-2026-11-04-v1",
+    "name": "Last assembly",
+    "tip": "Read the whole stack: the broad head, offset stop, and two low catches share the same exit.",
+    "rationale": "Read the whole stack: the broad head, offset stop, and two low catches share the same exit.",
+    "pieces": [
+      {
+        "outline": [
+          [
+            65,
+            80
+          ],
+          [
+            295,
+            80
+          ],
+          [
+            295,
+            120
+          ],
+          [
+            200,
+            120
+          ],
+          [
+            200,
+            225
+          ],
+          [
+            160,
+            225
+          ],
+          [
+            160,
+            120
+          ],
+          [
+            65,
+            120
+          ]
+        ],
+        "components": [
+          [
+            [
+              65,
+              80
+            ],
+            [
+              295,
+              80
+            ],
+            [
+              295,
+              120
+            ],
+            [
+              65,
+              120
+            ]
+          ],
+          [
+            [
+              160,
+              120
+            ],
+            [
+              200,
+              120
+            ],
+            [
+              200,
+              225
+            ],
+            [
+              160,
+              225
+            ]
+          ]
+        ],
+        "anchors": [
+          [
+            90,
+            100
+          ],
+          [
+            270,
+            100
+          ],
+          [
+            180,
+            195
+          ]
+        ]
+      },
+      {
+        "bar": [
+          [
+            55,
+            270
+          ],
+          [
+            140,
+            270
+          ]
+        ]
+      },
+      {
+        "outline": [
+          [
+            255,
+            242.5
+          ],
+          [
+            297.5,
+            290
+          ],
+          [
+            255,
+            337.5
+          ],
+          [
+            212.5,
+            290
+          ]
+        ],
+        "anchors": [
+          [
+            255,
+            270
+          ],
+          [
+            255,
+            315
+          ]
+        ]
+      },
+      {
+        "bar": [
+          [
+            110,
+            385
+          ],
+          [
+            220,
+            385
+          ]
+        ]
+      }
+    ],
+    "spareCount": 2,
+    "hidden": [],
+    "solution": [
+      [
+        5,
+        [
+          105,
+          35
+        ]
+      ],
+      [
+        6,
+        [
+          245,
+          35
+        ]
+      ],
+      [
+        8,
+        [
+          255,
+          270
+        ]
+      ],
+      [
+        7,
+        [
+          255,
+          315
+        ]
+      ],
+      [
+        1,
+        [
+          110,
+          385
+        ]
+      ],
+      [
+        4,
+        [
+          220,
+          385
+        ]
+      ],
+      [
+        0,
+        [
+          140,
+          270
+        ]
+      ],
+      [
+        3,
+        [
+          270,
+          100
+        ]
+      ],
+      [
+        2,
+        [
+          90,
+          100
+        ]
+      ]
+    ]
+  },
+  "targetMoves": 9,
+  "witnessPolicy": "settle-after-each-move-2400"
+}

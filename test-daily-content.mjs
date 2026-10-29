@@ -1,0 +1,4 @@
+import assert from'node:assert/strict';import fs from'node:fs';import crypto from'node:crypto';import{checkWitness}from'./scripts/publish-daily.mjs';import{validateIndex}from'./dist/daily-data.mjs';
+const index=validateIndex(JSON.parse(fs.readFileSync(new URL('./dist/daily/index.json',import.meta.url))));assert.ok(index.entries.length>=7);let moves=0;
+for(const e of index.entries){const raw=fs.readFileSync(new URL('./dist/daily/'+e.url,import.meta.url),'utf8');assert.equal(crypto.createHash('sha256').update(raw).digest('hex'),e.sha256);const p=JSON.parse(raw);assert.equal(p.id,e.id);const result=checkWitness(p);moves+=result.moves;console.log(e.date,p.name,JSON.stringify(result));}
+console.log(`PASS:${index.entries.length} immutable dated challenge files, hashes, schemas and physical witnesses;${moves} moves.`);

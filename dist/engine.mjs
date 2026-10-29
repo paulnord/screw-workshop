@@ -3,7 +3,7 @@ const M=globalThis.Matter;
 export const STEP=1000/120, WIDTH=350, HEIGHT=430, EXIT=490;
 export const cells=Array.from({length:31},(_,i)=>i<25?{x:35+i%5*70,y:110+Math.floor(i/5)*70}:{x:35+(i-25)*56,y:35});
 cells[25]={x:175,y:35};
-import {levelRecipes} from './levels.mjs?v=20261029-80';
+import {levelRecipes} from './levels.mjs?v=20261029-daily1';
 function pointId(p){if(Number.isInteger(p))return p;const [x,y]=p;let i=cells.findIndex(q=>q.x===x&&q.y===y);if(i<0){i=cells.length;cells.push({x,y})}return i}
 export function compileRecipe(r){const pieces=r.pieces,visible=r.spares||(r.spareCount===2?[[105,35],[245,35]]:[[175,35]]),spares=visible.map(pointId),target=p=>!r.spares&&r.spareCount===undefined&&Array.isArray(p)&&p[1]===35?spares[0]:pointId(p);return {...r,plates:pieces?pieces.map(p=>(p.anchors||p.bar).map(pointId)):r.plates.map(p=>p.map(pointId)),geometry:pieces?pieces.map(p=>p.outline||p.components?({outline:p.outline,components:p.components,holes:p.holes||p.anchors||p.bar}):undefined):r.geometry,hidden:(r.hidden||[]).map(pointId),spares,solution:r.solution?.map(([b,p])=>[b,target(p)])}}
 export const levels=levelRecipes.map(compileRecipe);
@@ -93,3 +93,28 @@ export function hint(sim){
 const order=sim.level.order||sim.positions.map((_,i)=>i),targets=destinations(sim);const b=order.find(b=>!(sim.removed&(1<<b))&&accessible(sim,b));if(b!==undefined&&targets.length){const h=targets.find(h=>isSpare(sim.level,h))??targets[0];return {b,h,text:'Try this screw and the highlighted empty hole. Watch what it was supporting.'}}
  if(targets.length){const b=sim.positions.findIndex((h,b)=>!isSpare(sim.level,h)&&(sim.removed&(1<<b))&&accessible(sim,b));if(b>=0)return{b,h:targets.find(h=>isSpare(sim.level,h))??targets[0],text:'This parked screw may be catching a loose plate. Move it to make room.'}}
  return {text:'A plate may be caught on a screw or another plate. Undo and try a different order or parking hole.'};}
+
+// Campaign indices stay stable; downloaded boards use a replaceable coordinate tail.
+const campaignCellCount=cells.length;
+export function validateDailyRecipe(recipe){
+ const saved=cells.map(p=>({...p}));
+ try{
+  cells.length=campaignCellCount;
+  const level=compileRecipe(recipe),sim=createWorld(level);
+  if(level.plates.length>10||sim.positions.length>20)throw Error('Daily assembly exceeds tested capacity');
+  if(sim.plates.reduce((n,b)=>n+b.parts.length-1,0)>384)throw Error('Daily assembly has too many material parts');
+  for(let a=0;a<sim.plates.length;a++)for(let b=a+1;b<sim.plates.length;b++)if(M.Query.collides(sim.plates[a],[sim.plates[b]]).some(c=>c.depth>.01))throw Error('Daily pieces overlap initially');
+  if(sim.positions.some((_,b)=>!accessible(sim,b)))throw Error('Daily screw is initially covered');
+  if(destinations(sim).length!==level.spares.length)throw Error('Daily initial parking does not match');
+  if(level.hidden.some(h=>!shaftBlocked(sim,cells[h])))throw Error('Daily hidden target is not covered');
+  const targets=new Set(holes(level));
+  if(!Array.isArray(level.solution)||!level.solution.length||level.solution.length>40||level.solution.some(([b,h])=>!Number.isInteger(b)||b<0||b>=sim.positions.length||!targets.has(h)))throw Error('Invalid daily witness references');
+  return true;
+ }finally{cells.splice(0,cells.length,...saved)}
+}
+export function compileDailyRecipe(recipe){
+ validateDailyRecipe(recipe);
+ const saved=cells.map(p=>({...p}));
+ try{cells.length=campaignCellCount;return compileRecipe(recipe)}
+ catch(error){cells.splice(0,cells.length,...saved);throw error}
+}

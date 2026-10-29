@@ -62,3 +62,18 @@ Historical bounded removal-order studies remain available: [original12](analysis
 ## GitHub Pages
 
 The `Test and deploy game` workflow validates physics and progression before publishing `dist/` on each push to `main`. The repository owner must enable Settings → Pages → Source: GitHub Actions once. `workflow_dispatch` allows a manual rerun. The private Sites deployment is managed separately.
+
+## Daily workshop
+
+The Daily button loads the shared puzzle for the current **UTC date** from small, versioned JSON files. Previous published dates remain playable in the archive. Daily stars reward moves, not speed; daily scores never change campaign progress or pack unlocks. There are no streak penalties.
+
+The initial queue covers October 29–November 4, 2026, including verified six-, eight- and ten-block boards. This is a finite editorial queue, not automatic puzzle generation. When today's data is unavailable, the game uses a verified cached copy if available, otherwise clearly labeled bundled practice. Cached puzzle data is available offline once the web game is open; cold offline page launch is not promised. The separate native wrapper does not yet enable daily downloads.
+
+To append a challenge, provide a recipe with geometry and a working solution:
+
+```sh
+node scripts/publish-daily.mjs YYYY-MM-DD recipe.json
+node test-daily-content.mjs
+```
+
+The publisher validates and physically replays the route, then appends an immutable dated JSON file and SHA-256 index entry. Commit both files; Pages CI validates every published puzzle before deploying. Do not rewrite a published date. See [data format and safety bounds](analysis/DAILY_DATA.md) and [release validation](analysis/DAILY_RELEASE.md).

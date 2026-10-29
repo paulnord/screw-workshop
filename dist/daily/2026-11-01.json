@@ -1,0 +1,149 @@
+{
+  "schemaVersion": 1,
+  "rulesetVersion": "matter020-workshop-v1",
+  "id": "daily-2026-11-01-v1",
+  "name": "Four-way handoff",
+  "recipe": {
+    "id": "daily-2026-11-01-v1",
+    "name": "Four-way handoff",
+    "tip": "A wide sail passes through three independent gates. Manage both parking holes across the chain.",
+    "rationale": "A wide sail passes through three independent gates. Manage both parking holes across the chain.",
+    "pieces": [
+      {
+        "outline": [
+          [
+            85,
+            60
+          ],
+          [
+            265,
+            60
+          ],
+          [
+            175,
+            180
+          ]
+        ],
+        "anchors": [
+          [
+            125,
+            85
+          ],
+          [
+            225,
+            85
+          ],
+          [
+            175,
+            135
+          ]
+        ]
+      },
+      {
+        "bar": [
+          [
+            45,
+            250
+          ],
+          [
+            125,
+            250
+          ]
+        ]
+      },
+      {
+        "bar": [
+          [
+            230,
+            280
+          ],
+          [
+            300,
+            280
+          ]
+        ]
+      },
+      {
+        "bar": [
+          [
+            100,
+            370
+          ],
+          [
+            250,
+            370
+          ]
+        ]
+      }
+    ],
+    "spareCount": 2,
+    "hidden": [],
+    "solution": [
+      [
+        7,
+        [
+          105,
+          35
+        ]
+      ],
+      [
+        8,
+        [
+          245,
+          35
+        ]
+      ],
+      [
+        5,
+        [
+          100,
+          370
+        ]
+      ],
+      [
+        6,
+        [
+          230,
+          280
+        ]
+      ],
+      [
+        3,
+        [
+          300,
+          280
+        ]
+      ],
+      [
+        2,
+        [
+          45,
+          250
+        ]
+      ],
+      [
+        0,
+        [
+          250,
+          370
+        ]
+      ],
+      [
+        1,
+        [
+          125,
+          85
+        ]
+      ],
+      [
+        4,
+        [
+          225,
+          85
+        ]
+      ]
+    ]
+  },
+  "targetMoves": 9,
+  "witnessPolicy": "settle-after-each-move-2400"
+}

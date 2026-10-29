@@ -28,6 +28,10 @@ jobs:
           node test-pack.mjs
           node test-expansion.mjs
           node test-campaign80.mjs
+          node test-daily-data.mjs
+          node test-daily-engine.mjs
+          node test-daily-content.mjs
+          node test-daily-ui.mjs
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4
         with:

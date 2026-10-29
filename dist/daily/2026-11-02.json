@@ -1,0 +1,168 @@
+{
+  "schemaVersion": 1,
+  "rulesetVersion": "matter020-workshop-v1",
+  "id": "daily-2026-11-02-v1",
+  "name": "Crown and key",
+  "recipe": {
+    "id": "daily-2026-11-02-v1",
+    "name": "Crown and key",
+    "tip": "Use the small key before committing the crown to a side.",
+    "rationale": "Use the small key before committing the crown to a side.",
+    "pieces": [
+      {
+        "outline": [
+          [
+            55,
+            120
+          ],
+          [
+            100,
+            85
+          ],
+          [
+            245,
+            85
+          ],
+          [
+            295,
+            120
+          ],
+          [
+            270,
+            190
+          ],
+          [
+            80,
+            190
+          ]
+        ],
+        "anchors": [
+          [
+            100,
+            160
+          ],
+          [
+            175,
+            140
+          ],
+          [
+            250,
+            160
+          ]
+        ]
+      },
+      {
+        "outline": [
+          [
+            160,
+            240
+          ],
+          [
+            195,
+            240
+          ],
+          [
+            195,
+            305
+          ],
+          [
+            160,
+            305
+          ]
+        ],
+        "anchors": [
+          [
+            177,
+            260
+          ]
+        ]
+      },
+      {
+        "bar": [
+          [
+            65,
+            335
+          ],
+          [
+            125,
+            335
+          ]
+        ]
+      },
+      {
+        "bar": [
+          [
+            230,
+            350
+          ],
+          [
+            290,
+            350
+          ]
+        ]
+      }
+    ],
+    "spareCount": 2,
+    "hidden": [],
+    "solution": [
+      [
+        1,
+        [
+          105,
+          35
+        ]
+      ],
+      [
+        3,
+        [
+          245,
+          35
+        ]
+      ],
+      [
+        2,
+        [
+          177,
+          260
+        ]
+      ],
+      [
+        5,
+        [
+          250,
+          160
+        ]
+      ],
+      [
+        0,
+        [
+          125,
+          335
+        ]
+      ],
+      [
+        7,
+        [
+          175,
+          140
+        ]
+      ],
+      [
+        4,
+        [
+          100,
+          160
+        ]
+      ],
+      [
+        6,
+        [
+          65,
+          335
+        ]
+      ]
+    ]
+  },
+  "targetMoves": 8,
+  "witnessPolicy": "settle-after-each-move-2400"
+}

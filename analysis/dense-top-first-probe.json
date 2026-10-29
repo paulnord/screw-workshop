@@ -1,0 +1,29 @@
+[
+  {
+    "id": "dense-six",
+    "topReleased": 3,
+    "topCaught": true,
+    "contacts": 104,
+    "maxOverlap": 1.7241989658403156,
+    "settled": true,
+    "availableTargets": 2
+  },
+  {
+    "id": "dense-eight",
+    "topReleased": 3,
+    "topCaught": true,
+    "contacts": 104,
+    "maxOverlap": 1.7241989658403156,
+    "settled": true,
+    "availableTargets": 2
+  },
+  {
+    "id": "dense-ten",
+    "topReleased": 3,
+    "topCaught": true,
+    "contacts": 104,
+    "maxOverlap": 1.7241989658403156,
+    "settled": true,
+    "availableTargets": 2
+  }
+]

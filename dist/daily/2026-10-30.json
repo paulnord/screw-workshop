@@ -1,0 +1,242 @@
+{
+  "schemaVersion": 1,
+  "rulesetVersion": "matter020-workshop-v1",
+  "id": "daily-2026-10-30-v1",
+  "name": "Eight-piece switchyard",
+  "recipe": {
+    "id": "daily-2026-10-30-v1",
+    "name": "Eight-piece switchyard",
+    "rationale": "Upper-corner keepers flank two broad crossbeams and staggered support rails; lower supports catch a prematurely released top beam.",
+    "pieces": [
+      {
+        "bar": [
+          [
+            90,
+            100
+          ],
+          [
+            260,
+            100
+          ]
+        ]
+      },
+      {
+        "bar": [
+          [
+            62.5,
+            160
+          ],
+          [
+            127.5,
+            180
+          ]
+        ]
+      },
+      {
+        "bar": [
+          [
+            222.5,
+            185
+          ],
+          [
+            287.5,
+            165
+          ]
+        ]
+      },
+      {
+        "bar": [
+          [
+            90,
+            245
+          ],
+          [
+            260,
+            245
+          ]
+        ]
+      },
+      {
+        "bar": [
+          [
+            62.5,
+            335
+          ],
+          [
+            127.5,
+            315
+          ]
+        ]
+      },
+      {
+        "bar": [
+          [
+            222.5,
+            320
+          ],
+          [
+            287.5,
+            340
+          ]
+        ]
+      },
+      {
+        "outline": [
+          [
+            17,
+            72
+          ],
+          [
+            53,
+            72
+          ],
+          [
+            53,
+            114
+          ],
+          [
+            17,
+            114
+          ]
+        ],
+        "anchors": [
+          [
+            35,
+            90
+          ]
+        ]
+      },
+      {
+        "outline": [
+          [
+            297,
+            72
+          ],
+          [
+            333,
+            72
+          ],
+          [
+            333,
+            114
+          ],
+          [
+            297,
+            114
+          ]
+        ],
+        "anchors": [
+          [
+            315,
+            90
+          ]
+        ]
+      }
+    ],
+    "spareCount": 2,
+    "hidden": [],
+    "solution": [
+      [
+        11,
+        [
+          105,
+          35
+        ]
+      ],
+      [
+        10,
+        [
+          245,
+          35
+        ]
+      ],
+      [
+        9,
+        [
+          287.5,
+          340
+        ]
+      ],
+      [
+        8,
+        [
+          127.5,
+          315
+        ]
+      ],
+      [
+        7,
+        [
+          62.5,
+          335
+        ]
+      ],
+      [
+        6,
+        [
+          260,
+          245
+        ]
+      ],
+      [
+        5,
+        [
+          90,
+          245
+        ]
+      ],
+      [
+        4,
+        [
+          287.5,
+          165
+        ]
+      ],
+      [
+        3,
+        [
+          222.5,
+          320
+        ]
+      ],
+      [
+        2,
+        [
+          127.5,
+          180
+        ]
+      ],
+      [
+        1,
+        [
+          62.5,
+          160
+        ]
+      ],
+      [
+        0,
+        [
+          260,
+          100
+        ]
+      ],
+      [
+        12,
+        [
+          90,
+          100
+        ]
+      ],
+      [
+        13,
+        [
+          35,
+          90
+        ]
+      ]
+    ],
+    "tip": "Upper-corner keepers flank two broad crossbeams and staggered support rails; lower supports catch a prematurely released top beam."
+  },
+  "targetMoves": 14,
+  "witnessPolicy": "settle-after-each-move-2400"
+}

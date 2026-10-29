@@ -1,0 +1,41 @@
+[
+  {
+    "id": "dense-six",
+    "blocks": 6,
+    "screws": 12,
+    "moves": 12,
+    "minSpacing": 66.00189391222042,
+    "maxOverlap": 1.7241989658403156,
+    "maxHinge": 0.00030788742312825386,
+    "contactSamples": 3574,
+    "caughtStages": 9,
+    "maxSteps": 724,
+    "undoReplay": true
+  },
+  {
+    "id": "dense-eight",
+    "blocks": 8,
+    "screws": 14,
+    "moves": 14,
+    "minSpacing": 55.901699437494734,
+    "maxOverlap": 1.0208258436878168,
+    "maxHinge": 0.000008323828092631396,
+    "contactSamples": 0,
+    "caughtStages": 0,
+    "maxSteps": 404,
+    "undoReplay": true
+  },
+  {
+    "id": "dense-ten",
+    "blocks": 10,
+    "screws": 16,
+    "moves": 16,
+    "minSpacing": 55.901699437494734,
+    "maxOverlap": 1.6906089828038944,
+    "maxHinge": 0.000008323439729645303,
+    "contactSamples": 147,
+    "caughtStages": 0,
+    "maxSteps": 438,
+    "undoReplay": true
+  }
+]
