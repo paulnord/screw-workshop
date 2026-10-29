@@ -1,5 +1,5 @@
-import {recordBest,normalizeProgress,serializeProgress,starsFor,packProgress,isLevelUnlocked} from './progress.mjs?v=20261029-16';
-import {levels,cells,holes,createWorld,snapshot,move,complete,step,settle,accessible,destinations,hint,isSpare,plateForBolt,attachmentCount,STEP} from './engine.mjs?v=20261029-16';
+import {recordBest,normalizeProgress,serializeProgress,starsFor,packProgress,isLevelUnlocked} from './progress.mjs?v=20261029-32';
+import {levels,cells,holes,createWorld,snapshot,move,complete,step,settle,accessible,destinations,hint,isSpare,plateForBolt,attachmentCount,STEP} from './engine.mjs?v=20261029-32';
 const $=s=>document.querySelector(s),ns='http://www.w3.org/2000/svg',colors=['#557f79','#c67d57','#c9a75d','#739381'];
 let saved={};try{saved=JSON.parse(localStorage.getItem('screw-workshop-physics-v4')||'{}')||{}}catch{}
 let {bests,done,index}=normalizeProgress(saved,levels);

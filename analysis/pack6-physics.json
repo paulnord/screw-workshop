@@ -1,0 +1,219 @@
+[
+  {
+    "id": "v6-pocket-lid",
+    "name": "Pocket lid",
+    "screws": 5,
+    "moves": 5,
+    "contacts": 688,
+    "caught": 1,
+    "maxRotation": 2.0184801133632924,
+    "maxOverlap": 1.0195536678896815,
+    "wrongTwoMovesNoFreeHole": [],
+    "undoRecovery": true,
+    "route": [
+      [
+        0,
+        [
+          105,
+          35
+        ]
+      ],
+      [
+        2,
+        [
+          245,
+          35
+        ]
+      ],
+      [
+        3,
+        [
+          95,
+          150
+        ]
+      ],
+      [
+        1,
+        [
+          100,
+          275
+        ]
+      ],
+      [
+        4,
+        [
+          95,
+          125
+        ]
+      ]
+    ]
+  },
+  {
+    "id": "v6-turnstile",
+    "name": "Turnstile",
+    "screws": 5,
+    "moves": 5,
+    "contacts": 769,
+    "caught": 0,
+    "maxRotation": 1.6620544473984042,
+    "maxOverlap": 0.4598123864266199,
+    "wrongTwoMovesNoFreeHole": [],
+    "undoRecovery": true,
+    "route": [
+      [
+        2,
+        [
+          105,
+          35
+        ]
+      ],
+      [
+        1,
+        [
+          240,
+          145
+        ]
+      ],
+      [
+        0,
+        [
+          245,
+          35
+        ]
+      ],
+      [
+        4,
+        [
+          65,
+          130
+        ]
+      ],
+      [
+        3,
+        [
+          175,
+          295
+        ]
+      ]
+    ]
+  },
+  {
+    "id": "v6-secret-shelf",
+    "name": "Secret shelf",
+    "screws": 6,
+    "moves": 6,
+    "contacts": 1515,
+    "caught": 3,
+    "maxRotation": 2.1384021477593405,
+    "maxOverlap": 0.9921406629130161,
+    "wrongTwoMovesNoFreeHole": [],
+    "undoRecovery": true,
+    "route": [
+      [
+        1,
+        [
+          245,
+          35
+        ]
+      ],
+      [
+        0,
+        [
+          190,
+          127
+        ]
+      ],
+      [
+        5,
+        [
+          105,
+          35
+        ]
+      ],
+      [
+        4,
+        [
+          260,
+          180
+        ]
+      ],
+      [
+        3,
+        [
+          300,
+          310
+        ]
+      ],
+      [
+        2,
+        [
+          80,
+          127
+        ]
+      ]
+    ]
+  },
+  {
+    "id": "v6-offset-escapement",
+    "name": "Offset escapement",
+    "screws": 7,
+    "moves": 7,
+    "contacts": 308,
+    "caught": 1,
+    "maxRotation": 2.4101823791117,
+    "maxOverlap": 2.3211766253895405,
+    "wrongTwoMovesNoFreeHole": [],
+    "undoRecovery": true,
+    "route": [
+      [
+        3,
+        [
+          245,
+          35
+        ]
+      ],
+      [
+        4,
+        [
+          275,
+          195
+        ]
+      ],
+      [
+        6,
+        [
+          275,
+          250
+        ]
+      ],
+      [
+        0,
+        [
+          240,
+          330
+        ]
+      ],
+      [
+        2,
+        [
+          105,
+          35
+        ]
+      ],
+      [
+        1,
+        [
+          70,
+          125
+        ]
+      ],
+      [
+        5,
+        [
+          90,
+          185
+        ]
+      ]
+    ]
+  }
+]

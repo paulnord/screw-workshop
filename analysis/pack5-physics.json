@@ -1,0 +1,257 @@
+[
+  {
+    "id": "v6-pivot-fan",
+    "name": "Fan and stop",
+    "screws": 5,
+    "moves": 5,
+    "contacts": 59,
+    "caught": 1,
+    "maxRotation": 1.6737608105883706,
+    "maxOverlap": 1.067481255788465,
+    "wrongTwoMovesNoFreeHole": [],
+    "undoRecovery": true,
+    "route": [
+      [
+        2,
+        [
+          245,
+          35
+        ]
+      ],
+      [
+        0,
+        [
+          105,
+          35
+        ]
+      ],
+      [
+        4,
+        [
+          105,
+          125
+        ]
+      ],
+      [
+        1,
+        [
+          240,
+          300
+        ]
+      ],
+      [
+        3,
+        [
+          225,
+          125
+        ]
+      ]
+    ]
+  },
+  {
+    "id": "v6-pivot-hammer",
+    "name": "Hammer swing",
+    "screws": 6,
+    "moves": 6,
+    "contacts": 489,
+    "caught": 0,
+    "maxRotation": 1.6411248771224414,
+    "maxOverlap": 0.8084293674118044,
+    "wrongTwoMovesNoFreeHole": [],
+    "undoRecovery": true,
+    "route": [
+      [
+        1,
+        [
+          105,
+          35
+        ]
+      ],
+      [
+        2,
+        [
+          245,
+          35
+        ]
+      ],
+      [
+        3,
+        [
+          240,
+          115
+        ]
+      ],
+      [
+        0,
+        [
+          310,
+          190
+        ]
+      ],
+      [
+        4,
+        [
+          168,
+          220
+        ]
+      ],
+      [
+        5,
+        [
+          80,
+          310
+        ]
+      ]
+    ]
+  },
+  {
+    "id": "v6-pivot-stair",
+    "name": "Stair turn",
+    "screws": 7,
+    "moves": 7,
+    "contacts": 538,
+    "caught": 2,
+    "maxRotation": 2.115565849754208,
+    "maxOverlap": 1.3030055872280926,
+    "wrongTwoMovesNoFreeHole": [],
+    "undoRecovery": true,
+    "route": [
+      [
+        6,
+        [
+          105,
+          35
+        ]
+      ],
+      [
+        0,
+        [
+          245,
+          35
+        ]
+      ],
+      [
+        1,
+        [
+          300,
+          325
+        ]
+      ],
+      [
+        5,
+        [
+          90,
+          115
+        ]
+      ],
+      [
+        2,
+        [
+          230,
+          325
+        ]
+      ],
+      [
+        4,
+        [
+          240,
+          215
+        ]
+      ],
+      [
+        3,
+        [
+          185,
+          165
+        ]
+      ]
+    ]
+  },
+  {
+    "id": "v6-pivot-crown",
+    "name": "Crown gate",
+    "screws": 8,
+    "moves": 8,
+    "contacts": 172,
+    "caught": 0,
+    "maxRotation": 1.8044463308784875,
+    "maxOverlap": 0.23341796281096094,
+    "wrongTwoMovesNoFreeHole": [
+      [
+        0,
+        2
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        2,
+        1
+      ]
+    ],
+    "undoRecovery": true,
+    "route": [
+      [
+        4,
+        [
+          245,
+          35
+        ]
+      ],
+      [
+        5,
+        [
+          105,
+          35
+        ]
+      ],
+      [
+        3,
+        [
+          280,
+          315
+        ]
+      ],
+      [
+        2,
+        [
+          70,
+          255
+        ]
+      ],
+      [
+        6,
+        [
+          280,
+          255
+        ]
+      ],
+      [
+        1,
+        [
+          125,
+          365
+        ]
+      ],
+      [
+        7,
+        [
+          270,
+          120
+        ]
+      ],
+      [
+        0,
+        [
+          175,
+          175
+        ]
+      ]
+    ]
+  }
+]

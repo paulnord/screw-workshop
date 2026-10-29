@@ -1,0 +1,6354 @@
+{
+  "sourceHashes": {
+    "engine.mjs": "6f87e3e109ae3e9d9981852f904603d2770159d274fb21b14317b99213fcf9a3",
+    "levels.mjs": "c08deb92a44d612808a7672055ca9883014e6c9e39453896cce96dadfb848755"
+  },
+  "parameters": {
+    "root": "dist",
+    "recipes": "analysis/expansion-recipes.json",
+    "extra": "1",
+    "exactMax": "4",
+    "samples": "16",
+    "cap": "150",
+    "out": "analysis/pack7-orders.json"
+  },
+  "model": "Fixed release permutation; arbitrary legal placement; up to K reparking moves; complete-world structured clone per branch preserving contact history; each successful route independently replayed in-place; settle after each move. Not arbitrary-time or unlimited-reparking proof.",
+  "results": [
+    {
+      "id": "v6-cantilever-cargo",
+      "name": "Cantilever cargo",
+      "screws": 6,
+      "allOrdersFactorial": 720,
+      "exhaustiveOrders": false,
+      "extraParkingMoves": 1,
+      "nodeCapPerOrder": 150,
+      "settleFrameCap": 5000,
+      "tested": 16,
+      "solved": 16,
+      "rejected": 0,
+      "unknown": 0,
+      "first": [
+        {
+          "screw": 0,
+          "solved": 1,
+          "rejected": 0,
+          "unknown": 0
+        },
+        {
+          "screw": 1,
+          "solved": 4,
+          "rejected": 0,
+          "unknown": 0
+        },
+        {
+          "screw": 2,
+          "solved": 2,
+          "rejected": 0,
+          "unknown": 0
+        },
+        {
+          "screw": 3,
+          "solved": 3,
+          "rejected": 0,
+          "unknown": 0
+        },
+        {
+          "screw": 4,
+          "solved": 4,
+          "rejected": 0,
+          "unknown": 0
+        },
+        {
+          "screw": 5,
+          "solved": 2,
+          "rejected": 0,
+          "unknown": 0
+        }
+      ],
+      "immediateFirstMoves": [
+        {
+          "screw": 0,
+          "target": 31,
+          "settled": true,
+          "noFreeHole": false,
+          "complete": false
+        },
+        {
+          "screw": 0,
+          "target": 32,
+          "settled": true,
+          "noFreeHole": false,
+          "complete": false
+        },
+        {
+          "screw": 1,
+          "target": 31,
+          "settled": true,
+          "noFreeHole": false,
+          "complete": false
+        },
+        {
+          "screw": 1,
+          "target": 32,
+          "settled": true,
+          "noFreeHole": false,
+          "complete": false
+        },
+        {
+          "screw": 2,
+          "target": 31,
+          "settled": true,
+          "noFreeHole": false,
+          "complete": false
+        },
+        {
+          "screw": 2,
+          "target": 32,
+          "settled": true,
+          "noFreeHole": false,
+          "complete": false
+        },
+        {
+          "screw": 3,
+          "target": 31,
+          "settled": true,
+          "noFreeHole": false,
+          "complete": false
+        },
+        {
+          "screw": 3,
+          "target": 32,
+          "settled": true,
+          "noFreeHole": false,
+          "complete": false
+        },
+        {
+          "screw": 4,
+          "target": 31,
+          "settled": true,
+          "noFreeHole": false,
+          "complete": false
+        },
+        {
+          "screw": 4,
+          "target": 32,
+          "settled": true,
+          "noFreeHole": false,
+          "complete": false
+        },
+        {
+          "screw": 5,
+          "target": 31,
+          "settled": true,
+          "noFreeHole": false,
+          "complete": false
+        },
+        {
+          "screw": 5,
+          "target": 32,
+          "settled": true,
+          "noFreeHole": false,
+          "complete": false
+        }
+      ],
+      "trials": [
+        {
+          "order": [
+            4,
+            1,
+            3,
+            0,
+            2,
+            5
+          ],
+          "status": "solved",
+          "nodes": 0,
+          "unsettled": 0,
+          "route": [
+            [
+              4,
+              32
+            ],
+            [
+              1,
+              31
+            ],
+            [
+              3,
+              113
+            ],
+            [
+              0,
+              116
+            ],
+            [
+              2,
+              112
+            ],
+            [
+              5,
+              115
+            ]
+          ],
+          "inPlaceVerified": true,
+          "authoredWitness": true,
+          "coordinateRoute": [
+            [
+              4,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              1,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              3,
+              [
+                210,
+                120
+              ]
+            ],
+            [
+              0,
+              [
+                300,
+                195
+              ]
+            ],
+            [
+              2,
+              [
+                110,
+                120
+              ]
+            ],
+            [
+              5,
+              [
+                260,
+                235
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "status": "solved",
+          "nodes": 6,
+          "unsettled": 0,
+          "route": [
+            [
+              0,
+              31
+            ],
+            [
+              1,
+              32
+            ],
+            [
+              2,
+              112
+            ],
+            [
+              3,
+              113
+            ],
+            [
+              4,
+              114
+            ],
+            [
+              5,
+              115
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              0,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              1,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              2,
+              [
+                110,
+                120
+              ]
+            ],
+            [
+              3,
+              [
+                210,
+                120
+              ]
+            ],
+            [
+              4,
+              [
+                65,
+                235
+              ]
+            ],
+            [
+              5,
+              [
+                260,
+                235
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            1,
+            0,
+            2,
+            3,
+            4,
+            5
+          ],
+          "status": "solved",
+          "nodes": 6,
+          "unsettled": 0,
+          "route": [
+            [
+              1,
+              31
+            ],
+            [
+              0,
+              32
+            ],
+            [
+              2,
+              112
+            ],
+            [
+              3,
+              113
+            ],
+            [
+              4,
+              114
+            ],
+            [
+              5,
+              115
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              1,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              0,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              2,
+              [
+                110,
+                120
+              ]
+            ],
+            [
+              3,
+              [
+                210,
+                120
+              ]
+            ],
+            [
+              4,
+              [
+                65,
+                235
+              ]
+            ],
+            [
+              5,
+              [
+                260,
+                235
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            2,
+            0,
+            1,
+            3,
+            4,
+            5
+          ],
+          "status": "solved",
+          "nodes": 6,
+          "unsettled": 0,
+          "route": [
+            [
+              2,
+              31
+            ],
+            [
+              0,
+              32
+            ],
+            [
+              1,
+              112
+            ],
+            [
+              3,
+              113
+            ],
+            [
+              4,
+              114
+            ],
+            [
+              5,
+              115
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              2,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              0,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              1,
+              [
+                110,
+                120
+              ]
+            ],
+            [
+              3,
+              [
+                210,
+                120
+              ]
+            ],
+            [
+              4,
+              [
+                65,
+                235
+              ]
+            ],
+            [
+              5,
+              [
+                260,
+                235
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            3,
+            0,
+            1,
+            2,
+            4,
+            5
+          ],
+          "status": "solved",
+          "nodes": 6,
+          "unsettled": 0,
+          "route": [
+            [
+              3,
+              31
+            ],
+            [
+              0,
+              32
+            ],
+            [
+              1,
+              112
+            ],
+            [
+              2,
+              113
+            ],
+            [
+              4,
+              114
+            ],
+            [
+              5,
+              115
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              3,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              0,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              1,
+              [
+                110,
+                120
+              ]
+            ],
+            [
+              2,
+              [
+                210,
+                120
+              ]
+            ],
+            [
+              4,
+              [
+                65,
+                235
+              ]
+            ],
+            [
+              5,
+              [
+                260,
+                235
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            4,
+            0,
+            1,
+            2,
+            3,
+            5
+          ],
+          "status": "solved",
+          "nodes": 6,
+          "unsettled": 0,
+          "route": [
+            [
+              4,
+              31
+            ],
+            [
+              0,
+              32
+            ],
+            [
+              1,
+              112
+            ],
+            [
+              2,
+              113
+            ],
+            [
+              3,
+              114
+            ],
+            [
+              5,
+              115
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              4,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              0,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              1,
+              [
+                110,
+                120
+              ]
+            ],
+            [
+              2,
+              [
+                210,
+                120
+              ]
+            ],
+            [
+              3,
+              [
+                65,
+                235
+              ]
+            ],
+            [
+              5,
+              [
+                260,
+                235
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            5,
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "status": "solved",
+          "nodes": 6,
+          "unsettled": 0,
+          "route": [
+            [
+              5,
+              31
+            ],
+            [
+              0,
+              32
+            ],
+            [
+              1,
+              112
+            ],
+            [
+              2,
+              113
+            ],
+            [
+              3,
+              114
+            ],
+            [
+              4,
+              115
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              5,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              0,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              1,
+              [
+                110,
+                120
+              ]
+            ],
+            [
+              2,
+              [
+                210,
+                120
+              ]
+            ],
+            [
+              3,
+              [
+                65,
+                235
+              ]
+            ],
+            [
+              4,
+              [
+                260,
+                235
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            4,
+            5,
+            0,
+            2,
+            1,
+            3
+          ],
+          "status": "solved",
+          "nodes": 6,
+          "unsettled": 0,
+          "route": [
+            [
+              4,
+              31
+            ],
+            [
+              5,
+              32
+            ],
+            [
+              0,
+              116
+            ],
+            [
+              2,
+              112
+            ],
+            [
+              1,
+              114
+            ],
+            [
+              3,
+              113
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              4,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              5,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              0,
+              [
+                300,
+                195
+              ]
+            ],
+            [
+              2,
+              [
+                110,
+                120
+              ]
+            ],
+            [
+              1,
+              [
+                65,
+                235
+              ]
+            ],
+            [
+              3,
+              [
+                210,
+                120
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            5,
+            1,
+            2,
+            4,
+            3,
+            0
+          ],
+          "status": "solved",
+          "nodes": 6,
+          "unsettled": 0,
+          "route": [
+            [
+              5,
+              31
+            ],
+            [
+              1,
+              32
+            ],
+            [
+              2,
+              113
+            ],
+            [
+              4,
+              114
+            ],
+            [
+              3,
+              116
+            ],
+            [
+              0,
+              115
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              5,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              1,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              2,
+              [
+                210,
+                120
+              ]
+            ],
+            [
+              4,
+              [
+                65,
+                235
+              ]
+            ],
+            [
+              3,
+              [
+                300,
+                195
+              ]
+            ],
+            [
+              0,
+              [
+                260,
+                235
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            1,
+            0,
+            2,
+            4,
+            5,
+            3
+          ],
+          "status": "solved",
+          "nodes": 6,
+          "unsettled": 0,
+          "route": [
+            [
+              1,
+              31
+            ],
+            [
+              0,
+              32
+            ],
+            [
+              2,
+              112
+            ],
+            [
+              4,
+              113
+            ],
+            [
+              5,
+              116
+            ],
+            [
+              3,
+              114
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              1,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              0,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              2,
+              [
+                110,
+                120
+              ]
+            ],
+            [
+              4,
+              [
+                210,
+                120
+              ]
+            ],
+            [
+              5,
+              [
+                300,
+                195
+              ]
+            ],
+            [
+              3,
+              [
+                65,
+                235
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            2,
+            4,
+            1,
+            0,
+            3,
+            5
+          ],
+          "status": "solved",
+          "nodes": 6,
+          "unsettled": 0,
+          "route": [
+            [
+              2,
+              31
+            ],
+            [
+              4,
+              32
+            ],
+            [
+              1,
+              114
+            ],
+            [
+              0,
+              113
+            ],
+            [
+              3,
+              112
+            ],
+            [
+              5,
+              115
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              2,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              4,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              1,
+              [
+                65,
+                235
+              ]
+            ],
+            [
+              0,
+              [
+                210,
+                120
+              ]
+            ],
+            [
+              3,
+              [
+                110,
+                120
+              ]
+            ],
+            [
+              5,
+              [
+                260,
+                235
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            3,
+            4,
+            1,
+            0,
+            5,
+            2
+          ],
+          "status": "solved",
+          "nodes": 6,
+          "unsettled": 0,
+          "route": [
+            [
+              3,
+              31
+            ],
+            [
+              4,
+              32
+            ],
+            [
+              1,
+              115
+            ],
+            [
+              0,
+              113
+            ],
+            [
+              5,
+              112
+            ],
+            [
+              2,
+              116
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              3,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              4,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              1,
+              [
+                260,
+                235
+              ]
+            ],
+            [
+              0,
+              [
+                210,
+                120
+              ]
+            ],
+            [
+              5,
+              [
+                110,
+                120
+              ]
+            ],
+            [
+              2,
+              [
+                300,
+                195
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            1,
+            3,
+            2,
+            4,
+            0,
+            5
+          ],
+          "status": "solved",
+          "nodes": 6,
+          "unsettled": 0,
+          "route": [
+            [
+              1,
+              31
+            ],
+            [
+              3,
+              32
+            ],
+            [
+              2,
+              113
+            ],
+            [
+              4,
+              114
+            ],
+            [
+              0,
+              115
+            ],
+            [
+              5,
+              112
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              1,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              3,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              2,
+              [
+                210,
+                120
+              ]
+            ],
+            [
+              4,
+              [
+                65,
+                235
+              ]
+            ],
+            [
+              0,
+              [
+                260,
+                235
+              ]
+            ],
+            [
+              5,
+              [
+                110,
+                120
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            1,
+            4,
+            5,
+            0,
+            3,
+            2
+          ],
+          "status": "solved",
+          "nodes": 6,
+          "unsettled": 0,
+          "route": [
+            [
+              1,
+              31
+            ],
+            [
+              4,
+              32
+            ],
+            [
+              5,
+              113
+            ],
+            [
+              0,
+              116
+            ],
+            [
+              3,
+              112
+            ],
+            [
+              2,
+              115
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              1,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              4,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              5,
+              [
+                210,
+                120
+              ]
+            ],
+            [
+              0,
+              [
+                300,
+                195
+              ]
+            ],
+            [
+              3,
+              [
+                110,
+                120
+              ]
+            ],
+            [
+              2,
+              [
+                260,
+                235
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            4,
+            1,
+            2,
+            3,
+            5,
+            0
+          ],
+          "status": "solved",
+          "nodes": 6,
+          "unsettled": 0,
+          "route": [
+            [
+              4,
+              31
+            ],
+            [
+              1,
+              32
+            ],
+            [
+              2,
+              113
+            ],
+            [
+              3,
+              114
+            ],
+            [
+              5,
+              115
+            ],
+            [
+              0,
+              116
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              4,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              1,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              2,
+              [
+                210,
+                120
+              ]
+            ],
+            [
+              3,
+              [
+                65,
+                235
+              ]
+            ],
+            [
+              5,
+              [
+                260,
+                235
+              ]
+            ],
+            [
+              0,
+              [
+                300,
+                195
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            3,
+            1,
+            2,
+            0,
+            4,
+            5
+          ],
+          "status": "solved",
+          "nodes": 6,
+          "unsettled": 0,
+          "route": [
+            [
+              3,
+              31
+            ],
+            [
+              1,
+              32
+            ],
+            [
+              2,
+              113
+            ],
+            [
+              0,
+              114
+            ],
+            [
+              4,
+              112
+            ],
+            [
+              5,
+              115
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              3,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              1,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              2,
+              [
+                210,
+                120
+              ]
+            ],
+            [
+              0,
+              [
+                65,
+                235
+              ]
+            ],
+            [
+              4,
+              [
+                110,
+                120
+              ]
+            ],
+            [
+              5,
+              [
+                260,
+                235
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v6-stair-descent",
+      "name": "Stair descent",
+      "screws": 6,
+      "allOrdersFactorial": 720,
+      "exhaustiveOrders": false,
+      "extraParkingMoves": 1,
+      "nodeCapPerOrder": 150,
+      "settleFrameCap": 5000,
+      "tested": 16,
+      "solved": 16,
+      "rejected": 0,
+      "unknown": 0,
+      "first": [
+        {
+          "screw": 0,
+          "solved": 4,
+          "rejected": 0,
+          "unknown": 0
+        },
+        {
+          "screw": 1,
+          "solved": 3,
+          "rejected": 0,
+          "unknown": 0
+        },
+        {
+          "screw": 2,
+          "solved": 4,
+          "rejected": 0,
+          "unknown": 0
+        },
+        {
+          "screw": 3,
+          "solved": 2,
+          "rejected": 0,
+          "unknown": 0
+        },
+        {
+          "screw": 4,
+          "solved": 2,
+          "rejected": 0,
+          "unknown": 0
+        },
+        {
+          "screw": 5,
+          "solved": 1,
+          "rejected": 0,
+          "unknown": 0
+        }
+      ],
+      "immediateFirstMoves": [
+        {
+          "screw": 0,
+          "target": 31,
+          "settled": true,
+          "noFreeHole": false,
+          "complete": false
+        },
+        {
+          "screw": 0,
+          "target": 32,
+          "settled": true,
+          "noFreeHole": false,
+          "complete": false
+        },
+        {
+          "screw": 1,
+          "target": 31,
+          "settled": true,
+          "noFreeHole": false,
+          "complete": false
+        },
+        {
+          "screw": 1,
+          "target": 32,
+          "settled": true,
+          "noFreeHole": false,
+          "complete": false
+        },
+        {
+          "screw": 2,
+          "target": 31,
+          "settled": true,
+          "noFreeHole": false,
+          "complete": false
+        },
+        {
+          "screw": 2,
+          "target": 32,
+          "settled": true,
+          "noFreeHole": false,
+          "complete": false
+        },
+        {
+          "screw": 3,
+          "target": 31,
+          "settled": true,
+          "noFreeHole": false,
+          "complete": false
+        },
+        {
+          "screw": 3,
+          "target": 32,
+          "settled": true,
+          "noFreeHole": false,
+          "complete": false
+        },
+        {
+          "screw": 4,
+          "target": 31,
+          "settled": true,
+          "noFreeHole": false,
+          "complete": false
+        },
+        {
+          "screw": 4,
+          "target": 32,
+          "settled": true,
+          "noFreeHole": false,
+          "complete": false
+        },
+        {
+          "screw": 5,
+          "target": 31,
+          "settled": true,
+          "noFreeHole": false,
+          "complete": false
+        },
+        {
+          "screw": 5,
+          "target": 32,
+          "settled": true,
+          "noFreeHole": false,
+          "complete": false
+        }
+      ],
+      "trials": [
+        {
+          "order": [
+            2,
+            1,
+            3,
+            4,
+            5,
+            0
+          ],
+          "status": "solved",
+          "nodes": 0,
+          "unsettled": 0,
+          "route": [
+            [
+              2,
+              31
+            ],
+            [
+              1,
+              32
+            ],
+            [
+              3,
+              120
+            ],
+            [
+              4,
+              119
+            ],
+            [
+              5,
+              121
+            ],
+            [
+              0,
+              123
+            ]
+          ],
+          "inPlaceVerified": true,
+          "authoredWitness": true,
+          "coordinateRoute": [
+            [
+              2,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              1,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              3,
+              [
+                55,
+                210
+              ]
+            ],
+            [
+              4,
+              [
+                175,
+                135
+              ]
+            ],
+            [
+              5,
+              [
+                220,
+                250
+              ]
+            ],
+            [
+              0,
+              [
+                300,
+                290
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "status": "solved",
+          "nodes": 6,
+          "unsettled": 0,
+          "route": [
+            [
+              0,
+              31
+            ],
+            [
+              1,
+              32
+            ],
+            [
+              2,
+              118
+            ],
+            [
+              3,
+              119
+            ],
+            [
+              4,
+              120
+            ],
+            [
+              5,
+              121
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              0,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              1,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              2,
+              [
+                115,
+                115
+              ]
+            ],
+            [
+              3,
+              [
+                175,
+                135
+              ]
+            ],
+            [
+              4,
+              [
+                55,
+                210
+              ]
+            ],
+            [
+              5,
+              [
+                220,
+                250
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            1,
+            0,
+            2,
+            3,
+            4,
+            5
+          ],
+          "status": "solved",
+          "nodes": 7,
+          "unsettled": 0,
+          "route": [
+            [
+              1,
+              31
+            ],
+            [
+              0,
+              119
+            ],
+            [
+              2,
+              32
+            ],
+            [
+              3,
+              118
+            ],
+            [
+              4,
+              120
+            ],
+            [
+              5,
+              121
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              1,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              0,
+              [
+                175,
+                135
+              ]
+            ],
+            [
+              2,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              3,
+              [
+                115,
+                115
+              ]
+            ],
+            [
+              4,
+              [
+                55,
+                210
+              ]
+            ],
+            [
+              5,
+              [
+                220,
+                250
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            2,
+            0,
+            1,
+            3,
+            4,
+            5
+          ],
+          "status": "solved",
+          "nodes": 6,
+          "unsettled": 0,
+          "route": [
+            [
+              2,
+              31
+            ],
+            [
+              0,
+              32
+            ],
+            [
+              1,
+              118
+            ],
+            [
+              3,
+              119
+            ],
+            [
+              4,
+              120
+            ],
+            [
+              5,
+              121
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              2,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              0,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              1,
+              [
+                115,
+                115
+              ]
+            ],
+            [
+              3,
+              [
+                175,
+                135
+              ]
+            ],
+            [
+              4,
+              [
+                55,
+                210
+              ]
+            ],
+            [
+              5,
+              [
+                220,
+                250
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            3,
+            0,
+            1,
+            2,
+            4,
+            5
+          ],
+          "status": "solved",
+          "nodes": 6,
+          "unsettled": 0,
+          "route": [
+            [
+              3,
+              31
+            ],
+            [
+              0,
+              32
+            ],
+            [
+              1,
+              118
+            ],
+            [
+              2,
+              119
+            ],
+            [
+              4,
+              120
+            ],
+            [
+              5,
+              121
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              3,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              0,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              1,
+              [
+                115,
+                115
+              ]
+            ],
+            [
+              2,
+              [
+                175,
+                135
+              ]
+            ],
+            [
+              4,
+              [
+                55,
+                210
+              ]
+            ],
+            [
+              5,
+              [
+                220,
+                250
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            4,
+            0,
+            1,
+            2,
+            3,
+            5
+          ],
+          "status": "solved",
+          "nodes": 6,
+          "unsettled": 0,
+          "route": [
+            [
+              4,
+              31
+            ],
+            [
+              0,
+              32
+            ],
+            [
+              1,
+              118
+            ],
+            [
+              2,
+              119
+            ],
+            [
+              3,
+              120
+            ],
+            [
+              5,
+              121
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              4,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              0,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              1,
+              [
+                115,
+                115
+              ]
+            ],
+            [
+              2,
+              [
+                175,
+                135
+              ]
+            ],
+            [
+              3,
+              [
+                55,
+                210
+              ]
+            ],
+            [
+              5,
+              [
+                220,
+                250
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            5,
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "status": "solved",
+          "nodes": 6,
+          "unsettled": 0,
+          "route": [
+            [
+              5,
+              31
+            ],
+            [
+              0,
+              32
+            ],
+            [
+              1,
+              118
+            ],
+            [
+              2,
+              119
+            ],
+            [
+              3,
+              120
+            ],
+            [
+              4,
+              123
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              5,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              0,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              1,
+              [
+                115,
+                115
+              ]
+            ],
+            [
+              2,
+              [
+                175,
+                135
+              ]
+            ],
+            [
+              3,
+              [
+                55,
+                210
+              ]
+            ],
+            [
+              4,
+              [
+                300,
+                290
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            4,
+            3,
+            5,
+            1,
+            0,
+            2
+          ],
+          "status": "solved",
+          "nodes": 6,
+          "unsettled": 0,
+          "route": [
+            [
+              4,
+              31
+            ],
+            [
+              3,
+              32
+            ],
+            [
+              5,
+              121
+            ],
+            [
+              1,
+              122
+            ],
+            [
+              0,
+              119
+            ],
+            [
+              2,
+              118
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              4,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              3,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              5,
+              [
+                220,
+                250
+              ]
+            ],
+            [
+              1,
+              [
+                150,
+                325
+              ]
+            ],
+            [
+              0,
+              [
+                175,
+                135
+              ]
+            ],
+            [
+              2,
+              [
+                115,
+                115
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            1,
+            5,
+            4,
+            3,
+            0,
+            2
+          ],
+          "status": "solved",
+          "nodes": 6,
+          "unsettled": 0,
+          "route": [
+            [
+              1,
+              31
+            ],
+            [
+              5,
+              32
+            ],
+            [
+              4,
+              119
+            ],
+            [
+              3,
+              122
+            ],
+            [
+              0,
+              121
+            ],
+            [
+              2,
+              118
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              1,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              5,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              4,
+              [
+                175,
+                135
+              ]
+            ],
+            [
+              3,
+              [
+                150,
+                325
+              ]
+            ],
+            [
+              0,
+              [
+                220,
+                250
+              ]
+            ],
+            [
+              2,
+              [
+                115,
+                115
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            0,
+            5,
+            1,
+            4,
+            2,
+            3
+          ],
+          "status": "solved",
+          "nodes": 6,
+          "unsettled": 0,
+          "route": [
+            [
+              0,
+              31
+            ],
+            [
+              5,
+              32
+            ],
+            [
+              1,
+              118
+            ],
+            [
+              4,
+              119
+            ],
+            [
+              2,
+              122
+            ],
+            [
+              3,
+              120
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              0,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              5,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              1,
+              [
+                115,
+                115
+              ]
+            ],
+            [
+              4,
+              [
+                175,
+                135
+              ]
+            ],
+            [
+              2,
+              [
+                150,
+                325
+              ]
+            ],
+            [
+              3,
+              [
+                55,
+                210
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            2,
+            1,
+            5,
+            4,
+            3,
+            0
+          ],
+          "status": "solved",
+          "nodes": 6,
+          "unsettled": 0,
+          "route": [
+            [
+              2,
+              31
+            ],
+            [
+              1,
+              32
+            ],
+            [
+              5,
+              119
+            ],
+            [
+              4,
+              120
+            ],
+            [
+              3,
+              122
+            ],
+            [
+              0,
+              121
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              2,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              1,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              5,
+              [
+                175,
+                135
+              ]
+            ],
+            [
+              4,
+              [
+                55,
+                210
+              ]
+            ],
+            [
+              3,
+              [
+                150,
+                325
+              ]
+            ],
+            [
+              0,
+              [
+                220,
+                250
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            3,
+            0,
+            1,
+            5,
+            2,
+            4
+          ],
+          "status": "solved",
+          "nodes": 6,
+          "unsettled": 0,
+          "route": [
+            [
+              3,
+              31
+            ],
+            [
+              0,
+              32
+            ],
+            [
+              1,
+              118
+            ],
+            [
+              5,
+              119
+            ],
+            [
+              2,
+              121
+            ],
+            [
+              4,
+              120
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              3,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              0,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              1,
+              [
+                115,
+                115
+              ]
+            ],
+            [
+              5,
+              [
+                175,
+                135
+              ]
+            ],
+            [
+              2,
+              [
+                220,
+                250
+              ]
+            ],
+            [
+              4,
+              [
+                55,
+                210
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            2,
+            1,
+            0,
+            3,
+            4,
+            5
+          ],
+          "status": "solved",
+          "nodes": 6,
+          "unsettled": 0,
+          "route": [
+            [
+              2,
+              31
+            ],
+            [
+              1,
+              32
+            ],
+            [
+              0,
+              119
+            ],
+            [
+              3,
+              118
+            ],
+            [
+              4,
+              120
+            ],
+            [
+              5,
+              121
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              2,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              1,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              0,
+              [
+                175,
+                135
+              ]
+            ],
+            [
+              3,
+              [
+                115,
+                115
+              ]
+            ],
+            [
+              4,
+              [
+                55,
+                210
+              ]
+            ],
+            [
+              5,
+              [
+                220,
+                250
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            1,
+            4,
+            0,
+            5,
+            3,
+            2
+          ],
+          "status": "solved",
+          "nodes": 6,
+          "unsettled": 0,
+          "route": [
+            [
+              1,
+              31
+            ],
+            [
+              4,
+              32
+            ],
+            [
+              0,
+              119
+            ],
+            [
+              5,
+              122
+            ],
+            [
+              3,
+              123
+            ],
+            [
+              2,
+              118
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              1,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              4,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              0,
+              [
+                175,
+                135
+              ]
+            ],
+            [
+              5,
+              [
+                150,
+                325
+              ]
+            ],
+            [
+              3,
+              [
+                300,
+                290
+              ]
+            ],
+            [
+              2,
+              [
+                115,
+                115
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            0,
+            4,
+            3,
+            1,
+            5,
+            2
+          ],
+          "status": "solved",
+          "nodes": 6,
+          "unsettled": 0,
+          "route": [
+            [
+              0,
+              31
+            ],
+            [
+              4,
+              32
+            ],
+            [
+              3,
+              118
+            ],
+            [
+              1,
+              121
+            ],
+            [
+              5,
+              119
+            ],
+            [
+              2,
+              122
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              0,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              4,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              3,
+              [
+                115,
+                115
+              ]
+            ],
+            [
+              1,
+              [
+                220,
+                250
+              ]
+            ],
+            [
+              5,
+              [
+                175,
+                135
+              ]
+            ],
+            [
+              2,
+              [
+                150,
+                325
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            0,
+            5,
+            3,
+            4,
+            2,
+            1
+          ],
+          "status": "solved",
+          "nodes": 6,
+          "unsettled": 0,
+          "route": [
+            [
+              0,
+              31
+            ],
+            [
+              5,
+              32
+            ],
+            [
+              3,
+              118
+            ],
+            [
+              4,
+              121
+            ],
+            [
+              2,
+              122
+            ],
+            [
+              1,
+              120
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              0,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              5,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              3,
+              [
+                115,
+                115
+              ]
+            ],
+            [
+              4,
+              [
+                220,
+                250
+              ]
+            ],
+            [
+              2,
+              [
+                150,
+                325
+              ]
+            ],
+            [
+              1,
+              [
+                55,
+                210
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v6-split-trestle",
+      "name": "Split trestle",
+      "screws": 6,
+      "allOrdersFactorial": 720,
+      "exhaustiveOrders": false,
+      "extraParkingMoves": 1,
+      "nodeCapPerOrder": 150,
+      "settleFrameCap": 5000,
+      "tested": 16,
+      "solved": 14,
+      "rejected": 0,
+      "unknown": 2,
+      "first": [
+        {
+          "screw": 0,
+          "solved": 2,
+          "rejected": 0,
+          "unknown": 0
+        },
+        {
+          "screw": 1,
+          "solved": 3,
+          "rejected": 0,
+          "unknown": 1
+        },
+        {
+          "screw": 2,
+          "solved": 2,
+          "rejected": 0,
+          "unknown": 0
+        },
+        {
+          "screw": 3,
+          "solved": 2,
+          "rejected": 0,
+          "unknown": 0
+        },
+        {
+          "screw": 4,
+          "solved": 3,
+          "rejected": 0,
+          "unknown": 1
+        },
+        {
+          "screw": 5,
+          "solved": 2,
+          "rejected": 0,
+          "unknown": 0
+        }
+      ],
+      "immediateFirstMoves": [
+        {
+          "screw": 0,
+          "target": 31,
+          "settled": true,
+          "noFreeHole": false,
+          "complete": false
+        },
+        {
+          "screw": 0,
+          "target": 32,
+          "settled": true,
+          "noFreeHole": false,
+          "complete": false
+        },
+        {
+          "screw": 1,
+          "target": 31,
+          "settled": true,
+          "noFreeHole": false,
+          "complete": false
+        },
+        {
+          "screw": 1,
+          "target": 32,
+          "settled": true,
+          "noFreeHole": false,
+          "complete": false
+        },
+        {
+          "screw": 2,
+          "target": 31,
+          "settled": true,
+          "noFreeHole": false,
+          "complete": false
+        },
+        {
+          "screw": 2,
+          "target": 32,
+          "settled": true,
+          "noFreeHole": false,
+          "complete": false
+        },
+        {
+          "screw": 3,
+          "target": 31,
+          "settled": true,
+          "noFreeHole": false,
+          "complete": false
+        },
+        {
+          "screw": 3,
+          "target": 32,
+          "settled": true,
+          "noFreeHole": false,
+          "complete": false
+        },
+        {
+          "screw": 4,
+          "target": 31,
+          "settled": true,
+          "noFreeHole": false,
+          "complete": false
+        },
+        {
+          "screw": 4,
+          "target": 32,
+          "settled": true,
+          "noFreeHole": false,
+          "complete": false
+        },
+        {
+          "screw": 5,
+          "target": 31,
+          "settled": true,
+          "noFreeHole": false,
+          "complete": false
+        },
+        {
+          "screw": 5,
+          "target": 32,
+          "settled": true,
+          "noFreeHole": false,
+          "complete": false
+        }
+      ],
+      "trials": [
+        {
+          "order": [
+            2,
+            0,
+            1,
+            5,
+            4,
+            3
+          ],
+          "status": "solved",
+          "nodes": 0,
+          "unsettled": 0,
+          "route": [
+            [
+              2,
+              32
+            ],
+            [
+              0,
+              31
+            ],
+            [
+              1,
+              124
+            ],
+            [
+              5,
+              40
+            ],
+            [
+              4,
+              125
+            ],
+            [
+              3,
+              128
+            ]
+          ],
+          "inPlaceVerified": true,
+          "authoredWitness": true,
+          "coordinateRoute": [
+            [
+              2,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              0,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              1,
+              [
+                85,
+                120
+              ]
+            ],
+            [
+              5,
+              [
+                250,
+                120
+              ]
+            ],
+            [
+              4,
+              [
+                170,
+                150
+              ]
+            ],
+            [
+              3,
+              [
+                250,
+                265
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "status": "solved",
+          "nodes": 9,
+          "unsettled": 0,
+          "route": [
+            [
+              0,
+              31
+            ],
+            [
+              1,
+              32
+            ],
+            [
+              2,
+              124
+            ],
+            [
+              3,
+              40
+            ],
+            [
+              4,
+              126
+            ],
+            [
+              5,
+              125
+            ],
+            [
+              2,
+              128
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              0,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              1,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              2,
+              [
+                85,
+                120
+              ]
+            ],
+            [
+              3,
+              [
+                250,
+                120
+              ]
+            ],
+            [
+              4,
+              [
+                70,
+                245
+              ]
+            ],
+            [
+              5,
+              [
+                170,
+                150
+              ]
+            ],
+            [
+              2,
+              [
+                250,
+                265
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            1,
+            0,
+            2,
+            3,
+            4,
+            5
+          ],
+          "status": "solved",
+          "nodes": 9,
+          "unsettled": 0,
+          "route": [
+            [
+              1,
+              31
+            ],
+            [
+              0,
+              32
+            ],
+            [
+              2,
+              124
+            ],
+            [
+              3,
+              40
+            ],
+            [
+              4,
+              126
+            ],
+            [
+              5,
+              125
+            ],
+            [
+              2,
+              128
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              1,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              0,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              2,
+              [
+                85,
+                120
+              ]
+            ],
+            [
+              3,
+              [
+                250,
+                120
+              ]
+            ],
+            [
+              4,
+              [
+                70,
+                245
+              ]
+            ],
+            [
+              5,
+              [
+                170,
+                150
+              ]
+            ],
+            [
+              2,
+              [
+                250,
+                265
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            2,
+            0,
+            1,
+            3,
+            4,
+            5
+          ],
+          "status": "solved",
+          "nodes": 6,
+          "unsettled": 0,
+          "route": [
+            [
+              2,
+              31
+            ],
+            [
+              0,
+              32
+            ],
+            [
+              1,
+              124
+            ],
+            [
+              3,
+              40
+            ],
+            [
+              4,
+              125
+            ],
+            [
+              5,
+              126
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              2,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              0,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              1,
+              [
+                85,
+                120
+              ]
+            ],
+            [
+              3,
+              [
+                250,
+                120
+              ]
+            ],
+            [
+              4,
+              [
+                170,
+                150
+              ]
+            ],
+            [
+              5,
+              [
+                70,
+                245
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            3,
+            0,
+            1,
+            2,
+            4,
+            5
+          ],
+          "status": "solved",
+          "nodes": 40,
+          "unsettled": 0,
+          "route": [
+            [
+              3,
+              31
+            ],
+            [
+              0,
+              32
+            ],
+            [
+              1,
+              124
+            ],
+            [
+              2,
+              126
+            ],
+            [
+              4,
+              40
+            ],
+            [
+              5,
+              127
+            ],
+            [
+              1,
+              125
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              3,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              0,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              1,
+              [
+                85,
+                120
+              ]
+            ],
+            [
+              2,
+              [
+                70,
+                245
+              ]
+            ],
+            [
+              4,
+              [
+                250,
+                120
+              ]
+            ],
+            [
+              5,
+              [
+                140,
+                285
+              ]
+            ],
+            [
+              1,
+              [
+                170,
+                150
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            4,
+            0,
+            1,
+            2,
+            3,
+            5
+          ],
+          "status": "solved",
+          "nodes": 44,
+          "unsettled": 0,
+          "route": [
+            [
+              4,
+              31
+            ],
+            [
+              0,
+              32
+            ],
+            [
+              1,
+              124
+            ],
+            [
+              2,
+              127
+            ],
+            [
+              3,
+              40
+            ],
+            [
+              5,
+              126
+            ],
+            [
+              1,
+              125
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              4,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              0,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              1,
+              [
+                85,
+                120
+              ]
+            ],
+            [
+              2,
+              [
+                140,
+                285
+              ]
+            ],
+            [
+              3,
+              [
+                250,
+                120
+              ]
+            ],
+            [
+              5,
+              [
+                70,
+                245
+              ]
+            ],
+            [
+              1,
+              [
+                170,
+                150
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            5,
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "status": "solved",
+          "nodes": 45,
+          "unsettled": 0,
+          "route": [
+            [
+              5,
+              31
+            ],
+            [
+              0,
+              32
+            ],
+            [
+              1,
+              124
+            ],
+            [
+              2,
+              128
+            ],
+            [
+              3,
+              40
+            ],
+            [
+              4,
+              125
+            ],
+            [
+              1,
+              126
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              5,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              0,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              1,
+              [
+                85,
+                120
+              ]
+            ],
+            [
+              2,
+              [
+                250,
+                265
+              ]
+            ],
+            [
+              3,
+              [
+                250,
+                120
+              ]
+            ],
+            [
+              4,
+              [
+                170,
+                150
+              ]
+            ],
+            [
+              1,
+              [
+                70,
+                245
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            1,
+            0,
+            5,
+            2,
+            4,
+            3
+          ],
+          "status": "solved",
+          "nodes": 17,
+          "unsettled": 0,
+          "route": [
+            [
+              1,
+              31
+            ],
+            [
+              0,
+              32
+            ],
+            [
+              5,
+              124
+            ],
+            [
+              2,
+              128
+            ],
+            [
+              4,
+              40
+            ],
+            [
+              3,
+              125
+            ],
+            [
+              5,
+              126
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              1,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              0,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              5,
+              [
+                85,
+                120
+              ]
+            ],
+            [
+              2,
+              [
+                250,
+                265
+              ]
+            ],
+            [
+              4,
+              [
+                250,
+                120
+              ]
+            ],
+            [
+              3,
+              [
+                170,
+                150
+              ]
+            ],
+            [
+              5,
+              [
+                70,
+                245
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            0,
+            5,
+            3,
+            1,
+            2,
+            4
+          ],
+          "status": "solved",
+          "nodes": 32,
+          "unsettled": 0,
+          "route": [
+            [
+              0,
+              31
+            ],
+            [
+              5,
+              32
+            ],
+            [
+              3,
+              124
+            ],
+            [
+              1,
+              126
+            ],
+            [
+              2,
+              128
+            ],
+            [
+              4,
+              40
+            ],
+            [
+              3,
+              125
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              0,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              5,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              3,
+              [
+                85,
+                120
+              ]
+            ],
+            [
+              1,
+              [
+                70,
+                245
+              ]
+            ],
+            [
+              2,
+              [
+                250,
+                265
+              ]
+            ],
+            [
+              4,
+              [
+                250,
+                120
+              ]
+            ],
+            [
+              3,
+              [
+                170,
+                150
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            3,
+            0,
+            4,
+            1,
+            2,
+            5
+          ],
+          "status": "solved",
+          "nodes": 33,
+          "unsettled": 0,
+          "route": [
+            [
+              3,
+              31
+            ],
+            [
+              0,
+              32
+            ],
+            [
+              4,
+              124
+            ],
+            [
+              1,
+              126
+            ],
+            [
+              2,
+              127
+            ],
+            [
+              5,
+              40
+            ],
+            [
+              4,
+              125
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              3,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              0,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              4,
+              [
+                85,
+                120
+              ]
+            ],
+            [
+              1,
+              [
+                70,
+                245
+              ]
+            ],
+            [
+              2,
+              [
+                140,
+                285
+              ]
+            ],
+            [
+              5,
+              [
+                250,
+                120
+              ]
+            ],
+            [
+              4,
+              [
+                170,
+                150
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            1,
+            2,
+            5,
+            3,
+            4,
+            0
+          ],
+          "status": "solved",
+          "nodes": 6,
+          "unsettled": 0,
+          "route": [
+            [
+              1,
+              31
+            ],
+            [
+              2,
+              32
+            ],
+            [
+              5,
+              40
+            ],
+            [
+              3,
+              125
+            ],
+            [
+              4,
+              126
+            ],
+            [
+              0,
+              128
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              1,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              2,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              5,
+              [
+                250,
+                120
+              ]
+            ],
+            [
+              3,
+              [
+                170,
+                150
+              ]
+            ],
+            [
+              4,
+              [
+                70,
+                245
+              ]
+            ],
+            [
+              0,
+              [
+                250,
+                265
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            1,
+            0,
+            3,
+            4,
+            5,
+            2
+          ],
+          "status": "unknown",
+          "nodes": 150,
+          "unsettled": 0
+        },
+        {
+          "order": [
+            5,
+            3,
+            4,
+            0,
+            2,
+            1
+          ],
+          "status": "solved",
+          "nodes": 57,
+          "unsettled": 0,
+          "route": [
+            [
+              5,
+              31
+            ],
+            [
+              3,
+              32
+            ],
+            [
+              4,
+              126
+            ],
+            [
+              0,
+              127
+            ],
+            [
+              2,
+              128
+            ],
+            [
+              1,
+              124
+            ],
+            [
+              0,
+              40
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              5,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              3,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              4,
+              [
+                70,
+                245
+              ]
+            ],
+            [
+              0,
+              [
+                140,
+                285
+              ]
+            ],
+            [
+              2,
+              [
+                250,
+                265
+              ]
+            ],
+            [
+              1,
+              [
+                85,
+                120
+              ]
+            ],
+            [
+              0,
+              [
+                250,
+                120
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            4,
+            2,
+            5,
+            1,
+            0,
+            3
+          ],
+          "status": "unknown",
+          "nodes": 150,
+          "unsettled": 0
+        },
+        {
+          "order": [
+            4,
+            5,
+            3,
+            1,
+            2,
+            0
+          ],
+          "status": "solved",
+          "nodes": 61,
+          "unsettled": 0,
+          "route": [
+            [
+              4,
+              31
+            ],
+            [
+              5,
+              32
+            ],
+            [
+              3,
+              127
+            ],
+            [
+              1,
+              126
+            ],
+            [
+              2,
+              128
+            ],
+            [
+              0,
+              40
+            ],
+            [
+              2,
+              124
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              4,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              5,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              3,
+              [
+                140,
+                285
+              ]
+            ],
+            [
+              1,
+              [
+                70,
+                245
+              ]
+            ],
+            [
+              2,
+              [
+                250,
+                265
+              ]
+            ],
+            [
+              0,
+              [
+                250,
+                120
+              ]
+            ],
+            [
+              2,
+              [
+                85,
+                120
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            4,
+            3,
+            2,
+            1,
+            5,
+            0
+          ],
+          "status": "solved",
+          "nodes": 26,
+          "unsettled": 0,
+          "route": [
+            [
+              4,
+              31
+            ],
+            [
+              3,
+              32
+            ],
+            [
+              2,
+              126
+            ],
+            [
+              1,
+              125
+            ],
+            [
+              1,
+              127
+            ],
+            [
+              5,
+              40
+            ],
+            [
+              0,
+              125
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              4,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              3,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              2,
+              [
+                70,
+                245
+              ]
+            ],
+            [
+              1,
+              [
+                170,
+                150
+              ]
+            ],
+            [
+              1,
+              [
+                140,
+                285
+              ]
+            ],
+            [
+              5,
+              [
+                250,
+                120
+              ]
+            ],
+            [
+              0,
+              [
+                170,
+                150
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "v6-fork-lift",
+      "name": "Fork lift",
+      "screws": 7,
+      "allOrdersFactorial": 5040,
+      "exhaustiveOrders": false,
+      "extraParkingMoves": 1,
+      "nodeCapPerOrder": 150,
+      "settleFrameCap": 5000,
+      "tested": 16,
+      "solved": 11,
+      "rejected": 3,
+      "unknown": 2,
+      "first": [
+        {
+          "screw": 0,
+          "solved": 2,
+          "rejected": 0,
+          "unknown": 0
+        },
+        {
+          "screw": 1,
+          "solved": 1,
+          "rejected": 0,
+          "unknown": 0
+        },
+        {
+          "screw": 2,
+          "solved": 1,
+          "rejected": 0,
+          "unknown": 0
+        },
+        {
+          "screw": 3,
+          "solved": 1,
+          "rejected": 0,
+          "unknown": 0
+        },
+        {
+          "screw": 4,
+          "solved": 4,
+          "rejected": 0,
+          "unknown": 1
+        },
+        {
+          "screw": 5,
+          "solved": 1,
+          "rejected": 3,
+          "unknown": 0
+        },
+        {
+          "screw": 6,
+          "solved": 1,
+          "rejected": 0,
+          "unknown": 1
+        }
+      ],
+      "immediateFirstMoves": [
+        {
+          "screw": 0,
+          "target": 31,
+          "settled": true,
+          "noFreeHole": false,
+          "complete": false
+        },
+        {
+          "screw": 0,
+          "target": 32,
+          "settled": true,
+          "noFreeHole": false,
+          "complete": false
+        },
+        {
+          "screw": 1,
+          "target": 31,
+          "settled": true,
+          "noFreeHole": false,
+          "complete": false
+        },
+        {
+          "screw": 1,
+          "target": 32,
+          "settled": true,
+          "noFreeHole": false,
+          "complete": false
+        },
+        {
+          "screw": 2,
+          "target": 31,
+          "settled": true,
+          "noFreeHole": false,
+          "complete": false
+        },
+        {
+          "screw": 2,
+          "target": 32,
+          "settled": true,
+          "noFreeHole": false,
+          "complete": false
+        },
+        {
+          "screw": 3,
+          "target": 31,
+          "settled": true,
+          "noFreeHole": false,
+          "complete": false
+        },
+        {
+          "screw": 3,
+          "target": 32,
+          "settled": true,
+          "noFreeHole": false,
+          "complete": false
+        },
+        {
+          "screw": 4,
+          "target": 31,
+          "settled": true,
+          "noFreeHole": false,
+          "complete": false
+        },
+        {
+          "screw": 4,
+          "target": 32,
+          "settled": true,
+          "noFreeHole": false,
+          "complete": false
+        },
+        {
+          "screw": 5,
+          "target": 31,
+          "settled": true,
+          "noFreeHole": false,
+          "complete": false
+        },
+        {
+          "screw": 5,
+          "target": 32,
+          "settled": true,
+          "noFreeHole": false,
+          "complete": false
+        },
+        {
+          "screw": 6,
+          "target": 31,
+          "settled": true,
+          "noFreeHole": false,
+          "complete": false
+        },
+        {
+          "screw": 6,
+          "target": 32,
+          "settled": true,
+          "noFreeHole": false,
+          "complete": false
+        }
+      ],
+      "trials": [
+        {
+          "order": [
+            4,
+            2,
+            1,
+            5,
+            6,
+            3,
+            0
+          ],
+          "status": "solved",
+          "nodes": 0,
+          "unsettled": 0,
+          "route": [
+            [
+              4,
+              31
+            ],
+            [
+              2,
+              32
+            ],
+            [
+              1,
+              133
+            ],
+            [
+              5,
+              130
+            ],
+            [
+              6,
+              134
+            ],
+            [
+              3,
+              131
+            ],
+            [
+              0,
+              135
+            ]
+          ],
+          "inPlaceVerified": true,
+          "authoredWitness": true,
+          "coordinateRoute": [
+            [
+              4,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              2,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              1,
+              [
+                230,
+                175
+              ]
+            ],
+            [
+              5,
+              [
+                100,
+                310
+              ]
+            ],
+            [
+              6,
+              [
+                310,
+                290
+              ]
+            ],
+            [
+              3,
+              [
+                255,
+                310
+              ]
+            ],
+            [
+              0,
+              [
+                310,
+                340
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "status": "solved",
+          "nodes": 7,
+          "unsettled": 0,
+          "route": [
+            [
+              0,
+              31
+            ],
+            [
+              1,
+              32
+            ],
+            [
+              2,
+              129
+            ],
+            [
+              3,
+              130
+            ],
+            [
+              4,
+              132
+            ],
+            [
+              5,
+              131
+            ],
+            [
+              6,
+              133
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              0,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              1,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              2,
+              [
+                65,
+                210
+              ]
+            ],
+            [
+              3,
+              [
+                100,
+                310
+              ]
+            ],
+            [
+              4,
+              [
+                125,
+                130
+              ]
+            ],
+            [
+              5,
+              [
+                255,
+                310
+              ]
+            ],
+            [
+              6,
+              [
+                230,
+                175
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            1,
+            0,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "status": "solved",
+          "nodes": 7,
+          "unsettled": 0,
+          "route": [
+            [
+              1,
+              31
+            ],
+            [
+              0,
+              32
+            ],
+            [
+              2,
+              129
+            ],
+            [
+              3,
+              130
+            ],
+            [
+              4,
+              132
+            ],
+            [
+              5,
+              131
+            ],
+            [
+              6,
+              133
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              1,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              0,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              2,
+              [
+                65,
+                210
+              ]
+            ],
+            [
+              3,
+              [
+                100,
+                310
+              ]
+            ],
+            [
+              4,
+              [
+                125,
+                130
+              ]
+            ],
+            [
+              5,
+              [
+                255,
+                310
+              ]
+            ],
+            [
+              6,
+              [
+                230,
+                175
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            2,
+            0,
+            1,
+            3,
+            4,
+            5,
+            6
+          ],
+          "status": "solved",
+          "nodes": 7,
+          "unsettled": 0,
+          "route": [
+            [
+              2,
+              31
+            ],
+            [
+              0,
+              32
+            ],
+            [
+              1,
+              129
+            ],
+            [
+              3,
+              130
+            ],
+            [
+              4,
+              132
+            ],
+            [
+              5,
+              131
+            ],
+            [
+              6,
+              133
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              2,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              0,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              1,
+              [
+                65,
+                210
+              ]
+            ],
+            [
+              3,
+              [
+                100,
+                310
+              ]
+            ],
+            [
+              4,
+              [
+                125,
+                130
+              ]
+            ],
+            [
+              5,
+              [
+                255,
+                310
+              ]
+            ],
+            [
+              6,
+              [
+                230,
+                175
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            3,
+            0,
+            1,
+            2,
+            4,
+            5,
+            6
+          ],
+          "status": "solved",
+          "nodes": 10,
+          "unsettled": 0,
+          "route": [
+            [
+              3,
+              31
+            ],
+            [
+              0,
+              32
+            ],
+            [
+              1,
+              129
+            ],
+            [
+              2,
+              132
+            ],
+            [
+              4,
+              130
+            ],
+            [
+              5,
+              131
+            ],
+            [
+              6,
+              133
+            ],
+            [
+              1,
+              134
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              3,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              0,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              1,
+              [
+                65,
+                210
+              ]
+            ],
+            [
+              2,
+              [
+                125,
+                130
+              ]
+            ],
+            [
+              4,
+              [
+                100,
+                310
+              ]
+            ],
+            [
+              5,
+              [
+                255,
+                310
+              ]
+            ],
+            [
+              6,
+              [
+                230,
+                175
+              ]
+            ],
+            [
+              1,
+              [
+                310,
+                290
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            4,
+            0,
+            1,
+            2,
+            3,
+            5,
+            6
+          ],
+          "status": "solved",
+          "nodes": 10,
+          "unsettled": 0,
+          "route": [
+            [
+              4,
+              31
+            ],
+            [
+              0,
+              32
+            ],
+            [
+              1,
+              129
+            ],
+            [
+              2,
+              133
+            ],
+            [
+              3,
+              130
+            ],
+            [
+              5,
+              131
+            ],
+            [
+              6,
+              132
+            ],
+            [
+              1,
+              134
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              4,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              0,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              1,
+              [
+                65,
+                210
+              ]
+            ],
+            [
+              2,
+              [
+                230,
+                175
+              ]
+            ],
+            [
+              3,
+              [
+                100,
+                310
+              ]
+            ],
+            [
+              5,
+              [
+                255,
+                310
+              ]
+            ],
+            [
+              6,
+              [
+                125,
+                130
+              ]
+            ],
+            [
+              1,
+              [
+                310,
+                290
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            5,
+            0,
+            1,
+            2,
+            3,
+            4,
+            6
+          ],
+          "status": "rejected",
+          "nodes": 21,
+          "unsettled": 0
+        },
+        {
+          "order": [
+            6,
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "status": "unknown",
+          "nodes": 150,
+          "unsettled": 0
+        },
+        {
+          "order": [
+            4,
+            2,
+            0,
+            5,
+            6,
+            1,
+            3
+          ],
+          "status": "unknown",
+          "nodes": 150,
+          "unsettled": 0
+        },
+        {
+          "order": [
+            4,
+            3,
+            1,
+            6,
+            5,
+            2,
+            0
+          ],
+          "status": "solved",
+          "nodes": 26,
+          "unsettled": 0,
+          "route": [
+            [
+              4,
+              31
+            ],
+            [
+              3,
+              32
+            ],
+            [
+              1,
+              132
+            ],
+            [
+              6,
+              130
+            ],
+            [
+              5,
+              133
+            ],
+            [
+              2,
+              134
+            ],
+            [
+              6,
+              135
+            ],
+            [
+              0,
+              130
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              4,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              3,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              1,
+              [
+                125,
+                130
+              ]
+            ],
+            [
+              6,
+              [
+                100,
+                310
+              ]
+            ],
+            [
+              5,
+              [
+                230,
+                175
+              ]
+            ],
+            [
+              2,
+              [
+                310,
+                290
+              ]
+            ],
+            [
+              6,
+              [
+                310,
+                340
+              ]
+            ],
+            [
+              0,
+              [
+                100,
+                310
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            5,
+            3,
+            4,
+            0,
+            2,
+            6,
+            1
+          ],
+          "status": "rejected",
+          "nodes": 71,
+          "unsettled": 0
+        },
+        {
+          "order": [
+            4,
+            1,
+            3,
+            0,
+            5,
+            2,
+            6
+          ],
+          "status": "solved",
+          "nodes": 13,
+          "unsettled": 0,
+          "route": [
+            [
+              4,
+              31
+            ],
+            [
+              1,
+              32
+            ],
+            [
+              3,
+              130
+            ],
+            [
+              0,
+              132
+            ],
+            [
+              3,
+              133
+            ],
+            [
+              5,
+              129
+            ],
+            [
+              2,
+              130
+            ],
+            [
+              6,
+              131
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              4,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              1,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              3,
+              [
+                100,
+                310
+              ]
+            ],
+            [
+              0,
+              [
+                125,
+                130
+              ]
+            ],
+            [
+              3,
+              [
+                230,
+                175
+              ]
+            ],
+            [
+              5,
+              [
+                65,
+                210
+              ]
+            ],
+            [
+              2,
+              [
+                100,
+                310
+              ]
+            ],
+            [
+              6,
+              [
+                255,
+                310
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            5,
+            4,
+            3,
+            6,
+            0,
+            1,
+            2
+          ],
+          "status": "solved",
+          "nodes": 10,
+          "unsettled": 0,
+          "route": [
+            [
+              5,
+              31
+            ],
+            [
+              4,
+              32
+            ],
+            [
+              3,
+              133
+            ],
+            [
+              6,
+              132
+            ],
+            [
+              0,
+              134
+            ],
+            [
+              1,
+              129
+            ],
+            [
+              2,
+              135
+            ],
+            [
+              1,
+              130
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              5,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              4,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              3,
+              [
+                230,
+                175
+              ]
+            ],
+            [
+              6,
+              [
+                125,
+                130
+              ]
+            ],
+            [
+              0,
+              [
+                310,
+                290
+              ]
+            ],
+            [
+              1,
+              [
+                65,
+                210
+              ]
+            ],
+            [
+              2,
+              [
+                310,
+                340
+              ]
+            ],
+            [
+              1,
+              [
+                100,
+                310
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            0,
+            2,
+            1,
+            4,
+            3,
+            6,
+            5
+          ],
+          "status": "solved",
+          "nodes": 7,
+          "unsettled": 0,
+          "route": [
+            [
+              0,
+              31
+            ],
+            [
+              2,
+              32
+            ],
+            [
+              1,
+              129
+            ],
+            [
+              4,
+              130
+            ],
+            [
+              3,
+              131
+            ],
+            [
+              6,
+              132
+            ],
+            [
+              5,
+              133
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              0,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              2,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              1,
+              [
+                65,
+                210
+              ]
+            ],
+            [
+              4,
+              [
+                100,
+                310
+              ]
+            ],
+            [
+              3,
+              [
+                255,
+                310
+              ]
+            ],
+            [
+              6,
+              [
+                125,
+                130
+              ]
+            ],
+            [
+              5,
+              [
+                230,
+                175
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            6,
+            4,
+            3,
+            2,
+            5,
+            0,
+            1
+          ],
+          "status": "solved",
+          "nodes": 26,
+          "unsettled": 0,
+          "route": [
+            [
+              6,
+              31
+            ],
+            [
+              4,
+              32
+            ],
+            [
+              3,
+              133
+            ],
+            [
+              2,
+              132
+            ],
+            [
+              5,
+              131
+            ],
+            [
+              0,
+              134
+            ],
+            [
+              1,
+              135
+            ],
+            [
+              5,
+              129
+            ]
+          ],
+          "inPlaceVerified": true,
+          "coordinateRoute": [
+            [
+              6,
+              [
+                105,
+                35
+              ]
+            ],
+            [
+              4,
+              [
+                245,
+                35
+              ]
+            ],
+            [
+              3,
+              [
+                230,
+                175
+              ]
+            ],
+            [
+              2,
+              [
+                125,
+                130
+              ]
+            ],
+            [
+              5,
+              [
+                255,
+                310
+              ]
+            ],
+            [
+              0,
+              [
+                310,
+                290
+              ]
+            ],
+            [
+              1,
+              [
+                310,
+                340
+              ]
+            ],
+            [
+              5,
+              [
+                65,
+                210
+              ]
+            ]
+          ]
+        },
+        {
+          "order": [
+            5,
+            3,
+            0,
+            2,
+            4,
+            1,
+            6
+          ],
+          "status": "rejected",
+          "nodes": 41,
+          "unsettled": 0
+        }
+      ]
+    }
+  ],
+  "cellCoordinates": [
+    {
+      "x": 35,
+      "y": 110
+    },
+    {
+      "x": 105,
+      "y": 110
+    },
+    {
+      "x": 175,
+      "y": 110
+    },
+    {
+      "x": 245,
+      "y": 110
+    },
+    {
+      "x": 315,
+      "y": 110
+    },
+    {
+      "x": 35,
+      "y": 180
+    },
+    {
+      "x": 105,
+      "y": 180
+    },
+    {
+      "x": 175,
+      "y": 180
+    },
+    {
+      "x": 245,
+      "y": 180
+    },
+    {
+      "x": 315,
+      "y": 180
+    },
+    {
+      "x": 35,
+      "y": 250
+    },
+    {
+      "x": 105,
+      "y": 250
+    },
+    {
+      "x": 175,
+      "y": 250
+    },
+    {
+      "x": 245,
+      "y": 250
+    },
+    {
+      "x": 315,
+      "y": 250
+    },
+    {
+      "x": 35,
+      "y": 320
+    },
+    {
+      "x": 105,
+      "y": 320
+    },
+    {
+      "x": 175,
+      "y": 320
+    },
+    {
+      "x": 245,
+      "y": 320
+    },
+    {
+      "x": 315,
+      "y": 320
+    },
+    {
+      "x": 35,
+      "y": 390
+    },
+    {
+      "x": 105,
+      "y": 390
+    },
+    {
+      "x": 175,
+      "y": 390
+    },
+    {
+      "x": 245,
+      "y": 390
+    },
+    {
+      "x": 315,
+      "y": 390
+    },
+    {
+      "x": 175,
+      "y": 35
+    },
+    {
+      "x": 91,
+      "y": 35
+    },
+    {
+      "x": 147,
+      "y": 35
+    },
+    {
+      "x": 203,
+      "y": 35
+    },
+    {
+      "x": 259,
+      "y": 35
+    },
+    {
+      "x": 315,
+      "y": 35
+    },
+    {
+      "x": 105,
+      "y": 35
+    },
+    {
+      "x": 245,
+      "y": 35
+    },
+    {
+      "x": 120,
+      "y": 120
+    },
+    {
+      "x": 230,
+      "y": 120
+    },
+    {
+      "x": 175,
+      "y": 210
+    },
+    {
+      "x": 105,
+      "y": 100
+    },
+    {
+      "x": 245,
+      "y": 100
+    },
+    {
+      "x": 175,
+      "y": 175
+    },
+    {
+      "x": 100,
+      "y": 120
+    },
+    {
+      "x": 250,
+      "y": 120
+    },
+    {
+      "x": 85,
+      "y": 175
+    },
+    {
+      "x": 140,
+      "y": 290
+    },
+    {
+      "x": 265,
+      "y": 175
+    },
+    {
+      "x": 210,
+      "y": 290
+    },
+    {
+      "x": 65,
+      "y": 140
+    },
+    {
+      "x": 135,
+      "y": 210
+    },
+    {
+      "x": 285,
+      "y": 140
+    },
+    {
+      "x": 215,
+      "y": 210
+    },
+    {
+      "x": 105,
+      "y": 290
+    },
+    {
+      "x": 245,
+      "y": 290
+    },
+    {
+      "x": 70,
+      "y": 140
+    },
+    {
+      "x": 210,
+      "y": 140
+    },
+    {
+      "x": 280,
+      "y": 140
+    },
+    {
+      "x": 280,
+      "y": 280
+    },
+    {
+      "x": 70,
+      "y": 280
+    },
+    {
+      "x": 210,
+      "y": 280
+    },
+    {
+      "x": 115,
+      "y": 155
+    },
+    {
+      "x": 235,
+      "y": 155
+    },
+    {
+      "x": 175,
+      "y": 245
+    },
+    {
+      "x": 105,
+      "y": 340
+    },
+    {
+      "x": 245,
+      "y": 340
+    },
+    {
+      "x": 70,
+      "y": 130
+    },
+    {
+      "x": 210,
+      "y": 180
+    },
+    {
+      "x": 140,
+      "y": 250
+    },
+    {
+      "x": 280,
+      "y": 200
+    },
+    {
+      "x": 70,
+      "y": 320
+    },
+    {
+      "x": 210,
+      "y": 370
+    },
+    {
+      "x": 97.5,
+      "y": 150
+    },
+    {
+      "x": 97.5,
+      "y": 260
+    },
+    {
+      "x": 225,
+      "y": 267.5
+    },
+    {
+      "x": 290,
+      "y": 140
+    },
+    {
+      "x": 290,
+      "y": 210
+    },
+    {
+      "x": 105,
+      "y": 365
+    },
+    {
+      "x": 245,
+      "y": 365
+    },
+    {
+      "x": 70,
+      "y": 120
+    },
+    {
+      "x": 70,
+      "y": 260
+    },
+    {
+      "x": 280,
+      "y": 120
+    },
+    {
+      "x": 280,
+      "y": 260
+    },
+    {
+      "x": 140,
+      "y": 190
+    },
+    {
+      "x": 210,
+      "y": 190
+    },
+    {
+      "x": 105,
+      "y": 330
+    },
+    {
+      "x": 245,
+      "y": 330
+    },
+    {
+      "x": 95,
+      "y": 152.5
+    },
+    {
+      "x": 255,
+      "y": 152.5
+    },
+    {
+      "x": 175,
+      "y": 260
+    },
+    {
+      "x": 65,
+      "y": 230
+    },
+    {
+      "x": 115,
+      "y": 280
+    },
+    {
+      "x": 85,
+      "y": 230
+    },
+    {
+      "x": 265,
+      "y": 230
+    },
+    {
+      "x": 175,
+      "y": 345
+    },
+    {
+      "x": 160,
+      "y": 115
+    },
+    {
+      "x": 190,
+      "y": 150
+    },
+    {
+      "x": 70,
+      "y": 115
+    },
+    {
+      "x": 70,
+      "y": 175
+    },
+    {
+      "x": 265,
+      "y": 150
+    },
+    {
+      "x": 265,
+      "y": 210
+    },
+    {
+      "x": 90,
+      "y": 285
+    },
+    {
+      "x": 260,
+      "y": 285
+    },
+    {
+      "x": 90,
+      "y": 120
+    },
+    {
+      "x": 170,
+      "y": 120
+    },
+    {
+      "x": 230,
+      "y": 205
+    },
+    {
+      "x": 65,
+      "y": 280
+    },
+    {
+      "x": 180,
+      "y": 280
+    },
+    {
+      "x": 305,
+      "y": 240
+    },
+    {
+      "x": 305,
+      "y": 340
+    },
+    {
+      "x": 100,
+      "y": 125
+    },
+    {
+      "x": 250,
+      "y": 125
+    },
+    {
+      "x": 55,
+      "y": 250
+    },
+    {
+      "x": 220,
+      "y": 275
+    },
+    {
+      "x": 300,
+      "y": 275
+    },
+    {
+      "x": 175,
+      "y": 280
+    },
+    {
+      "x": 110,
+      "y": 120
+    },
+    {
+      "x": 210,
+      "y": 120
+    },
+    {
+      "x": 65,
+      "y": 235
+    },
+    {
+      "x": 260,
+      "y": 235
+    },
+    {
+      "x": 300,
+      "y": 195
+    },
+    {
+      "x": 120,
+      "y": 340
+    },
+    {
+      "x": 115,
+      "y": 115
+    },
+    {
+      "x": 175,
+      "y": 135
+    },
+    {
+      "x": 55,
+      "y": 210
+    },
+    {
+      "x": 220,
+      "y": 250
+    },
+    {
+      "x": 150,
+      "y": 325
+    },
+    {
+      "x": 300,
+      "y": 290
+    },
+    {
+      "x": 85,
+      "y": 120
+    },
+    {
+      "x": 170,
+      "y": 150
+    },
+    {
+      "x": 70,
+      "y": 245
+    },
+    {
+      "x": 140,
+      "y": 285
+    },
+    {
+      "x": 250,
+      "y": 265
+    },
+    {
+      "x": 65,
+      "y": 210
+    },
+    {
+      "x": 100,
+      "y": 310
+    },
+    {
+      "x": 255,
+      "y": 310
+    },
+    {
+      "x": 125,
+      "y": 130
+    },
+    {
+      "x": 230,
+      "y": 175
+    },
+    {
+      "x": 310,
+      "y": 290
+    },
+    {
+      "x": 310,
+      "y": 340
+    }
+  ],
+  "recipeSha256": "6efc1701b4a1b6f8417ffd7c65dc89cf22dbb5736cd5162c9b240fc60d015909",
+  "routeEncodingNote": "Integer route target IDs use the enclosed cellCoordinates table, not an assumed global index in future campaign versions. coordinateRoute is portable.",
+  "provenanceNote": "Bounded candidate search; source module hashes retained. All coordinateRoute witnesses reverified by test-expansion.mjs against integrated32."
+}

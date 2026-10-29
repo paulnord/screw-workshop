@@ -1,6 +1,6 @@
 # Screw Workshop
 
-Sixteen original, touch-friendly physics puzzles. No ads, purchases, timers, energy, streaks, random rewards, or notifications. The game sends no player data; progress and personal bests stay in this browser.
+Thirty-two original, touch-friendly physics puzzles. No ads, purchases, timers, energy, streaks, random rewards, or notifications. The game sends no player data; progress and personal bests stay in this browser.
 
 ## Play
 
@@ -12,7 +12,7 @@ Serve `dist/` with any static web host. Tap an exposed screw, then a highlighted
 - A round board hole is reusable when the 7.5px screw shaft plus a 0.75px safety margin clears actual material. Its decorative rim may still be partly covered. An aligned material cutout can receive a parked peg, which may catch the piece; this does not create a new hinge.
 - Undo restores positions, velocities and the previous move count, and resumes any motion. Restart works mid-swing. Hints are free, follow a tested route after settling, and offer undo guidance when a different timing or route changes the arrangement.
 
-The introductory puzzle has one visible spare; the other fifteen have two. These are deliberate playability choices, **not claims of mathematical minimum parking counts**. This campaign removes the extra hidden-hole-per-plate pattern entirely. Mounting holes reveal naturally as the pieces move, but there are no bonus secret holes to hunt for.
+The introductory puzzle has one visible spare; the other thirty-one have two. These are deliberate playability choices, **not claims of mathematical minimum parking counts**. Mounting holes reveal naturally as pieces move. Two puzzles in Hidden in plain sight each add one covered parking hole: the hint explains its role, and the verified route uncovers and uses it. The other thirty puzzles have no extra hidden targets.
 
 On iPhone: Safari → Share → Add to Home Screen. This is a web game, not an App Store download. Internet and site access may be required; offline installation is not promised. Reduced motion skips most visual movement while running the same physical result.
 
@@ -30,6 +30,7 @@ No package installation or build step. Matter.js is pinned and vendored locally;
 node test.mjs
 node test-progress.mjs
 node test-pack.mjs
+node test-expansion.mjs
 python3 -m http.server 8000 --directory dist
 ```
 
@@ -39,7 +40,7 @@ Tests cover all campaign routes, legal placement, live revalidation, hidden/occu
 
 ## Design choices
 
-This replaces the repetitive one-spare/hidden-midpoint campaign with a smaller set of distinct visible mechanics. Four packs contain four puzzles each. Complete any three puzzles in a pack to open the next; stars never gate progress. The first pack teaches the controls and core physics; later packs introduce combinations rather than repeating the introductory levels. Early levels teach mounting holes and pivot choice; later ones combine supports, concavity, asymmetric mass, parked pegs and exit routes. Larger touch areas resolve to the nearest exposed screw or clear hole; keyboard activation keeps its focused control.
+Eight packs contain four puzzles each, with distinct physical mechanics and dependencies. Complete any three puzzles in a pack to open the next; stars never gate progress. The first pack teaches the controls and core physics; later packs introduce combinations rather than repeating the introductory levels. Early levels teach mounting holes and pivot choice; later ones combine supports, concavity, asymmetric mass, parked pegs and exit routes. Larger touch areas resolve to the nearest exposed screw or clear hole; keyboard activation keeps its focused control.
 
 Physics uses Matter.js 0.20.0 at a fixed 120 Hz: gravity 1.2 (20% above the earlier 1.0), air friction .045 (18% lower than .055), contact friction and restitution, and high-iteration pin constraints. This aims for fluid touch play; it does not claim to reproduce UIKit constants. Frame deltas are capped to avoid long-tab-resume jumps. Live screw moves preserve the existing world and momentum.
 
@@ -81,3 +82,7 @@ The fourth pack adds Cradle, Pendulum relay, Offset key and Locksmith: a U-shape
 ## GitHub Pages
 
 The `Test and deploy game` workflow validates physics and progression before publishing `dist/` on each push to `main`. The repository owner must enable Settings → Pages → Source: GitHub Actions once. `workflow_dispatch` allows a manual rerun. The private Sites deployment is managed separately.
+
+## Expanded workshop
+
+Packs5–8 add16 puzzles: **Pivot craft**, **Hidden in plain sight**, **Support systems**, and **Master keys**. Original levels, IDs and browser progress remain intact. Targets range from5 to9 tested moves, and only two new puzzles use a covered parking target. [Per-level mechanics and validation](analysis/EXPANSION_32.md).

@@ -1,0 +1,238 @@
+[
+  {
+    "id": "v6-cantilever-cargo",
+    "name": "Cantilever cargo",
+    "screws": 6,
+    "moves": 6,
+    "contacts": 2424,
+    "caught": 1,
+    "maxRotation": 3.5091347623334284,
+    "maxOverlap": 1.8845999811562422,
+    "wrongTwoMovesNoFreeHole": [],
+    "undoRecovery": true,
+    "route": [
+      [
+        4,
+        [
+          245,
+          35
+        ]
+      ],
+      [
+        1,
+        [
+          105,
+          35
+        ]
+      ],
+      [
+        3,
+        [
+          210,
+          120
+        ]
+      ],
+      [
+        0,
+        [
+          300,
+          195
+        ]
+      ],
+      [
+        2,
+        [
+          110,
+          120
+        ]
+      ],
+      [
+        5,
+        [
+          260,
+          235
+        ]
+      ]
+    ]
+  },
+  {
+    "id": "v6-stair-descent",
+    "name": "Stair descent",
+    "screws": 6,
+    "moves": 6,
+    "contacts": 584,
+    "caught": 1,
+    "maxRotation": 1.687417833881751,
+    "maxOverlap": 0.34346538835563933,
+    "wrongTwoMovesNoFreeHole": [
+      [
+        1,
+        0
+      ]
+    ],
+    "undoRecovery": true,
+    "route": [
+      [
+        2,
+        [
+          105,
+          35
+        ]
+      ],
+      [
+        1,
+        [
+          245,
+          35
+        ]
+      ],
+      [
+        3,
+        [
+          55,
+          210
+        ]
+      ],
+      [
+        4,
+        [
+          175,
+          135
+        ]
+      ],
+      [
+        5,
+        [
+          220,
+          250
+        ]
+      ],
+      [
+        0,
+        [
+          300,
+          290
+        ]
+      ]
+    ]
+  },
+  {
+    "id": "v6-split-trestle",
+    "name": "Split trestle",
+    "screws": 6,
+    "moves": 6,
+    "contacts": 715,
+    "caught": 1,
+    "maxRotation": 1.6952315514233054,
+    "maxOverlap": 2.0079684275887075,
+    "wrongTwoMovesNoFreeHole": [],
+    "undoRecovery": true,
+    "route": [
+      [
+        2,
+        [
+          245,
+          35
+        ]
+      ],
+      [
+        0,
+        [
+          105,
+          35
+        ]
+      ],
+      [
+        1,
+        [
+          85,
+          120
+        ]
+      ],
+      [
+        5,
+        [
+          250,
+          120
+        ]
+      ],
+      [
+        4,
+        [
+          170,
+          150
+        ]
+      ],
+      [
+        3,
+        [
+          250,
+          265
+        ]
+      ]
+    ]
+  },
+  {
+    "id": "v6-fork-lift",
+    "name": "Fork lift",
+    "screws": 7,
+    "moves": 7,
+    "contacts": 716,
+    "caught": 1,
+    "maxRotation": 3.2195309178799736,
+    "maxOverlap": 0.8935087194057587,
+    "wrongTwoMovesNoFreeHole": [],
+    "undoRecovery": true,
+    "route": [
+      [
+        4,
+        [
+          105,
+          35
+        ]
+      ],
+      [
+        2,
+        [
+          245,
+          35
+        ]
+      ],
+      [
+        1,
+        [
+          230,
+          175
+        ]
+      ],
+      [
+        5,
+        [
+          100,
+          310
+        ]
+      ],
+      [
+        6,
+        [
+          310,
+          290
+        ]
+      ],
+      [
+        3,
+        [
+          255,
+          310
+        ]
+      ],
+      [
+        0,
+        [
+          310,
+          340
+        ]
+      ]
+    ]
+  }
+]
