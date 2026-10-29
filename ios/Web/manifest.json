@@ -1,0 +1,8 @@
+{
+  "index.html": "8d50c2cc6b97c5573367053a6eb95972d8590745bd52f472523ace925cc5ed07",
+  "game.js": "458ab6ca32cdf74696be99a73d3adfd2b1fe87abde9b755865f4a9d246f43b4d",
+  "style.css": "f3f2e9e2e30464d4a71366a034a4d7e36c0aa006235fb4fa91ddbc10fb0cd8a0",
+  "icon.svg": "3609cdb90d0f8ed42fcff5a402e091c0ee5e2f6d967bc5c3eabf4113100d8517",
+  "vendor/matter-0.20.0.min.js": "72d30be0f579eb02ce1e0b6f9d359a4f392e6837e5a26ba8be5dbee7f88e24ae",
+  "vendor/MATTER-LICENSE.txt": "ed182087be5b26734aa6d4789743de3a97417950e8c1e3ff2e3d19c6462720d3"
+}

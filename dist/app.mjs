@@ -1,11 +1,19 @@
 import {recordBest,normalizeProgress,serializeProgress,starsFor,packProgress,isLevelUnlocked,PACK_SIZE,unlockedPackCount} from './progress.mjs?v=20261029-80';
 import {levels,cells,holes,createWorld,snapshot,move,complete,step,settle,accessible,destinations,hint,isSpare,plateForBolt,attachmentCount,STEP} from './engine.mjs?v=20261029-80';
 const $=s=>document.querySelector(s),ns='http://www.w3.org/2000/svg',colors=['#557f79','#c67d57','#c9a75d','#739381'];
-let saved={};try{saved=JSON.parse(localStorage.getItem('screw-workshop-physics-v4')||'{}')||{}}catch{}
+const native=window.ScrewWorkshopNative;
+let saved={};try{saved=native?native.savedProgress:JSON.parse(localStorage.getItem('screw-workshop-physics-v4')||'{}')}catch{}
 let {bests,done,index,unlockedPacks}=normalizeProgress(saved,levels);
 let sim,history=[],selected=null,hintHole=null,frame=null,busy=false,plateNodes=[],pinNodes=[],holeNodes=[];
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
-function persist(){unlockedPacks=unlockedPackCount(levels,done,unlockedPacks);try{localStorage.setItem('screw-workshop-physics-v4',JSON.stringify(serializeProgress(index,levels,done,bests,unlockedPacks)))}catch{}}
+function persist(){unlockedPacks=unlockedPackCount(levels,done,unlockedPacks);const value=serializeProgress(index,levels,done,bests,unlockedPacks);try{if(native)native.saveProgress(value);else localStorage.setItem('screw-workshop-physics-v4',JSON.stringify(value))}catch{}}
+let nativeActive=true;
+function syncActivity(){if(document.hidden||!nativeActive){cancelMotion();persist()}else if(sim&&!sim.settled)animate()}
+document.addEventListener('visibilitychange',syncActivity);
+window.addEventListener('pagehide',()=>{cancelMotion();persist()});
+window.addEventListener('pageshow',syncActivity);
+window.addEventListener('screw-workshop-lifecycle',event=>{nativeActive=event.detail?.active===true;syncActivity()});
+window.addEventListener('screw-workshop-save-error',()=>say('Your progress could not be saved on this device. Keep the app open and check available storage.'));
 function cancelMotion(){if(frame!==null)cancelAnimationFrame(frame);frame=null;busy=false}
 function start(i){if(!isLevelUnlocked(i,levels,done,unlockedPacks)){say('Complete seven puzzles in the preceding pack to unlock this one.');return}cancelMotion();index=i;sim=createWorld(levels[i]);settle(sim);history=[];selected=null;hintHole=null;persist();render();say(levels[i].tip);if(!sim.settled)animate()}
 function say(t){$('#message').textContent=t}
@@ -31,7 +39,7 @@ function render(){const l=levels[index],board=$('#board');board.replaceChildren(
 function draw(){sim.plates.forEach((b,p)=>{plateNodes[p].setAttribute('transform',`translate(${b.position.x} ${b.position.y}) rotate(${b.angle*180/Math.PI})`);plateNodes[p].style.display=b.plugin.cleared?'none':''});pinNodes.forEach((el,b)=>{const visible=accessible(sim,b);el.disabled=!visible;el.style.visibility=visible?'visible':'hidden'});const left=sim.plates.filter(b=>!b.plugin.cleared).length,loose=sim.plates.filter((b,p)=>!b.plugin.cleared&&attachmentCount(sim,p)===0).length;$('#remaining').textContent=`${left} plates left${loose?` · ${loose} loose`:''}`;$('#board').setAttribute('aria-busy','false');const liveTargets=destinations(sim);holeNodes.forEach(({h,el})=>{el.disabled=!liveTargets.includes(h);el.classList.toggle('available',!el.disabled);el.classList.toggle('target',selected!==null&&!el.disabled)});if(selected!==null&&!accessible(sim,selected)){selected=null;hintHole=null;pinNodes.forEach(el=>{el.classList.remove('selected');el.setAttribute('aria-pressed','false')});holeNodes.forEach(({el})=>el.classList.remove('target'));say('That screw is now covered by a moving plate. Choose an exposed screw.')}}
 function afterMotion(){busy=false;frame=null;if(complete(sim))render();else draw();if(complete(sim))say('Every plate has physically cleared the board. Take a breather.');else if(!destinations(sim).length)say('No free holes. Undo the last move and try another screw.');else if(sim.plates.some((b,p)=>!b.plugin.cleared&&attachmentCount(sim,p)===0))say('A loose plate is caught. Move a supporting screw or free the plate underneath.');else if(selected===null)say('Ready when you are. You can move screws while the pieces are moving, too.')}
 function animate(){
- if(frame!==null)return;busy=true;
+ if(frame!==null||document.hidden||!nativeActive)return;busy=true;
  if(reduced.matches){settle(sim,2400);draw();if(sim.settled)afterMotion();else frame=requestAnimationFrame(()=>{frame=null;animate()});return}
  let last=performance.now(),acc=0;function tick(now){acc+=Math.min(50,now-last);last=now;while(acc>=STEP&&!sim.settled){step(sim);acc-=STEP}draw();if(sim.settled){afterMotion();return}frame=requestAnimationFrame(tick)}frame=requestAnimationFrame(tick)
 }
@@ -53,4 +61,12 @@ function showLevels(){const packs=packProgress(levels,done,unlockedPacks);openDi
 $('#help').onclick=()=>openDialog('Real weight. Real obstacles.','<ol><li>Tap an exposed screw, then a glowing hole in <strong>clear wood</strong>. The clearly visible top holes are your parking spaces. This campaign uses visible parking choices, not extra secret holes under every piece.</li><li>With two or more anchors, a piece stays fixed. With one anchor, it pivots about that screw. Every square cutout stays in the material—even triangles and brackets.</li><li>With no anchors left, the piece falls—but other plates and screw shafts can catch it. Plates can tip and slide against each other.</li><li>A loose plate is not cleared until it actually falls out below the board. Move its support to free it.</li></ol><p>You can move screws while pieces swing and slide. Exposed screws and clear board targets are checked at the instant you tap. A round board hole is reusable once the screw shaft and a small safety margin are clear—even if part of its rim is covered. An aligned plate cutout can receive a parked peg, but does not create a new hinge. Original hinges and newly parked solid pegs are different.</p><p>Hints follow a tested route and suggest undoing a deviation; other solutions can work. Undo and restart are always free, even mid-swing.</p><p>Original game and artwork. Physics: Matter.js 0.20.0, MIT license. No ads, purchases, timers, streaks, or random rewards.</p>');
 $('#scoreline').onclick=()=>openDialog('A little less, not a little faster.','<p>Your score is the number of screw moves on your completed route. Lower is a personal challenge—not a requirement to progress.</p><p><strong>Undo removes that move from the count.</strong> Restart begins at zero. Hints are free and do not change your score. Every completed puzzle counts as a success.</p><p>The tested target is one verified working route, <strong>not a proven minimum</strong>. If you find a shorter route, your best can beat it.</p><p>Bests stay in this browser only. Earn one star for any completion, two within two moves of the tested target, and three at or below it. The next pack unlocks after seven of ten puzzles are complete—not perfect scores. Packs you unlocked before the expansion stay open. There are no timers, leaderboards, streaks, or penalties.</p>');
 $('#install').onclick=()=>openDialog('Keep the workshop handy.','<p>On iPhone, open this link in <strong>Safari</strong>, tap <strong>Share</strong>, then <strong>Add to Home Screen</strong>.</p><p>This is a web game, not an App Store download. Internet and site access may be needed to open it. Progress stays in this browser; clearing browser data removes it.</p>');
+if(native){
+ document.documentElement.classList.add('native-app');
+ $('.brand').onclick=event=>{event.preventDefault();showLevels()};
+ $('#install').textContent='About this iPhone app';
+ $('#install').onclick=()=>openDialog('Your pocket workshop.','<p>All 80 puzzles are bundled in this app and play offline. No ads, purchases, timers, tracking, or network connection.</p><p>Completed puzzles, personal bests, unlocked packs, and your selected puzzle save on this device. The current attempt stays while the app is in memory; after relaunch or a system reload it starts fresh. Deleting the app removes its save. Safari progress is separate.</p><p>The workshop is intentionally silent. Physics: Matter.js 0.20.0, MIT license.</p>');
+ const browserScoreHelp=$('#scoreline').onclick;
+ $('#scoreline').onclick=()=>{browserScoreHelp();$('#dialogbody').innerHTML=$('#dialogbody').innerHTML.replace('in this browser only','on this device in the app')};
+}
 start(index);

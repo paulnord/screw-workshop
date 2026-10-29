@@ -62,3 +62,7 @@ Historical bounded removal-order studies remain available: [original12](analysis
 ## GitHub Pages
 
 The `Test and deploy game` workflow validates physics and progression before publishing `dist/` on each push to `main`. The repository owner must enable Settings → Pages → Source: GitHub Actions once. `workflow_dispatch` allows a manual rerun. The private Sites deployment is managed separately.
+
+## Native iPhone development project
+
+The [iOS project](ios/README.md) bundles the same 80-puzzle game for offline play in a small Swift/WKWebView shell. Open `ios/ScrewWorkshop.xcodeproj` on a Mac. This is development source, not a signed app or App Store download; Apple compilation, simulator/device and signing checks are still required. The web deployment remains separate and browser saves do not transfer automatically.
