@@ -77,3 +77,11 @@ node test-daily-content.mjs
 ```
 
 The publisher validates and physically replays the route, then appends an immutable dated JSON file and SHA-256 index entry. Commit both files; Pages CI validates every published puzzle before deploying. Do not rewrite a published date. See [data format and safety bounds](analysis/DAILY_DATA.md) and [release validation](analysis/DAILY_RELEASE.md).
+
+## Optional account sync (review build; disabled)
+
+The account implementation is gated off in `dist/firebase-config.mjs`. It does not create a Firebase project or enable a production sign-in service. Guest play, local campaign saves and daily puzzle downloads continue without an account.
+
+When configured, Email/Password accounts can sync completed puzzle scores, keeping the best move count for the same puzzle revision. Guest scores are imported only after explicit confirmation. Accounts use separate local caches and pending offline queues; signing out restores guest play. Current attempts, resume position and historical pack-unlock entitlements remain local. This is not a competitive or cheat-proof leaderboard.
+
+See [Firebase setup and verification](analysis/FIREBASE_SETUP.md) and [Firestore rules](firebase/README.md). Use the no-cost Spark plan only; this project requires neither paid billing nor an Identity Platform upgrade. Production activation requires owner configuration and end-to-end verification before enabling the UI.

@@ -1,3 +1,4 @@
+import firebaseConfig from './firebase-config.mjs';
 import {recordBest,normalizeProgress,serializeProgress,starsFor,packProgress,isLevelUnlocked,PACK_SIZE,unlockedPackCount} from './progress.mjs?v=20261029-daily1';
 import {levels,cells,holes,createWorld,snapshot,move,complete,step,settle,accessible,destinations,hint,isSpare,plateForBolt,attachmentCount,STEP,validateDailyRecipe,compileDailyRecipe} from './engine.mjs?v=20261029-daily1';
 import {levelRecipes} from './levels.mjs?v=20261029-daily1';
@@ -7,16 +8,19 @@ const native=window.ScrewWorkshopNative;
 let saved={};try{saved=native?native.savedProgress:JSON.parse(localStorage.getItem('screw-workshop-physics-v4')||'{}')}catch{}
 let {bests,done,index,unlockedPacks}=normalizeProgress(saved,levels);
 let daily=null,dailyRequest=0,dailyCatalog=null;
+let accountUID=null,accountDaily={},syncController=null,accountTools=null,accountEpoch=0,cloudConfirmed=false;
+const accountSaveKey=uid=>'screw-workshop-account-campaign:'+encodeURIComponent(uid);
+function readSave(key){try{return JSON.parse(localStorage.getItem(key)||'{}')}catch{return {}}}
 const fallbackRecipe={...levelRecipes[0],id:'daily-practice-fallback',name:'Offline practice'};
 let dailyStorage;try{dailyStorage=localStorage}catch{}
 const dailyStore=createDailyStore({baseURL:new URL('./daily/',location.href),storage:dailyStorage??null,validateGeometry:validateDailyRecipe,networkEnabled:!native,fallbackPuzzle:{schemaVersion:1,rulesetVersion:'matter020-workshop-v1',id:'daily-practice-fallback',name:'Offline practice',recipe:fallbackRecipe,targetMoves:fallbackRecipe.solution.length,witnessPolicy:'settle-after-each-move-2400'}});
 const currentLevel=()=>daily?.level||levels[index];
 const escapeHTML=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-function dailyBest(){try{return daily?dailyStore.readProgress()[daily.identity]:undefined}catch{return undefined}}
+function dailyBest(){try{return daily?(accountUID?accountDaily[daily.identity]:dailyStore.readProgress()[daily.identity]):undefined}catch{return undefined}}
 function bestFor(l){return daily?dailyBest():bests[l.id]}
 let sim,history=[],selected=null,hintHole=null,frame=null,busy=false,plateNodes=[],pinNodes=[],holeNodes=[];
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
-function persist(){unlockedPacks=unlockedPackCount(levels,done,unlockedPacks);const value=serializeProgress(index,levels,done,bests,unlockedPacks);try{if(native)native.saveProgress(value);else localStorage.setItem('screw-workshop-physics-v4',JSON.stringify(value))}catch{}}
+function persist(){unlockedPacks=unlockedPackCount(levels,done,unlockedPacks);const value=serializeProgress(index,levels,done,bests,unlockedPacks);try{if(native)native.saveProgress(value);else localStorage.setItem(accountUID?accountSaveKey(accountUID):'screw-workshop-physics-v4',JSON.stringify(value))}catch{}}
 let nativeActive=true;
 function syncActivity(){if(document.hidden||!nativeActive){cancelMotion();persist()}else if(sim&&!sim.settled)animate()}
 document.addEventListener('visibilitychange',syncActivity);
@@ -43,7 +47,7 @@ function render(){const l=currentLevel(),board=$('#board');board.replaceChildren
  const label=svgEl('text',{x:cx,y:cy+3,'text-anchor':'middle',fill:'#ffffff70','font-size':8,'font-weight':700,'letter-spacing':2});label.textContent=String.fromCharCode(65+p);g.append(label);svg.append(g);plateNodes.push(g)});
  const label=document.createElement('div');label.className='storage-label';label.textContent=`${l.spares.length===1?'ONE SPARE':'TWO SPARES'} · PLAN THE CLEAR PATH`;board.append(label);
  sim.positions.forEach((h,b)=>{const el=document.createElement('button');el.className='bolt'+(sim.removed&(1<<b)?' parked':'')+(selected===b?' selected':'');pos(el,h);el.style.zIndex=30;el.setAttribute('aria-label',`Screw ${b+1}${sim.removed&(1<<b)?', parked':`, plate ${String.fromCharCode(65+plateForBolt(sim,b))}`}`);el.setAttribute('aria-pressed',selected===b);el.onclick=e=>activate('screw',b,e);board.append(el);pinNodes.push(el)});draw();
- const win=$('#win');win.hidden=!complete(sim);if(!win.hidden){if(daily){try{dailyStore.recordBest(daily.identity,sim.moves)}catch{daily.status='Completed, but your daily best could not be saved on this device.';$('#dailystatus').textContent=daily.status}}else{done.add(l.id);bests=recordBest(bests,l.id,sim.moves);persist()}$('#scoreline').textContent=scoreText(l);const best=bestFor(l)??sim.moves,earned=starsFor(sim.moves,l.solution.length),nextOpen=!daily&&isLevelUnlocked(index+1,levels,done,unlockedPacks);win.innerHTML=`<span class="complete-stars" aria-label="${earned} of 3 stars">${stars(earned)}</span><h3>Nicely undone.</h3><p>Every plate has fallen clear.<br>${sim.moves} moves on your route.</p><p class="win-score">Best: ${best} moves · ${stars(starsFor(best,l.solution.length))}<br>3★: ${l.solution.length} or fewer · 2★: ${l.solution.length+2} or fewer<br>1★: every completed puzzle</p><button class="primary" id="next">${daily?'Daily archive':nextOpen?'Next puzzle →':'Choose a puzzle'}</button>`;$('#next').onclick=()=>daily?showDaily():nextOpen?start(index+1):showLevels()}
+ const win=$('#win');win.hidden=!complete(sim);if(!win.hidden){if(daily){try{saveDailyBest(daily.identity,sim.moves)}catch{daily.status='Completed, but your daily best could not be saved on this device.';$('#dailystatus').textContent=daily.status}}else{done.add(l.id);bests=recordBest(bests,l.id,sim.moves);persist();queueAccountScore('campaign',l.id,'shapes80-v1',sim.moves)}$('#scoreline').textContent=scoreText(l);const best=bestFor(l)??sim.moves,earned=starsFor(sim.moves,l.solution.length),nextOpen=!daily&&isLevelUnlocked(index+1,levels,done,unlockedPacks);win.innerHTML=`<span class="complete-stars" aria-label="${earned} of 3 stars">${stars(earned)}</span><h3>Nicely undone.</h3><p>Every plate has fallen clear.<br>${sim.moves} moves on your route.</p><p class="win-score">Best: ${best} moves · ${stars(starsFor(best,l.solution.length))}<br>3★: ${l.solution.length} or fewer · 2★: ${l.solution.length+2} or fewer<br>1★: every completed puzzle</p><button class="primary" id="next">${daily?'Daily archive':nextOpen?'Next puzzle →':'Choose a puzzle'}</button>`;$('#next').onclick=()=>daily?showDaily():nextOpen?start(index+1):showLevels()}
 
 }
 function draw(){sim.plates.forEach((b,p)=>{plateNodes[p].setAttribute('transform',`translate(${b.position.x} ${b.position.y}) rotate(${b.angle*180/Math.PI})`);plateNodes[p].style.display=b.plugin.cleared?'none':''});pinNodes.forEach((el,b)=>{const visible=accessible(sim,b);el.disabled=!visible;el.style.visibility=visible?'visible':'hidden'});const left=sim.plates.filter(b=>!b.plugin.cleared).length,loose=sim.plates.filter((b,p)=>!b.plugin.cleared&&attachmentCount(sim,p)===0).length;$('#remaining').textContent=`${left} plates left${loose?` · ${loose} loose`:''}`;$('#board').setAttribute('aria-busy','false');const liveTargets=destinations(sim);holeNodes.forEach(({h,el})=>{el.disabled=!liveTargets.includes(h);el.classList.toggle('available',!el.disabled);el.classList.toggle('target',selected!==null&&!el.disabled)});if(selected!==null&&!accessible(sim,selected)){selected=null;hintHole=null;pinNodes.forEach(el=>{el.classList.remove('selected');el.setAttribute('aria-pressed','false')});holeNodes.forEach(({el})=>el.classList.remove('target'));say('That screw is now covered by a moving plate. Choose an exposed screw.')}}
@@ -119,3 +123,29 @@ if(native){
  $('#scoreline').onclick=()=>{browserScoreHelp();$('#dialogbody').innerHTML=$('#dialogbody').innerHTML.replace('in this browser only','on this device in the app')};
 }
 start(index);
+
+function queueAccountScore(kind,puzzleId,revision,bestMoves){if(!accountUID||!syncController)return;try{syncController.enqueue({schema:1,kind,puzzleId,revision,bestMoves,completed:true});void flushAccount()}catch{say('Completed locally, but account synchronization is unavailable.')}}
+function saveDailyBest(identity,moves){if(!accountUID){dailyStore.recordBest(identity,moves);return}accountDaily[identity]=Math.min(accountDaily[identity]??Infinity,moves);const r=accountTools?.dailyScoreRecord(identity,moves);if(r)queueAccountScore(r.kind,r.puzzleId,r.revision,moves);else if(daily){daily.status='Practice best kept for this session only; not synced to your account.';$('#dailystatus').textContent=daily.status}}
+function applySyncState(state){if(state.uid!==accountUID||!accountUID)return;for(const r of state.records){if(r.kind==='campaign'&&r.revision==='shapes80-v1'&&levels.some(l=>l.id===r.puzzleId)){bests=recordBest(bests,r.puzzleId,r.bestMoves);done.add(r.puzzleId)}else if(r.kind==='daily'){const id=r.puzzleId+'@'+r.revision;accountDaily[id]=Math.min(accountDaily[id]??Infinity,r.bestMoves)}}persist();if(sim)$('#scoreline').textContent=scoreText(currentLevel());const el=$('#accountstatus');if(el)el.textContent=state.error||(state.busy?'Checking account sync…':!state.persisted?'Account progress is in memory only: device saving is unavailable.':state.pending.length?`${state.pending.length} score updates waiting to sync.`:cloudConfirmed?'Completed scores synced. Current attempts stay on this device.':'Account scores saved locally; cloud sync is not yet confirmed.');}
+async function flushAccount(){const uid=accountUID,epoch=accountEpoch;if(!uid||!syncController)return;try{const result=await syncController.flush();if(uid!==accountUID||epoch!==accountEpoch)return;if(!result?.stale&&!result?.error&&!result?.pending?.length)cloudConfirmed=true;applySyncState(syncController.state())}catch{if(uid===accountUID&&epoch===accountEpoch){cloudConfirmed=false;const el=$('#accountstatus');if(el)el.textContent='Not yet synced. Account scores remain saved locally.'}}}
+function switchAccount(user,adapter,core){
+ const next=user?.uid||null;if(next===accountUID)return;
+ persist();cancelMotion();dailyRequest++;daily=null;accountUID=next;accountEpoch++;cloudConfirmed=false;accountDaily={};
+ const loaded=normalizeProgress(readSave(next?accountSaveKey(next):'screw-workshop-physics-v4'),levels);({bests,done,index,unlockedPacks}=loaded);
+ if(!syncController)syncController=core.createSyncController({storage:dailyStorage??null,adapter,onChange:applySyncState});syncController.setUser(next);start(index);$('#accountstatus').hidden=!next;
+ if(next){const epoch=accountEpoch;void syncController.load().then(result=>{if(next!==accountUID||epoch!==accountEpoch||result?.stale)return;if(result?.error){applySyncState(syncController.state());return}return flushAccount()}).catch(()=>{if(next===accountUID&&epoch===accountEpoch){cloudConfirmed=false;$('#accountstatus').textContent='Cloud scores unavailable. Account progress remains local.'}})}else $('#accountstatus').textContent='';
+}
+async function setupAccount(){
+ if(native||typeof firebaseConfig==='undefined'||!firebaseConfig.enabled)return;
+ const [ui,fb,core]=await Promise.all([import('./account-ui.mjs'),import('./firebase-adapter.mjs'),import('./progress-sync.mjs')]);
+ if(!fb.isFirebaseConfigured(firebaseConfig))return;accountTools=ui;
+ const button=$('#account');
+ ui.installAccountUI({button,loadAdapter:()=>fb.createFirebaseAdapter({config:firebaseConfig}),
+  onUser(user,adapter){switchAccount(user,adapter,core)},
+  async importGuest(){if(!accountUID)return;const guest=normalizeProgress(readSave('screw-workshop-physics-v4'),levels);const records=Object.entries(guest.bests).map(([id,moves])=>ui.scoreRecord('campaign',id,'shapes80-v1',moves));for(const[id,moves]of Object.entries(dailyStore.readProgress())){const r=ui.dailyScoreRecord(id,moves);if(r)records.push(r)}syncController.importGuest(records,{confirmed:true});await flushAccount()},
+  exportLocal(){return {sync:syncController.exportData(),campaign:serializeProgress(index,levels,done,bests,unlockedPacks),daily:{...accountDaily}}},
+  clearAccount(uid){try{localStorage.removeItem(accountSaveKey(uid));localStorage.removeItem('screw-workshop-sync-v1:'+encodeURIComponent(uid))}catch{}},
+  onError(){say('Account action unavailable. You can keep playing; guest progress is unchanged.')}
+ });window.addEventListener('online',()=>{if(accountUID)void flushAccount()});
+}
+void setupAccount().catch(()=>{const b=$('#account');if(b)b.hidden=true});

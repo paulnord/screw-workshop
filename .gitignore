@@ -1,1 +1,5 @@
 *.tar.gz
+node_modules/
+*-debug.log
+.firebase/
+.openai/
