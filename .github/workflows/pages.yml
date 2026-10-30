@@ -21,6 +21,12 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: '22'
+          cache: npm
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '21'
+      - run: npm ci
       - name: Verify physics routes and progression
         run: |
           node test.mjs
@@ -33,6 +39,14 @@ jobs:
           node test-daily-engine.mjs
           node test-daily-content.mjs
           node test-daily-ui.mjs
+          node test-shapes.mjs
+          node test-progress-sync.mjs
+          node test-firebase-adapter.mjs
+          node test-account-ui.mjs
+          node test-daily-summary.mjs
+          node test-daily-sync.mjs
+      - name: Verify account storage with local emulators
+        run: npm run test:emulators
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4
         with:

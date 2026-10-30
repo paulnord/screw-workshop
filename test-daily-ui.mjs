@@ -2,6 +2,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
+import * as dailySummary from './dist/daily-summary.mjs';
 const source=fs.readFileSync(new URL('./dist/app.mjs',import.meta.url),'utf8').replace(/^import .*;\n/gm,'');
 const elements=new Map(),campaignWrites=[],dailyWrites=[];
 class El{
@@ -15,10 +16,10 @@ const levels=Array.from({length:80},(_,i)=>({id:'level-'+i,name:'Puzzle '+i,tip:
 const originalRecipe={id:'first',name:'First',tip:'Tip',plates:[[[105,180],[245,180]]],spareCount:1,hidden:[],solution:[[0,[175,35]],[1,[105,180]]]};
 const triangle=[{x:0,y:0},{x:10,y:0},{x:0,y:10}];
 const createWorld=(level,snap)=>({level,moves:snap?.moves||0,positions:[0,1],removed:0,settled:true,plates:[{position:{x:0,y:0},angle:0,plugin:{outline:triangle,holes:[],material:[triangle],cleared:false}}]});
-let bests={},loadResult={date:'2026-10-29',identity:'day@hash',recipe:{...levels[0],id:'daily'},puzzle:{name:'Dated puzzle'},source:'network'},pendingLoad=null,pendingRefresh=null,saveFails=false;
-const store={readProgress:()=>bests,recordBest:(id,moves)=>{if(saveFails)throw Error('quota');bests[id]=Math.min(bests[id]??Infinity,moves);dailyWrites.push({id,moves});return bests[id]},refresh:()=>pendingRefresh||Promise.resolve({today:'2026-10-29',entries:[],error:null}),load:()=>pendingLoad||Promise.resolve(loadResult),archive:()=>[]};
+let bests={},loadResult={date:'2026-10-29',identity:'daily-2026-10-29-v1@4592f57026b3855c98461686e854225fbb77e079b8c173911685a00c935bd40f',recipe:{...levels[0],id:'daily'},puzzle:{name:'Dated puzzle'},source:'network'},pendingLoad=null,pendingRefresh=null,saveFails=false;
+const store={recordCompletion:(id,moves)=>{if(bests[id])return bests[id];return store.recordBest(id,moves)},readProgress:()=>bests,recordBest:(id,moves)=>{if(saveFails)throw Error('quota');bests[id]=Math.min(bests[id]??Infinity,moves);dailyWrites.push({id,moves});return bests[id]},refresh:()=>pendingRefresh||Promise.resolve({today:'2026-10-30',entries:[{date:'2026-10-29'},{date:'2026-10-30'}],error:null}),load:()=>pendingLoad||Promise.resolve(loadResult),archive:()=>[]};
 const document={querySelector:get,querySelectorAll:s=>s==='[data-daily-date]'?get('#dialogbody').buttons||[]:[],createElement:()=>new El(),createElementNS:()=>new El(),addEventListener(){},hidden:false,documentElement:{classList:{add(){}}}};
-const context={document,window:{addEventListener(){}},location:{href:'https://example.test/'},URL,Date,console,localStorage:{getItem(){return null},setItem(k,v){campaignWrites.push({k,value:JSON.parse(v)})}},matchMedia:()=>({matches:true}),requestAnimationFrame:()=>1,cancelAnimationFrame(){},performance,
+const context={...dailySummary,document,window:{addEventListener(){}},location:{href:'https://example.test/'},URL,Date,console,localStorage:{getItem(){return null},setItem(k,v){campaignWrites.push({k,value:JSON.parse(v)})}},matchMedia:()=>({matches:true}),requestAnimationFrame:()=>1,cancelAnimationFrame(){},performance,
  levels,levelRecipes:[originalRecipe],cells:[{x:105,y:180},{x:245,y:180},{x:175,y:35}],holes:()=>[0,1,2],createWorld,snapshot:s=>({moves:s.moves}),move:s=>{s.moves++;return s},complete:s=>s.moves>=2,step(){},settle:s=>{s.settled=true},accessible:()=>true,destinations:()=>[2],hint:()=>({text:'Hint'}),isSpare:(l,h)=>h===2,plateForBolt:()=>0,attachmentCount:()=>2,STEP:8,validateDailyRecipe(){},compileDailyRecipe:r=>({...r}),createDailyStore:()=>store,
  recordBest:(b,id,n)=>({...b,[id]:n}),normalizeProgress:()=>({bests:{},done:new Set(),index:0,unlockedPacks:8}),serializeProgress:(i,l,d,b,u)=>({campaign:'shapes-80',levelId:l[i].id,level:i,done:[...d],bests:b,unlockedPacks:u}),starsFor:(n,t)=>n? n<=t?3:n<=t+2?2:1:0,packProgress:()=>[],isLevelUnlocked:i=>i>=0&&i<80,PACK_SIZE:10,unlockedPackCount:()=>8};
 vm.createContext(context);vm.runInContext(source+'\nglobalThis.testUI={start,showDaily,loadDailyDate,currentLevel,restartCurrent,render,openDialog,state:()=>({index,daily,sim,done,bests})};',context);
@@ -26,15 +27,17 @@ const ui=context.testUI;
 ui.start(17);assert.equal(ui.state().index,17);const campaignBefore=JSON.stringify(campaignWrites.at(-1));
 await ui.showDaily();assert.equal(get('#dialog').open,true);await ui.loadDailyDate('2026-10-29');
 assert.equal(ui.state().index,17);assert.equal(ui.currentLevel().id,'daily');assert.equal(get('#number').textContent,'DAILY · 2026-10-29 UTC');
-ui.state().sim.moves=2;ui.render();assert.equal(dailyWrites.at(-1).id,'day@hash');assert.equal(JSON.stringify(campaignWrites.at(-1)),campaignBefore);assert.equal(ui.state().done.size,0);assert.equal(get('#next').textContent,'');assert.match(get('#win').innerHTML,/Daily archive/);
-ui.restartCurrent();assert.equal(ui.state().sim.moves,0);assert.equal(ui.currentLevel().id,'daily');get('#returncampaign').onclick();assert.equal(ui.currentLevel().id,'level-17');assert.equal(ui.state().daily,null);
+ui.state().sim.moves=2;ui.render();assert.equal(dailyWrites.at(-1).id,loadResult.identity);assert.equal(JSON.stringify(campaignWrites.at(-1)),campaignBefore);assert.equal(ui.state().done.size,0);assert.equal(get('#next').textContent,'');assert.match(get('#win').innerHTML,/Daily archive/);
+const savedMoveCount=dailyWrites.length;ui.render();ui.restartCurrent();get('#undo').onclick();get('#restart').onclick();get('#hint').onclick();assert.equal(ui.state().sim.moves,2);assert.equal(dailyWrites.length,savedMoveCount);assert.equal(get('#undo').disabled,true);assert.equal(get('#restart').disabled,true);assert.equal(ui.currentLevel().id,'daily');get('#returncampaign').onclick();assert.equal(ui.currentLevel().id,'level-17');assert.equal(ui.state().daily,null);
+await ui.showDaily();await ui.loadDailyDate('2026-10-29');assert.equal(get('#dialogtitle').textContent,'Daily complete');assert.doesNotMatch(get('#dialogbody').innerHTML,/data-daily-date/);
+loadResult={...loadResult,date:'2026-10-30',identity:'daily-2026-10-30-v1@711ce807a69e733e9561a4e8e2a433fbccaed11c2b06889dc3e3e6787c4548bf'};
 // Close or navigate while a load is pending: late resolution must not replace campaign.
-await ui.showDaily();let resolveLoad;pendingLoad=new Promise(r=>resolveLoad=r);const p=ui.loadDailyDate('2026-10-29');get('#dialog').close();ui.start(23);resolveLoad(loadResult);await p;pendingLoad=null;assert.equal(ui.currentLevel().id,'level-23');
+await ui.showDaily();let resolveLoad;pendingLoad=new Promise(r=>resolveLoad=r);const p=ui.loadDailyDate('2026-10-30');await Promise.resolve();get('#dialog').close();ui.start(23);resolveLoad(loadResult);await p;pendingLoad=null;assert.equal(ui.currentLevel().id,'level-23');
 // A newer modal also invalidates a pending refresh.
-let resolveRefresh;pendingRefresh=new Promise(r=>resolveRefresh=r);const q=ui.showDaily();ui.openDialog('Help','<p>Help</p>');resolveRefresh({today:'2026-10-29',entries:[],error:null});await q;pendingRefresh=null;assert.equal(get('#dialogtitle').textContent,'Help');
+let resolveRefresh;pendingRefresh=new Promise(r=>resolveRefresh=r);const q=ui.showDaily();ui.openDialog('Help','<p>Help</p>');resolveRefresh({today:'2026-10-30',entries:[{date:'2026-10-29'},{date:'2026-10-30'}],error:null});await q;pendingRefresh=null;assert.equal(get('#dialogtitle').textContent,'Help');
 // Fallback is clearly practice, separate from dated credit and campaign progress.
-loadResult={...loadResult,source:'fallback',identity:'fallback:practice@hash',puzzle:{name:'Offline practice'}};await ui.showDaily();await ui.loadDailyDate('2026-10-29');assert.equal(get('#number').textContent,'OFFLINE PRACTICE');assert.match(get('#dailystatus').textContent,/not today/);
-saveFails=true;ui.state().sim.moves=2;ui.render();assert.match(get('#dailystatus').textContent,/could not be saved/);
+loadResult={...loadResult,source:'fallback',identity:'fallback:practice@hash',puzzle:{name:'Offline practice'}};await ui.showDaily();await ui.loadDailyDate('2026-10-30');assert.equal(get('#number').textContent,'OFFLINE PRACTICE');assert.match(get('#dailystatus').textContent,/not today/);
+saveFails=true;ui.state().sim.moves=2;ui.render();assert.match(get('#dailystatus').textContent,/saving failed/);
 // Remote text never enters the level heading as HTML; archive values are escaped.
-assert.match(source,/\$\('#name'\)\.textContent=l\.name/);assert.match(source,/escapeHTML\(e\.date\)/);assert.doesNotMatch(source,/\$\('#name'\)\.innerHTML/);
+assert.match(source,/\$\('#name'\)\.textContent=l\.name/);assert.match(source,/escapeHTML\(date\)/);assert.doesNotMatch(source,/\$\('#name'\)\.innerHTML/);
 console.log('PASS daily UI mode isolation, bests, restart, fallback labels, save failures, close/navigation/loading races and safe text boundaries. Browser layout and real physics tested separately.');

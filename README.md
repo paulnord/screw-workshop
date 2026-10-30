@@ -1,6 +1,6 @@
 # Screw Workshop
 
-Eighty original, touch-friendly physics puzzles. No ads, purchases, timers, energy, streaks, random rewards, or notifications. The game sends no player data; progress and personal bests stay in this browser.
+Eighty original, touch-friendly physics puzzles. No ads, purchases, timers, energy, streaks, random rewards, or notifications. Guest progress and personal bests stay in this browser. Optional account sync is available on the public web game; when chosen, it saves completed scores to the game’s Firebase project. Guest play needs no account.
 
 ## Play
 
@@ -24,7 +24,7 @@ Personal bests are saved locally under stable, versioned level IDs only after ac
 
 ## Develop and test
 
-No package installation or build step. Matter.js is pinned and vendored locally; gameplay has no CDN dependency.
+No package installation or build step is needed for guest gameplay. Matter.js is pinned and vendored locally; gameplay has no CDN dependency. Account rules validation uses the development-only npm toolchain described in `firebase/README.md`.
 
 ```sh
 node test.mjs
@@ -62,11 +62,11 @@ Historical bounded removal-order studies remain available: [original12](analysis
 
 ## GitHub Pages
 
-The `Test and deploy game` workflow validates physics and progression before publishing `dist/` on each push to `main`. The repository owner must enable Settings → Pages → Source: GitHub Actions once. `workflow_dispatch` allows a manual rerun. The private Sites deployment is managed separately.
+The `Test and deploy game` workflow validates physics and progression before publishing `dist/` on each push to `main`. The repository owner must enable Settings → Pages → Source: GitHub Actions once. `workflow_dispatch` allows a manual rerun. Other hosted deployments are managed separately.
 
 ## Daily workshop
 
-The Daily button loads the shared puzzle for the current **UTC date** from small, versioned JSON files. Previous published dates remain playable in the archive. Daily stars reward moves, not speed; daily scores never change campaign progress or pack unlocks. There are no streak penalties.
+The Daily button loads the shared puzzle for the current **UTC date** from small, versioned JSON files. A monthly calendar shows completed dates with earned stars, completed-day counts and total stars for that month and all time. Only unfinished published dates can be played. Completed daily challenges are final and show read-only results; all 80 campaign puzzles remain replayable. Daily stars reward moves, not speed; daily scores never change campaign progress or pack unlocks. There are no streak penalties.
 
 The initial queue covers October 29–November 4, 2026, including verified six-, eight- and ten-block boards. This is a finite editorial queue, not automatic puzzle generation. When today's data is unavailable, the game uses a verified cached copy if available, otherwise clearly labeled bundled practice. Cached puzzle data is available offline once the web game is open; cold offline page launch is not promised. The separate native wrapper does not yet enable daily downloads.
 
@@ -91,3 +91,17 @@ preserved. See [audit, exact reproductions, coverage and limitations](analysis/P
 `node scripts/audit-physics-orders.mjs` runs 1,044 seeded legal order/parking/timing
 trials, respecting the animation loop's settled cutoff. Set `AUDIT_CONTINUOUS=1` to
 stress the solver beyond that cutoff; this is deliberately not an exact UI replay.
+
+## Optional account sync
+
+The account implementation is enabled in `dist/firebase-config.mjs` for this web release. The Firebase web identifiers are public client configuration, not Admin credentials or secret keys. Guest play, local campaign saves and daily puzzle downloads continue without an account.
+
+When configured, Email/Password accounts sync completed puzzle scores. Campaigns keep the best move count per revision. New daily completions close that UTC date; the first server-accepted completion wins if two devices finish the same revision together. Historical bests and explicitly imported guest scores are retained, never retroactively erased. The UI checks cloud progress before opening a daily and on returning to the tab; offline devices reconcile when connected. This is client/adapter game policy, not a tamperproof backend restriction. Guest scores are imported only after explicit confirmation. Accounts use separate local caches and pending offline queues; signing out restores guest play. Current attempts, resume position and historical pack-unlock entitlements remain local. This is not a competitive or cheat-proof leaderboard.
+
+See [Firestore storage and local validation](firebase/README.md). Use the no-cost Spark plan only; this project requires neither paid billing nor an Identity Platform upgrade. The owner approved this public web release on October 30, 2026. Automated integration tests use localhost emulators only; they do not create or modify production accounts. Native iPhone account support is separate.
+
+## Daily score calendar validation
+
+`node test-daily-summary.mjs` covers UTC month/year/leap-day boundaries, revision/date deduplication and historical scoring metadata. `node test-daily-sync.mjs` covers final completion locks, competing devices, stale snapshots, offline caches and explicit historical imports. Daily UI/account suites cover readonly calendar entry, no post-completion undo/restart/hint/replay, unfinished retries, closing during loads and UID switching.
+
+`dist/daily-score-catalog.mjs` retains original revision-specific target metadata. The publisher regenerates it from hash-verified immutable puzzle data; never remove historical revisions or reinterpret old scores against a changed target. Unknown historical revisions still count as completed and stay locked, but their stars are labeled unavailable rather than guessed. Fallback practice is excluded from calendar totals and remains replayable. Existing best-score save keys and account records are not rewritten by opening the calendar.

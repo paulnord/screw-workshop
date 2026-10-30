@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import {dailyScoreCatalog as catalog,summarizeDaily,dailyDateForIdentity,shiftMonth,calendarMonth} from './dist/daily-summary.mjs';
+const a=catalog[0],b=catalog[1],key=r=>r.id+'@'+r.revision;
+let scores={[key(a)]:a.targetMoves,[key(b)]:b.targetMoves+3,'fallback:practice@matter020-workshop-v1':1};
+let s=summarizeDaily(scores);assert.equal(s.completed,2);assert.equal(s.stars,4);assert.deepEqual(s.month('2026-10'),{completed:2,stars:4,unknownStars:0});assert.equal(s.month('2026-11').completed,0);
+const revised={...a,id:a.id.replace('v1','v2'),revision:'f'.repeat(64),targetMoves:2};
+s=summarizeDaily({...scores,[key(revised)]:4},[...catalog,revised]);assert.equal(s.completed,2);assert.equal(s.stars,4);assert.equal(s.byDate[a.date].moves,a.targetMoves);
+s=summarizeDaily({...scores,[a.id+'@'+'0'.repeat(64)]:1});assert.equal(s.completed,2);assert.equal(s.stars,4);
+s=summarizeDaily({['daily-2024-02-29-v1@'+'e'.repeat(64)]:10});assert.equal(s.completed,1);assert.equal(s.unknownStars,1);assert.equal(s.stars,0);assert.equal(dailyDateForIdentity('daily-2023-02-29-v1@'+'e'.repeat(64)),null);
+assert.equal(shiftMonth('2026-12',1),'2027-01');assert.equal(shiftMonth('2026-01',-1),'2025-12');assert.equal(calendarMonth('2024-02','2024-02-29').days.length,29);assert.equal(calendarMonth('2023-02','2023-02-28').days.length,28);
+const m=calendarMonth('2026-10','2026-10-30',[a,b],scores);assert.equal(m.days[28].state,'completed');assert.equal(m.days[30].state,'future');assert.equal(m.days[27].state,'unavailable');assert.equal(calendarMonth('2026-10','2026-10-30',[a,b],{}).days[29].state,'available');assert.equal(m.offset,3);
+console.log('PASS daily calendar UTC months/leap/year boundaries, preserved legacy stars, distinct date/revision deduplication, practice exclusion, unknown revisions and availability.');

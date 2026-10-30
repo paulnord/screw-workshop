@@ -1,0 +1,6 @@
+// Keep immutable revision/target metadata so old earned stars never get rescored.
+import fs from 'node:fs';import crypto from 'node:crypto';
+const dir=new URL('../dist/',import.meta.url),file=new URL('daily-score-catalog.mjs',dir),index=JSON.parse(fs.readFileSync(new URL('daily/index.json',dir)));
+const old=fs.existsSync(file)?JSON.parse(fs.readFileSync(file,'utf8').split('export const dailyScoreCatalog=')[1].trim().replace(/;$/,'')):[];
+for(const e of index.entries){const raw=fs.readFileSync(new URL('daily/'+e.url,dir),'utf8'),p=JSON.parse(raw);if(crypto.createHash('sha256').update(raw).digest('hex')!==e.sha256||p.id!==e.id)throw Error('Daily score metadata identity mismatch');const row={date:e.date,id:e.id,revision:e.sha256,targetMoves:p.targetMoves,name:p.name};const existing=old.find(r=>r.id===e.id&&r.revision===e.sha256);if(existing&&JSON.stringify(existing)!==JSON.stringify(row))throw Error('Immutable score target changed');if(!existing)old.push(row)}
+old.sort((a,b)=>a.date.localeCompare(b.date)||a.revision.localeCompare(b.revision));fs.writeFileSync(file,'// Generated from verified immutable daily files. Retain historical revisions.\nexport const dailyScoreCatalog='+JSON.stringify(old,null,2)+';\n');

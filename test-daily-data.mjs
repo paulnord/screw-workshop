@@ -37,3 +37,10 @@ const quotaStore=createDailyStore({...options,storage:null,fetchImpl:fetchOK});a
 const pruned=createDailyStore({...options,fetchImpl:async()=>new Response(JSON.stringify({...manifest,entries:[]}))});assert.equal((await pruned.refresh({now:'2026-10-29'})).entries.length,1);assert.equal(pruned.archive()[0].id,puzzle.id);
 const noCrypto=createDailyStore({...options,storage:mem(),cryptoImpl:null,fetchImpl:fetchOK});await noCrypto.refresh({now:'2026-10-29'});const practice=await noCrypto.load(entry.date);assert.equal(practice.source,'fallback');assert.match(practice.error,/hashing unavailable/);assert.equal(noCrypto.recordBest(practice.identity,2),2);
 console.log('PASS daily data:UTC,strict schema,hashes,network/cache/fallback,future dates,immutable dates,unsafe URLs/text,oversize/corrupt storage,separate bests,native network-disabled.');
+
+// First-completion writes are separate from the legacy best-score migration API.
+const lockMemory=new Map(),lockStorage={getItem:k=>lockMemory.get(k)||null,setItem:(k,v)=>lockMemory.set(k,v)};
+const lockStore=createDailyStore({baseURL:'https://example.test/daily/',expectedOrigin:'https://example.test',storage:lockStorage,networkEnabled:false,validateGeometry:()=>{},fallbackPuzzle:puzzle});
+const lockedId='daily-2026-10-29-v1@'+'a'.repeat(64);lockStore.recordBest(lockedId,16);lockStore.recordBest(lockedId,14);lockStore.recordCompletion(lockedId,12);assert.equal(lockStore.readProgress()[lockedId],14);
+lockStore.recordCompletion('daily-2026-10-29-v2@'+'b'.repeat(64),10);assert.equal(Object.keys(lockStore.readProgress()).length,1);
+console.log('PASS guest daily completion locks retain historical bests and deduplicate date revisions.');

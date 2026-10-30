@@ -1,3 +1,4 @@
+import {dailyDateForIdentity} from './daily-summary.mjs';
 // Data-only daily puzzles. No downloaded code, network credentials, or campaign progress.
 export const DAILY_SCHEMA=1, DAILY_RULESET='matter020-workshop-v1';
 export const DAILY_LIMITS=Object.freeze({puzzleBytes:131072,indexBytes:131072,entries:400,cacheEntries:24,cacheBytes:2097152,blocks:10,screws:20});
@@ -50,7 +51,9 @@ export function createDailyStore({baseURL,fetchImpl=globalThis.fetch,storage,cry
  try{const raw=cache[requested]?.raw;if(raw){const puzzle=await checked(raw,entry);return {date:requested,puzzle,recipe:puzzle.recipe,identity:`${entry.id}@${entry.sha256}`,source:'cache',error};}}catch(e){delete cache[requested];save(CACHE_KEY,cache);error=e.message;}}
  return fallbackResult(requested,error);}
  function validIdentity(k){return typeof k==='string'&&(/^[a-z0-9][a-z0-9-]{0,79}@[a-f0-9]{64}$/.test(k)||new RegExp('^fallback:[a-z0-9][a-z0-9-]{0,79}@'+DAILY_RULESET+'$').test(k))}
- function readProgress(){const value=read(PROGRESS_KEY,131072),out={};if(object(value))for(const[k,v]of Object.entries(value).slice(-500))if(validIdentity(k)&&Number.isInteger(v)&&v>0&&v<=100000)out[k]=v;return out;}
- function recordBest(identity,moves){if(!validIdentity(identity))fail('Invalid progress identity');integer(moves,1,100000);const bests=readProgress();bests[identity]=Math.min(bests[identity]??Infinity,moves);const entries=Object.entries(bests).slice(-500);if(!save(PROGRESS_KEY,Object.fromEntries(entries)))fail('Daily progress could not be saved');return bests[identity];}
- return {refresh,load,archive,readProgress,recordBest};
+ let progressMemory={};
+ function readProgress(){const value=read(PROGRESS_KEY,131072),out={};if(object(value))for(const[k,v]of Object.entries(value).slice(-500))if(validIdentity(k)&&Number.isInteger(v)&&v>0&&v<=100000)out[k]=v;for(const[k,v]of Object.entries(progressMemory))out[k]=Math.min(out[k]??Infinity,v);progressMemory={...out};return out;}
+ function recordBest(identity,moves){if(!validIdentity(identity))fail('Invalid progress identity');integer(moves,1,100000);const bests=readProgress();bests[identity]=Math.min(bests[identity]??Infinity,moves);progressMemory={...bests};const entries=Object.entries(bests).slice(-500);if(!save(PROGRESS_KEY,Object.fromEntries(entries)))fail('Daily progress could not be saved');return bests[identity];}
+ function recordCompletion(identity,moves){const date=dailyDateForIdentity(identity),bests=readProgress();const previous=Object.entries(bests).find(([id])=>id===identity||(date&&dailyDateForIdentity(id)===date));if(previous)return previous[1];return recordBest(identity,moves)}
+ return {refresh,load,archive,readProgress,recordBest,recordCompletion};
 }

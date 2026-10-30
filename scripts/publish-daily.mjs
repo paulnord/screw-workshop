@@ -18,5 +18,5 @@ if(process.argv[1]&&path.resolve(process.argv[1])===path.resolve(new URL(import.
  const evidence=checkWitness(puzzle),text=JSON.stringify(puzzle,null,2)+'\n',sha256=crypto.createHash('sha256').update(text).digest('hex'),dir=new URL('../dist/daily/',import.meta.url),indexFile=new URL('index.json',dir),out=new URL(`${date}.json`,dir);
  fs.mkdirSync(dir,{recursive:true});const index=fs.existsSync(indexFile)?D.validateIndex(JSON.parse(fs.readFileSync(indexFile))):{schemaVersion:D.DAILY_SCHEMA,rulesetVersion:D.DAILY_RULESET,entries:[]};
  if(index.entries.some(e=>e.date===date)||fs.existsSync(out))throw Error('Published date already exists; immutable challenges cannot be overwritten');
- index.entries.push({date,id,url:`${date}.json`,sha256});index.entries.sort((a,b)=>a.date.localeCompare(b.date));D.validateIndex(index);fs.writeFileSync(out,text);fs.writeFileSync(indexFile,JSON.stringify(index,null,2)+'\n');console.log(JSON.stringify({date,id,...evidence}));
+ index.entries.push({date,id,url:`${date}.json`,sha256});index.entries.sort((a,b)=>a.date.localeCompare(b.date));D.validateIndex(index);fs.writeFileSync(out,text);fs.writeFileSync(indexFile,JSON.stringify(index,null,2)+'\n');await import('./build-daily-score-catalog.mjs?refresh='+Date.now());console.log(JSON.stringify({date,id,...evidence}));
 }
