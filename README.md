@@ -28,6 +28,7 @@ No package installation or build step. Matter.js is pinned and vendored locally;
 
 ```sh
 node test.mjs
+node test-contact-orders.mjs
 node test-progress.mjs
 node test-pack.mjs
 node test-expansion.mjs
@@ -77,3 +78,16 @@ node test-daily-content.mjs
 ```
 
 The publisher validates and physically replays the route, then appends an immutable dated JSON file and SHA-256 index entry. Commit both files; Pages CI validates every published puzzle before deploying. Do not rewrite a published date. See [data format and safety bounds](analysis/DAILY_DATA.md) and [release validation](analysis/DAILY_RELEASE.md).
+
+## Alternate-order physics audit
+
+The contact solver includes a bounded hinge-aware recovery pass for deep or prolonged
+contacts. It does not increase air friction, change the global timestep, freeze pieces,
+or mark caught material as complete. All 80 authored campaign routes and seven daily
+witnesses remain valid. Fourteen historical alternate witnesses that involved excessive
+penetration now have explicitly tested blocked outcomes; their original records are
+preserved. See [audit, exact reproductions, coverage and limitations](analysis/PHYSICS_ORDER_AUDIT.md).
+
+`node scripts/audit-physics-orders.mjs` runs 1,044 seeded legal order/parking/timing
+trials, respecting the animation loop's settled cutoff. Set `AUDIT_CONTINUOUS=1` to
+stress the solver beyond that cutoff; this is deliberately not an exact UI replay.

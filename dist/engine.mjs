@@ -44,7 +44,7 @@ export function createWorld(level,snapshot=null){
  if(new Set(level.plates.flat()).size!==level.plates.flat().length)throw new Error('Original screws need distinct board holes');
  if(level.plates.flat().length>30)throw new Error('Assemblies support up to 30 screws');
  const engine=M.Engine.create({enableSleeping:true,positionIterations:12,velocityIterations:10,constraintIterations:12});engine.gravity.y=1.2;engine.gravity.scale=.001;
- const sim={level,engine,plates:[],pins:[],constraints:[],boltPlate:[],boltAnchor:[],boltsByPlate:[],positions:snapshot?.positions.slice()||level.plates.flat(),removed:snapshot?.removed||0,moves:snapshot?.moves||0,actions:snapshot?.actions?.map(a=>a.slice())||[],elapsed:snapshot?.elapsed||0,quiet:snapshot?.quiet||0,settled:snapshot?.settled||false};
+ const sim={level,engine,plates:[],pins:[],constraints:[],boltPlate:[],boltAnchor:[],boltsByPlate:[],positions:snapshot?.positions.slice()||level.plates.flat(),removed:snapshot?.removed||0,moves:snapshot?.moves||0,actions:snapshot?.actions?.map(a=>a.slice())||[],elapsed:snapshot?.elapsed||0,movingFrames:snapshot?.movingFrames||0,recoveryPlates:snapshot?.recoveryPlates?.slice()||[],quiet:snapshot?.quiet||0,settled:snapshot?.settled||false};
  let bolt=0;level.plates.forEach((anchors,p)=>{sim.boltsByPlate[p]=anchors.map((_,a)=>{sim.boltPlate[bolt]=p;sim.boltAnchor[bolt]=a;return bolt++})});
  level.plates.forEach((_,p)=>{const g=geometry(level,p),{x:cx,y:cy}=g.origin,L=g.length;let parts;
  if(g.legacy){const rect=(x,y,w,h)=>M.Bodies.rectangle(cx+x,cy+y,w,h,{friction:.35,restitution:.12,slop:.02});parts=[rect(0,-13.5,L+36,7),rect(0,13.5,L+36,7),rect(0,0,L-20,20),rect(-L/2-14,0,8,20),rect(L/2+14,0,8,20)]}
@@ -57,10 +57,10 @@ export function createWorld(level,snapshot=null){
  M.Body.setStatic(body,attachmentCount(sim,p)>=2);sim.plates.push(body);if(!body.plugin.cleared)M.Composite.add(engine.world,body);
  });
  sim.positions.forEach((h,b)=>{const pin=M.Bodies.circle(cells[h].x,cells[h].y,7.5,{isStatic:true,friction:.4,restitution:.1,label:`screw-${b}`});sim.pins.push(pin);M.Composite.add(engine.world,pin);
- if(!(sim.removed&(1<<b))){const p=plateForBolt(sim,b),body=sim.plates[p],local=body.plugin.anchors[anchorForBolt(sim,b)],c=Math.cos(body.angle),s=Math.sin(body.angle);const q=M.Constraint.create({bodyA:body,pointA:{x:local.x*c-local.y*s,y:local.x*s+local.y*c},pointB:{...cells[h]},length:0,stiffness:1,damping:.2});q.plugin={screw:b};sim.constraints.push(q);M.Composite.add(engine.world,q)}
+ if(!(sim.removed&(1<<b))){const p=plateForBolt(sim,b),body=sim.plates[p],local=body.plugin.anchors[anchorForBolt(sim,b)],c=Math.cos(body.angle),s=Math.sin(body.angle);const q=M.Constraint.create({bodyA:body,pointA:{x:local.x*c-local.y*s,y:local.x*s+local.y*c},pointB:{...cells[h]},length:0,stiffness:1,damping:sim.recoveryPlates.includes(p)?0:.2});q.plugin={screw:b};sim.constraints.push(q);M.Composite.add(engine.world,q)}
  });return sim;
 }
-export function snapshot(sim){return {positions:sim.positions.slice(),removed:sim.removed,moves:sim.moves,actions:sim.actions.map(a=>a.slice()),elapsed:sim.elapsed,quiet:sim.quiet,settled:sim.settled,bodies:sim.plates.map(b=>({position:{...b.position},angle:b.angle,velocity:{...b.velocity},angularVelocity:b.angularVelocity,cleared:b.plugin.cleared}))}}
+export function snapshot(sim){return {positions:sim.positions.slice(),removed:sim.removed,moves:sim.moves,actions:sim.actions.map(a=>a.slice()),elapsed:sim.elapsed,movingFrames:sim.movingFrames,recoveryPlates:sim.recoveryPlates.slice(),quiet:sim.quiet,settled:sim.settled,bodies:sim.plates.map(b=>({position:{...b.position},angle:b.angle,velocity:{...b.velocity},angularVelocity:b.angularVelocity,cleared:b.plugin.cleared}))}}
 function toLocal(body,p){const dx=p.x-body.position.x,dy=p.y-body.position.y,c=Math.cos(body.angle),s=Math.sin(body.angle);return{x:dx*c+dy*s,y:-dx*s+dy*c}}
 function inside(poly,p){let sign=0;for(let i=0;i<poly.length;i++){const a=poly[i],b=poly[(i+1)%poly.length],cross=(b.x-a.x)*(p.y-a.y)-(b.y-a.y)*(p.x-a.x);if(Math.abs(cross)<1e-8)continue;const next=Math.sign(cross);if(sign&&next!==sign)return false;sign=next}return true}
 function circleTouches(poly,p,radius){if(inside(poly,p))return true;const r2=radius*radius;for(let i=0;i<poly.length;i++){const a=poly[i],b=poly[(i+1)%poly.length],dx=b.x-a.x,dy=b.y-a.y,t=Math.max(0,Math.min(1,((p.x-a.x)*dx+(p.y-a.y)*dy)/(dx*dx+dy*dy)));if((p.x-a.x-t*dx)**2+(p.y-a.y-t*dy)**2<r2)return true}return false}
@@ -72,7 +72,70 @@ export const SHAFT_CLEARANCE=8.25;
 export function shaftBlocked(sim,point,radius=SHAFT_CLEARANCE){return materialAt(sim,point,-1,radius)}
 export function destinations(sim){return holes(sim.level).filter(h=>!sim.positions.includes(h)&&!shaftBlocked(sim,cells[h]))}
 export function complete(sim){return sim.plates.every(b=>b.plugin.cleared)}
-export function step(sim,count=1){for(let k=0;k<count;k++){M.Engine.update(sim.engine,STEP);sim.elapsed+=STEP;for(const body of sim.plates){if(!body.plugin.cleared&&body.bounds.min.y>EXIT){body.plugin.cleared=true;M.Composite.remove(sim.engine.world,body)}}const still=sim.plates.filter(b=>!b.plugin.cleared&&!b.isStatic).every(b=>b.isSleeping||(b.speed+Math.abs(b.angularVelocity)*b.plugin.settleRadius<.35));sim.quiet=still?sim.quiet+1:0;sim.settled=sim.quiet>24||complete(sim)}return sim}
+// Matter's translational position correction and exact pin projection can fight
+// when material contacts a hinged compound. Resolve only affected contact islands
+// in their permitted coordinates, with an explicit per-body correction budget.
+export function repairHingeContacts(sim){
+ sim.contactDiagnostics={maxCorrection:0,maxImpulseEnergyGain:0,contacts:0,wokenBodies:0};
+ const bodies=[...sim.plates.filter(b=>!b.plugin.cleared),...sim.pins],budget=new Map(bodies.map(b=>[b,4]));
+ for(let iteration=0;iteration<12;iteration++)for(let i=0;i<bodies.length;i++)for(let j=i+1;j<bodies.length;j++){
+  if(bodies[i].isStatic&&bodies[j].isStatic)continue;
+  if(![bodies[i],bodies[j]].some(b=>sim.recoveryPlates.includes(b.plugin.plate)))continue;
+  const collisions=[];for(const a of bodies[i].parts.slice(bodies[i].parts.length>1?1:0))for(const b of bodies[j].parts.slice(bodies[j].parts.length>1?1:0)){if(!M.Bounds.overlaps(a.bounds,b.bounds))continue;const c=M.Collision.collides(a,b);if(c)collisions.push([a,b]);}for(const[partA,partB]of collisions){const collision=M.Collision.collides(partA,partB);if(!collision)continue;
+  const A=collision.bodyA.parent,B=collision.bodyB.parent,n=collision.normal;
+  const supports=collision.supports.slice(0,collision.supportCount).filter(Boolean),point={x:supports.reduce((v,p)=>v+p.x,0)/supports.length,y:supports.reduce((v,p)=>v+p.y,0)/supports.length};
+  const dofs=[A,B].map((body,index)=>{
+   if(body.isStatic)return null;
+   const p=body.plugin.plate,hinge=attachmentCount(sim,p)===1,sign=index?-1:1;
+   const bolt=hinge?sim.boltsByPlate[p].find(b=>!(sim.removed&(1<<b))):null,pivot=hinge?cells[sim.positions[bolt]]:body.position;
+   const r={x:point.x-pivot.x,y:point.y-pivot.y},derivative=sign*(-r.y*n.x+r.x*n.y),inverseInertia=1/(body.inertia+(hinge?body.mass*((body.position.x-pivot.x)**2+(body.position.y-pivot.y)**2):0));
+   return{body,pivot:{...pivot},hinge,sign,derivative,inverseInertia,inverseMass:hinge?0:body.inverseMass};
+  }).filter(Boolean);
+  const denom=dofs.reduce((v,h)=>v+h.inverseMass+h.derivative*h.derivative*h.inverseInertia,0);if(denom<1e-8)continue;
+  // Project only approaching normal velocity; do not damp tangential motion.
+  const kinetic=()=>dofs.reduce((sum,h)=>sum+.5*h.body.inertia*h.body.angularVelocity**2+.5*h.body.mass*(h.body.velocity.x**2+h.body.velocity.y**2),0),before=kinetic();
+  // Project the actual stored COM velocity onto the hinge DOF by angular
+  // momentum, rather than inventing tangential speed from angularVelocity.
+  for(const h of dofs)if(h.hinge){const b=h.body,rx=b.position.x-h.pivot.x,ry=b.position.y-h.pivot.y,omega=(b.inertia*b.angularVelocity+b.mass*(rx*b.velocity.y-ry*b.velocity.x))*h.inverseInertia;M.Body.setAngularVelocity(b,omega);M.Body.setVelocity(b,{x:-ry*omega,y:rx*omega});}
+  let normalVelocity=0;
+  for(const h of dofs){const b=h.body;normalVelocity+=h.hinge?h.derivative*b.angularVelocity:h.sign*(b.velocity.x*n.x+b.velocity.y*n.y)+h.derivative*b.angularVelocity;}
+  if(normalVelocity<0){const impulse=-normalVelocity/denom;for(const h of dofs){const b=h.body,omega=b.angularVelocity+impulse*h.derivative*h.inverseInertia;if(b.isSleeping&&Math.abs(impulse)*(Math.abs(h.derivative)*h.inverseInertia*b.plugin.radius+h.inverseMass)>1e-7){M.Sleeping.set(b,false);sim.contactDiagnostics.wokenBodies++;}M.Body.setAngularVelocity(b,omega);M.Body.setVelocity(b,h.hinge?{x:-(b.position.y-h.pivot.y)*omega,y:(b.position.x-h.pivot.x)*omega}:{x:b.velocity.x+impulse*h.sign*h.inverseMass*n.x,y:b.velocity.y+impulse*h.sign*h.inverseMass*n.y});}}sim.contactDiagnostics.maxImpulseEnergyGain=Math.max(sim.contactDiagnostics.maxImpulseEnergyGain,kinetic()-before);sim.contactDiagnostics.contacts++;
+  if(collision.depth<=.05)continue;
+  const lambda=(collision.depth-.05)/denom;
+  for(const h of dofs){const b=h.body,d=lambda*h.sign*h.inverseMass,angle=lambda*h.derivative*h.inverseInertia,cost=Math.abs(d)+Math.abs(angle)*(b.plugin.radius+(h.hinge?Math.hypot(b.position.x-h.pivot.x,b.position.y-h.pivot.y):0)),scale=Math.min(1,budget.get(b)/(cost||1)),theta=angle*scale,dx=b.position.x-h.pivot.x,dy=b.position.y-h.pivot.y;budget.set(b,Math.max(0,budget.get(b)-cost*scale));if(b.isSleeping&&cost*scale>1e-7){M.Sleeping.set(b,false);sim.contactDiagnostics.wokenBodies++;}M.Body.setAngle(b,b.angle+theta);M.Body.setPosition(b,{x:h.pivot.x+dx*Math.cos(theta)-dy*Math.sin(theta)+d*scale*n.x,y:h.pivot.y+dx*Math.sin(theta)+dy*Math.cos(theta)+d*scale*n.y});}
+ }}
+ sim.contactDiagnostics.maxCorrection=Math.max(0,...[...budget.values()].map(left=>4-left));
+}
+
+function updateContactRecovery(sim){
+ // Ordinary trajectories retain the existing solver. Deep interpenetration,
+ // or contact that has failed to settle for ten seconds, enables the bounded
+ // constrained-contact pass only for the implicated plates.
+ sim.movingFrames=sim.settled?0:sim.movingFrames+1;
+ const threshold=sim.movingFrames>1200?.25:2.5;
+ for(const pair of sim.engine.pairs.list){
+  if(!pair.isActive||pair.collision.depth<=threshold)continue;
+  for(const body of [pair.bodyA.parent,pair.bodyB.parent]){
+   const p=body.plugin.plate;
+   if(Number.isInteger(p)&&!sim.recoveryPlates.includes(p))sim.recoveryPlates.push(p);
+  }
+ }
+ // A zero-length pin has no legitimate radial motion to damp. Damping the
+ // residual constraint error can feed energy back into conflicting contacts.
+ for(const c of sim.constraints)if(sim.recoveryPlates.includes(c.bodyA.plugin.plate))c.damping=0;
+ if(sim.recoveryPlates.length)repairHingeContacts(sim);
+}
+export function step(sim,count=1){
+ for(let k=0;k<count;k++){
+  M.Engine.update(sim.engine,STEP);
+  updateContactRecovery(sim);
+  sim.elapsed+=STEP;
+  for(const body of sim.plates)if(!body.plugin.cleared&&body.bounds.min.y>EXIT){body.plugin.cleared=true;M.Composite.remove(sim.engine.world,body)}
+  const still=sim.plates.filter(b=>!b.plugin.cleared&&!b.isStatic).every(b=>b.isSleeping||(b.speed+Math.abs(b.angularVelocity)*b.plugin.settleRadius<.35));
+  sim.quiet=still?sim.quiet+1:0;sim.settled=sim.quiet>24||complete(sim);
+ }
+ return sim;
+}
 export function settle(sim,maxFrames=1440){for(let k=0;k<maxFrames&&!sim.settled;k++)step(sim);return sim}
 export function move(sim,b,h){
  if(complete(sim)||!Number.isInteger(b)||b<0||b>=sim.positions.length||!accessible(sim,b)||!destinations(sim).includes(h))return null;
@@ -80,7 +143,7 @@ export function move(sim,b,h){
  if(wasPinned){const joint=sim.constraints.find(c=>c.plugin.screw===b);if(joint)M.Composite.remove(sim.engine.world,joint);sim.constraints=sim.constraints.filter(c=>c!==joint)}
  sim.positions[b]=h;sim.removed|=1<<b;sim.moves++;sim.actions.push([b,h]);M.Body.setPosition(sim.pins[b],cells[h]);
  const after=attachmentCount(sim,p);if(wasPinned&&before>=2&&after<2)M.Body.setStatic(sim.plates[p],false);
- sim.plates.forEach(body=>{if(!body.plugin.cleared)M.Sleeping.set(body,false)});sim.settled=false;sim.quiet=0;
+ sim.plates.forEach(body=>{if(!body.plugin.cleared)M.Sleeping.set(body,false)});sim.settled=false;sim.quiet=0;sim.movingFrames=0;
  if(wasPinned&&before===2&&after===1){const body=sim.plates[p],other=sim.boltsByPlate[p].find(q=>!(sim.removed&(1<<q))),remaining=body.plugin.anchors[anchorForBolt(sim,other)],free=body.plugin.anchors[anchorForBolt(sim,b)],anchor=worldPoint(body,remaining),loose=worldPoint(body,free);if(Math.abs(body.position.x-anchor.x)<.01&&body.position.y<anchor.y)M.Body.setAngularVelocity(body,anchor.x<175?.025:-.025)}return sim;
 }
 export function hingeError(sim,b){const p=plateForBolt(sim,b),q=worldPoint(sim.plates[p],sim.plates[p].plugin.anchors[anchorForBolt(sim,b)]),anchor=cells[sim.positions[b]];return Math.hypot(q.x-anchor.x,q.y-anchor.y)}

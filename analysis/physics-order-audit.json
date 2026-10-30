@@ -1,0 +1,365 @@
+{
+  "baseCommit": "cd247fb76f8da64b242bc2baca262568515347e7",
+  "seed": 99173,
+  "uiBefore": {
+    "trials": 1044,
+    "boards": 87,
+    "completed": 223,
+    "unsettled": 4,
+    "maxMeasuredHingeError": 0.0013811072918108757,
+    "maxSampledOverlap": 6.972358901606775,
+    "unsettledCases": [
+      {
+        "id": "v7-two-sails",
+        "li": 16,
+        "trial": 7,
+        "actions": [
+          [
+            3,
+            32,
+            30
+          ],
+          [
+            0,
+            31,
+            30
+          ]
+        ],
+        "maxDepth": 3.757056969499729,
+        "maxHinge": 0.000006336950356286194,
+        "lateSpeed": 1.7828121044901888,
+        "settled": false,
+        "complete": false
+      },
+      {
+        "id": "v5-locksmith",
+        "li": 33,
+        "trial": 8,
+        "actions": [
+          [
+            3,
+            32,
+            120
+          ],
+          [
+            2,
+            31,
+            120
+          ],
+          [
+            1,
+            38,
+            120
+          ]
+        ],
+        "maxDepth": 6.321394307669834,
+        "maxHinge": 0.0006946792758920211,
+        "lateSpeed": 2.5843071152405033,
+        "settled": false,
+        "complete": false
+      },
+      {
+        "id": "v5-locksmith",
+        "li": 33,
+        "trial": 11,
+        "actions": [
+          [
+            0,
+            32,
+            5
+          ],
+          [
+            3,
+            31,
+            5
+          ],
+          [
+            1,
+            190,
+            5
+          ]
+        ],
+        "maxDepth": 5.0781527746812,
+        "maxHinge": 0.0001918698198003591,
+        "lateSpeed": 2.3849361291246094,
+        "settled": false,
+        "complete": false
+      },
+      {
+        "id": "v7-side-door",
+        "li": 59,
+        "trial": 2,
+        "actions": [
+          [
+            2,
+            32,
+            30
+          ],
+          [
+            0,
+            340,
+            30
+          ],
+          [
+            1,
+            31,
+            30
+          ]
+        ],
+        "maxDepth": 5.11922844952025,
+        "maxHinge": 0.0006632011993118463,
+        "lateSpeed": 0.7965120906552521,
+        "settled": false,
+        "complete": false
+      }
+    ]
+  },
+  "uiAfter": {
+    "trials": 1044,
+    "boards": 87,
+    "completed": 223,
+    "unsettled": 0,
+    "maxMeasuredHingeError": 0.0008464214827257816,
+    "maxSampledOverlap": 4.179730382050366,
+    "unsettledCases": []
+  },
+  "continuousBefore": {
+    "trials": 1044,
+    "boards": 87,
+    "completed": 229,
+    "unsettled": 6,
+    "maxMeasuredHingeError": 0.0013149209290896004,
+    "maxSampledOverlap": 6.8834776072473005,
+    "unsettledCases": [
+      {
+        "id": "v7-two-sails",
+        "li": 16,
+        "trial": 7,
+        "actions": [
+          [
+            0,
+            31,
+            30
+          ],
+          [
+            3,
+            32,
+            30
+          ]
+        ],
+        "maxDepth": 3.7417787791823685,
+        "maxHinge": 0.00000557902006783444,
+        "lateSpeed": 2.1712727308659843,
+        "settled": false,
+        "complete": false
+      },
+      {
+        "id": "v4-top-heavy-lever",
+        "li": 23,
+        "trial": 9,
+        "actions": [
+          [
+            1,
+            31,
+            600
+          ],
+          [
+            3,
+            32,
+            600
+          ],
+          [
+            2,
+            139,
+            600
+          ]
+        ],
+        "maxDepth": 2.0995106508404717,
+        "maxHinge": 0.00016466979537345665,
+        "lateSpeed": 0.5148916157426993,
+        "settled": false,
+        "complete": false
+      },
+      {
+        "id": "v5-locksmith",
+        "li": 33,
+        "trial": 8,
+        "actions": [
+          [
+            3,
+            32,
+            120
+          ],
+          [
+            2,
+            31,
+            120
+          ],
+          [
+            1,
+            38,
+            120
+          ]
+        ],
+        "maxDepth": 6.321394307669834,
+        "maxHinge": 0.0006946792758920211,
+        "lateSpeed": 2.5843071152405033,
+        "settled": false,
+        "complete": false
+      },
+      {
+        "id": "v7-balance-exchange",
+        "li": 34,
+        "trial": 7,
+        "actions": [
+          [
+            0,
+            32,
+            30
+          ],
+          [
+            5,
+            31,
+            30
+          ],
+          [
+            2,
+            196,
+            30
+          ],
+          [
+            1,
+            201,
+            30
+          ]
+        ],
+        "maxDepth": 1.726290535391911,
+        "maxHinge": 0.000008195825586199135,
+        "lateSpeed": 0.4963591149235883,
+        "settled": false,
+        "complete": false
+      },
+      {
+        "id": "v7-side-door",
+        "li": 59,
+        "trial": 2,
+        "actions": [
+          [
+            0,
+            32,
+            30
+          ],
+          [
+            5,
+            31,
+            30
+          ],
+          [
+            4,
+            179,
+            30
+          ],
+          [
+            3,
+            343,
+            30
+          ],
+          [
+            2,
+            342,
+            30
+          ],
+          [
+            1,
+            341,
+            30
+          ]
+        ],
+        "maxDepth": 6.8834776072473005,
+        "maxHinge": 0.000029276926410644035,
+        "lateSpeed": 0.6140638782654287,
+        "settled": false,
+        "complete": false
+      },
+      {
+        "id": "daily-2026-10-31-v1",
+        "li": 82,
+        "trial": 7,
+        "actions": [
+          [
+            7,
+            31,
+            30
+          ],
+          [
+            0,
+            32,
+            30
+          ],
+          [
+            4,
+            482,
+            30
+          ],
+          [
+            12,
+            468,
+            30
+          ],
+          [
+            11,
+            479,
+            30
+          ],
+          [
+            3,
+            487,
+            30
+          ]
+        ],
+        "maxDepth": 1.6906089828038944,
+        "maxHinge": 0.00006443039377843544,
+        "lateSpeed": 0.4243246786146545,
+        "settled": false,
+        "complete": false
+      }
+    ]
+  },
+  "continuousAfter": {
+    "trials": 1044,
+    "boards": 87,
+    "completed": 230,
+    "unsettled": 1,
+    "maxMeasuredHingeError": 0.0006028105283062307,
+    "maxSampledOverlap": 4.179730382050366,
+    "unsettledCases": [
+      {
+        "id": "v4-top-heavy-lever",
+        "li": 23,
+        "trial": 9,
+        "actions": [
+          [
+            1,
+            31,
+            600
+          ],
+          [
+            3,
+            32,
+            600
+          ],
+          [
+            2,
+            139,
+            600
+          ]
+        ],
+        "maxDepth": 2.0995106508404717,
+        "maxHinge": 0.00016466979537345665,
+        "lateSpeed": 0.5148916157426993,
+        "settled": false,
+        "complete": false
+      }
+    ]
+  }
+}

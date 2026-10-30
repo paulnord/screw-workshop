@@ -24,6 +24,7 @@ jobs:
       - name: Verify physics routes and progression
         run: |
           node test.mjs
+          node test-contact-orders.mjs
           node test-progress.mjs
           node test-pack.mjs
           node test-expansion.mjs
