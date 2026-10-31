@@ -1,0 +1,128 @@
+[
+  {
+    "date": "2026-11-05",
+    "blocks": 6,
+    "screws": 12,
+    "moves": 12,
+    "maxOverlap": 1.123701567043213,
+    "steps": 2937,
+    "reachesAnchorLowerBound": true
+  },
+  {
+    "date": "2026-11-06",
+    "blocks": 6,
+    "screws": 10,
+    "moves": 10,
+    "maxOverlap": 0.4037388462701301,
+    "steps": 2079,
+    "reachesAnchorLowerBound": true
+  },
+  {
+    "date": "2026-11-07",
+    "blocks": 8,
+    "screws": 14,
+    "moves": 14,
+    "maxOverlap": 1.5695870874682782,
+    "steps": 2809,
+    "reachesAnchorLowerBound": true
+  },
+  {
+    "date": "2026-11-08",
+    "blocks": 5,
+    "screws": 10,
+    "moves": 10,
+    "maxOverlap": 1.5605919528686059,
+    "steps": 2038,
+    "reachesAnchorLowerBound": true
+  },
+  {
+    "date": "2026-11-09",
+    "blocks": 5,
+    "screws": 10,
+    "moves": 10,
+    "maxOverlap": 0.570987491412339,
+    "steps": 2143,
+    "reachesAnchorLowerBound": true
+  },
+  {
+    "date": "2026-11-10",
+    "blocks": 6,
+    "screws": 12,
+    "moves": 12,
+    "maxOverlap": 0.9965200164489829,
+    "steps": 2493,
+    "reachesAnchorLowerBound": true
+  },
+  {
+    "date": "2026-11-11",
+    "blocks": 5,
+    "screws": 8,
+    "moves": 8,
+    "maxOverlap": 0.23986813265945273,
+    "steps": 1867,
+    "reachesAnchorLowerBound": true
+  },
+  {
+    "date": "2026-11-12",
+    "blocks": 6,
+    "screws": 10,
+    "moves": 10,
+    "maxOverlap": 1.382469624372277,
+    "steps": 2145,
+    "reachesAnchorLowerBound": true
+  },
+  {
+    "date": "2026-11-13",
+    "blocks": 5,
+    "screws": 10,
+    "moves": 10,
+    "maxOverlap": 1.4000390885287857,
+    "steps": 2127,
+    "reachesAnchorLowerBound": true
+  },
+  {
+    "date": "2026-11-14",
+    "blocks": 9,
+    "screws": 14,
+    "moves": 14,
+    "maxOverlap": 2.0654080945479336,
+    "steps": 3069,
+    "reachesAnchorLowerBound": true
+  },
+  {
+    "date": "2026-11-15",
+    "blocks": 7,
+    "screws": 14,
+    "moves": 14,
+    "maxOverlap": 2.114914496934631,
+    "steps": 2279,
+    "reachesAnchorLowerBound": true
+  },
+  {
+    "date": "2026-11-16",
+    "blocks": 7,
+    "screws": 14,
+    "moves": 14,
+    "maxOverlap": 1.2971452744554313,
+    "steps": 2440,
+    "reachesAnchorLowerBound": true
+  },
+  {
+    "date": "2026-11-17",
+    "blocks": 5,
+    "screws": 10,
+    "moves": 10,
+    "maxOverlap": 0.5935348237550073,
+    "steps": 2475,
+    "reachesAnchorLowerBound": true
+  },
+  {
+    "date": "2026-11-18",
+    "blocks": 7,
+    "screws": 12,
+    "moves": 12,
+    "maxOverlap": 1.416921940996474,
+    "steps": 2529,
+    "reachesAnchorLowerBound": true
+  }
+]

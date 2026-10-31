@@ -1,0 +1,1087 @@
+{
+  "generatorVersion": "workshop-generator-v1",
+  "rulesetVersion": "matter020-workshop-v1",
+  "start": "2026-11-05",
+  "days": 14,
+  "seed": "screw-workshop",
+  "maxAttempts": 80,
+  "baseline": [
+    {
+      "date": "2026-10-29",
+      "id": "daily-2026-10-29-v1",
+      "url": "2026-10-29.json",
+      "sha256": "4592f57026b3855c98461686e854225fbb77e079b8c173911685a00c935bd40f"
+    },
+    {
+      "date": "2026-10-30",
+      "id": "daily-2026-10-30-v1",
+      "url": "2026-10-30.json",
+      "sha256": "711ce807a69e733e9561a4e8e2a433fbccaed11c2b06889dc3e3e6787c4548bf"
+    },
+    {
+      "date": "2026-10-31",
+      "id": "daily-2026-10-31-v1",
+      "url": "2026-10-31.json",
+      "sha256": "d0926037c88ed8dc15d7fb81d989e2bd9265d3ae3af0cde7cf0e1e4aec357b0f"
+    },
+    {
+      "date": "2026-11-01",
+      "id": "daily-2026-11-01-v1",
+      "url": "2026-11-01.json",
+      "sha256": "3a64e858b57458e75e60be460b25d91b801e0136bb7ffdd27fc17b8ccc6701f4"
+    },
+    {
+      "date": "2026-11-02",
+      "id": "daily-2026-11-02-v1",
+      "url": "2026-11-02.json",
+      "sha256": "b79742d65e35e38e34232df1cb60131b6908de7fff4ff3ce6825337173eb0f0b"
+    },
+    {
+      "date": "2026-11-03",
+      "id": "daily-2026-11-03-v1",
+      "url": "2026-11-03.json",
+      "sha256": "f4839c51fa4cb0b986f0be36e93aa1d92d76c92d26f6f8ce603b8c76babe6445"
+    },
+    {
+      "date": "2026-11-04",
+      "id": "daily-2026-11-04-v1",
+      "url": "2026-11-04.json",
+      "sha256": "f4b1ddc241a78b452c4b875f03c97af0851a82b55708cfdcfeca82fdd961cc07"
+    }
+  ],
+  "entries": [
+    {
+      "date": "2026-11-05",
+      "id": "daily-2026-11-05-v1",
+      "url": "2026-11-05.json",
+      "sha256": "825d53c80c7a403f92c73f5c2019bd21c14e5965ea876f508eba5b0744522995",
+      "attempt": 3,
+      "design": {
+        "family": "mixed-workshop",
+        "rows": 4,
+        "layout": [
+          2,
+          2,
+          1,
+          1
+        ],
+        "blocks": 6,
+        "shaped": 6
+      },
+      "fingerprint": "555b9c753a61a413ce5748adef2aa98f0da5ad6ddf190493ff691871e3c1171e",
+      "search": {
+        "simulations": 31,
+        "steps": 7297,
+        "mode": "outer"
+      },
+      "evidence": {
+        "maxOverlap": 1.123701567043213,
+        "maxHingeError": 0.00008798540871650504,
+        "steps": 2962,
+        "maxStageFrames": 553,
+        "minHoleSpacing": 51.19570294468082,
+        "blocks": 6,
+        "screws": 12,
+        "moves": 12,
+        "reachesAnchorLowerBound": true,
+        "stageFrames": [
+          553,
+          95,
+          139,
+          198,
+          152,
+          134,
+          185,
+          230,
+          268,
+          359,
+          349,
+          275
+        ]
+      },
+      "interruptedEvidence": {
+        "maxOverlap": 1.0197903616791564,
+        "maxHingeError": 0.0001331100724255172,
+        "steps": 2950,
+        "maxStageFrames": 552,
+        "minHoleSpacing": 51.19570294468082,
+        "blocks": 6,
+        "screws": 12,
+        "moves": 12,
+        "reachesAnchorLowerBound": true,
+        "stageFrames": [
+          552,
+          90,
+          131,
+          193,
+          143,
+          129,
+          170,
+          224,
+          254,
+          366,
+          343,
+          270
+        ]
+      }
+    },
+    {
+      "date": "2026-11-06",
+      "id": "daily-2026-11-06-v1",
+      "url": "2026-11-06.json",
+      "sha256": "fd6157fb3077af6c81365954ca75676b41f5c328095ca0a1d93bb9e8512a3dbb",
+      "attempt": 0,
+      "design": {
+        "family": "corner-foundry",
+        "rows": 3,
+        "layout": [
+          2,
+          1,
+          1,
+          2
+        ],
+        "blocks": 6,
+        "shaped": 2
+      },
+      "fingerprint": "06259a873ad3652e459788d6ea5004d673fc9984d9fa4d1b5a4790a95cefebf3",
+      "search": {
+        "simulations": 10,
+        "steps": 2104,
+        "mode": "bottom"
+      },
+      "evidence": {
+        "maxOverlap": 0.4037388462701301,
+        "maxHingeError": 0.00000836494305064211,
+        "steps": 2104,
+        "maxStageFrames": 403,
+        "minHoleSpacing": 48.25971404805461,
+        "blocks": 6,
+        "screws": 10,
+        "moves": 10,
+        "reachesAnchorLowerBound": true,
+        "stageFrames": [
+          181,
+          181,
+          403,
+          104,
+          351,
+          139,
+          192,
+          204,
+          177,
+          147
+        ]
+      },
+      "interruptedEvidence": {
+        "maxOverlap": 0.3989867208206874,
+        "maxHingeError": 0.000008363872838191915,
+        "steps": 2105,
+        "maxStageFrames": 398,
+        "minHoleSpacing": 48.25971404805461,
+        "blocks": 6,
+        "screws": 10,
+        "moves": 10,
+        "reachesAnchorLowerBound": true,
+        "stageFrames": [
+          176,
+          176,
+          398,
+          99,
+          346,
+          134,
+          188,
+          199,
+          172,
+          142
+        ]
+      }
+    },
+    {
+      "date": "2026-11-07",
+      "id": "daily-2026-11-07-v1",
+      "url": "2026-11-07.json",
+      "sha256": "f2eb31eb01d8c0c9b06d0c6ae1a13dfc5037cfec22e666a69aab7afd1d7c77ce",
+      "attempt": 39,
+      "design": {
+        "family": "corner-foundry",
+        "rows": 3,
+        "layout": [
+          2,
+          2,
+          2,
+          2
+        ],
+        "blocks": 8,
+        "shaped": 2
+      },
+      "fingerprint": "52adc46756658380c1d201239bd076081bd02af94ee652169dc46d6dedb04aa5",
+      "search": {
+        "simulations": 28,
+        "steps": 5631,
+        "mode": "top"
+      },
+      "evidence": {
+        "maxOverlap": 1.5695870874682782,
+        "maxHingeError": 0.00007897159209921112,
+        "steps": 2834,
+        "maxStageFrames": 416,
+        "minHoleSpacing": 48.010415536631214,
+        "blocks": 8,
+        "screws": 14,
+        "moves": 14,
+        "reachesAnchorLowerBound": true,
+        "stageFrames": [
+          238,
+          265,
+          193,
+          25,
+          230,
+          292,
+          416,
+          81,
+          176,
+          142,
+          254,
+          105,
+          313,
+          79
+        ]
+      },
+      "interruptedEvidence": {
+        "maxOverlap": 1.9006632099067247,
+        "maxHingeError": 0.000058107078215850556,
+        "steps": 2841,
+        "maxStageFrames": 419,
+        "minHoleSpacing": 48.010415536631214,
+        "blocks": 8,
+        "screws": 14,
+        "moves": 14,
+        "reachesAnchorLowerBound": true,
+        "stageFrames": [
+          233,
+          260,
+          191,
+          20,
+          226,
+          287,
+          419,
+          76,
+          172,
+          131,
+          251,
+          100,
+          306,
+          74
+        ]
+      }
+    },
+    {
+      "date": "2026-11-08",
+      "id": "daily-2026-11-08-v1",
+      "url": "2026-11-08.json",
+      "sha256": "f777b9d8b0776b35a4e508442ddba7d005327b9fff8566570790354b75290201",
+      "attempt": 0,
+      "design": {
+        "family": "split-bays",
+        "rows": 3,
+        "layout": [
+          2,
+          1,
+          2
+        ],
+        "blocks": 5,
+        "shaped": 0
+      },
+      "fingerprint": "c904030131a5c6b92172c65dd84a71fe382170b03d4b217c61a2b6ada77462c3",
+      "search": {
+        "simulations": 22,
+        "steps": 3739,
+        "mode": "top"
+      },
+      "evidence": {
+        "maxOverlap": 1.5605919528686059,
+        "maxHingeError": 0.0001778018457336448,
+        "steps": 2063,
+        "maxStageFrames": 307,
+        "minHoleSpacing": 48.166378315169176,
+        "blocks": 5,
+        "screws": 10,
+        "moves": 10,
+        "reachesAnchorLowerBound": true,
+        "stageFrames": [
+          207,
+          90,
+          195,
+          198,
+          264,
+          215,
+          286,
+          307,
+          196,
+          80
+        ]
+      },
+      "interruptedEvidence": {
+        "maxOverlap": 2.434617924971292,
+        "maxHingeError": 0.0004050132495402991,
+        "steps": 1822,
+        "maxStageFrames": 278,
+        "minHoleSpacing": 48.166378315169176,
+        "blocks": 5,
+        "screws": 10,
+        "moves": 10,
+        "reachesAnchorLowerBound": true,
+        "stageFrames": [
+          201,
+          85,
+          189,
+          180,
+          261,
+          102,
+          186,
+          278,
+          190,
+          75
+        ]
+      }
+    },
+    {
+      "date": "2026-11-09",
+      "id": "daily-2026-11-09-v1",
+      "url": "2026-11-09.json",
+      "sha256": "e69166fa0d315843371e778c109081ed75a072cb38d3d80a9152539259e4dedd",
+      "attempt": 1,
+      "design": {
+        "family": "offset-bridges",
+        "rows": 4,
+        "layout": [
+          1,
+          1,
+          2,
+          1
+        ],
+        "blocks": 5,
+        "shaped": 0
+      },
+      "fingerprint": "d6ed3217dda777eecff5c214da9f8f6640e5ee2e1a0a3ca8bf45133ddd3bbe5d",
+      "search": {
+        "simulations": 10,
+        "steps": 2169,
+        "mode": "bottom"
+      },
+      "evidence": {
+        "maxOverlap": 0.570987491412339,
+        "maxHingeError": 0.000009338039636485155,
+        "steps": 2168,
+        "maxStageFrames": 345,
+        "minHoleSpacing": 56.800088028100795,
+        "blocks": 5,
+        "screws": 10,
+        "moves": 10,
+        "reachesAnchorLowerBound": true,
+        "stageFrames": [
+          322,
+          100,
+          243,
+          126,
+          156,
+          200,
+          190,
+          254,
+          207,
+          345
+        ]
+      },
+      "interruptedEvidence": {
+        "maxOverlap": 0.7479317387451374,
+        "maxHingeError": 0.000009034515933782895,
+        "steps": 2173,
+        "maxStageFrames": 340,
+        "minHoleSpacing": 56.800088028100795,
+        "blocks": 5,
+        "screws": 10,
+        "moves": 10,
+        "reachesAnchorLowerBound": true,
+        "stageFrames": [
+          318,
+          95,
+          239,
+          121,
+          154,
+          195,
+          186,
+          249,
+          201,
+          340
+        ]
+      }
+    },
+    {
+      "date": "2026-11-10",
+      "id": "daily-2026-11-10-v1",
+      "url": "2026-11-10.json",
+      "sha256": "1eabf1f3d7b1cb6e9ed3cea0a1b07522aa69d3fd1e223f6e8b8a903f875bc27d",
+      "attempt": 1,
+      "design": {
+        "family": "offset-bridges",
+        "rows": 4,
+        "layout": [
+          2,
+          2,
+          1,
+          1
+        ],
+        "blocks": 6,
+        "shaped": 0
+      },
+      "fingerprint": "83522b0fda2deaaa74fb0e315a2fd704655d4b273532a738af4f8f15e5aa86be",
+      "search": {
+        "simulations": 24,
+        "steps": 5036,
+        "mode": "top"
+      },
+      "evidence": {
+        "maxOverlap": 0.9965200164489829,
+        "maxHingeError": 0.00005618461288084857,
+        "steps": 2518,
+        "maxStageFrames": 475,
+        "minHoleSpacing": 48.83646178829912,
+        "blocks": 6,
+        "screws": 12,
+        "moves": 12,
+        "reachesAnchorLowerBound": true,
+        "stageFrames": [
+          117,
+          161,
+          109,
+          334,
+          451,
+          243,
+          127,
+          25,
+          294,
+          79,
+          475,
+          78
+        ]
+      },
+      "interruptedEvidence": {
+        "maxOverlap": 2.079321002227914,
+        "maxHingeError": 0.00013874212936716604,
+        "steps": 2542,
+        "maxStageFrames": 473,
+        "minHoleSpacing": 48.83646178829912,
+        "blocks": 6,
+        "screws": 12,
+        "moves": 12,
+        "reachesAnchorLowerBound": true,
+        "stageFrames": [
+          112,
+          165,
+          104,
+          327,
+          461,
+          238,
+          122,
+          20,
+          288,
+          74,
+          473,
+          73
+        ]
+      }
+    },
+    {
+      "date": "2026-11-11",
+      "id": "daily-2026-11-11-v1",
+      "url": "2026-11-11.json",
+      "sha256": "8f08dfca8639410532356f02c395920b9fa1f497ac505874c3d3bf44125a2b9a",
+      "attempt": 1,
+      "design": {
+        "family": "corner-foundry",
+        "rows": 3,
+        "layout": [
+          1,
+          1,
+          1,
+          2
+        ],
+        "blocks": 5,
+        "shaped": 2
+      },
+      "fingerprint": "528d88c29dac1dfd81b3e111d99ad1001b1e944c675a8921d6da94eb96bb21c9",
+      "search": {
+        "simulations": 8,
+        "steps": 1891,
+        "mode": "bottom"
+      },
+      "evidence": {
+        "maxOverlap": 0.23986813265945273,
+        "maxHingeError": 0.000008234556578154378,
+        "steps": 1892,
+        "maxStageFrames": 462,
+        "minHoleSpacing": 81.41406512390841,
+        "blocks": 5,
+        "screws": 8,
+        "moves": 8,
+        "reachesAnchorLowerBound": true,
+        "stageFrames": [
+          181,
+          182,
+          462,
+          102,
+          305,
+          140,
+          239,
+          256
+        ]
+      },
+      "interruptedEvidence": {
+        "maxOverlap": 0.2639557006738329,
+        "maxHingeError": 0.000008234519898462209,
+        "steps": 1890,
+        "maxStageFrames": 454,
+        "minHoleSpacing": 81.41406512390841,
+        "blocks": 5,
+        "screws": 8,
+        "moves": 8,
+        "reachesAnchorLowerBound": true,
+        "stageFrames": [
+          176,
+          177,
+          454,
+          97,
+          302,
+          135,
+          233,
+          251
+        ]
+      }
+    },
+    {
+      "date": "2026-11-12",
+      "id": "daily-2026-11-12-v1",
+      "url": "2026-11-12.json",
+      "sha256": "1552c427a05769527fe4aba3ff2770877d94e2911ee026aa627296fde6792709",
+      "attempt": 2,
+      "design": {
+        "family": "corner-foundry",
+        "rows": 3,
+        "layout": [
+          1,
+          1,
+          2,
+          2
+        ],
+        "blocks": 6,
+        "shaped": 2
+      },
+      "fingerprint": "fecb54b4fac41d830c3cec2fc9e49fd99c2baa71fa26b720642874781ce7cbf8",
+      "search": {
+        "simulations": 20,
+        "steps": 3868,
+        "mode": "top"
+      },
+      "evidence": {
+        "maxOverlap": 1.382469624372277,
+        "maxHingeError": 0.00016005779829330398,
+        "steps": 2170,
+        "maxStageFrames": 497,
+        "minHoleSpacing": 49.244289008980516,
+        "blocks": 6,
+        "screws": 10,
+        "moves": 10,
+        "reachesAnchorLowerBound": true,
+        "stageFrames": [
+          181,
+          249,
+          157,
+          89,
+          497,
+          153,
+          186,
+          285,
+          271,
+          77
+        ]
+      },
+      "interruptedEvidence": {
+        "maxOverlap": 1.3331355059372072,
+        "maxHingeError": 0.00008210734851050801,
+        "steps": 2063,
+        "maxStageFrames": 306,
+        "minHoleSpacing": 49.244289008980516,
+        "blocks": 6,
+        "screws": 10,
+        "moves": 10,
+        "reachesAnchorLowerBound": true,
+        "stageFrames": [
+          176,
+          244,
+          151,
+          84,
+          269,
+          168,
+          254,
+          306,
+          264,
+          72
+        ]
+      }
+    },
+    {
+      "date": "2026-11-13",
+      "id": "daily-2026-11-13-v1",
+      "url": "2026-11-13.json",
+      "sha256": "e653fb5b5e5fdb27d615a67c59da205149c333129ebc1ca4dacf4f28d6b88ead",
+      "attempt": 4,
+      "design": {
+        "family": "mixed-workshop",
+        "rows": 3,
+        "layout": [
+          2,
+          1,
+          2
+        ],
+        "blocks": 5,
+        "shaped": 2
+      },
+      "fingerprint": "9f156268201ad2c4643b48acb41590922a354bdba1af7721ab309e7deb4aaab8",
+      "search": {
+        "simulations": 33,
+        "steps": 6902,
+        "mode": "outer"
+      },
+      "evidence": {
+        "maxOverlap": 1.4000390885287857,
+        "maxHingeError": 0.0001368608267181445,
+        "steps": 2152,
+        "maxStageFrames": 334,
+        "minHoleSpacing": 54.45181356024793,
+        "blocks": 5,
+        "screws": 10,
+        "moves": 10,
+        "reachesAnchorLowerBound": true,
+        "stageFrames": [
+          220,
+          99,
+          230,
+          97,
+          310,
+          104,
+          189,
+          334,
+          260,
+          284
+        ]
+      },
+      "interruptedEvidence": {
+        "maxOverlap": 1.2862100500596512,
+        "maxHingeError": 0.00013694798017247425,
+        "steps": 2160,
+        "maxStageFrames": 334,
+        "minHoleSpacing": 54.45181356024793,
+        "blocks": 5,
+        "screws": 10,
+        "moves": 10,
+        "reachesAnchorLowerBound": true,
+        "stageFrames": [
+          215,
+          94,
+          226,
+          92,
+          307,
+          99,
+          184,
+          334,
+          255,
+          279
+        ]
+      }
+    },
+    {
+      "date": "2026-11-14",
+      "id": "daily-2026-11-14-v1",
+      "url": "2026-11-14.json",
+      "sha256": "77f754a562febe9920de2ad9fac434d281d0638325b927ac4a20d804dc3319f3",
+      "attempt": 23,
+      "design": {
+        "family": "corner-foundry",
+        "rows": 3,
+        "layout": [
+          1,
+          2,
+          2,
+          4
+        ],
+        "blocks": 9,
+        "shaped": 4
+      },
+      "fingerprint": "0c4ae66faa28eec53779db0a9df755650d76ebe9145f57ec90b113c7f69fccce",
+      "search": {
+        "simulations": 14,
+        "steps": 3072,
+        "mode": "bottom"
+      },
+      "evidence": {
+        "maxOverlap": 2.0654080945479336,
+        "maxHingeError": 0.000023420967512278982,
+        "steps": 3094,
+        "maxStageFrames": 397,
+        "minHoleSpacing": 51,
+        "blocks": 9,
+        "screws": 14,
+        "moves": 14,
+        "reachesAnchorLowerBound": true,
+        "stageFrames": [
+          87,
+          89,
+          209,
+          159,
+          293,
+          104,
+          217,
+          105,
+          248,
+          397,
+          257,
+          332,
+          282,
+          290
+        ]
+      },
+      "interruptedEvidence": {
+        "maxOverlap": 2.0654079786791613,
+        "maxHingeError": 0.000020665281983692536,
+        "steps": 3065,
+        "maxStageFrames": 373,
+        "minHoleSpacing": 51,
+        "blocks": 9,
+        "screws": 14,
+        "moves": 14,
+        "reachesAnchorLowerBound": true,
+        "stageFrames": [
+          82,
+          84,
+          204,
+          163,
+          204,
+          165,
+          212,
+          100,
+          240,
+          373,
+          248,
+          328,
+          282,
+          285
+        ]
+      }
+    },
+    {
+      "date": "2026-11-15",
+      "id": "daily-2026-11-15-v1",
+      "url": "2026-11-15.json",
+      "sha256": "1346c8f357488e097c159c60c0898a42e3e8ff859a60b85b72a3f28eae9d33e6",
+      "attempt": 0,
+      "design": {
+        "family": "offset-bridges",
+        "rows": 5,
+        "layout": [
+          2,
+          1,
+          2,
+          1,
+          1
+        ],
+        "blocks": 7,
+        "shaped": 0
+      },
+      "fingerprint": "505759c189c016d13410c19d3a30b49bca4d92117e60467acf9b51a1c7916d35",
+      "search": {
+        "simulations": 35,
+        "steps": 6476,
+        "mode": "outer"
+      },
+      "evidence": {
+        "maxOverlap": 2.114914496934631,
+        "maxHingeError": 0.0004051177241945222,
+        "steps": 2304,
+        "maxStageFrames": 434,
+        "minHoleSpacing": 51.03920062069938,
+        "blocks": 7,
+        "screws": 14,
+        "moves": 14,
+        "reachesAnchorLowerBound": true,
+        "stageFrames": [
+          93,
+          92,
+          86,
+          89,
+          434,
+          101,
+          60,
+          90,
+          116,
+          260,
+          244,
+          137,
+          176,
+          301
+        ]
+      },
+      "interruptedEvidence": {
+        "maxOverlap": 2.1297382207862086,
+        "maxHingeError": 0.0006153490355615069,
+        "steps": 2895,
+        "maxStageFrames": 468,
+        "minHoleSpacing": 51.03920062069938,
+        "blocks": 7,
+        "screws": 14,
+        "moves": 14,
+        "reachesAnchorLowerBound": true,
+        "stageFrames": [
+          88,
+          87,
+          81,
+          84,
+          434,
+          96,
+          73,
+          80,
+          115,
+          255,
+          262,
+          468,
+          265,
+          412
+        ]
+      }
+    },
+    {
+      "date": "2026-11-16",
+      "id": "daily-2026-11-16-v1",
+      "url": "2026-11-16.json",
+      "sha256": "d3b576241b3d46157f32c19b44e33efd6e868af00d9b865e8045802539183f65",
+      "attempt": 2,
+      "design": {
+        "family": "split-bays",
+        "rows": 4,
+        "layout": [
+          2,
+          2,
+          1,
+          2
+        ],
+        "blocks": 7,
+        "shaped": 0
+      },
+      "fingerprint": "625002c1ccd671b9db3eddf32d59d9177029657224e1e4dcd3f46692b8d10e7a",
+      "search": {
+        "simulations": 28,
+        "steps": 5264,
+        "mode": "top"
+      },
+      "evidence": {
+        "maxOverlap": 1.2971452744554313,
+        "maxHingeError": 0.00019944277958593596,
+        "steps": 2465,
+        "maxStageFrames": 380,
+        "minHoleSpacing": 49.03060268852505,
+        "blocks": 7,
+        "screws": 14,
+        "moves": 14,
+        "reachesAnchorLowerBound": true,
+        "stageFrames": [
+          127,
+          157,
+          185,
+          280,
+          187,
+          189,
+          186,
+          25,
+          380,
+          116,
+          180,
+          103,
+          250,
+          75
+        ]
+      },
+      "interruptedEvidence": {
+        "maxOverlap": 1.580929123117187,
+        "maxHingeError": 0.00021283902684730716,
+        "steps": 2922,
+        "maxStageFrames": 553,
+        "minHoleSpacing": 49.03060268852505,
+        "blocks": 7,
+        "screws": 14,
+        "moves": 14,
+        "reachesAnchorLowerBound": true,
+        "stageFrames": [
+          122,
+          150,
+          180,
+          274,
+          186,
+          173,
+          182,
+          36,
+          372,
+          113,
+          167,
+          553,
+          249,
+          70
+        ]
+      }
+    },
+    {
+      "date": "2026-11-17",
+      "id": "daily-2026-11-17-v1",
+      "url": "2026-11-17.json",
+      "sha256": "17c6e775409d0fce1fabc6fb90dd4b9eae7bcd63b79ad62c3035cc41a742888d",
+      "attempt": 5,
+      "design": {
+        "family": "offset-bridges",
+        "rows": 4,
+        "layout": [
+          1,
+          1,
+          1,
+          2
+        ],
+        "blocks": 5,
+        "shaped": 0
+      },
+      "fingerprint": "c0a12f303e108b3311af9f25e350f4d1a1af6e4ba93a49bd45c56c9583636965",
+      "search": {
+        "simulations": 24,
+        "steps": 5040,
+        "mode": "outer"
+      },
+      "evidence": {
+        "maxOverlap": 0.5935348237550073,
+        "maxHingeError": 0.000028768349474475166,
+        "steps": 2500,
+        "maxStageFrames": 647,
+        "minHoleSpacing": 52.17278984298233,
+        "blocks": 5,
+        "screws": 10,
+        "moves": 10,
+        "reachesAnchorLowerBound": true,
+        "stageFrames": [
+          252,
+          98,
+          189,
+          102,
+          131,
+          89,
+          208,
+          272,
+          647,
+          487
+        ]
+      },
+      "interruptedEvidence": {
+        "maxOverlap": 0.569549047232357,
+        "maxHingeError": 0.000037101205103378254,
+        "steps": 2502,
+        "maxStageFrames": 632,
+        "minHoleSpacing": 52.17278984298233,
+        "blocks": 5,
+        "screws": 10,
+        "moves": 10,
+        "reachesAnchorLowerBound": true,
+        "stageFrames": [
+          245,
+          93,
+          183,
+          97,
+          129,
+          84,
+          202,
+          267,
+          632,
+          495
+        ]
+      }
+    },
+    {
+      "date": "2026-11-18",
+      "id": "daily-2026-11-18-v1",
+      "url": "2026-11-18.json",
+      "sha256": "9b6e1abe9fdb5d3451767a96acf8e61ebdf77b093341e888db611a10543b8a02",
+      "attempt": 0,
+      "design": {
+        "family": "corner-foundry",
+        "rows": 3,
+        "layout": [
+          2,
+          2,
+          1,
+          2
+        ],
+        "blocks": 7,
+        "shaped": 2
+      },
+      "fingerprint": "dafc04cd93ea871d7682793e6caacf01735f58a5e4e0eaef06a769faad2a70c2",
+      "search": {
+        "simulations": 12,
+        "steps": 2600,
+        "mode": "bottom"
+      },
+      "evidence": {
+        "maxOverlap": 1.416921940996474,
+        "maxHingeError": 0.000008352460822705259,
+        "steps": 2554,
+        "maxStageFrames": 402,
+        "minHoleSpacing": 53.46026561849464,
+        "blocks": 7,
+        "screws": 12,
+        "moves": 12,
+        "reachesAnchorLowerBound": true,
+        "stageFrames": [
+          256,
+          260,
+          402,
+          104,
+          184,
+          140,
+          264,
+          135,
+          195,
+          204,
+          239,
+          146
+        ]
+      },
+      "interruptedEvidence": {
+        "maxOverlap": 1.4169219513630935,
+        "maxHingeError": 0.000008352466680528064,
+        "steps": 2561,
+        "maxStageFrames": 395,
+        "minHoleSpacing": 53.46026561849464,
+        "blocks": 7,
+        "screws": 12,
+        "moves": 12,
+        "reachesAnchorLowerBound": true,
+        "stageFrames": [
+          251,
+          255,
+          395,
+          99,
+          179,
+          135,
+          262,
+          130,
+          190,
+          196,
+          243,
+          141
+        ]
+      }
+    }
+  ]
+}

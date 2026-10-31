@@ -1,0 +1,55 @@
+{
+  "base": "d849d2314419624460868192298c222d5ca95b49",
+  "files": [
+    {
+      "file": "dist/levels.mjs",
+      "sha256": "2d6be14a5bb40e749e9399d371b8c0ea8a65c7b3d6ccba0bc2aad1a4aa4f9a92",
+      "unchanged": true
+    },
+    {
+      "file": "dist/daily/index.json",
+      "sha256": "4922184059cdd7e88f3db482d6e6059a8ac5db58bdccab31ae6260d284cd368f",
+      "unchanged": true
+    },
+    {
+      "file": "dist/daily-score-catalog.mjs",
+      "sha256": "72511c2cf122b669f3bc41d4de6a47c4ef65f9862068626646cc1d718427995e",
+      "unchanged": true
+    },
+    {
+      "file": "dist/daily/2026-10-29.json",
+      "sha256": "4592f57026b3855c98461686e854225fbb77e079b8c173911685a00c935bd40f",
+      "unchanged": true
+    },
+    {
+      "file": "dist/daily/2026-10-30.json",
+      "sha256": "711ce807a69e733e9561a4e8e2a433fbccaed11c2b06889dc3e3e6787c4548bf",
+      "unchanged": true
+    },
+    {
+      "file": "dist/daily/2026-10-31.json",
+      "sha256": "d0926037c88ed8dc15d7fb81d989e2bd9265d3ae3af0cde7cf0e1e4aec357b0f",
+      "unchanged": true
+    },
+    {
+      "file": "dist/daily/2026-11-01.json",
+      "sha256": "3a64e858b57458e75e60be460b25d91b801e0136bb7ffdd27fc17b8ccc6701f4",
+      "unchanged": true
+    },
+    {
+      "file": "dist/daily/2026-11-02.json",
+      "sha256": "b79742d65e35e38e34232df1cb60131b6908de7fff4ff3ce6825337173eb0f0b",
+      "unchanged": true
+    },
+    {
+      "file": "dist/daily/2026-11-03.json",
+      "sha256": "f4839c51fa4cb0b986f0be36e93aa1d92d76c92d26f6f8ce603b8c76babe6445",
+      "unchanged": true
+    },
+    {
+      "file": "dist/daily/2026-11-04.json",
+      "sha256": "f4b1ddc241a78b452c4b875f03c97af0851a82b55708cfdcfeca82fdd961cc07",
+      "unchanged": true
+    }
+  ]
+}

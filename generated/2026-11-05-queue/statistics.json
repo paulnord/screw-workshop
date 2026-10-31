@@ -1,0 +1,20 @@
+{
+  "attempts": 95,
+  "accepted": 14,
+  "rejections": {
+    "No bounded route: No bounded route": 22,
+    "Too few blocks for date profile": 42,
+    "Initial material outside board safe area": 4,
+    "No bounded route: Contact overlap exceeds bound": 2,
+    "Live witness move 11 is illegal": 3,
+    "Live witness move 8 is illegal": 1,
+    "Live witness did not clear all material": 1,
+    "Repeated queue structure": 5,
+    "Daily pieces overlap initially": 1
+  },
+  "plannerMoveTrials": 1195,
+  "plannerSteps": 215500,
+  "acceptedReplayCount": 42,
+  "acceptedReplaySteps": 102051,
+  "runtimeMs": 7834
+}

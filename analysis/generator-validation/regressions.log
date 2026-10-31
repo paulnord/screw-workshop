@@ -1,0 +1,75 @@
+=== test.mjs ===
+PASS: 80 physical level solutions, 497 moves; real hinges (max initial drift 0.0000082px), compound holes, moving occlusion, plate/screw blockers, actual sliding, completion, deterministic snapshots/undo/restart. Max replay contact overlap 2.44px; ramp lateral travel 122.8px.
+{
+  triangleParts: 24,
+  triangleHingeError: 0.00001667915348180612,
+  elbowParts: 11,
+  elbowHingeError: 0.000008195843235479635,
+  result: 'PASS generic shapes, three→two→one→zero anchors, compound holes, exact material mapping, snapshots, real swing/fall'
+}
+PASS invalid geometry rejected and mixed p.bar alias/mapping
+=== test-contact-orders.mjs ===
+v7-two-sails {
+  lateSpeed: 0.006091604792738665,
+  lateOverlap: 0.05853525207751886,
+  maxHingeError: 0.0005943697654437672
+}
+v5-locksmith {
+  lateSpeed: 0.0037940249563550073,
+  lateOverlap: 0.1098801160443088,
+  maxHingeError: 0.000009077106294836002
+}
+v7-side-door {
+  lateSpeed: 0.0680346250024217,
+  lateOverlap: 0.13240073011684217,
+  maxHingeError: 0.00048779153510000966
+}
+PASS: three alternate-order contact regressions over 60 seconds; fixed pivots, finite motion, legitimate blocking, recovery snapshots.
+PASS: four faithful UI reproductions settle; unrelated hinges and mid-motion Undo preserved.
+PASS: post-recovery live release preserves world/momentum and physically completes.
+PASS: corrected sleepers wake; untouched sleepers remain asleep.
+=== test-progress.mjs ===
+PASS: 80-puzzle fixture and live campaign; 7-of-10 gates, permanent legacy unlocks, all32 old numeric resumes, stable IDs, bests migration, scoring, Undo and free hints.
+=== test-pack.mjs ===
+PASS: 115 new-pack winning witnesses and 4 explicitly blocked historical routes, plus Undo recovery.
+=== test-expansion.mjs ===
+PASS: 165 expansion winning routes, 10 explicitly revalidated blocked historical routes, and16 Undo recoveries;80 distinct levels.
+=== test-campaign80.mjs ===
+PASS:80 IDs,32 unchanged originals,48 added routes replay after Undo;48/48 reach original-anchor lower bound under intended rules.
+=== test-daily-data.mjs ===
+PASS daily data:UTC,strict schema,hashes,network/cache/fallback,future dates,immutable dates,unsafe URLs/text,oversize/corrupt storage,separate bests,native network-disabled.
+PASS guest daily completion locks retain historical bests and deduplicate date revisions.
+=== test-daily-engine.mjs ===
+PASS daily engine:100 loads bounded cells,transactional validation/failure,active-board integrity,campaign routes after daily.
+=== test-daily-content.mjs ===
+2026-10-29 Six-stage cascade {"blocks":6,"screws":12,"moves":12,"maxOverlap":1.7241989658403156,"steps":2786,"reachesAnchorLowerBound":true}
+2026-10-30 Eight-piece switchyard {"blocks":8,"screws":14,"moves":14,"maxOverlap":1.0208258436878168,"steps":2990,"reachesAnchorLowerBound":true}
+2026-10-31 Ten-piece workshop {"blocks":10,"screws":16,"moves":16,"maxOverlap":1.6906089828038944,"steps":3334,"reachesAnchorLowerBound":true}
+2026-11-01 Four-way handoff {"blocks":4,"screws":9,"moves":9,"maxOverlap":2.175809457576179,"steps":2316,"reachesAnchorLowerBound":true}
+2026-11-02 Crown and key {"blocks":4,"screws":8,"moves":8,"maxOverlap":0.5101028059941655,"steps":1837,"reachesAnchorLowerBound":true}
+2026-11-03 Long way round {"blocks":4,"screws":8,"moves":8,"maxOverlap":1.2837061464175008,"steps":1737,"reachesAnchorLowerBound":true}
+2026-11-04 Last assembly {"blocks":4,"screws":9,"moves":9,"maxOverlap":1.0470614992622131,"steps":2626,"reachesAnchorLowerBound":true}
+PASS:7 immutable dated challenge files, hashes, schemas and physical witnesses;76 moves.
+=== test-daily-ui.mjs ===
+PASS daily UI mode isolation, bests, restart, fallback labels, save failures, close/navigation/loading races and safe text boundaries. Browser layout and real physics tested separately.
+=== test-daily-summary.mjs ===
+PASS daily calendar UTC months/leap/year boundaries, preserved legacy stars, distinct date/revision deduplication, practice exclusion, unknown revisions and availability.
+=== test-daily-sync.mjs ===
+PASS daily sync locks: first completion, duplicate/revision rejection, UID isolation, stale-load retention, first server result reconciliation, explicit historical imports, offline migration/reload and racing import.
+=== test-progress-sync.mjs ===
+PASS optional sync core: isolated accounts, explicit merge, revision-specific minima, offline retry, auth races, transaction races, deletion ordering/failure, bounded invalid data and guest preservation.
+=== test-firebase-adapter.mjs ===
+PASS Firebase adapter: disabled gate, lazy SDK, memory/session isolation, transactional revision-specific minima, bounded competing-device denial retries, stale-user cancellation, reauth-first bounded deletion, failure recovery in-flight write drain, tombstone ordering and retained deletion flags.
+=== test-account-ui.mjs ===
+PASS account UI: lazy SDK, explicit guest import, signout, delete reauthentication input, duplicate submit, closed late auth, password clearing, revision-safe daily identity.
+PASS account integration: guest preservation, UID-local campaign isolation, no implicit merge, late cross-account load ignored, logout-before-load race, honest initial status.
+PASS daily/account regression: sync-safe puzzle opening, competing final score visible reconciliation, unknown-revision stars never invented, and modal identity isolation.
+=== test-shapes.mjs ===
+{
+  triangleParts: 24,
+  triangleHingeError: 0.00001667915348180612,
+  elbowParts: 11,
+  elbowHingeError: 0.000008195843235479635,
+  result: 'PASS generic shapes, three→two→one→zero anchors, compound holes, exact material mapping, snapshots, real swing/fall'
+}
+PASS invalid geometry rejected and mixed p.bar alias/mapping

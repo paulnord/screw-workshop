@@ -1,0 +1,5 @@
+Independent review: novelty suite passed across80campaign boards.
+Historical-fixture generator suite PASS8.02s.
+Post-adoption compatibility: installed all14dates into isolated temporary checkout, then same generator suite PASS7.75s.
+Concurrent installer reproduction aborts safely and preserves external changes.
+Actual dist source untouched.

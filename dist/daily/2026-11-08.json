@@ -1,0 +1,149 @@
+{
+  "schemaVersion": 1,
+  "rulesetVersion": "matter020-workshop-v1",
+  "id": "daily-2026-11-08-v1",
+  "name": "Split-bay assembly · 5 pieces",
+  "recipe": {
+    "id": "daily-2026-11-08-v1",
+    "name": "Split-bay assembly · 5 pieces",
+    "tip": "Plan the release order. Vacated mounting holes make room for the remaining screws.",
+    "pieces": [
+      {
+        "bar": [
+          [
+            81,
+            97
+          ],
+          [
+            129,
+            101
+          ]
+        ]
+      },
+      {
+        "bar": [
+          [
+            221,
+            98
+          ],
+          [
+            275,
+            100
+          ]
+        ]
+      },
+      {
+        "bar": [
+          [
+            113.5,
+            222
+          ],
+          [
+            264.5,
+            235
+          ]
+        ]
+      },
+      {
+        "bar": [
+          [
+            79.5,
+            350.5
+          ],
+          [
+            136.5,
+            361.5
+          ]
+        ]
+      },
+      {
+        "bar": [
+          [
+            214.5,
+            359
+          ],
+          [
+            275.5,
+            353
+          ]
+        ]
+      }
+    ],
+    "spareCount": 2,
+    "hidden": [],
+    "solution": [
+      [
+        3,
+        [
+          105,
+          35
+        ]
+      ],
+      [
+        2,
+        [
+          245,
+          35
+        ]
+      ],
+      [
+        1,
+        [
+          221,
+          98
+        ]
+      ],
+      [
+        5,
+        [
+          275,
+          100
+        ]
+      ],
+      [
+        0,
+        [
+          129,
+          101
+        ]
+      ],
+      [
+        4,
+        [
+          81,
+          97
+        ]
+      ],
+      [
+        9,
+        [
+          113.5,
+          222
+        ]
+      ],
+      [
+        8,
+        [
+          264.5,
+          235
+        ]
+      ],
+      [
+        7,
+        [
+          275.5,
+          353
+        ]
+      ],
+      [
+        6,
+        [
+          214.5,
+          359
+        ]
+      ]
+    ]
+  },
+  "targetMoves": 10,
+  "witnessPolicy": "settle-after-each-move-2400"
+}

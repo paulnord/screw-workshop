@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
         with:
-          node-version: '22'
+          node-version: '24.22.1'
           cache: npm
       - uses: actions/setup-java@v5
         with:
@@ -45,8 +45,14 @@ jobs:
           node test-account-ui.mjs
           node test-daily-summary.mjs
           node test-daily-sync.mjs
+          node test-daily-novelty.mjs
+          node test-daily-generator.mjs
+          node test-daily-replenish.mjs
       - name: Verify account storage with local emulators
         run: npm run test:emulators
+      - name: Stamp verified publication artifact
+        run: |
+          VERIFIED_COMMIT=$(git rev-parse HEAD) node --input-type=module -e "import fs from 'node:fs'; const i=JSON.parse(fs.readFileSync('dist/daily/index.json')); fs.writeFileSync('dist/build-info.json',JSON.stringify({commit:process.env.VERIFIED_COMMIT,dailyCount:i.entries.length,dailyThrough:i.entries.map(e=>e.date).sort().at(-1),automaticGeneration:'pending-permission-approval'},null,2)+'\n')"
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4
         with:
