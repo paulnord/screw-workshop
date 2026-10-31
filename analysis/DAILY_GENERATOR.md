@@ -2,7 +2,7 @@
 
 ## Deliverable
 
-`generated/2026-11-05-queue/` contains 14 new procedural challenges for November 5–18, 2026, plus the deterministic manifest and a separate runtime report. The owner authorized publication on October 31, 2026. The fourteen verified files are now installed in `dist/daily/`; the index and score catalog append their new immutable identities. The owner also requested scheduled generation, but activation is pending explicit approval for the workflow’s repository-write permission. All 80 campaign puzzles, the seven October 29–November 4 daily files, existing historical score entries, engine, account code and security rules are unchanged from public base `d849d2314419624460868192298c222d5ca95b49`.
+`generated/2026-11-05-queue/` contains 14 new procedural challenges for November 5–18, 2026, plus the deterministic manifest and a separate runtime report. The owner authorized publication on October 31, 2026. The fourteen verified files are now installed in `dist/daily/`; the index and score catalog append their new immutable identities. The owner also authorized scheduled generation: the existing Pages workflow now checks daily at 06:17 UTC. All 80 campaign puzzles, the seven October 29–November 4 daily files, existing historical score entries, engine, account code and security rules are unchanged from public base `d849d2314419624460868192298c222d5ca95b49`.
 
 ```sh
 # Requires Node; no dependency installation, network, credentials or services.
@@ -45,15 +45,18 @@ All candidate work is in memory until the full requested batch succeeds. Exhaust
 
 The separate installer rechecks every hash, geometry/novelty/physics witness, original baseline and target before writing. An exclusive local lock prevents competing installers. It appends complete immutable files, stages the score catalog, and atomically replaces the index **last**, so the last verified index remains active until the full queue is ready. Injected failures roll back only installer-owned changes and preserve concurrent external edits. A process crash can leave unreferenced files, extra future catalog metadata and a stale lock, never a partial JSON index; inspect those before manually clearing the lock. Do not run noncooperating edits of the same source concurrently. No command performs Git push, deployment, account operations, or remote publication.
 
-### Scheduled publication proposal — not active
+### Scheduled publication policy
 
-The owner requested a daily automatic generator. The prepared implementation checks at 06:17 UTC and maintains coverage through today +14 days using `scripts/replenish-daily.mjs`. It performs bounded generation and all19JS plus existing emulator checks before committing only immutable daily content/index/catalog. It uses one workflow for generation and deployment because native `GITHUB_TOKEN` pushes do not trigger another Pages build; no-op runs can recover a prior deployment failure. Main-only execution, non-force push, current-main checks,20-minute bound and evidence artifacts are included in the prepared local schedule change.
+The same `.github/workflows/pages.yml` handles pushes to main, manual runs from main, and `17 6 * * *` (06:17 UTC daily). `scripts/replenish-daily.mjs` maintains coverage through today +14 UTC days. It is a no-op while that coverage already exists; missing historical days are not silently backfilled, gaps inside the existing future queue fail explicitly, and the 400-entry archive cap remains a maintenance stop rather than deleting history.
 
-Auto-review required explicit action-time approval for expanding the workflow token from contents:read to contents:write. That scheduled change has **not** been applied. The published workflow retains its original read-only repository permission and contains no cron trigger. No credentials, accounts, secrets, security settings or scheduled tasks have been created. The generator, replenishment script and tests are available for manual use; publication of the reviewed14-date queue is independent of this pending permission.
+The workflow checks out current main after obtaining the shared publication concurrency slot, generates locally, and runs all 19 JS suites plus the existing localhost Firebase emulator tests before any automatic Git commit. It commits only new immutable daily files/index and score metadata, checks main has not moved, and uses a normal non-force push. It uses the native, short-lived repository `GITHUB_TOKEN` with contents write and existing Pages/id-token permissions. No custom credential, account, secret or repository security setting is introduced. Manual runs on other branches are skipped.
 
-The planner fails explicitly on gaps in the existing future queue or the400-entry archive cap, does not silently backfill historical dates, and is idempotent when the horizon is covered. Local tests include a real verified append into an isolated copy and failure-preservation checks. The existing shared feed reaches November18.
+Because native-token pushes do not trigger another Pages build, the same validated workflow deploys directly. No-op runs also deploy current verified main, allowing recovery after a previous successful content push followed by deployment failure. A remote-head check rejects detected stale publication. The artifact-only `build-info.json` records the exact published commit, coverage and schedule. Candidate evidence is retained as a workflow artifact for 30 days.
 
-Official native-token behavior: https://docs.github.com/en/actions/concepts/security/github_token
+GitHub schedules can be delayed; this is an advance content buffer, not a promise of execution at an exact second. Bounds, archive capacity, permissions or physics rejection can fail a run without replacing the last good deployment. Existing GitHub workflow status/failure reporting is the monitoring surface; no new notification service was configured. Current coverage reaches November18, so the first initial release run should correctly report no replenishment needed. The first expected new date is November19 on the November5 check, subject to successful validation.
+
+Official behavior reference: https://docs.github.com/en/actions/concepts/security/github_token
+
 
 ## Pre-publication results (Node 24.22.1, this cloud workspace)
 
@@ -68,4 +71,4 @@ Official native-token behavior: https://docs.github.com/en/actions/concepts/secu
 
 ## October 31 release checks
 
-The publication update installs exactly the reviewed November 5–18 files, with identical hashes and witnesses. It adds the two generator suites and one replenishment suite to the existing Pages validation without enabling the permission-blocked schedule. The full 16 existing JS suites and three new suites are rerun on the installed source. The GitHub Pages run remains the authoritative deployment and hosted emulator-validation result; the earlier locally denied emulator run is still not counted as passed.
+The publication update installs exactly the reviewed November 5–18 files, with identical hashes and witnesses. It adds the two generator suites and one replenishment suite to the existing Pages validation and enables the daily schedule under the owner’s subsequent authorization. The full 16 existing JS suites and three new suites are rerun on the installed source. The GitHub Pages run remains the authoritative deployment and hosted emulator-validation result; the earlier locally denied emulator run is still not counted as passed.

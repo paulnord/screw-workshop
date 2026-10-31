@@ -3,8 +3,10 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  schedule:
+    - cron: '17 6 * * *'
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 concurrency:
@@ -12,12 +14,17 @@ concurrency:
   cancel-in-progress: false
 jobs:
   deploy:
+    if: github.ref == 'refs/heads/main'
+    timeout-minutes: 20
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v6
+        with:
+          ref: main
+          fetch-depth: 1
       - uses: actions/setup-node@v6
         with:
           node-version: '24.22.1'
@@ -26,6 +33,12 @@ jobs:
         with:
           distribution: temurin
           java-version: '21'
+      - name: Replenish verified queue to fourteen future UTC days
+        id: replenish
+        run: |
+          node scripts/replenish-daily.mjs --apply --output "$RUNNER_TEMP/daily-candidates" > "$RUNNER_TEMP/daily-replenishment.json"
+          cat "$RUNNER_TEMP/daily-replenishment.json"
+          echo "changed=$(node -p "require(process.env.RUNNER_TEMP+'/daily-replenishment.json').changed")" >> "$GITHUB_OUTPUT"
       - run: npm ci
       - name: Verify physics routes and progression
         run: |
@@ -50,13 +63,40 @@ jobs:
           node test-daily-replenish.mjs
       - name: Verify account storage with local emulators
         run: npm run test:emulators
-      - name: Stamp verified publication artifact
+      - name: Append verified daily content without rewriting main
+        if: steps.replenish.outputs.changed == 'true'
         run: |
-          VERIFIED_COMMIT=$(git rev-parse HEAD) node --input-type=module -e "import fs from 'node:fs'; const i=JSON.parse(fs.readFileSync('dist/daily/index.json')); fs.writeFileSync('dist/build-info.json',JSON.stringify({commit:process.env.VERIFIED_COMMIT,dailyCount:i.entries.length,dailyThrough:i.entries.map(e=>e.date).sort().at(-1),automaticGeneration:'pending-permission-approval'},null,2)+'\n')"
+          test "$(git ls-remote origin refs/heads/main | cut -f1)" = "$(git rev-parse HEAD)" || { echo 'Main changed during validation; retain last deployed content and retry on next run.'; exit 1; }
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add dist/daily dist/daily-score-catalog.mjs
+          git diff --cached --quiet && { echo 'Expected new content was not staged'; exit 1; }
+          git commit -m 'Append physics-verified daily challenges'
+          git push origin HEAD:main
+      - name: Verify publication head and stamp artifact
+        run: |
+          test "$(git ls-remote origin refs/heads/main | cut -f1)" = "$(git rev-parse HEAD)" || { echo 'Newer main exists; do not deploy stale content.'; exit 1; }
+          test -z "$(git status --porcelain --untracked-files=no)"
+          VERIFIED_COMMIT=$(git rev-parse HEAD) node --input-type=module -e "import fs from 'node:fs'; const i=JSON.parse(fs.readFileSync('dist/daily/index.json')); fs.writeFileSync('dist/build-info.json',JSON.stringify({commit:process.env.VERIFIED_COMMIT,dailyCount:i.entries.length,dailyThrough:i.entries.map(e=>e.date).sort().at(-1),scheduledUTC:'06:17',futureDays:14},null,2)+'\n')"
+          echo "Verified publication commit: $(git rev-parse HEAD)" >> "$GITHUB_STEP_SUMMARY"
+      # GITHUB_TOKEN pushes do not trigger another Pages workflow. Deploy here,
+      # including no-op runs, so a previous post-push deployment failure recovers.
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4
         with:
           path: dist
+      - name: Reject a newer publication head
+        run: test "$(git ls-remote origin refs/heads/main | cut -f1)" = "$(git rev-parse HEAD)"
       - name: Publish game
         id: deployment
         uses: actions/deploy-pages@v4
+      - name: Preserve generator evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: daily-generation-evidence
+          path: |
+            ${{ runner.temp }}/daily-replenishment.json
+            ${{ runner.temp }}/daily-candidates/
+          if-no-files-found: warn
+          retention-days: 30
