@@ -20,7 +20,7 @@ async function loadFirebaseSDK(){
  const [app,auth,firestore]=await Promise.all([import(root+'firebase-app.js'),import(root+'firebase-auth.js'),import(root+'firebase-firestore.js')]);
  return {...app,...auth,...firestore};
 }
-export async function createFirebaseAdapter({config,loadSDK=loadFirebaseSDK}={}){
+export async function createFirebaseAdapter({config,loadSDK=loadFirebaseSDK,onAnalytics=()=>{}}={}){
  if(!isFirebaseConfigured(config))throw Error('Account sync is not configured');
  const sdk=await loadSDK();
  const app=sdk.initializeApp(config.firebase,'screw-workshop-progress');
@@ -34,6 +34,7 @@ export async function createFirebaseAdapter({config,loadSDK=loadFirebaseSDK}={})
  sdk.onAuthStateChanged(auth,()=>{const uid=auth.currentUser?.uid??null;if(uid!==lastUID){lastUID=uid;epoch++}for(const cb of observers)cb(publicUser())});
  function guard(uid,token=epoch){if(!uid||auth.currentUser?.uid!==uid||token!==epoch)throw Error('Account changed; operation canceled');}
  function writable(uid,token=epoch){guard(uid,token);if(destructive)throw Error('Account deletion is in progress');}
+ function measured(event,fn){return authAction(async()=>{const result=await fn();try{onAnalytics(event)}catch{}return result})}
  async function authAction(fn){if(authBusy||destructive)throw Error('Another account action is in progress');authBusy=true;epoch++;try{return await fn()}finally{authBusy=false}}
  function collection(uid){return sdk.collection(db,'users',uid,'progress')}
  function control(uid){return sdk.doc(db,'users',uid,'control','account')}
@@ -80,8 +81,8 @@ export async function createFirebaseAdapter({config,loadSDK=loadFirebaseSDK}={})
  return {
   currentUser:publicUser,
   onAuth(callback){if(typeof callback!=='function')throw Error('Auth callback required');observers.add(callback);callback(publicUser());return()=>observers.delete(callback)},
-  signIn:(email,password)=>authAction(()=>sdk.signInWithEmailAndPassword(auth,email,password)),
-  signUp:(email,password)=>authAction(()=>sdk.createUserWithEmailAndPassword(auth,email,password)),
+  signIn:(email,password)=>measured('login',()=>sdk.signInWithEmailAndPassword(auth,email,password)),
+  signUp:(email,password)=>measured('sign_up',()=>sdk.createUserWithEmailAndPassword(auth,email,password)),
   resetPassword:email=>authAction(()=>sdk.sendPasswordResetEmail(auth,email)),
   signOut:()=>authAction(()=>sdk.signOut(auth)),
   readAll,putBest,

@@ -1,3 +1,6 @@
+import analyticsConfig from './analytics-config.mjs?v=20261101-analytics1';
+import {createAnalytics} from './analytics.mjs?v=20261101-analytics1';
+import {installAnalyticsUI} from './analytics-ui.mjs?v=20261101-analytics1';
 import firebaseConfig from './firebase-config.mjs?v=20261030-calendar1';
 import {recordBest,normalizeProgress,serializeProgress,starsFor,packProgress,isLevelUnlocked,PACK_SIZE,unlockedPackCount} from './progress.mjs?v=20261030-calendar1';
 import {levels,cells,holes,createWorld,snapshot,move,complete,step,settle,accessible,destinations,hint,isSpare,plateForBolt,attachmentCount,STEP,validateDailyRecipe,compileDailyRecipe} from './engine.mjs?v=20261030-calendar1';
@@ -6,6 +9,8 @@ import {createDailyStore} from './daily-data.mjs?v=20261030-calendar1';
 import {dailyScoreCatalog,summarizeDaily,dailyDateForIdentity,calendarMonth,shiftMonth} from './daily-summary.mjs?v=20261030-calendar1';
 const $=s=>document.querySelector(s),ns='http://www.w3.org/2000/svg',colors=['#557f79','#c67d57','#c9a75d','#739381'];
 const native=window.ScrewWorkshopNative;
+const analytics=createAnalytics({window,native:!!native,...analyticsConfig});
+installAnalyticsUI({analytics,enabled:analyticsConfig.enabled,native:!!native});
 let saved={};try{saved=native?native.savedProgress:JSON.parse(localStorage.getItem('screw-workshop-physics-v4')||'{}')}catch{}
 let {bests,done,index,unlockedPacks}=normalizeProgress(saved,levels);
 let daily=null,dailyRequest=0,dailyCatalog=null,dailyMonth=null,dialogMode=null,dailyResultDate=null;
@@ -36,7 +41,7 @@ window.addEventListener('screw-workshop-lifecycle',event=>{nativeActive=event.de
 window.addEventListener('storage',event=>{if(event.key==='screw-workshop-daily-bests-v1'&&!accountUID){if(dailyLocked()){cancelMotion();render()}if(dialogMode==='daily'&&dailyCatalog&&$('#dialog').open)dailyMenu(dailyCatalog);else if(dialogMode==='daily-result'&&dailyResultDate&&$('#dialog').open)showDailyResult(dailyResultDate)}});
 window.addEventListener('screw-workshop-save-error',()=>say('Your progress could not be saved on this device. Keep the app open and check available storage.'));
 function cancelMotion(){if(frame!==null)cancelAnimationFrame(frame);frame=null;busy=false}
-function start(i){if(!isLevelUnlocked(i,levels,done,unlockedPacks)){say('Complete seven puzzles in the preceding pack to unlock this one.');return}dailyRequest++;cancelMotion();daily=null;index=i;sim=createWorld(levels[i]);settle(sim);history=[];selected=null;hintHole=null;persist();render();say(levels[i].tip);if(!sim.settled)animate()}
+function start(i){if(!isLevelUnlocked(i,levels,done,unlockedPacks)){say('Complete seven puzzles in the preceding pack to unlock this one.');return}dailyRequest++;cancelMotion();daily=null;analytics.newAttempt('campaign');index=i;sim=createWorld(levels[i]);settle(sim);history=[];selected=null;hintHole=null;persist();render();say(levels[i].tip);if(!sim.settled)animate()}
 function say(t){$('#message').textContent=t}
 function pos(el,h){el.style.left=cells[h].x/350*100+'%';el.style.top=cells[h].y/430*100+'%'}
 function svgEl(name,attrs={}){const e=document.createElementNS(ns,name);Object.entries(attrs).forEach(([k,v])=>e.setAttribute(k,v));return e}
@@ -54,6 +59,7 @@ function render(){const l=currentLevel(),board=$('#board');board.replaceChildren
  const label=svgEl('text',{x:cx,y:cy+3,'text-anchor':'middle',fill:'#ffffff70','font-size':8,'font-weight':700,'letter-spacing':2});label.textContent=String.fromCharCode(65+p);g.append(label);svg.append(g);plateNodes.push(g)});
  const label=document.createElement('div');label.className='storage-label';label.textContent=`${l.spares.length===1?'ONE SPARE':'TWO SPARES'} · PLAN THE CLEAR PATH`;board.append(label);
  sim.positions.forEach((h,b)=>{const el=document.createElement('button');el.className='bolt'+(sim.removed&(1<<b)?' parked':'')+(selected===b?' selected':'');pos(el,h);el.style.zIndex=30;el.setAttribute('aria-label',`Screw ${b+1}${sim.removed&(1<<b)?', parked':`, plate ${String.fromCharCode(65+plateForBolt(sim,b))}`}`);el.setAttribute('aria-pressed',selected===b);el.onclick=e=>activate('screw',b,e);board.append(el);pinNodes.push(el)});draw();
+ if(complete(sim)&&!dailyLocked())analytics.completeAttempt();
  const win=$('#win');win.hidden=!complete(sim)&&!dailyLocked();if(!win.hidden){
   if(daily){if(complete(sim)&&!dailyLocked()){daily.finished=daily.source!=='fallback';daily.finalMoves=sim.moves;try{saveDailyBest(daily.identity,sim.moves)}catch{daily.status='Completed and closed. Your score is kept in this session, but device saving failed.';$('#dailystatus').textContent=daily.status}}}
   else{done.add(l.id);bests=recordBest(bests,l.id,sim.moves);persist();queueAccountScore('campaign',l.id,'shapes80-v1',sim.moves)}
@@ -77,12 +83,12 @@ function activate(kind,id,event){
 function select(b){if(dailyLocked()||complete(sim)||!accessible(sim,b))return;selected=selected===b?null:b;hintHole=null;render();say(selected===null?'Choose another screw when you’re ready.':destinations(sim).length?'Tap a glowing clear board hole. You can move screws while the pieces move.':(sim.settled?'No clear parking holes. Undo and try a different screw.':'No clear parking holes right now. Wait for an opening or undo.'))}
 function place(h){if(dailyLocked()||complete(sim))return;if(selected===null){say('Tap an exposed silver screw first, then a glowing wood hole.');return}
  const before=snapshot(sim),next=move(sim,selected,h);if(!next){if(!accessible(sim,selected))selected=null;render();say('The pieces moved: that screw or hole is now covered. Choose an exposed screw and clear wood hole.');return}
- history.push(before);sim=next;selected=null;hintHole=null;render();say('Keep going—screws can move while the pieces swing and slide.');animate()
+ analytics.firstMove();history.push(before);sim=next;selected=null;hintHole=null;render();say('Keep going—screws can move while the pieces swing and slide.');animate()
 }
 $('#undo').onclick=()=>{if(dailyLocked()||!history.length)return;cancelMotion();sim=createWorld(currentLevel(),history.pop());selected=null;hintHole=null;render();say('Restored the previous positions and momentum. Moving pieces continue from there.');if(!sim.settled)animate()};
 function openDialog(title,html){dialogMode=null;dailyRequest++;$('#dialogtitle').textContent=title;$('#dialogbody').innerHTML=html;if(!$('#dialog').open)$('#dialog').showModal()}
 $('#close').onclick=()=>$('#dialog').close();$('#dialog').addEventListener('close',()=>{dailyRequest++;dialogMode=null});$('#dialog').addEventListener('click',e=>{if(e.target===$('#dialog')){const r=e.target.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)e.target.close()}});
-function restartCurrent(){if(dailyLocked()){say('This daily challenge is complete. Your final result stays saved.');return}if(!daily){start(index);return}cancelMotion();sim=createWorld(daily.level);settle(sim);history=[];selected=null;hintHole=null;render();say(daily.level.tip);if(!sim.settled)animate()}
+function restartCurrent(){if(dailyLocked()){say('This daily challenge is complete. Your final result stays saved.');return}if(!daily){start(index);return}cancelMotion();analytics.newAttempt(daily.source==='fallback'?'practice':'daily');sim=createWorld(daily.level);settle(sim);history=[];selected=null;hintHole=null;render();say(daily.level.tip);if(!sim.settled)animate()}
 $('#restart').onclick=()=>{if(dailyLocked())return;if(!sim.moves){restartCurrent();return}openDialog('A fresh start?','<p>Restart this puzzle? Your other completed puzzles stay saved.</p><button class="primary" id="confirmrestart">Restart puzzle</button>');$('#confirmrestart').onclick=()=>{$('#dialog').close();restartCurrent()}};
 $('#hint').onclick=()=>{if(dailyLocked())return;const h=hint(sim);if(h.b!==undefined){selected=h.b;hintHole=h.h;render()}say(h.text)};
 function showLevels(){dailyRequest++;const packs=packProgress(levels,done,unlockedPacks);openDialog('Your workshop',`<p>Complete any <strong>7 of 10</strong> puzzles in a pack to open the next. Previously unlocked packs stay open. One star is enough; replay for a tidier route whenever you like.</p><p id="lockmessage" role="status" aria-live="polite"></p><div class="packlist">${packs.map(p=>`<section class="pack"><h3>${p.index+1}. ${escapeHTML(p.name)} <small>${p.completed}/${PACK_SIZE} complete${p.unlocked?'':' · Locked'}</small></h3><div class="levelgrid">${levels.slice(p.index*PACK_SIZE,(p.index+1)*PACK_SIZE).map((l,j)=>{const i=p.index*PACK_SIZE+j,n=starsFor(bests[l.id],l.solution.length)||(done.has(l.id)?1:0);return `<button data-level="${i}" aria-disabled="${!p.unlocked}">${String(i+1).padStart(2,'0')} · ${escapeHTML(l.name)}<small>${!p.unlocked?'Locked · finish 7 in the preceding pack':n?`${stars(n)}${bests[l.id]?` · ${bests[l.id]} moves`:''}`:i===index?'Currently playing':'Ready when you are'}</small></button>`}).join('')}</div></section>`).join('')}</div>`);document.querySelectorAll('[data-level]').forEach(b=>b.onclick=()=>{const i=+b.dataset.level;if(!isLevelUnlocked(i,levels,done,unlockedPacks)){$('#lockmessage').textContent='Complete seven puzzles in the preceding pack to unlock this pack. No perfect scores needed.';return}$('#dialog').close();start(i)})}$('#levels').onclick=showLevels;
@@ -108,7 +114,7 @@ async function loadDailyDate(date){
   if(result.source!=='fallback'&&dailyResult(date)){showDailyResult(date);return}
   cancelMotion();const level=compileDailyRecipe(result.recipe);
   level.name=result.puzzle.name;daily={...result,level,status:dailySourceStatus(result)};
-  sim=createWorld(level);settle(sim);history=[];selected=null;hintHole=null;
+  analytics.newAttempt(result.source==='fallback'?'practice':'daily');sim=createWorld(level);settle(sim);history=[];selected=null;hintHole=null;
   $('#dialog').close();render();say(level.tip);if(!sim.settled)animate();
  }catch{
   if(request!==dailyRequest||!$('#dialog').open)return;
@@ -169,10 +175,10 @@ function switchAccount(user,adapter,core){
 }
 async function setupAccount(){
  if(native||typeof firebaseConfig==='undefined'||!firebaseConfig.enabled)return;
- const [ui,fb,core]=await Promise.all([import('./account-ui.mjs?v=20261030-calendar1'),import('./firebase-adapter.mjs?v=20261030-calendar1'),import('./progress-sync.mjs?v=20261030-calendar1')]);
+ const [ui,fb,core]=await Promise.all([import('./account-ui.mjs?v=20261101-analytics1'),import('./firebase-adapter.mjs?v=20261101-analytics1'),import('./progress-sync.mjs?v=20261030-calendar1')]);
  if(!fb.isFirebaseConfigured(firebaseConfig))return;accountTools=ui;
  const button=$('#account');
- ui.installAccountUI({button,loadAdapter:()=>fb.createFirebaseAdapter({config:firebaseConfig}),
+ ui.installAccountUI({button,loadAdapter:()=>fb.createFirebaseAdapter({config:firebaseConfig,onAnalytics:event=>analytics.track(event)}),
   onUser(user,adapter){switchAccount(user,adapter,core)},
   async importGuest(){if(!accountUID)return;const guest=normalizeProgress(readSave('screw-workshop-physics-v4'),levels);const records=Object.entries(guest.bests).map(([id,moves])=>ui.scoreRecord('campaign',id,'shapes80-v1',moves));for(const[id,moves]of Object.entries(dailyStore.readProgress())){const r=ui.dailyScoreRecord(id,moves);if(r)records.push(r)}syncController.importGuest(records,{confirmed:true});await flushAccount()},
   exportLocal(){return {sync:syncController.exportData(),campaign:serializeProgress(index,levels,done,bests,unlockedPacks),daily:{...accountDaily}}},

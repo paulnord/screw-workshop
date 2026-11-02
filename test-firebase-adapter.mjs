@@ -64,3 +64,11 @@ const n=mock(),b=await createFirebaseAdapter({config:configured,loadSDK:async()=
 // Pagination never deletes another user's records; multiple bounded batches work.
 const p=mock(),c=await createFirebaseAdapter({config:configured,loadSDK:async()=>p.sdk});for(let i=0;i<801;i++)p.records.set(`users/alice/progress/p${i}`,record);p.records.set('users/bob/progress/private',record);await c.deleteAll('alice','pw');assert.equal(p.calls.filter(x=>x==='batch').length,3);assert.equal(p.records.size,1);assert.equal(c.currentUser().uid,'alice');
 console.log('PASS Firebase adapter: disabled gate, lazy SDK, memory/session isolation, transactional revision-specific minima, bounded competing-device denial retries, stale-user cancellation, reauth-first bounded deletion, failure recovery in-flight write drain, tombstone ordering and retained deletion flags.');
+// Auth metrics are success-only and never receive credentials or restored users.
+const metrics=[],am=mock(),measured=await createFirebaseAdapter({config:configured,loadSDK:async()=>am.sdk,onAnalytics:(...args)=>metrics.push(args)});
+assert.deepEqual(metrics,[]);am.change('alice');assert.deepEqual(metrics,[]);
+await measured.signIn('private@example.test','never-log-this');await measured.signUp('private@example.test','never-log-this');
+assert.deepEqual(metrics,[['login'],['sign_up']]);
+am.sdk.signInWithEmailAndPassword=async()=>{throw Error('rejected')};await assert.rejects(measured.signIn('private@example.test','bad'));assert.equal(metrics.length,2);
+const tm=mock(),throwing=await createFirebaseAdapter({config:configured,loadSDK:async()=>tm.sdk,onAnalytics:()=>{throw Error('analytics failed')}});await throwing.signIn('private@example.test','password');assert.equal(tm.calls.includes('signin'),true);
+console.log('PASS auth analytics: success only, no restored-session events or credential payloads, analytics failures cannot reject login.');

@@ -105,3 +105,35 @@ See [Firestore storage and local validation](firebase/README.md). Use the no-cos
 `node test-daily-summary.mjs` covers UTC month/year/leap-day boundaries, revision/date deduplication and historical scoring metadata. `node test-daily-sync.mjs` covers final completion locks, competing devices, stale snapshots, offline caches and explicit historical imports. Daily UI/account suites cover readonly calendar entry, no post-completion undo/restart/hint/replay, unfinished retries, closing during loads and UID switching.
 
 `dist/daily-score-catalog.mjs` retains original revision-specific target metadata. The publisher regenerates it from hash-verified immutable puzzle data; never remove historical revisions or reinterpret old scores against a changed target. Unknown historical revisions still count as completed and stay locked, but their stars are labeled unavailable rather than guessed. Fallback practice is excluded from calendar totals and remains replayable. Existing best-score save keys and account records are not rewritten by opening the calendar.
+
+## Optional web usage analytics
+
+The web client includes basic opt-in Google Analytics for the owner-verified
+`G-DG754SQQL6` web stream (stream ID `16236648725`). The owner confirmed Enhanced
+measurement is off and explicitly approved publication and activation on November 2,
+2026. `dist/analytics-config.mjs` enables the consent offer, not automatic consent.
+No Google sign-in, API key restriction, credential, or security setting was changed
+by this release. Public Firebase keys are not report-reading credentials.
+
+A non-blocking choice offers equally prominent Allow analytics and
+No thanks buttons. No Google tag is loaded before consent. Privacy & analytics
+allows withdrawal; withdrawal disables collection immediately, removes accessible
+GA cookies, and reloads the page to unload the tag. Closing an in-progress attempt
+by reloading does not erase completed scores. Existing transmitted events cannot
+be recalled by changing consent. Consent is remembered only in this browser and
+propagates between open tabs. Native wrappers never install analytics.
+
+Custom events are a sanitized page view; first valid move and first physical
+completion per attempt (`level_start`/`level_end`, split by campaign/daily/practice);
+and successful explicit `sign_up`/`login`. No emails, Firebase UIDs, credentials,
+raw URLs/referrers, saved scores, or imported history are supplied. Automatic GA
+session/device metadata and browser identifiers mean this is aggregate reporting,
+not anonymous collection. Ad consent stays denied. Analytics cookies expire after
+30 days without extending on each visit; this does not set GA property retention.
+Counts exclude declined/blocked/offline traffic and cannot reconstruct historical
+accounts or identify exact unique people. SDK loading failures never stop gameplay.
+
+Local validation: `node test-analytics.mjs`, `node test-firebase-adapter.mjs`,
+`node test-daily-ui.mjs`, and `node test-account-ui.mjs`. Browser consent testing
+uses a stub tag and never sends test visitor data to Google. Real ingestion and
+property reporting must be verified separately in the owner’s GA4 Realtime view.
