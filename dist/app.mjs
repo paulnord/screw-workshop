@@ -1,6 +1,6 @@
-import analyticsConfig from './analytics-config.mjs?v=20261103-diagnostics1';
-import {createAnalytics} from './analytics.mjs?v=20261103-diagnostics1';
-import {installAnalyticsUI} from './analytics-ui.mjs?v=20261103-diagnostics1';
+import analyticsConfig from './analytics-config.mjs?v=20261103-login1';
+import {createAnalytics} from './analytics.mjs?v=20261103-login1';
+import {installAnalyticsUI} from './analytics-ui.mjs?v=20261103-login1';
 import firebaseConfig from './firebase-config.mjs?v=20261030-calendar1';
 import {recordBest,normalizeProgress,serializeProgress,starsFor,packProgress,isLevelUnlocked,PACK_SIZE,unlockedPackCount} from './progress.mjs?v=20261030-calendar1';
 import {levels,cells,holes,createWorld,snapshot,move,complete,step,settle,accessible,destinations,hint,isSpare,plateForBolt,attachmentCount,STEP,validateDailyRecipe,compileDailyRecipe} from './engine.mjs?v=20261030-calendar1';
@@ -175,7 +175,7 @@ function switchAccount(user,adapter,core){
 }
 async function setupAccount(){
  if(native||typeof firebaseConfig==='undefined'||!firebaseConfig.enabled)return;
- const [ui,fb,core]=await Promise.all([import('./account-ui.mjs?v=20261103-diagnostics1'),import('./firebase-adapter.mjs?v=20261103-diagnostics1'),import('./progress-sync.mjs?v=20261030-calendar1')]);
+ const [ui,fb,core]=await Promise.all([import('./account-ui.mjs?v=20261103-login1'),import('./firebase-adapter.mjs?v=20261103-login1'),import('./progress-sync.mjs?v=20261030-calendar1')]);
  if(!fb.isFirebaseConfigured(firebaseConfig))return;accountTools=ui;
  const button=$('#account');
  ui.installAccountUI({button,analyticsUI,loadAdapter:()=>fb.createFirebaseAdapter({config:firebaseConfig,onAnalytics:event=>analytics.track(event)}),

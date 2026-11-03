@@ -145,3 +145,9 @@ property reporting must be verified separately in the owner’s GA4 Realtime vie
 Optional diagnostics appears as an unchecked checkbox alongside the sign-up fields and in signed-in account details. It reflects the existing browser-level choice, saves immediately when changed, and is never required for an account or guest play. The first-visit choice sits before the game board rather than below the footer; the header’s Privacy control reopens it later. Google Analytics disclosures remain available beside both controls. Existing consent, cookie scope, opt-in gating and withdrawal behavior are unchanged.
 
 Run `node test-analytics-ui.mjs` for shared consent/account-control regression coverage.
+
+### Remembered account sign-in
+
+Firebase keeps account sign-in in this browser until explicit sign-out when local site storage is available. A non-credential return-visit flag restores an account on page load without opening the account dialog. First-time guests still load no Firebase SDK until choosing Account, and guest scores are never imported automatically. Firebase auth restoration finishes before reporting the initial user. Restricted storage falls back to a temporary session or memory-only login with an account-dialog warning. Sign out on shared devices. Clearing site data, private browsing restrictions, or changing browsers can require signing in again. Existing session-only users should open Account once after this update to migrate an active session; an expired session requires one new sign-in.
+
+Regression coverage: `node test-account-ui.mjs` and `node test-firebase-adapter.mjs`. Mock tests cover persistence selection, delayed restoration, return visits, simultaneous Account clicks, sign-out, restricted storage and restoration retry. Actual browser restart/device behavior remains a separate acceptance check.

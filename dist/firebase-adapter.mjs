@@ -1,5 +1,6 @@
 // Optional Firebase boundary. No SDK request occurs on import. Call only after an
-// explicit Account action and a verified deployment config. App uses its own UID
+// explicit Account action (or restoration of a previously chosen account) and a
+// verified deployment config. App uses its own UID
 // scoped pending queue; Firestore transactions deliberately require connectivity.
 export const FIREBASE_SDK_VERSION='13.1.0';
 const fields=['schema','kind','puzzleId','revision','bestMoves','completed'];
@@ -25,8 +26,16 @@ export async function createFirebaseAdapter({config,loadSDK=loadFirebaseSDK,onAn
  const sdk=await loadSDK();
  const app=sdk.initializeApp(config.firebase,'screw-workshop-progress');
  const auth=sdk.getAuth(app);
- // Tab/session scoped credentials, never a custom stored password/token.
- await sdk.setPersistence(auth,sdk.browserSessionPersistence);
+ // Firebase owns credentials. Keep this browser signed in until explicit signout.
+ // Restricted storage must not prevent guest play or a temporary sign-in.
+ let persistence='local';
+ try{await sdk.setPersistence(auth,sdk.browserLocalPersistence)}catch{
+  persistence='session';
+  try{await sdk.setPersistence(auth,sdk.browserSessionPersistence)}catch{
+   persistence='memory';await sdk.setPersistence(auth,sdk.inMemoryPersistence);
+  }
+ }
+ await auth.authStateReady();
  const db=sdk.initializeFirestore(app,{localCache:sdk.memoryLocalCache()});
  let epoch=0,lastUID=auth.currentUser?.uid??null,destructive=false,authBusy=false;
  const observers=new Set(),writes=new Set();
@@ -79,6 +88,7 @@ export async function createFirebaseAdapter({config,loadSDK=loadFirebaseSDK,onAn
   finally{destructive=false}
  }
  return {
+  persistence,
   currentUser:publicUser,
   onAuth(callback){if(typeof callback!=='function')throw Error('Auth callback required');observers.add(callback);callback(publicUser());return()=>observers.delete(callback)},
   signIn:(email,password)=>measured('login',()=>sdk.signInWithEmailAndPassword(auth,email,password)),

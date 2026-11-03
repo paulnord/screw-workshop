@@ -16,7 +16,7 @@ npm run test:rules
 npm run test:emulators
 ```
 
-These commands use the `demo-screw-workshop` emulator-only project bound to localhost. `test:emulators` also starts Auth and exercises the real SDK and production adapter with disposable emulator-only users; Node in-memory persistence substitutes for browser session persistence, so browser/CDN/device acceptance remains separate. The test refuses to run without a localhost emulator address. Tests cover unauthenticated/cross-user reads and writes, collection listing, unknown paths, malformed fields, identity changes, worsening scores, online minimum transactions, revision separation and atomic owner deletion. Never substitute a real project ID in either test script. The test fixtures never import the production Firebase configuration.
+These commands use the `demo-screw-workshop` emulator-only project bound to localhost. `test:emulators` also starts Auth and exercises the real SDK and production adapter with disposable emulator-only users; Node in-memory persistence substitutes for browser local persistence, so browser/CDN/device acceptance remains separate. The test refuses to run without a localhost emulator address. Tests cover unauthenticated/cross-user reads and writes, collection listing, unknown paths, malformed fields, identity changes, worsening scores, online minimum transactions, revision separation and atomic owner deletion. Never substitute a real project ID in either test script. The test fixtures never import the production Firebase configuration.
 
 Official references:
 - https://firebase.google.com/docs/rules/unit-tests

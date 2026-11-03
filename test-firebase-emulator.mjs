@@ -36,9 +36,9 @@ async function createClient(label,{port=Number(firestorePort)}={}){
  const sdk={...appSDK,...authSDK,...firestoreSDK,
   initializeApp(options){assert.equal(options.projectId,projectId);client.app=appSDK.initializeApp(options,`emulator-${label}-${runId}`);return client.app},
   getAuth(app){client.auth=authSDK.getAuth(app);authSDK.connectAuthEmulator(client.auth,authURL,{disableWarnings:true});return client.auth},
-  // Node has no browser sessionStorage. Substitute memory persistence in this
-  // test ONLY. Real browser session persistence/CDN/CORS/device UI are NOT tested.
-  browserSessionPersistence:authSDK.inMemoryPersistence,
+  // Node has no browser localStorage. Substitute memory persistence in this
+  // test ONLY. Real browser local persistence/CDN/CORS/device UI are NOT tested.
+  browserLocalPersistence:authSDK.inMemoryPersistence,
   initializeFirestore(app,options){client.db=firestoreSDK.initializeFirestore(app,options);firestoreSDK.connectFirestoreEmulator(client.db,firestoreHost,port);return client.db},
   runTransaction(db,update,options){return firestoreSDK.runTransaction(db,transaction=>update({
    async get(ref){const snapshot=await transaction.get(ref);if(ref.path.includes('/progress/')&&client.progressReadBarrier){const barrier=client.progressReadBarrier;client.progressReadBarrier=null;await barrier()}return snapshot},
@@ -52,7 +52,7 @@ async function createClient(label,{port=Number(firestorePort)}={}){
 }
 
 console.log('LOCAL INTEGRATION: production adapter + real Firebase SDK + Auth/Firestore emulators; demo-only ephemeral accounts.');
-console.log('LIMITATION: Node in-memory Auth persistence substitutes for browser session persistence; no real email, browser/CDN or device acceptance claimed.');
+console.log('LIMITATION: Node in-memory Auth persistence substitutes for browser local persistence; no real email, browser/CDN or device acceptance claimed.');
 try{
  const alice=await createClient('alice-device-1'),aliceSecond=await createClient('alice-device-2'),bob=await createClient('bob'),guest=await createClient('guest');
  const aliceEmail=`alice-${runId}@example.test`,bobEmail=`bob-${runId}@example.test`;

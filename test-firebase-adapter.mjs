@@ -5,11 +5,11 @@ const configured={enabled:true,firebase:{apiKey:'public-test-key',authDomain:'de
 const record={schema:1,kind:'campaign',puzzleId:'first-turn',revision:'rev1',bestMoves:5,completed:true};
 const key=r=>`${r.kind}__${r.puzzleId}__${r.revision}`;
 function mock(){
- const records=new Map(),calls=[],listeners=[],auth={currentUser:{uid:'alice',email:'a@example.test',emailVerified:true}};
+ const records=new Map(),calls=[],listeners=[],auth={authStateReady:async()=>{},currentUser:{uid:'alice',email:'a@example.test',emailVerified:true}};
  let failDelete=false,failReauth=false,readBarrier=null,txBarrier=null,txFailures=0,txAttempts=0,txErrorCode='permission-denied';
  const change=uid=>{auth.currentUser=uid?{uid,email:uid+'@example.test'}:null;listeners.forEach(cb=>cb(auth.currentUser))};
  const docs=q=>[...records.entries()].filter(([id])=>id.startsWith(q.path+'/')).slice(0,q.limit??Infinity).map(([id,data])=>({id:id.split('/').at(-1),ref:{path:id},data:()=>data}));
- const sdk={initializeApp:()=>({}),getAuth:()=>auth,setPersistence:async(a,v)=>calls.push(v),browserSessionPersistence:'session',initializeFirestore:(a,o)=>{assert.equal(o.localCache,'memory');return{}},memoryLocalCache:()=> 'memory',onAuthStateChanged:(a,cb)=>listeners.push(cb),collection:(d,...path)=>({path:path.join('/')}),doc:(d,...path)=>({path:path.join('/')}),serverTimestamp:()=> 'server-time',query:(q,l)=>({...q,...l}),limit:n=>({limit:n}),
+ const sdk={initializeApp:()=>({}),getAuth:()=>auth,setPersistence:async(a,v)=>calls.push(v),browserLocalPersistence:'local',browserSessionPersistence:'session',inMemoryPersistence:'memory',initializeFirestore:(a,o)=>{assert.equal(o.localCache,'memory');return{}},memoryLocalCache:()=> 'memory',onAuthStateChanged:(a,cb)=>listeners.push(cb),collection:(d,...path)=>({path:path.join('/')}),doc:(d,...path)=>({path:path.join('/')}),serverTimestamp:()=> 'server-time',query:(q,l)=>({...q,...l}),limit:n=>({limit:n}),
  getDocsFromServer:async q=>{if(readBarrier)await readBarrier;return {docs:docs(q)}},
  runTransaction:async(d,fn)=>{txAttempts++;let writes=[];const value=await fn({get:async ref=>{if(txBarrier)await txBarrier;return{exists:()=>records.has(ref.path),data:()=>records.get(ref.path)}},set:(ref,r)=>writes.push([ref.path,r])});if(txFailures-->0)throw Object.assign(Error('transaction rejected'),{code:txErrorCode});for(const[id,r]of writes){records.set(id,r);calls.push(id.endsWith('/control/account')?'tombstone':'write')}return value},
  writeBatch:()=>{const dels=[];return {delete:ref=>dels.push(ref.path),commit:async()=>{calls.push('batch');if(failDelete)throw Error('offline');dels.forEach(k=>records.delete(k))}}},
@@ -30,6 +30,7 @@ assert.equal(isFirebaseConfigured(config),true);
 assert.equal(isFirebaseConfigured(disabledConfig),false);let loads=0;
 await assert.rejects(createFirebaseAdapter({config:disabledConfig,loadSDK:()=>{loads++}}),/not configured/);assert.equal(loads,0);
 const m=mock(),a=await createFirebaseAdapter({config:configured,loadSDK:async()=>m.sdk});
+assert.equal(m.calls[0],'local');
 assert.deepEqual(a.currentUser(),{uid:'alice',email:'a@example.test',emailVerified:true});
 await a.putBest('alice',record);await a.putBest('alice',{...record,bestMoves:9});assert.equal((await a.readAll('alice'))[0].bestMoves,5);
 await a.putBest('alice',{...record,bestMoves:3});assert.equal((await a.readAll('alice'))[0].bestMoves,3);
@@ -63,7 +64,7 @@ await a.deleteAccount('password');assert.deepEqual([...m.records.keys()],['users
 const n=mock(),b=await createFirebaseAdapter({config:configured,loadSDK:async()=>n.sdk});n.txBarrier=new Promise(r=>release=r);const writing=b.putBest('alice',record);const deleting=b.deleteAccount('pw');release();await assert.rejects(writing,/deletion/);await deleting;assert.deepEqual([...n.records.keys()],['users/alice/control/account']);
 // Pagination never deletes another user's records; multiple bounded batches work.
 const p=mock(),c=await createFirebaseAdapter({config:configured,loadSDK:async()=>p.sdk});for(let i=0;i<801;i++)p.records.set(`users/alice/progress/p${i}`,record);p.records.set('users/bob/progress/private',record);await c.deleteAll('alice','pw');assert.equal(p.calls.filter(x=>x==='batch').length,3);assert.equal(p.records.size,1);assert.equal(c.currentUser().uid,'alice');
-console.log('PASS Firebase adapter: disabled gate, lazy SDK, memory/session isolation, transactional revision-specific minima, bounded competing-device denial retries, stale-user cancellation, reauth-first bounded deletion, failure recovery in-flight write drain, tombstone ordering and retained deletion flags.');
+console.log('PASS Firebase adapter: disabled gate, lazy SDK, memory Firestore/local Auth isolation, transactional revision-specific minima, bounded competing-device denial retries, stale-user cancellation, reauth-first bounded deletion, failure recovery in-flight write drain, tombstone ordering and retained deletion flags.');
 // Auth metrics are success-only and never receive credentials or restored users.
 const metrics=[],am=mock(),measured=await createFirebaseAdapter({config:configured,loadSDK:async()=>am.sdk,onAnalytics:(...args)=>metrics.push(args)});
 assert.deepEqual(metrics,[]);am.change('alice');assert.deepEqual(metrics,[]);
@@ -72,3 +73,19 @@ assert.deepEqual(metrics,[['login'],['sign_up']]);
 am.sdk.signInWithEmailAndPassword=async()=>{throw Error('rejected')};await assert.rejects(measured.signIn('private@example.test','bad'));assert.equal(metrics.length,2);
 const tm=mock(),throwing=await createFirebaseAdapter({config:configured,loadSDK:async()=>tm.sdk,onAnalytics:()=>{throw Error('analytics failed')}});await throwing.signIn('private@example.test','password');assert.equal(tm.calls.includes('signin'),true);
 console.log('PASS auth analytics: success only, no restored-session events or credential payloads, analytics failures cannot reject login.');
+
+// Restoring must finish before the adapter can report a guest or expose actions.
+const rm=mock();let finishRestore,restored=false;
+rm.sdk.getAuth().currentUser=null;
+rm.sdk.getAuth().authStateReady=()=>new Promise(resolve=>finishRestore=()=>{rm.change('returning');resolve()});
+const restoring=createFirebaseAdapter({config:configured,loadSDK:async()=>rm.sdk}).then(value=>{restored=true;return value});
+await new Promise(r=>setImmediate(r));assert.equal(restored,false);
+finishRestore();const ra=await restoring;const restoredUsers=[];ra.onAuth(u=>restoredUsers.push(u?.uid));
+assert.deepEqual(restoredUsers,['returning']);assert.equal(ra.persistence,'local');
+for(const blocked of [['local'],['local','session']]){
+ const fm=mock();fm.sdk.setPersistence=async(a,value)=>{fm.calls.push(value);if(blocked.includes(value))throw Error('storage blocked')};
+ const fallback=await createFirebaseAdapter({config:configured,loadSDK:async()=>fm.sdk});
+ assert.equal(fallback.persistence,blocked.length===1?'session':'memory');
+ assert.deepEqual(fm.calls,blocked.length===1?['local','session']:['local','session','memory']);
+}
+console.log('PASS restore readiness, persistent Auth selection and restricted-storage session/memory fallback.');

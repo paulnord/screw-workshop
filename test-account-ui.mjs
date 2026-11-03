@@ -80,3 +80,29 @@ await game.showDaily();assert.equal(h.get('#dialog').open,true);
 game.switchAccount({uid:'bob'},backend,core);assert.equal(h.get('#dialog').open,false);await new Promise(r=>setImmediate(r));
 assert.equal(memory.get('screw-workshop-physics-v4'),guestBefore);
 console.log('PASS daily/account regression: sync-safe puzzle opening, competing final score visible reconciliation, unknown-revision stars never invented, and modal identity isolation.');
+
+// Return visits restore on installation, without an Account click or dialog.
+const {ACCOUNT_RESTORE_KEY}=await import('./dist/account-ui.mjs');
+const savedAuth=new Map([[ACCOUNT_RESTORE_KEY,'1']]);
+const storage={getItem:k=>savedAuth.get(k),setItem:(k,v)=>savedAuth.set(k,v),removeItem:k=>savedAuth.delete(k)};
+let releaseAdapter,restoreLoads=0,notify;
+const returnButton=new El(),returnSeen=[];
+const returning=installAccountUI({button:returnButton,storage,loadAdapter:()=>{restoreLoads++;return new Promise(r=>releaseAdapter=r)},onUser:u=>returnSeen.push(u?.uid??null)});
+assert.equal(returnButton.textContent,'Restoring account…');assert.equal(restoreLoads,1);const returnDialog=body.child;
+const clicked=returnButton.onclick();assert.equal(restoreLoads,1,'Click shares the pending restoration');
+releaseAdapter({persistence:'local',onAuth(fn){notify=fn;fn({uid:'returning',email:'r@example.test'});return()=>{}}});
+await returning.initialized;await clicked;
+assert.equal(returnButton.textContent,'Account ✓');assert.deepEqual(returnSeen,['returning']);assert.match(returnDialog.innerHTML,/stay signed in/);
+returning.close();notify(null);assert(!savedAuth.has(ACCOUNT_RESTORE_KEY));assert.equal(returnDialog.open,false);
+returning.destroy();
+const guestButton=new El();let guestLoads=0;
+const guest=installAccountUI({button:guestButton,storage,loadAdapter:()=>{guestLoads++},onUser(){}});await guest.initialized;assert.equal(guestLoads,0);guest.destroy();
+// Background restore failure leaves a retry and preserves the restore flag.
+savedAuth.set(ACCOUNT_RESTORE_KEY,'1');let tries=0,errors=0;
+const retryButton=new El();const retry=installAccountUI({button:retryButton,storage,loadAdapter:async()=>{if(++tries===1)throw Error('offline');return {onAuth(fn){fn({uid:'returning'});return()=>{}}}},onUser(){},onError(){errors++}});
+await retry.initialized;assert.equal(errors,1);assert.equal(savedAuth.get(ACCOUNT_RESTORE_KEY),'1');assert.match(retryButton.textContent,/retry/);
+await retryButton.onclick();assert.equal(tries,2);assert.equal(retry.getUser().uid,'returning');retry.destroy();
+// Restore itself never opens a modal and a settled signed-out session clears flag.
+const silent=installAccountUI({button:new El(),storage,loadAdapter:async()=>({onAuth(fn){fn(null);return()=>{}}}),onUser(){}});
+const silentDialog=body.child;await silent.initialized;assert.equal(silentDialog.open,false);assert(!savedAuth.has(ACCOUNT_RESTORE_KEY));silent.destroy();
+console.log('PASS automatic return-visit restore, concurrent click, no unsolicited modal, signout flag clearing, guest SDK gate and offline retry.');
