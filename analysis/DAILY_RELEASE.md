@@ -1,6 +1,6 @@
 # Daily workshop validation — October 29, 2026
 
-The 80 campaign IDs, geometry and save keys remain unchanged. Daily identities include content hashes; campaign unlocks and daily bests are separate. Seven dated challenges are seeded through November 4. Additional dates require the documented publisher and CI, not a recurring autonomous process.
+The original 80 campaign IDs and geometry remain unchanged, and the 100-level campaign retains the same save key. Daily identities include content hashes; campaign unlocks and daily bests are separate. Seven dated challenges are seeded through November 4. Additional dates require the documented publisher and CI, not a recurring autonomous process.
 
 All seven JSON witnesses replay to actual physical completion (76 moves total). The first three density prototypes use 6/8/10 blocks and 12/14/16 screws respectively, compared with the campaign's maximum four blocks. Their targets equal their original screw counts, reaching the lower bound under intended anchor rules. This is not a formal proof against numerical-engine exploits or all continuous-time strategies.
 

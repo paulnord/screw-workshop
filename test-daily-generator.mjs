@@ -36,7 +36,7 @@ const published=readPublished(fixtureDaily);
 function copyDist(name){const dest=path.join(temporary,name);fs.cpSync(fixtureDist,dest,{recursive:true});return dest;}
 function assertOriginalData(dist){
   for(const {entry,raw}of published.puzzles)assert.equal(fs.readFileSync(path.join(dist,'daily',entry.url),'utf8'),raw,'Every original dated puzzle remains byte-identical');
-  assert.equal(fs.readFileSync(path.join(dist,'levels.mjs'),'utf8'),baselineLevels,'All80 campaign source recipes remain byte-identical');
+  assert.equal(fs.readFileSync(path.join(dist,'levels.mjs'),'utf8'),baselineLevels,'Campaign source recipes remain byte-identical');
 }
 function assertPristine(dist){
   assertOriginalData(dist);assert.equal(fs.readFileSync(path.join(dist,'daily/index.json'),'utf8'),baselineIndex);assert.equal(fs.readFileSync(path.join(dist,'daily-score-catalog.mjs'),'utf8'),baselineCatalog);
@@ -46,7 +46,7 @@ function assertPristine(dist){
 }
 function singleQueue(name){const dest=path.join(temporary,name);fs.mkdirSync(dest);const one={...manifest,days:1,entries:manifest.entries.slice(0,1)};fs.writeFileSync(path.join(dest,'manifest.json'),JSON.stringify(one));fs.copyFileSync(path.join(queueDirectory,one.entries[0].url),path.join(dest,one.entries[0].url));return dest;}
 try{
-  assert.equal(published.index.entries.length,7,'Fixture keeps the seven previously released dates');assert.equal(levelRecipes.length,80);
+  assert.equal(published.index.entries.length,7,'Fixture keeps the seven previously released dates');assert.equal(levelRecipes.length,100);
   assert.equal(manifest.days,14);assert.equal(manifest.entries.length,14);assert.equal(manifest.start,'2026-11-05');
   assert.deepEqual(dateRange('2026-12-31',3),['2026-12-31','2027-01-01','2027-01-02']);
   assert.deepEqual(dateRange('2028-02-28',3),['2028-02-28','2028-02-29','2028-03-01']);

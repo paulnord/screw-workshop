@@ -5,8 +5,8 @@ globalThis.Matter=Matter;
 const E=await import('./dist/engine.mjs');
 const {levelRecipes}=await import('./dist/levels.mjs');
 const originals=JSON.parse(fs.readFileSync(new URL('./analysis/original-32-recipes.json',import.meta.url)));
-assert.equal(levelRecipes.length,80);
-assert.equal(new Set(levelRecipes.map(r=>r.id)).size,80);
+assert.equal(levelRecipes.length,100);
+assert.equal(new Set(levelRecipes.map(r=>r.id)).size,100);
 for(let p=0;p<8;p++)for(let j=0;j<4;j++)assert.deepEqual(levelRecipes[p*10+j],originals[p*4+j],`Pack${p+1} original${j+1} unchanged`);
 const added=E.levels.filter(l=>l.id.startsWith('v7-'));
 assert.equal(added.length,48);
@@ -23,4 +23,4 @@ for(const l of added){
  const moved=new Set(l.solution.map(([b])=>b));assert.equal(moved.size,originalScrews);
  if(l.solution.length===originalScrews)exactBounds++;
 }
-console.log(`PASS:80 IDs,32 unchanged originals,48 added routes replay after Undo;${exactBounds}/48 reach original-anchor lower bound under intended rules.`);
+console.log(`PASS: first 80 campaign levels retain stable IDs, 32 unchanged originals, and 48 added routes replay after Undo;${exactBounds}/48 reach original-anchor lower bound under intended rules.`);

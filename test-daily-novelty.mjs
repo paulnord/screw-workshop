@@ -62,4 +62,4 @@ for(const recipe of levelRecipes){
   const jitter=([x,y])=>[x+(Math.round(x*17+y*31)%7)-3,y+(Math.round(x*23+y*11)%7)-3];
   assert.ok(nearDuplicate(recipe,mapPoints(recipe,jitter)),recipe.id+' tiny-coordinate-jitter campaign clone');
 }
-console.log(`PASS daily novelty:80 campaign recipes; exact label/order/translation/mirror invariance;<=3px jitter and near clones; structural/shape changes;<=10-piece minimax matching;${NEAR_DUPLICATE_PIXELS}px gate.`);
+console.log(`PASS daily novelty:${levelRecipes.length} campaign recipes; exact label/order/translation/mirror invariance;<=3px jitter and near clones; structural/shape changes;<=10-piece minimax matching;${NEAR_DUPLICATE_PIXELS}px gate.`);

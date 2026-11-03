@@ -8,7 +8,7 @@ This was not hinge-anchor drift. The baseline is public commit
 `cd247fb76f8da64b242bc2baca262568515347e7`.
 
 The faithful animation-loop sweep runs **1,044 deterministic trials: 12 on each of
-80 campaign and seven daily boards**, including the six/eight/ten-piece dailies.
+100 campaign and seven daily boards**, including the six/eight/ten-piece dailies.
 It tries alternate accessible screws and clear parking targets, with 0, 5, 30,
 120, or 600 fixed steps between moves. A frame is 1/120 second. It stops advancing
 when `sim.settled`, as the real animation loop does. Each final arrangement gets

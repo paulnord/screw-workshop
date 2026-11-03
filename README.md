@@ -2,7 +2,7 @@
 
 **[Play Screw Workshop in your browser](https://paulnord.github.io/screw-workshop/)**
 
-Eighty original, touch-friendly physics puzzles. No ads, purchases, timers, energy, streaks, random rewards, or notifications. Guest progress and personal bests stay in this browser. Optional account sync is available on the public web game; when chosen, it saves completed scores to the game’s Firebase project. Guest play needs no account.
+One hundred touch-friendly physics puzzles. No ads, purchases, timers, energy, streaks, random rewards, or notifications. Guest progress and personal bests stay in this browser. Optional account sync is available on the public web game; when chosen, it saves completed scores to the game’s Firebase project. Guest play needs no account.
 
 ## Play
 
@@ -14,7 +14,7 @@ Serve `dist/` with any static web host. Tap an exposed screw, then a highlighted
 - A round board hole is reusable when the 7.5px screw shaft plus a 0.75px safety margin clears actual material. Its decorative rim may still be partly covered. An aligned material cutout can receive a parked peg, which may catch the piece; this does not create a new hinge.
 - Undo restores positions, velocities and the previous move count, and resumes any motion. Restart works mid-swing. Hints are free, follow a tested route after settling, and offer undo guidance when a different timing or route changes the arrangement.
 
-Parking is deliberately limited: the introductory puzzle has one visible spare, and most assemblies have two. Mounting holes reveal naturally as pieces move. A small subset of the Hidden in plain sight pack adds a purposeful covered parking target; these are not scattered throughout the campaign. Spare counts are design choices, not mathematical minimum parking claims.
+Parking is deliberately limited: the introductory puzzle has one visible spare, and most assemblies have two. Mounting holes reveal naturally as pieces move. Packs 9–10 make that behavior the main puzzle: each level has an empty board hole hidden under solid material that becomes usable only after a specific supporting piece moves away. Spare counts are design choices, not mathematical minimum parking claims.
 
 On iPhone: Safari → Share → Add to Home Screen. This is a web game, not an App Store download. Internet and site access may be required; offline installation is not promised. Reduced motion skips most visual movement while running the same physical result.
 
@@ -22,7 +22,7 @@ On iPhone: Safari → Share → Add to Home Screen. This is a web game, not an A
 
 Your score is the screw moves on the completed route; lower is an optional personal challenge. Undo removes an undone move, restart resets the route, and hints do not charge moves. Every completion succeeds regardless of score.
 
-Personal bests are saved locally under stable, versioned level IDs only after actual physical completion. The tested target is a verified working route, **not an assertion of global optimality**. Stars reward efficient routes, never speed: one for any completion, two within two moves of the tested target, and three at or below it. These are achievable thresholds, not claims of optimal play. There are no rankings, streaks or penalties. All original32 puzzle IDs, layouts and best scores are preserved. The80-puzzle campaign uses the same browser storage and migrates old resumes and pack unlocks.
+Personal bests are saved locally under stable, versioned level IDs only after actual physical completion. The tested target is a verified working route, **not an assertion of global optimality**. Stars reward efficient routes, never speed: one for any completion, two within two moves of the tested target, and three at or below it. These are achievable thresholds, not claims of optimal play. There are no rankings, streaks or penalties. All original 80 puzzle IDs, layouts and best scores are preserved. The 100-puzzle campaign uses the same browser storage and migrates old resumes and pack unlocks.
 
 ## Develop and test
 
@@ -35,6 +35,7 @@ node test-progress.mjs
 node test-pack.mjs
 node test-expansion.mjs
 node test-campaign80.mjs
+node test-hidden-campaign.mjs
 python3 -m http.server 8000 --directory dist
 ```
 
@@ -44,7 +45,7 @@ Tests cover all campaign routes, legal placement, live revalidation, hidden/occu
 
 ## Design choices
 
-Eight packs contain ten puzzles each, with distinct physical mechanics and dependencies. Complete any seven puzzles in an unlocked pack to open the next; stars never gate progress. Packs earned under the previous three-of-four rule stay open permanently, without requiring replay of earlier expanded packs. The first pack teaches the controls and core physics; later packs introduce combinations rather than repeating the introductory levels. Early levels teach mounting holes and pivot choice; later ones combine supports, concavity, asymmetric mass, parked pegs and exit routes. Larger touch areas resolve to the nearest exposed screw or clear hole; keyboard activation keeps its focused control.
+Ten packs contain ten puzzles each, with distinct physical mechanics and dependencies. Complete any seven puzzles in an unlocked pack to open the next; stars never gate progress. Packs earned under the previous three-of-four rule stay open permanently, without requiring replay of earlier expanded packs. The first pack teaches the controls and core physics; later packs combine supports, concavity, asymmetric mass, parked pegs and exit routes. The final two packs revisit varied assemblies with progressively revealed parking holes. Larger touch areas resolve to the nearest exposed screw or clear hole; keyboard activation keeps its focused control.
 
 Physics uses Matter.js 0.20.0 at a fixed 120 Hz: gravity 1.2 (20% above the earlier 1.0), air friction .045 (18% lower than .055), contact friction and restitution, and high-iteration pin constraints. This aims for fluid touch play; it does not claim to reproduce UIKit constants. Frame deltas are capped to avoid long-tab-resume jumps. Live screw moves preserve the existing world and momentum.
 
@@ -58,7 +59,7 @@ Game code, CSS/SVG artwork and level designs are original to this project. No co
 
 ## Campaign rationale and verified routes
 
-Tested routes live alongside the geometry in `dist/levels.mjs`. [The80-puzzle campaign report](analysis/CAMPAIGN_80.md) lists mechanics, targets and verification. Each target is a physically replayed working route. When it equals the number of original screws, it reaches the lower bound under the intended anchor rules; this is not a formal proof against numerical-physics exploits or every real-time strategy.
+Tested routes live alongside the geometry in `dist/levels.mjs`. [The 80-puzzle campaign report](analysis/CAMPAIGN_80.md) documents the preserved base campaign, and [the concealed-hole expansion report](analysis/HIDDEN_REVEALS.md) documents packs 9–10. Each target is a physically replayed working route. When it equals the number of original screws, it reaches the lower bound under the intended anchor rules; this is not a formal proof against numerical-physics exploits or every real-time strategy.
 
 Historical bounded removal-order studies remain available: [original12](analysis/SOLUTION_ORDER_MAP.md), [Chain reactions](analysis/CHAIN_REACTIONS.md), and [packs5–8 original puzzles](analysis/EXPANSION_32.md). Exhaustive counts apply only to their stated finite settle/parking model; capped searches are labeled unresolved, not impossible.
 
@@ -68,7 +69,7 @@ The `Test and deploy game` workflow validates physics and progression before pub
 
 ## Daily workshop
 
-The Daily button loads the shared puzzle for the current **UTC date** from small, versioned JSON files. A monthly calendar shows completed dates with earned stars, completed-day counts and total stars for that month and all time. Only unfinished published dates can be played. Completed daily challenges are final and show read-only results; all 80 campaign puzzles remain replayable. Daily stars reward moves, not speed; daily scores never change campaign progress or pack unlocks. There are no streak penalties.
+The Daily button loads the shared puzzle for the current **UTC date** from small, versioned JSON files. A monthly calendar shows completed dates with earned stars, completed-day counts and total stars for that month and all time. Only unfinished published dates can be played. Completed daily challenges are final and show read-only results; all 100 campaign puzzles remain replayable. Daily stars reward moves, not speed; daily scores never change campaign progress or pack unlocks. There are no streak penalties.
 
 The shared queue covers October 29–November 18, 2026. The original seven dates remain unchanged; fourteen new procedural challenges for November 5–18 have been generated offline, checked against the live physics engine, and added to the daily feed. They unlock on their UTC dates. The generator is included in the repository. Every day at **06:17 UTC**, GitHub Actions checks the queue and generates enough verified challenges to maintain at least **14 future UTC days**, then validates and publishes the update. Existing dates never change; failed checks leave the last good deployment intact. See [generator commands, guarantees and limits](analysis/DAILY_GENERATOR.md). When today's data is unavailable, the game uses a verified cached copy if available, otherwise clearly labeled bundled practice. Cached puzzle data is available offline once the web game is open; cold offline page launch is not promised. The separate native wrapper does not yet enable daily downloads.
 
@@ -85,7 +86,7 @@ The publisher validates and physically replays the route, then appends an immuta
 
 The contact solver includes a bounded hinge-aware recovery pass for deep or prolonged
 contacts. It does not increase air friction, change the global timestep, freeze pieces,
-or mark caught material as complete. All 80 authored campaign routes and seven daily
+or mark caught material as complete. All 100 authored campaign routes and seven daily
 witnesses remain valid. Fourteen historical alternate witnesses that involved excessive
 penetration now have explicitly tested blocked outcomes; their original records are
 preserved. See [audit, exact reproductions, coverage and limitations](analysis/PHYSICS_ORDER_AUDIT.md).
