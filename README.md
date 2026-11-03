@@ -139,3 +139,9 @@ Local validation: `node test-analytics.mjs`, `node test-firebase-adapter.mjs`,
 `node test-daily-ui.mjs`, and `node test-account-ui.mjs`. Browser consent testing
 uses a stub tag and never sends test visitor data to Google. Real ingestion and
 property reporting must be verified separately in the owner’s GA4 Realtime view.
+
+### Diagnostics choice in account details
+
+Optional diagnostics appears as an unchecked checkbox alongside the sign-up fields and in signed-in account details. It reflects the existing browser-level choice, saves immediately when changed, and is never required for an account or guest play. The first-visit choice sits before the game board rather than below the footer; the header’s Privacy control reopens it later. Google Analytics disclosures remain available beside both controls. Existing consent, cookie scope, opt-in gating and withdrawal behavior are unchanged.
+
+Run `node test-analytics-ui.mjs` for shared consent/account-control regression coverage.

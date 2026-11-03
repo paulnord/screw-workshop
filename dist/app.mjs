@@ -1,6 +1,6 @@
-import analyticsConfig from './analytics-config.mjs?v=20261101-analytics1';
-import {createAnalytics} from './analytics.mjs?v=20261101-analytics1';
-import {installAnalyticsUI} from './analytics-ui.mjs?v=20261101-analytics1';
+import analyticsConfig from './analytics-config.mjs?v=20261103-diagnostics1';
+import {createAnalytics} from './analytics.mjs?v=20261103-diagnostics1';
+import {installAnalyticsUI} from './analytics-ui.mjs?v=20261103-diagnostics1';
 import firebaseConfig from './firebase-config.mjs?v=20261030-calendar1';
 import {recordBest,normalizeProgress,serializeProgress,starsFor,packProgress,isLevelUnlocked,PACK_SIZE,unlockedPackCount} from './progress.mjs?v=20261030-calendar1';
 import {levels,cells,holes,createWorld,snapshot,move,complete,step,settle,accessible,destinations,hint,isSpare,plateForBolt,attachmentCount,STEP,validateDailyRecipe,compileDailyRecipe} from './engine.mjs?v=20261030-calendar1';
@@ -10,7 +10,7 @@ import {dailyScoreCatalog,summarizeDaily,dailyDateForIdentity,calendarMonth,shif
 const $=s=>document.querySelector(s),ns='http://www.w3.org/2000/svg',colors=['#557f79','#c67d57','#c9a75d','#739381'];
 const native=window.ScrewWorkshopNative;
 const analytics=createAnalytics({window,native:!!native,...analyticsConfig});
-installAnalyticsUI({analytics,enabled:analyticsConfig.enabled,native:!!native});
+const analyticsUI=installAnalyticsUI({analytics,enabled:analyticsConfig.enabled,native:!!native});
 let saved={};try{saved=native?native.savedProgress:JSON.parse(localStorage.getItem('screw-workshop-physics-v4')||'{}')}catch{}
 let {bests,done,index,unlockedPacks}=normalizeProgress(saved,levels);
 let daily=null,dailyRequest=0,dailyCatalog=null,dailyMonth=null,dialogMode=null,dailyResultDate=null;
@@ -175,10 +175,10 @@ function switchAccount(user,adapter,core){
 }
 async function setupAccount(){
  if(native||typeof firebaseConfig==='undefined'||!firebaseConfig.enabled)return;
- const [ui,fb,core]=await Promise.all([import('./account-ui.mjs?v=20261101-analytics1'),import('./firebase-adapter.mjs?v=20261101-analytics1'),import('./progress-sync.mjs?v=20261030-calendar1')]);
+ const [ui,fb,core]=await Promise.all([import('./account-ui.mjs?v=20261103-diagnostics1'),import('./firebase-adapter.mjs?v=20261103-diagnostics1'),import('./progress-sync.mjs?v=20261030-calendar1')]);
  if(!fb.isFirebaseConfigured(firebaseConfig))return;accountTools=ui;
  const button=$('#account');
- ui.installAccountUI({button,loadAdapter:()=>fb.createFirebaseAdapter({config:firebaseConfig,onAnalytics:event=>analytics.track(event)}),
+ ui.installAccountUI({button,analyticsUI,loadAdapter:()=>fb.createFirebaseAdapter({config:firebaseConfig,onAnalytics:event=>analytics.track(event)}),
   onUser(user,adapter){switchAccount(user,adapter,core)},
   async importGuest(){if(!accountUID)return;const guest=normalizeProgress(readSave('screw-workshop-physics-v4'),levels);const records=Object.entries(guest.bests).map(([id,moves])=>ui.scoreRecord('campaign',id,'shapes80-v1',moves));for(const[id,moves]of Object.entries(dailyStore.readProgress())){const r=ui.dailyScoreRecord(id,moves);if(r)records.push(r)}syncController.importGuest(records,{confirmed:true});await flushAccount()},
   exportLocal(){return {sync:syncController.exportData(),campaign:serializeProgress(index,levels,done,bests,unlockedPacks),daily:{...accountDaily}}},

@@ -5,11 +5,12 @@ import {installAnalyticsUI} from './dist/analytics-ui.mjs';
 class Element{
  constructor(tag='div'){this.tagName=tag;this.children=[];this.attrs={};this.dataset={};this.hidden=false;this.textContent='';this.focused=0;this.scrolled=0}
  append(...elements){this.children.push(...elements)}
+ insertBefore(element){this.children.unshift(element)}
  setAttribute(name,value){this.attrs[name]=value}
- set innerHTML(html){this.html=html;this.buttons=[...html.matchAll(/<button data-analytics="([^"]+)">([^<]+)<\/button>/g)].map(([,choice,label])=>{const button=new Element('button');button.dataset.analytics=choice;button.textContent=label;return button});this.status=new Element('p')}
+ set innerHTML(html){this.html=html;this.buttons=[...html.matchAll(/<button data-analytics="([^"]+)">([^<]+)<\/button>/g)].map(([,choice,label])=>{const button=new Element('button');button.dataset.analytics=choice;button.textContent=label;return button});this.status=new Element('p');this.input=new Element('input')}
  get innerHTML(){return this.html}
  querySelectorAll(selector){return selector==='[data-analytics]'?this.buttons:[]}
- querySelector(selector){if(selector==='[data-analytics-status]')return this.status;if(selector==='button')return this.buttons[0];return null}
+ querySelector(selector){if(selector==='[data-analytics-status]')return this.status;if(selector==='[data-diagnostics]')return this.input;if(selector==='button')return this.buttons[0];return null}
  focus(){this.focused++}scrollIntoView(){this.scrolled++}
 }
 const flush=async()=>{await Promise.resolve();await Promise.resolve();await Promise.resolve()};
@@ -17,12 +18,12 @@ function fixture({choice,enabled=true,native=false,shared=null}={}){
  const values=shared?.values||new Map(choice?[[CONSENT_KEY,choice]]:[]),listeners=new Map();
  const main=new Element('main'),footer=new Element('footer'),cookieWrites=[],actions=[];
  let loads=0,reloads=0,writes=0,gameplayMoves=9;
- const doc={createElement:tag=>new Element(tag),querySelector:selector=>selector==='main'?main:selector==='footer'?footer:null,get cookie(){return '_ga=keep; _ga_OTHER=keep; screw_workshop_ga=old; screw_workshop_ga_DG754SQQL6=old; unrelated=keep'},set cookie(value){cookieWrites.push(value)}};
+ const doc={createElement:tag=>new Element(tag),querySelector:selector=>selector==='main'?main:selector==='.header-actions'?footer:null,get cookie(){return '_ga=keep; _ga_OTHER=keep; screw_workshop_ga=old; screw_workshop_ga_DG754SQQL6=old; unrelated=keep'},set cookie(value){cookieWrites.push(value)}};
  const win={document:doc,location:{hostname:'paulnord.github.io',reload(){actions.push('reload');assert.equal(win['ga-disable-'+ANALYTICS_ID],true,'Disable must precede reload');reloads++}},addEventListener:(name,listener)=>listeners.set(name,listener)};
  const storage={getItem:key=>values.get(key)??null,setItem(key,value){writes++;const oldValue=values.get(key)??null;values.set(key,value);actions.push('store:'+value);if(oldValue!==value)shared?.notify?.({key,newValue:value,oldValue},win)}};
  const analytics=createAnalytics({window:win,storage,enabled,native,loadTag:async()=>{loads++}});
- installAnalyticsUI({analytics,enabled,native,document:doc,window:win});
- return {analytics,win,doc,main,footer,values,listeners,cookieWrites,actions,panel:main.children[0],settings:footer.children[0],get loads(){return loads},get reloads(){return reloads},get writes(){return writes},get gameplayMoves(){return gameplayMoves}};
+ const analyticsUI=installAnalyticsUI({analytics,enabled,native,document:doc,window:win});
+ return {analytics,analyticsUI,win,doc,main,footer,values,listeners,cookieWrites,actions,panel:main.children[0],settings:footer.children[0],get loads(){return loads},get reloads(){return reloads},get writes(){return writes},get gameplayMoves(){return gameplayMoves}};
 }
 for(const flags of [{enabled:false},{native:true}]){
  const f=fixture(flags);assert.equal(f.main.children.length,0);assert.equal(f.footer.children.length,0);assert.equal(f.listeners.size,0);assert.equal(f.loads,0);
@@ -31,7 +32,7 @@ const unknown=fixture();
 assert.equal(unknown.panel.hidden,false);assert.equal(unknown.panel.tagName,'section','Consent never blocks gameplay with a modal');
 assert.equal(unknown.panel.attrs['aria-label'],'Optional usage analytics');assert.equal(unknown.loads,0);
 assert.deepEqual(unknown.panel.buttons.map(b=>b.dataset.analytics),['denied','granted']);
-assert.deepEqual(unknown.panel.buttons.map(b=>b.textContent),['No thanks','Allow analytics']);
+assert.deepEqual(unknown.panel.buttons.map(b=>b.textContent),['No thanks','Allow diagnostics']);
 assert(!unknown.panel.html.includes('class="primary"'),'Both choices use equal button styling');
 assert.match(unknown.panel.html,/rel="noopener noreferrer"/);
 unknown.panel.buttons[0].onclick();await flush();
@@ -57,3 +58,21 @@ const unrelatedWrites=second.writes;second.listeners.get('storage')({key:'unrela
 const removed=fixture({choice:'granted'});await removed.analytics.ready();removed.listeners.get('storage')({key:CONSENT_KEY,newValue:null});await flush();assert.equal(removed.analytics.consent(),'denied');assert.equal(removed.reloads,1);
 const cleared=fixture({choice:'granted'});await cleared.analytics.ready();cleared.listeners.get('storage')({key:null,newValue:null});await flush();assert.equal(cleared.analytics.consent(),'denied','Clearing browser storage in another tab revokes consent');assert.equal(cleared.reloads,1);
 console.log('PASS analytics consent UI gates, choice states, equal controls, non-modal decline, settings reopening, disable-before-reload withdrawal, and cross-tab revocation without write loops. DOM double only; no live tracking.');
+
+// Account checkbox reflects existing consent without opting anyone in on render.
+for(const choice of [undefined,'denied','granted']){
+ const f=fixture({choice});const host=new Element();f.analyticsUI.mountAccount(host);
+ assert.equal(host.input.checked,choice==='granted');assert.equal(f.writes,0);
+ assert.match(host.html,/type="checkbox"/);assert.match(host.html,/Not required/);
+ host.input.checked=true;host.input.onchange();await f.analytics.ready();await flush();
+ assert.equal(f.analytics.consent(),'granted');assert.equal(f.loads,1);
+ host.input.checked=false;host.input.onchange();await flush();
+ assert.equal(f.analytics.consent(),'denied');assert.equal(f.reloads,1);
+ const reopened=new Element();f.analyticsUI.mountAccount(reopened);assert.equal(reopened.input.checked,false);
+}
+console.log('PASS account diagnostics checkbox: unknown and declined unchecked, persisted grant reflected, render never consents, explicit opt-in and withdrawal.');
+
+const linked=fixture();const accountHost=new Element();linked.analyticsUI.mountAccount(accountHost);
+linked.listeners.get('storage')({key:CONSENT_KEY,newValue:'granted'});await linked.analytics.ready();await flush();assert.equal(accountHost.input.checked,true);
+linked.listeners.get('storage')({key:CONSENT_KEY,newValue:'denied'});await flush();assert.equal(accountHost.input.checked,false);
+console.log('PASS open account checkbox reconciles cross-tab consent changes.');
