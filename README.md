@@ -1,5 +1,7 @@
 # Screw Workshop
 
+**[Play Screw Workshop in your browser](https://paulnord.github.io/screw-workshop/)**
+
 Eighty original, touch-friendly physics puzzles. No ads, purchases, timers, energy, streaks, random rewards, or notifications. Guest progress and personal bests stay in this browser. Optional account sync is available on the public web game; when chosen, it saves completed scores to the game’s Firebase project. Guest play needs no account.
 
 ## Play
