@@ -26,7 +26,7 @@ harness=harness.replace('restartCurrent,render,openDialog,state:()=>({index,dail
 const dailySummary=await import('./dist/daily-summary.mjs');
 const h=new Function('fs','vm','dailySummary',harness+'\nreturn {context,get,setLoadResult:value=>{loadResult=value},getLoadResult:()=>loadResult};')(fs,vm,dailySummary);const game=h.context.testUI;
 const memory=new Map();h.context.localStorage={getItem:k=>memory.get(k)||null,setItem:(k,v)=>memory.set(k,v),removeItem:k=>memory.delete(k)};
-h.context.normalizeProgress=progress.normalizeProgress;h.context.recordBest=progress.recordBest;
+h.context.normalizeProgress=progress.normalizeProgress;h.context.recordBest=progress.recordBest;h.context.mergeCampaignRecords=progress.mergeCampaignRecords;h.context.serializeProgress=progress.serializeProgress;
 // A guest win exists before the first sign-in; it must not be imported automatically.
 game.start(0);game.state().sim.moves=2;game.render();const guestBefore=memory.get('screw-workshop-physics-v4');assert(guestBefore);
 let resolveAlice;const writes=[];const backend={readAll:uid=>uid==='alice'?new Promise(r=>resolveAlice=r):Promise.resolve([]),putBest:async(uid,r)=>{writes.push({uid,...r});return r},deleteAll:async()=>{}};

@@ -15,16 +15,51 @@ export function packProgress(levels,done,unlockedPacks=1){
 export function unlockedPackCount(levels,done,unlockedPacks=1){return packProgress(levels,done,unlockedPacks).filter(p=>p.unlocked).length}
 export function isLevelUnlocked(index,levels,done,unlockedPacks=1){return Number.isInteger(index)&&index>=0&&index<levels.length&&!!packProgress(levels,done,unlockedPacks)[Math.floor(index/PACK_SIZE)]?.unlocked}
 function legacyUnlocks(done){let count=1;for(let p=0;p<packNames.length-1;p++){if(legacyLevelIds.slice(p*4,p*4+4).filter(id=>done.has(id)).length<3)break;count++}return count}
+export const campaignRevision='shapes100-v2';
+export const retiredLevelIds=Array.from({length:20},(_,i)=>`v8-reveal-${String(i+1).padStart(2,'0')}`);
+const retiredIds=new Set(retiredLevelIds);
+const replacementId=id=>`v9-discovery-${id.slice(-2)}`;
+function normalizeRetired(...sources){
+ const bests={},done=new Set();
+ for(const source of sources){if(!source||typeof source!=='object')continue;
+  for(const [id,n]of Object.entries(normalizeBests(source.bests)))if(retiredIds.has(id)){bests[id]=Math.min(bests[id]??Infinity,n);done.add(id)}
+  for(const id of Array.isArray(source.done)?source.done:[])if(retiredIds.has(id))done.add(id);
+ }
+ return {done:[...done],bests};
+}
+// Reconstruct the old gates solely to preserve already earned pack entitlements.
+function preserveRetiredUnlocks(levels,done,retired,unlocked){
+ const priorLevels=levels.map(l=>/^v9-discovery-(0[1-9]|1[0-9]|20)$/.test(l.id)?{id:`v8-reveal-${l.id.slice(-2)}`}:l);
+ return unlockedPackCount(priorLevels,new Set([...done,...retired.done]),unlocked);
+}
 export function normalizeProgress(saved,levels){
  if(!saved||typeof saved!=='object')saved={};
  const ids=new Set(levels.map(l=>l.id)),bests=Object.fromEntries(Object.entries(normalizeBests(saved.bests)).filter(([id])=>ids.has(id)));
  const done=new Set([...(Array.isArray(saved.done)?saved.done:[]),...Object.keys(bests)].filter(id=>ids.has(id)));
+ const retired=normalizeRetired(saved.retired,saved);
  const current=saved.campaign==='shapes-80'||saved.campaign==='shapes-100';
  // Old 3-of-4 unlocks are honored once. New saves cannot repeatedly earn them.
- const unlockedPacks=unlockedPackCount(levels,done,current?safeUnlocked(saved.unlockedPacks):legacyUnlocks(done));
- const resumeId=typeof saved.levelId==='string'?saved.levelId:!current&&Number.isInteger(saved.level)?legacyLevelIds[saved.level]:null;
+ const earned=current?preserveRetiredUnlocks(levels,done,retired,safeUnlocked(saved.unlockedPacks)):legacyUnlocks(done);
+ const unlockedPacks=unlockedPackCount(levels,done,earned);
+ let resumeId=typeof saved.levelId==='string'?saved.levelId:!current&&Number.isInteger(saved.level)?legacyLevelIds[saved.level]:null;
+ if(retiredIds.has(resumeId)&&ids.has(replacementId(resumeId)))resumeId=replacementId(resumeId);
  let index=resumeId!==null?levels.findIndex(l=>l.id===resumeId):saved.level;
  if(!isLevelUnlocked(index,levels,done,unlockedPacks))index=0;
- return {bests,done,index,unlockedPacks};
+ return {bests,done,index,unlockedPacks,retired};
 }
-export function serializeProgress(index,levels,done,bests,unlockedPacks=1){return {campaign:'shapes-100',levelId:levels[index].id,level:index,done:[...done],bests:normalizeBests(bests),unlockedPacks:unlockedPackCount(levels,done,unlockedPacks)}}
+export function serializeProgress(index,levels,done,bests,unlockedPacks=1,retired={}){return {campaign:'shapes-100',campaignRevision,levelId:levels[index].id,level:index,done:[...done],bests:normalizeBests(bests),unlockedPacks:unlockedPackCount(levels,done,unlockedPacks),retired:normalizeRetired(retired)}}
+// Historical remote rows remain in the sync cache/export and are never rewritten
+// as new-puzzle scores. Earlier revisions apply only to unchanged first80 IDs.
+export function mergeCampaignRecords(progress,records,levels){
+ const saved=serializeProgress(progress.index,levels,progress.done,progress.bests,progress.unlockedPacks,progress.retired);
+ const unchanged=new Set(levels.slice(0,80).map(l=>l.id)),active=new Set(levels.map(l=>l.id));
+ for(const r of records){
+  if(r.kind!=='campaign'||r.completed!==true||!Number.isInteger(r.bestMoves)||r.bestMoves<1||r.bestMoves>100000)continue;
+  if(retiredIds.has(r.puzzleId)&&r.revision==='shapes100-v1'){
+   saved.retired.bests=recordBest(saved.retired.bests,r.puzzleId,r.bestMoves);
+  }else if(active.has(r.puzzleId)&&(r.revision===campaignRevision||unchanged.has(r.puzzleId)&&['shapes80-v1','shapes100-v1'].includes(r.revision))){
+   saved.bests=recordBest(saved.bests,r.puzzleId,r.bestMoves);
+  }
+ }
+ return normalizeProgress(saved,levels);
+}

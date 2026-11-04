@@ -1,0 +1,522 @@
+[
+  {
+    "id": "v9-discovery-01",
+    "name": "A glimpse below",
+    "pieces": 1,
+    "hidden": [
+      [
+        117,
+        242
+      ]
+    ],
+    "moves": 2,
+    "evidence": {
+      "maxOverlap": 0.04680485123317624,
+      "maxDrift": 0.000008164558770152952,
+      "frames": 376,
+      "caughtStages": 0,
+      "soleHiddenStages": 1
+    },
+    "interrupted": {
+      "maxOverlap": 0.04680487821893564,
+      "maxDrift": 0.000008164559208423684,
+      "frames": 376,
+      "caughtStages": 0,
+      "soleHiddenStages": 1
+    }
+  },
+  {
+    "id": "v9-discovery-02",
+    "name": "Counterweight",
+    "pieces": 2,
+    "hidden": [
+      [
+        280,
+        272
+      ]
+    ],
+    "moves": 4,
+    "evidence": {
+      "maxOverlap": 0.2127536967961987,
+      "maxDrift": 0.000008175445398615517,
+      "frames": 829,
+      "caughtStages": 0,
+      "soleHiddenStages": 1
+    },
+    "interrupted": {
+      "maxOverlap": 0.21275436191717745,
+      "maxDrift": 0.000008175445376654472,
+      "frames": 829,
+      "caughtStages": 0,
+      "soleHiddenStages": 1
+    }
+  },
+  {
+    "id": "v9-discovery-03",
+    "name": "Top and tail",
+    "pieces": 2,
+    "hidden": [
+      [
+        72,
+        87
+      ]
+    ],
+    "moves": 4,
+    "evidence": {
+      "maxOverlap": 1.0343798162124926,
+      "maxDrift": 0.00005692353682971609,
+      "frames": 1191,
+      "caughtStages": 1,
+      "soleHiddenStages": 1
+    },
+    "interrupted": {
+      "maxOverlap": 1.034377548876165,
+      "maxDrift": 0.00005353056591328747,
+      "frames": 1163,
+      "caughtStages": 1,
+      "soleHiddenStages": 1
+    }
+  },
+  {
+    "id": "v9-discovery-04",
+    "name": "Three pendants",
+    "pieces": 3,
+    "hidden": [
+      [
+        157,
+        337
+      ]
+    ],
+    "moves": 6,
+    "evidence": {
+      "maxOverlap": 0.36267592031200024,
+      "maxDrift": 0.00001342586724175497,
+      "frames": 1244,
+      "caughtStages": 1,
+      "soleHiddenStages": 1
+    },
+    "interrupted": {
+      "maxOverlap": 0.36267828230849375,
+      "maxDrift": 0.000013376801694466,
+      "frames": 1239,
+      "caughtStages": 1,
+      "soleHiddenStages": 1
+    }
+  },
+  {
+    "id": "v9-discovery-05",
+    "name": "Under the shelf",
+    "pieces": 3,
+    "hidden": [
+      [
+        314.5,
+        172
+      ]
+    ],
+    "moves": 6,
+    "evidence": {
+      "maxOverlap": 1.4266930345591504,
+      "maxDrift": 0.00010435301616979727,
+      "frames": 1020,
+      "caughtStages": 2,
+      "soleHiddenStages": 1
+    },
+    "interrupted": {
+      "maxOverlap": 1.315103268858195,
+      "maxDrift": 0.00010136622481656047,
+      "frames": 1014,
+      "caughtStages": 2,
+      "soleHiddenStages": 1
+    }
+  },
+  {
+    "id": "v9-discovery-06",
+    "name": "Split landing",
+    "pieces": 3,
+    "hidden": [
+      [
+        57,
+        357
+      ]
+    ],
+    "moves": 6,
+    "evidence": {
+      "maxOverlap": 0.8554098614482655,
+      "maxDrift": 0.00013556449863863574,
+      "frames": 1124,
+      "caughtStages": 2,
+      "soleHiddenStages": 1
+    },
+    "interrupted": {
+      "maxOverlap": 1.3970220269717402,
+      "maxDrift": 0.0001320133467014398,
+      "frames": 1061,
+      "caughtStages": 2,
+      "soleHiddenStages": 1
+    }
+  },
+  {
+    "id": "v9-discovery-07",
+    "name": "Leaning chimney",
+    "pieces": 3,
+    "hidden": [
+      [
+        75,
+        275
+      ]
+    ],
+    "moves": 6,
+    "evidence": {
+      "maxOverlap": 1.1972749148955018,
+      "maxDrift": 0.000036172271580636945,
+      "frames": 1485,
+      "caughtStages": 0,
+      "soleHiddenStages": 1
+    },
+    "interrupted": {
+      "maxOverlap": 1.1972764931440452,
+      "maxDrift": 0.00003617165527632174,
+      "frames": 1476,
+      "caughtStages": 0,
+      "soleHiddenStages": 1
+    }
+  },
+  {
+    "id": "v9-discovery-08",
+    "name": "Four curtains",
+    "pieces": 4,
+    "hidden": [
+      [
+        314.5,
+        167
+      ]
+    ],
+    "moves": 8,
+    "evidence": {
+      "maxOverlap": 0.994638646608621,
+      "maxDrift": 0.00012185237780125912,
+      "frames": 1683,
+      "caughtStages": 4,
+      "soleHiddenStages": 1
+    },
+    "interrupted": {
+      "maxOverlap": 0.9810859178276985,
+      "maxDrift": 0.00012512852449651906,
+      "frames": 1751,
+      "caughtStages": 4,
+      "soleHiddenStages": 1
+    }
+  },
+  {
+    "id": "v9-discovery-09",
+    "name": "Staggered shelves",
+    "pieces": 4,
+    "hidden": [
+      [
+        42,
+        187
+      ]
+    ],
+    "moves": 8,
+    "evidence": {
+      "maxOverlap": 1.3895112087518555,
+      "maxDrift": 0.00006933300304775552,
+      "frames": 1559,
+      "caughtStages": 6,
+      "soleHiddenStages": 1
+    },
+    "interrupted": {
+      "maxOverlap": 1.3895122534287339,
+      "maxDrift": 0.00006833857608520831,
+      "frames": 1563,
+      "caughtStages": 6,
+      "soleHiddenStages": 1
+    }
+  },
+  {
+    "id": "v9-discovery-10",
+    "name": "Low clearance",
+    "pieces": 4,
+    "hidden": [
+      [
+        97,
+        382
+      ]
+    ],
+    "moves": 8,
+    "evidence": {
+      "maxOverlap": 0.49423474959064606,
+      "maxDrift": 0.000008201999400879743,
+      "frames": 1827,
+      "caughtStages": 0,
+      "soleHiddenStages": 1
+    },
+    "interrupted": {
+      "maxOverlap": 0.4942356619758925,
+      "maxDrift": 0.000008201999114078412,
+      "frames": 1897,
+      "caughtStages": 0,
+      "soleHiddenStages": 1
+    }
+  },
+  {
+    "id": "v9-discovery-11",
+    "name": "Trestle pockets",
+    "pieces": 4,
+    "hidden": [
+      [
+        307,
+        172
+      ]
+    ],
+    "moves": 8,
+    "evidence": {
+      "maxOverlap": 1.8166642767238272,
+      "maxDrift": 0.00018338883542631484,
+      "frames": 1658,
+      "caughtStages": 4,
+      "soleHiddenStages": 1
+    },
+    "interrupted": {
+      "maxOverlap": 1.816663104528402,
+      "maxDrift": 0.0001171236754346246,
+      "frames": 1626,
+      "caughtStages": 4,
+      "soleHiddenStages": 1
+    }
+  },
+  {
+    "id": "v9-discovery-12",
+    "name": "Narrow passage",
+    "pieces": 4,
+    "hidden": [
+      [
+        112,
+        202
+      ]
+    ],
+    "moves": 8,
+    "evidence": {
+      "maxOverlap": 1.0256138803941894,
+      "maxDrift": 0.000008206705267167887,
+      "frames": 1904,
+      "caughtStages": 0,
+      "soleHiddenStages": 1
+    },
+    "interrupted": {
+      "maxOverlap": 1.0256156100998481,
+      "maxDrift": 0.000008206705432415415,
+      "frames": 1899,
+      "caughtStages": 0,
+      "soleHiddenStages": 1
+    }
+  },
+  {
+    "id": "v9-discovery-13",
+    "name": "Five-way release",
+    "pieces": 5,
+    "hidden": [
+      [
+        137,
+        377
+      ]
+    ],
+    "moves": 10,
+    "evidence": {
+      "maxOverlap": 1.6670023934007077,
+      "maxDrift": 0.000008865374534313628,
+      "frames": 2257,
+      "caughtStages": 1,
+      "soleHiddenStages": 1
+    },
+    "interrupted": {
+      "maxOverlap": 1.667006631252491,
+      "maxDrift": 0.000008865207356166616,
+      "frames": 2090,
+      "caughtStages": 3,
+      "soleHiddenStages": 1
+    }
+  },
+  {
+    "id": "v9-discovery-14",
+    "name": "Crowded landing",
+    "pieces": 5,
+    "hidden": [
+      [
+        262,
+        187
+      ]
+    ],
+    "moves": 10,
+    "evidence": {
+      "maxOverlap": 1.8752804615972423,
+      "maxDrift": 0.00035952819534101785,
+      "frames": 2220,
+      "caughtStages": 2,
+      "soleHiddenStages": 1
+    },
+    "interrupted": {
+      "maxOverlap": 1.1431684222958438,
+      "maxDrift": 0.0001599445636901627,
+      "frames": 2362,
+      "caughtStages": 2,
+      "soleHiddenStages": 1
+    }
+  },
+  {
+    "id": "v9-discovery-15",
+    "name": "Offset canopy",
+    "pieces": 5,
+    "hidden": [
+      [
+        47,
+        357
+      ]
+    ],
+    "moves": 10,
+    "evidence": {
+      "maxOverlap": 0.8647314132187489,
+      "maxDrift": 0.000016421633045049558,
+      "frames": 2151,
+      "caughtStages": 3,
+      "soleHiddenStages": 1
+    },
+    "interrupted": {
+      "maxOverlap": 1.727838203515887,
+      "maxDrift": 0.000012786659649695008,
+      "frames": 1992,
+      "caughtStages": 3,
+      "soleHiddenStages": 1
+    }
+  },
+  {
+    "id": "v9-discovery-16",
+    "name": "Nested falls",
+    "pieces": 5,
+    "hidden": [
+      [
+        287,
+        202
+      ]
+    ],
+    "moves": 10,
+    "evidence": {
+      "maxOverlap": 1.132278710528567,
+      "maxDrift": 0.00006272953429295591,
+      "frames": 1925,
+      "caughtStages": 8,
+      "soleHiddenStages": 1
+    },
+    "interrupted": {
+      "maxOverlap": 2.1379681229012704,
+      "maxDrift": 0.0003146171371475695,
+      "frames": 2070,
+      "caughtStages": 8,
+      "soleHiddenStages": 1
+    }
+  },
+  {
+    "id": "v9-discovery-17",
+    "name": "Six-door cabinet",
+    "pieces": 6,
+    "hidden": [
+      [
+        202,
+        177
+      ]
+    ],
+    "moves": 12,
+    "evidence": {
+      "maxOverlap": 2.2510271873641727,
+      "maxDrift": 0.00009842092947932576,
+      "frames": 2590,
+      "caughtStages": 5,
+      "soleHiddenStages": 1
+    },
+    "interrupted": {
+      "maxOverlap": 2.2510272895175945,
+      "maxDrift": 0.00008906027649650739,
+      "frames": 2208,
+      "caughtStages": 6,
+      "soleHiddenStages": 1
+    }
+  },
+  {
+    "id": "v9-discovery-18",
+    "name": "Slanted shutters",
+    "pieces": 6,
+    "hidden": [
+      [
+        165,
+        215
+      ]
+    ],
+    "moves": 12,
+    "evidence": {
+      "maxOverlap": 2.0476658547123634,
+      "maxDrift": 0.0000704408646598602,
+      "frames": 2198,
+      "caughtStages": 5,
+      "soleHiddenStages": 1
+    },
+    "interrupted": {
+      "maxOverlap": 2.047667027885552,
+      "maxDrift": 0.0000699449045881703,
+      "frames": 2403,
+      "caughtStages": 5,
+      "soleHiddenStages": 1
+    }
+  },
+  {
+    "id": "v9-discovery-19",
+    "name": "Hidden junction",
+    "pieces": 6,
+    "hidden": [
+      [
+        145,
+        195
+      ]
+    ],
+    "moves": 12,
+    "evidence": {
+      "maxOverlap": 0.915317981516182,
+      "maxDrift": 0.00008174765760393927,
+      "frames": 2221,
+      "caughtStages": 4,
+      "soleHiddenStages": 1
+    },
+    "interrupted": {
+      "maxOverlap": 0.9153188545950286,
+      "maxDrift": 0.00008192293307363628,
+      "frames": 2213,
+      "caughtStages": 4,
+      "soleHiddenStages": 1
+    }
+  },
+  {
+    "id": "v9-discovery-20",
+    "name": "Blind assembly",
+    "pieces": 6,
+    "hidden": [
+      [
+        145,
+        180
+      ]
+    ],
+    "moves": 12,
+    "evidence": {
+      "maxOverlap": 1.0531234589167298,
+      "maxDrift": 0.00009752729812385609,
+      "frames": 2216,
+      "caughtStages": 4,
+      "soleHiddenStages": 1
+    },
+    "interrupted": {
+      "maxOverlap": 1.053123875589307,
+      "maxDrift": 0.00009721285416579714,
+      "frames": 2209,
+      "caughtStages": 4,
+      "soleHiddenStages": 1
+    }
+  }
+]

@@ -12410,44 +12410,6 @@ const baseRecipes = [
   }
 ];
 
-// Packs 9–10 revisit a broad cross-section of the workshop with one new rule:
-// an empty board hole starts under solid material and only becomes usable after
-// the named reveal move. Source recipes are cloned so the original 80 IDs,
-// layouts, routes, and saved scores remain byte-for-byte stable.
-const revealSpecs = [
-  [0,  1, [85,155],  1, 'Under the first bar', 'Move the left screw upstairs. The first falling bar uncovers the hole needed for the second screw.'],
-  [5,  4, [55,75],   4, 'Sailcloth secret', 'Work through the broad sail. Its last opening is hidden under the upper-left edge until the sail turns away.'],
-  [10, 1, [55,115],  1, 'Behind the chevron', 'The first arm hides a fresh parking hole. Release it, then use the newly exposed opening.'],
-  [15, 2, [285,245], 2, 'Kite pocket', 'Let the rail and kite shift before looking along the right edge for the next hole.'],
-  [20, 2, [75,115],  2, 'Hooked reveal', 'Unwind the hook in order. A covered hole appears near its shoulder after the second move.'],
-  [25, 4, [55,185],  4, 'Crossing curtain', 'The crossed pieces conceal a hole on the left. It becomes useful only after the fourth release.'],
-  [30, 3, [135,85],  3, 'Cradle hatch', 'Empty the upper cradle carefully. The third move exposes a close parking place for the next screw.'],
-  [35, 5, [85,75],   5, 'Chute skylight', 'Nearly the whole chute must move before its hidden top opening is clear.'],
-  [40, 2, [75,95],   2, 'Fanlight', 'Turn the pivot fan until a hole appears beneath its left blade, then park there.'],
-  [45, 3, [145,85],  2, 'Sail shadow', 'The suspended sail reveals a hole early, but the tested route saves it for the fourth move.'],
-  [50, 2, [65,95],   2, 'Pocket beneath a pocket', 'The obvious pocket is a decoy. Move the lid to uncover the smaller opening at the top left.'],
-  [53, 5, [55,95],   5, 'Escapement window', 'Advance the escapement one release at a time. Its hidden window opens late.'],
-  [56, 2, [55,95],   2, 'Vault lining', 'The vault wall covers its own escape hole. Swing the lining aside before using it.'],
-  [60, 4, [85,95],   4, 'Cargo trapdoor', 'Unload the cantilever until its upper support reveals a new place to park.'],
-  [63, 6, [115,105], 6, 'Fork-lift hatch', 'The hatch remains covered through six moves. Keep the route tidy so the final screw can use it.'],
-  [66, 1, [105,85],  1, 'Chute peephole', 'The first release uncovers a hole above the diagonal chute. Use it immediately.'],
-  [70, 1, [95,85],   1, 'Switchback reveal', 'Open the suspended switch and move the next screw into the hole it was hiding.'],
-  [73, 4, [55,85],   4, 'Turn after turn', 'Three turns are not enough. The concealed top-left hole clears on the fourth.'],
-  [76, 2, [55,85],   2, 'Double blind crossing', 'Watch the upper crossing: its second move reveals the parking hole for the third.'],
-  [79, 8, [65,75],   7, 'Workshop after dark', 'Read the whole assembly. The last hidden hole appears only after seven releases and is used for the final screw.'],
-];
-
-function revealVariant([sourceIndex, replaceAt, hidden, revealMove, name, tip], index) {
-  const recipe = JSON.parse(JSON.stringify(baseRecipes[sourceIndex]));
-  recipe.id = `v8-reveal-${String(index + 1).padStart(2, '0')}`;
-  recipe.name = name;
-  recipe.tip = tip;
-  recipe.rationale = tip;
-  recipe.packIndex = 8 + Math.floor(index / 10);
-  recipe.hidden = [hidden];
-  recipe.hiddenRevealMove = revealMove;
-  recipe.solution[replaceAt][1] = hidden;
-  return recipe;
-}
-
-export const levelRecipes = [...baseRecipes, ...revealSpecs.map(revealVariant)];
+// New geometry has new IDs; historical v8 results are retained by progress.mjs.
+import {discoveryRecipes} from './discovery-levels.mjs?v=20261104-discovery2';
+export const levelRecipes = [...baseRecipes, ...discoveryRecipes];

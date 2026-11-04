@@ -2,9 +2,9 @@ import analyticsConfig from './analytics-config.mjs?v=20261103-login1';
 import {createAnalytics} from './analytics.mjs?v=20261103-login1';
 import {installAnalyticsUI} from './analytics-ui.mjs?v=20261103-login1';
 import firebaseConfig from './firebase-config.mjs?v=20261030-calendar1';
-import {recordBest,normalizeProgress,serializeProgress,starsFor,packProgress,isLevelUnlocked,PACK_SIZE,unlockedPackCount} from './progress.mjs?v=20261103-reveal1';
-import {levels,cells,holes,createWorld,snapshot,move,complete,step,settle,accessible,destinations,hint,isSpare,plateForBolt,attachmentCount,STEP,validateDailyRecipe,compileDailyRecipe} from './engine.mjs?v=20261103-reveal1';
-import {levelRecipes} from './levels.mjs?v=20261103-reveal1';
+import {recordBest,normalizeProgress,serializeProgress,starsFor,packProgress,isLevelUnlocked,PACK_SIZE,unlockedPackCount,campaignRevision,mergeCampaignRecords} from './progress.mjs?v=20261104-discovery2';
+import {levels,cells,holes,createWorld,snapshot,move,complete,step,settle,accessible,destinations,hint,isSpare,plateForBolt,attachmentCount,STEP,validateDailyRecipe,compileDailyRecipe} from './engine.mjs?v=20261104-discovery2';
+import {levelRecipes} from './levels.mjs?v=20261104-discovery2';
 import {createDailyStore} from './daily-data.mjs?v=20261030-calendar1';
 import {dailyScoreCatalog,summarizeDaily,dailyDateForIdentity,calendarMonth,shiftMonth} from './daily-summary.mjs?v=20261030-calendar1';
 const $=s=>document.querySelector(s),ns='http://www.w3.org/2000/svg',colors=['#557f79','#c67d57','#c9a75d','#739381'];
@@ -12,11 +12,10 @@ const native=window.ScrewWorkshopNative;
 const analytics=createAnalytics({window,native:!!native,...analyticsConfig});
 const analyticsUI=installAnalyticsUI({analytics,enabled:analyticsConfig.enabled,native:!!native});
 let saved={};try{saved=native?native.savedProgress:JSON.parse(localStorage.getItem('screw-workshop-physics-v4')||'{}')}catch{}
-let {bests,done,index,unlockedPacks}=normalizeProgress(saved,levels);
+let {bests,done,index,unlockedPacks,retired}=normalizeProgress(saved,levels);
 let daily=null,dailyRequest=0,dailyCatalog=null,dailyMonth=null,dialogMode=null,dailyResultDate=null;
 let accountUID=null,accountDaily={},syncController=null,accountTools=null,accountEpoch=0,cloudConfirmed=false;
 const accountSaveKey=uid=>'screw-workshop-account-campaign:'+encodeURIComponent(uid);
-const campaignRevision='shapes100-v1', campaignRevisions=new Set(['shapes80-v1',campaignRevision]);
 function readSave(key){try{return JSON.parse(localStorage.getItem(key)||'{}')}catch{return {}}}
 const fallbackRecipe={...levelRecipes[0],id:'daily-practice-fallback',name:'Offline practice'};
 let dailyStorage;try{dailyStorage=localStorage}catch{}
@@ -32,7 +31,7 @@ function sealDailyControls(){if(!dailyLocked())return;history=[];selected=null;h
 function bestFor(l){return daily?dailyBest():bests[l.id]}
 let sim,history=[],selected=null,hintHole=null,frame=null,busy=false,plateNodes=[],pinNodes=[],holeNodes=[];
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
-function persist(){unlockedPacks=unlockedPackCount(levels,done,unlockedPacks);const value=serializeProgress(index,levels,done,bests,unlockedPacks);try{if(native)native.saveProgress(value);else localStorage.setItem(accountUID?accountSaveKey(accountUID):'screw-workshop-physics-v4',JSON.stringify(value))}catch{}}
+function persist(){unlockedPacks=unlockedPackCount(levels,done,unlockedPacks);const value=serializeProgress(index,levels,done,bests,unlockedPacks,retired);try{if(native)native.saveProgress(value);else localStorage.setItem(accountUID?accountSaveKey(accountUID):'screw-workshop-physics-v4',JSON.stringify(value))}catch{}}
 let nativeActive=true;
 function syncActivity(){if(document.hidden||!nativeActive){cancelMotion();persist()}else if(sim&&!sim.settled)animate()}
 document.addEventListener('visibilitychange',syncActivity);
@@ -165,12 +164,12 @@ start(index);
 
 function queueAccountScore(kind,puzzleId,revision,bestMoves){if(!accountUID||!syncController)return;try{syncController.enqueue({schema:1,kind,puzzleId,revision,bestMoves,completed:true});void flushAccount()}catch{say('Completed locally, but account synchronization is unavailable.')}}
 function saveDailyBest(identity,moves){if(!accountUID){if(daily?.source==='fallback')dailyStore.recordBest(identity,moves);else dailyStore.recordCompletion(identity,moves);return}if(daily?.source!=='fallback'&&dailyResult(dailyDateForIdentity(identity)))return;accountDaily[identity]=Math.min(accountDaily[identity]??Infinity,moves);const r=accountTools?.dailyScoreRecord(identity,moves);if(r)queueAccountScore(r.kind,r.puzzleId,r.revision,moves);else if(daily){daily.status='Practice best kept for this session only; not synced to your account.';$('#dailystatus').textContent=daily.status}}
-function applySyncState(state){if(state.uid!==accountUID||!accountUID)return;accountDaily={};for(const r of state.records){if(r.kind==='campaign'&&campaignRevisions.has(r.revision)&&levels.some(l=>l.id===r.puzzleId)){bests=recordBest(bests,r.puzzleId,r.bestMoves);done.add(r.puzzleId)}else if(r.kind==='daily'){const id=r.puzzleId+'@'+r.revision;accountDaily[id]=Math.min(accountDaily[id]??Infinity,r.bestMoves)}}persist();if(sim){$('#scoreline').textContent=scoreText(currentLevel());if(dailyLocked()){cancelMotion();sealDailyControls();render()}}const el=$('#accountstatus');if(dialogMode==='daily'&&dailyCatalog&&$('#dialog').open)dailyMenu(dailyCatalog);else if(dialogMode==='daily-result'&&dailyResultDate&&$('#dialog').open)showDailyResult(dailyResultDate);if(el)el.textContent=state.error||(state.busy?'Checking account sync…':!state.persisted?'Account progress is in memory only: device saving is unavailable.':state.pending.length?`${state.pending.length} score updates waiting to sync.`:cloudConfirmed?'Completed scores synced. Current attempts stay on this device.':'Account scores saved locally; cloud sync is not yet confirmed.');}
+function applySyncState(state){if(state.uid!==accountUID||!accountUID)return;({bests,done,index,unlockedPacks,retired}=mergeCampaignRecords({bests,done,index,unlockedPacks,retired},state.records,levels));accountDaily={};for(const r of state.records){if(r.kind==='daily'){const id=r.puzzleId+'@'+r.revision;accountDaily[id]=Math.min(accountDaily[id]??Infinity,r.bestMoves)}}persist();if(sim){$('#scoreline').textContent=scoreText(currentLevel());if(dailyLocked()){cancelMotion();sealDailyControls();render()}}const el=$('#accountstatus');if(dialogMode==='daily'&&dailyCatalog&&$('#dialog').open)dailyMenu(dailyCatalog);else if(dialogMode==='daily-result'&&dailyResultDate&&$('#dialog').open)showDailyResult(dailyResultDate);if(el)el.textContent=state.error||(state.busy?'Checking account sync…':!state.persisted?'Account progress is in memory only: device saving is unavailable.':state.pending.length?`${state.pending.length} score updates waiting to sync.`:cloudConfirmed?'Completed scores synced. Current attempts stay on this device.':'Account scores saved locally; cloud sync is not yet confirmed.');}
 async function flushAccount(){const uid=accountUID,epoch=accountEpoch;if(!uid||!syncController)return;try{const result=await syncController.flush();if(uid!==accountUID||epoch!==accountEpoch)return;if(!result?.stale&&!result?.error&&!result?.pending?.length)cloudConfirmed=true;applySyncState(syncController.state())}catch{if(uid===accountUID&&epoch===accountEpoch){cloudConfirmed=false;const el=$('#accountstatus');if(el)el.textContent='Not yet synced. Account scores remain saved locally.'}}}
 function switchAccount(user,adapter,core){
  const next=user?.uid||null;if(next===accountUID)return;
  persist();cancelMotion();dailyRequest++;if($('#dialog').open)$('#dialog').close();daily=null;dailyMonth=null;accountUID=next;accountEpoch++;cloudConfirmed=false;accountDaily={};
- const loaded=normalizeProgress(readSave(next?accountSaveKey(next):'screw-workshop-physics-v4'),levels);({bests,done,index,unlockedPacks}=loaded);
+ const loaded=normalizeProgress(readSave(next?accountSaveKey(next):'screw-workshop-physics-v4'),levels);({bests,done,index,unlockedPacks,retired}=loaded);
  if(!syncController)syncController=core.createSyncController({storage:dailyStorage??null,adapter,onChange:applySyncState});syncController.setUser(next);start(index);$('#accountstatus').hidden=!next;
  if(next){const epoch=accountEpoch;void syncController.load().then(result=>{if(next!==accountUID||epoch!==accountEpoch||result?.stale)return;if(result?.error){applySyncState(syncController.state());return}return flushAccount()}).catch(()=>{if(next===accountUID&&epoch===accountEpoch){cloudConfirmed=false;$('#accountstatus').textContent='Cloud scores unavailable. Account progress remains local.'}})}else $('#accountstatus').textContent='';
 }
@@ -181,8 +180,8 @@ async function setupAccount(){
  const button=$('#account');
  ui.installAccountUI({button,analyticsUI,loadAdapter:()=>fb.createFirebaseAdapter({config:firebaseConfig,onAnalytics:event=>analytics.track(event)}),
   onUser(user,adapter){switchAccount(user,adapter,core)},
-  async importGuest(){if(!accountUID)return;const guest=normalizeProgress(readSave('screw-workshop-physics-v4'),levels);const records=Object.entries(guest.bests).map(([id,moves])=>ui.scoreRecord('campaign',id,campaignRevision,moves));for(const[id,moves]of Object.entries(dailyStore.readProgress())){const r=ui.dailyScoreRecord(id,moves);if(r)records.push(r)}syncController.importGuest(records,{confirmed:true});await flushAccount()},
-  exportLocal(){return {sync:syncController.exportData(),campaign:serializeProgress(index,levels,done,bests,unlockedPacks),daily:{...accountDaily}}},
+  async importGuest(){if(!accountUID)return;const guest=normalizeProgress(readSave('screw-workshop-physics-v4'),levels);unlockedPacks=Math.max(unlockedPacks,guest.unlockedPacks);retired={done:[...retired.done,...guest.retired.done],bests:Object.entries(guest.retired.bests).reduce((all,[id,moves])=>recordBest(all,id,moves),retired.bests)};persist();const records=[...Object.entries(guest.bests).map(([id,moves])=>ui.scoreRecord('campaign',id,campaignRevision,moves)),...Object.entries(guest.retired.bests).map(([id,moves])=>ui.scoreRecord('campaign',id,'shapes100-v1',moves))];for(const[id,moves]of Object.entries(dailyStore.readProgress())){const r=ui.dailyScoreRecord(id,moves);if(r)records.push(r)}syncController.importGuest(records,{confirmed:true});await flushAccount()},
+  exportLocal(){return {sync:syncController.exportData(),campaign:serializeProgress(index,levels,done,bests,unlockedPacks,retired),daily:{...accountDaily}}},
   clearAccount(uid){try{localStorage.removeItem(accountSaveKey(uid));localStorage.removeItem('screw-workshop-sync-v1:'+encodeURIComponent(uid))}catch{}},
   onError(){say('Account action unavailable. You can keep playing; guest progress is unchanged.')}
  });window.addEventListener('online',()=>{if(accountUID)void refreshAccountScores().then(flushAccount)});window.addEventListener('focus',()=>{if(accountUID)void refreshAccountScores()});document.addEventListener('visibilitychange',()=>{if(!document.hidden&&accountUID)void refreshAccountScores()});

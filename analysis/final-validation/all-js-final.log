@@ -1,0 +1,108 @@
+RUN test-account-ui.mjs
+PASS account UI: lazy SDK, explicit guest import, signout, delete reauthentication input, duplicate submit, closed late auth, password clearing, revision-safe daily identity.
+PASS account integration: guest preservation, UID-local campaign isolation, no implicit merge, late cross-account load ignored, logout-before-load race, honest initial status.
+PASS daily/account regression: sync-safe puzzle opening, competing final score visible reconciliation, unknown-revision stars never invented, and modal identity isolation.
+PASS automatic return-visit restore, concurrent click, no unsolicited modal, signout flag clearing, guest SDK gate and offline retry.
+RUN test-analytics-ui.mjs
+PASS analytics consent UI gates, choice states, equal controls, non-modal decline, settings reopening, disable-before-reload withdrawal, and cross-tab revocation without write loops. DOM double only; no live tracking.
+PASS account diagnostics checkbox: unknown and declined unchecked, persisted grant reflected, render never consents, explicit opt-in and withdrawal.
+PASS open account checkbox reconciles cross-tab consent changes.
+RUN test-analytics.mjs
+PASS opt-in analytics: no pre-consent network/events, strict payloads, attempt deduplication, withdrawal/races, persistence, native exclusion, and isolated failures. No live analytics requests were sent.
+RUN test-campaign80.mjs
+PASS: first 80 campaign levels retain stable IDs, 32 unchanged originals, and 48 added routes replay after Undo;48/48 reach original-anchor lower bound under intended rules.
+RUN test-contact-orders.mjs
+v7-two-sails {
+  lateSpeed: 0.006091604792738665,
+  lateOverlap: 0.05853525207751886,
+  maxHingeError: 0.0005943697654437672
+}
+v5-locksmith {
+  lateSpeed: 0.0037940249563550073,
+  lateOverlap: 0.1098801160443088,
+  maxHingeError: 0.000009077106294836002
+}
+v7-side-door {
+  lateSpeed: 0.0680346250024217,
+  lateOverlap: 0.13240073011684217,
+  maxHingeError: 0.00048779153510000966
+}
+PASS: three alternate-order contact regressions over 60 seconds; fixed pivots, finite motion, legitimate blocking, recovery snapshots.
+PASS: four faithful UI reproductions settle; unrelated hinges and mid-motion Undo preserved.
+PASS: post-recovery live release preserves world/momentum and physically completes.
+PASS: corrected sleepers wake; untouched sleepers remain asleep.
+RUN test-daily-content.mjs
+2026-10-29 Six-stage cascade {"blocks":6,"screws":12,"moves":12,"maxOverlap":1.7241989658403156,"steps":2786,"reachesAnchorLowerBound":true}
+2026-10-30 Eight-piece switchyard {"blocks":8,"screws":14,"moves":14,"maxOverlap":1.0208258436878168,"steps":2990,"reachesAnchorLowerBound":true}
+2026-10-31 Ten-piece workshop {"blocks":10,"screws":16,"moves":16,"maxOverlap":1.6906089828038944,"steps":3334,"reachesAnchorLowerBound":true}
+2026-11-01 Four-way handoff {"blocks":4,"screws":9,"moves":9,"maxOverlap":2.175809457576179,"steps":2316,"reachesAnchorLowerBound":true}
+2026-11-02 Crown and key {"blocks":4,"screws":8,"moves":8,"maxOverlap":0.5101028059941655,"steps":1837,"reachesAnchorLowerBound":true}
+2026-11-03 Long way round {"blocks":4,"screws":8,"moves":8,"maxOverlap":1.2837061464175008,"steps":1737,"reachesAnchorLowerBound":true}
+2026-11-04 Last assembly {"blocks":4,"screws":9,"moves":9,"maxOverlap":1.0470614992622131,"steps":2626,"reachesAnchorLowerBound":true}
+2026-11-05 Mixed workshop · 6 pieces {"blocks":6,"screws":12,"moves":12,"maxOverlap":1.123701567043213,"steps":2937,"reachesAnchorLowerBound":true}
+2026-11-06 Corner foundry · 6 pieces {"blocks":6,"screws":10,"moves":10,"maxOverlap":0.4037388462701301,"steps":2079,"reachesAnchorLowerBound":true}
+2026-11-07 Corner foundry · 8 pieces {"blocks":8,"screws":14,"moves":14,"maxOverlap":1.5695870874682782,"steps":2809,"reachesAnchorLowerBound":true}
+2026-11-08 Split-bay assembly · 5 pieces {"blocks":5,"screws":10,"moves":10,"maxOverlap":1.5605919528686059,"steps":2038,"reachesAnchorLowerBound":true}
+2026-11-09 Offset bridges · 5 pieces {"blocks":5,"screws":10,"moves":10,"maxOverlap":0.570987491412339,"steps":2143,"reachesAnchorLowerBound":true}
+2026-11-10 Offset bridges · 6 pieces {"blocks":6,"screws":12,"moves":12,"maxOverlap":0.9965200164489829,"steps":2493,"reachesAnchorLowerBound":true}
+2026-11-11 Corner foundry · 5 pieces {"blocks":5,"screws":8,"moves":8,"maxOverlap":0.23986813265945273,"steps":1867,"reachesAnchorLowerBound":true}
+2026-11-12 Corner foundry · 6 pieces {"blocks":6,"screws":10,"moves":10,"maxOverlap":1.382469624372277,"steps":2145,"reachesAnchorLowerBound":true}
+2026-11-13 Mixed workshop · 5 pieces {"blocks":5,"screws":10,"moves":10,"maxOverlap":1.4000390885287857,"steps":2127,"reachesAnchorLowerBound":true}
+2026-11-14 Corner foundry · 9 pieces {"blocks":9,"screws":14,"moves":14,"maxOverlap":2.0654080945479336,"steps":3069,"reachesAnchorLowerBound":true}
+2026-11-15 Offset bridges · 7 pieces {"blocks":7,"screws":14,"moves":14,"maxOverlap":2.114914496934631,"steps":2279,"reachesAnchorLowerBound":true}
+2026-11-16 Split-bay assembly · 7 pieces {"blocks":7,"screws":14,"moves":14,"maxOverlap":1.2971452744554313,"steps":2440,"reachesAnchorLowerBound":true}
+2026-11-17 Offset bridges · 5 pieces {"blocks":5,"screws":10,"moves":10,"maxOverlap":0.5935348237550073,"steps":2475,"reachesAnchorLowerBound":true}
+2026-11-18 Corner foundry · 7 pieces {"blocks":7,"screws":12,"moves":12,"maxOverlap":1.416921940996474,"steps":2529,"reachesAnchorLowerBound":true}
+PASS:21 immutable dated challenge files, hashes, schemas and physical witnesses;236 moves.
+RUN test-daily-data.mjs
+PASS daily data:UTC,strict schema,hashes,network/cache/fallback,future dates,immutable dates,unsafe URLs/text,oversize/corrupt storage,separate bests,native network-disabled.
+PASS guest daily completion locks retain historical bests and deduplicate date revisions.
+RUN test-daily-engine.mjs
+PASS daily engine:100 loads bounded cells,transactional validation/failure,active-board integrity,campaign routes after daily.
+RUN test-daily-generator.mjs
+PASS daily generator:14 live+interrupted verified boards; deterministic seeds/bytes/evidence; UTC rollover/leap/timezones; novelty; bounded failure; hash/schema protection; atomic install/rollback/concurrent-edit preservation; original80+7content and historical scores unchanged. 7362ms.
+RUN test-daily-novelty.mjs
+PASS daily novelty:100 campaign recipes; exact label/order/translation/mirror invariance;<=3px jitter and near clones; structural/shape changes;<=10-piece minimax matching;12px gate.
+RUN test-daily-replenish.mjs
+PASS scheduled replenishment:14future-day horizon, UTC/year/leap boundaries, gap/capacity fail-closed, no past backfill, no-op, one actual verified append, repeated-run idempotency, generation failure leaves feed/catalog intact.
+RUN test-daily-summary.mjs
+PASS daily calendar UTC months/leap/year boundaries, preserved legacy stars, distinct date/revision deduplication, practice exclusion, unknown revisions and availability.
+RUN test-daily-sync.mjs
+PASS daily sync locks: first completion, duplicate/revision rejection, UID isolation, stale-load retention, first server result reconciliation, explicit historical imports, offline migration/reload and racing import.
+RUN test-daily-ui.mjs
+PASS daily UI mode isolation, bests, restart, fallback labels, save failures, close/navigation/loading races and safe text boundaries. Browser layout and real physics tested separately.
+RUN test-expansion.mjs
+PASS: 165 expansion winning routes, 10 explicitly revalidated blocked historical routes, and16 Undo recoveries;100 distinct levels.
+RUN test-firebase-adapter.mjs
+PASS Firebase adapter: disabled gate, lazy SDK, memory Firestore/local Auth isolation, transactional revision-specific minima, bounded competing-device denial retries, stale-user cancellation, reauth-first bounded deletion, failure recovery in-flight write drain, tombstone ordering and retained deletion flags.
+PASS auth analytics: success only, no restored-session events or credential payloads, analytics failures cannot reject login.
+PASS restore readiness, persistent Auth selection and restricted-storage session/memory fallback.
+RUN test-hidden-campaign.mjs
+PASS:20 original discovery boards;60 uninterrupted/repeated/resumed replays;162 moves;162 exhaustive hidden-free first moves deadlock;first2 edge clues,18 fully concealed;geometry novelty,44px spacing,Undo/restart. Max overlap2.251px;max hinge drift0.000360px.
+RUN test-pack.mjs
+PASS: 115 new-pack winning witnesses and 4 explicitly blocked historical routes, plus Undo recovery.
+RUN test-progress-replacement.mjs
+PASS: replacement progress archive, known retired IDs, unlocks, resumes, revision boundaries, export, and non-destructive cloud sync
+RUN test-progress-sync.mjs
+PASS optional sync core: isolated accounts, explicit merge, revision-specific minima, offline retry, auth races, transaction races, deletion ordering/failure, bounded invalid data and guest preservation.
+RUN test-progress.mjs
+PASS: 100-puzzle fixture and live campaign; 7-of-10 gates, permanent legacy unlocks, all32 old numeric resumes, stable IDs, bests migration, scoring, Undo and free hints.
+RUN test-shapes.mjs
+{
+  triangleParts: 24,
+  triangleHingeError: 0.00001667915348180612,
+  elbowParts: 11,
+  elbowHingeError: 0.000008195843235479635,
+  result: 'PASS generic shapes, three→two→one→zero anchors, compound holes, exact material mapping, snapshots, real swing/fall'
+}
+PASS invalid geometry rejected and mixed p.bar alias/mapping
+RUN test.mjs
+PASS: 100 physical level solutions, 659 moves; real hinges (max initial drift 0.0000082px), compound holes, moving occlusion, plate/screw blockers, actual sliding, completion, deterministic snapshots/undo/restart. Max replay contact overlap 2.44px; ramp lateral travel 122.8px.
+{
+  triangleParts: 24,
+  triangleHingeError: 0.00001667915348180612,
+  elbowParts: 11,
+  elbowHingeError: 0.000008195843235479635,
+  result: 'PASS generic shapes, three→two→one→zero anchors, compound holes, exact material mapping, snapshots, real swing/fall'
+}
+PASS invalid geometry rejected and mixed p.bar alias/mapping
