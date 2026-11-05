@@ -146,5 +146,12 @@ export const dailyScoreCatalog=[
     "revision": "9b6e1abe9fdb5d3451767a96acf8e61ebdf77b093341e888db611a10543b8a02",
     "targetMoves": 12,
     "name": "Corner foundry · 7 pieces"
+  },
+  {
+    "date": "2026-11-19",
+    "id": "daily-2026-11-19-v1",
+    "revision": "83c6e7797675d15f4291e8ff46d168ef62cf6ae43dc0fdde8de50539967b4486",
+    "targetMoves": 8,
+    "name": "Offset bridges · 4 pieces"
   }
 ];
