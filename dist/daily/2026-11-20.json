@@ -1,0 +1,159 @@
+{
+  "schemaVersion": 1,
+  "rulesetVersion": "matter020-workshop-v1",
+  "id": "daily-2026-11-20-v1",
+  "name": "Weighted rails · 4 pieces",
+  "recipe": {
+    "id": "daily-2026-11-20-v1",
+    "name": "Weighted rails · 4 pieces",
+    "tip": "Plan the release order. Vacated mounting holes make room for the remaining screws.",
+    "pieces": [
+      {
+        "bar": [
+          [
+            60.5,
+            95
+          ],
+          [
+            127.5,
+            107
+          ]
+        ]
+      },
+      {
+        "anchors": [
+          [
+            214.5,
+            103
+          ],
+          [
+            287.5,
+            99
+          ]
+        ],
+        "outline": [
+          [
+            192.6,
+            87.17
+          ],
+          [
+            305.54,
+            80.99
+          ],
+          [
+            307.68,
+            119.93
+          ],
+          [
+            194.84,
+            128.11
+          ]
+        ]
+      },
+      {
+        "bar": [
+          [
+            88,
+            237
+          ],
+          [
+            270,
+            225
+          ]
+        ]
+      },
+      {
+        "anchors": [
+          [
+            109,
+            365.5
+          ],
+          [
+            241,
+            372.5
+          ]
+        ],
+        "outline": [
+          [
+            86.93,
+            347.31
+          ],
+          [
+            266.87,
+            356.85
+          ],
+          [
+            264.69,
+            397.79
+          ],
+          [
+            85.13,
+            381.26
+          ]
+        ]
+      }
+    ],
+    "spareCount": 2,
+    "hidden": [],
+    "solution": [
+      [
+        7,
+        [
+          105,
+          35
+        ]
+      ],
+      [
+        6,
+        [
+          245,
+          35
+        ]
+      ],
+      [
+        5,
+        [
+          109,
+          365.5
+        ]
+      ],
+      [
+        4,
+        [
+          270,
+          225
+        ]
+      ],
+      [
+        3,
+        [
+          88,
+          237
+        ]
+      ],
+      [
+        2,
+        [
+          287.5,
+          99
+        ]
+      ],
+      [
+        1,
+        [
+          214.5,
+          103
+        ]
+      ],
+      [
+        0,
+        [
+          127.5,
+          107
+        ]
+      ]
+    ]
+  },
+  "targetMoves": 8,
+  "witnessPolicy": "settle-after-each-move-2400"
+}

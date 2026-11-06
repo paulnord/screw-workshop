@@ -153,5 +153,12 @@ export const dailyScoreCatalog=[
     "revision": "83c6e7797675d15f4291e8ff46d168ef62cf6ae43dc0fdde8de50539967b4486",
     "targetMoves": 8,
     "name": "Offset bridges · 4 pieces"
+  },
+  {
+    "date": "2026-11-20",
+    "id": "daily-2026-11-20-v1",
+    "revision": "5f4fbb8fa85d5390b18a40d5eec675f6dfa557ff55ff528f3de3b1cec460dc9e",
+    "targetMoves": 8,
+    "name": "Weighted rails · 4 pieces"
   }
 ];
