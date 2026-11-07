@@ -139,6 +139,12 @@
       "id": "daily-2026-11-20-v1",
       "url": "2026-11-20.json",
       "sha256": "5f4fbb8fa85d5390b18a40d5eec675f6dfa557ff55ff528f3de3b1cec460dc9e"
+    },
+    {
+      "date": "2026-11-21",
+      "id": "daily-2026-11-21-v1",
+      "url": "2026-11-21.json",
+      "sha256": "3c665c06551af7173e989960efbfb03adf4b03340a63e271c078fd2b8b88d924"
     }
   ]
 }

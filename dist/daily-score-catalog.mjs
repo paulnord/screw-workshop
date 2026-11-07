@@ -160,5 +160,12 @@ export const dailyScoreCatalog=[
     "revision": "5f4fbb8fa85d5390b18a40d5eec675f6dfa557ff55ff528f3de3b1cec460dc9e",
     "targetMoves": 8,
     "name": "Weighted rails · 4 pieces"
+  },
+  {
+    "date": "2026-11-21",
+    "id": "daily-2026-11-21-v1",
+    "revision": "3c665c06551af7173e989960efbfb03adf4b03340a63e271c078fd2b8b88d924",
+    "targetMoves": 14,
+    "name": "Corner foundry · 9 pieces"
   }
 ];
