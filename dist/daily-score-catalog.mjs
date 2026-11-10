@@ -181,5 +181,12 @@ export const dailyScoreCatalog=[
     "revision": "37171f8d844ad902135b73afd4b09bf0b07e8e56daabb1953c98b9b7f96aa678",
     "targetMoves": 12,
     "name": "Weighted rails · 6 pieces"
+  },
+  {
+    "date": "2026-11-24",
+    "id": "daily-2026-11-24-v1",
+    "revision": "5379cad65175540da42b4b3c519a8bf8360e4f11f9f3a441f75862fb2b5e4082",
+    "targetMoves": 10,
+    "name": "Weighted rails · 5 pieces"
   }
 ];
