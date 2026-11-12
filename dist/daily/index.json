@@ -169,6 +169,12 @@
       "id": "daily-2026-11-25-v1",
       "url": "2026-11-25.json",
       "sha256": "7e239237dea02b0c0e7efb04fb81d352fa54bf69c2584656f28a757849338fbd"
+    },
+    {
+      "date": "2026-11-26",
+      "id": "daily-2026-11-26-v1",
+      "url": "2026-11-26.json",
+      "sha256": "5cf61f16e7db4e18e22185e8cf8e507af287e7c6eb09cdd0a6f05251cebcf166"
     }
   ]
 }
