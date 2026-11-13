@@ -202,5 +202,12 @@ export const dailyScoreCatalog=[
     "revision": "5cf61f16e7db4e18e22185e8cf8e507af287e7c6eb09cdd0a6f05251cebcf166",
     "targetMoves": 12,
     "name": "Split-bay assembly · 6 pieces"
+  },
+  {
+    "date": "2026-11-27",
+    "id": "daily-2026-11-27-v1",
+    "revision": "ac0ba69153a1187222056e3594cc8342ee0d0788325fdd42c14b0dc3bcb4b099",
+    "targetMoves": 8,
+    "name": "Offset bridges · 4 pieces"
   }
 ];
