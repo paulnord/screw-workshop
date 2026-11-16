@@ -223,5 +223,12 @@ export const dailyScoreCatalog=[
     "revision": "0cd59e745cd03ab78958778f63ee161466d79d42900fc0083e5075a4dad2632f",
     "targetMoves": 10,
     "name": "Split-bay assembly · 5 pieces"
+  },
+  {
+    "date": "2026-11-30",
+    "id": "daily-2026-11-30-v1",
+    "revision": "1dd28bc5b030c56dabf23d8adad43f46adeb1dd33413dfb3f839e2a7d4fd5351",
+    "targetMoves": 14,
+    "name": "Corner foundry · 8 pieces"
   }
 ];
