@@ -237,5 +237,12 @@ export const dailyScoreCatalog=[
     "revision": "875fab6801f7e1ffe263a41033b82dcc3eae07199287ad609b028fd302cbdea9",
     "targetMoves": 8,
     "name": "Offset bridges · 4 pieces"
+  },
+  {
+    "date": "2026-12-02",
+    "id": "daily-2026-12-02-v1",
+    "revision": "06ebc63724660ce63f92d4e1c10c703d236c80c376e4eb7f270ecfd02e079f57",
+    "targetMoves": 12,
+    "name": "Offset bridges · 6 pieces"
   }
 ];
