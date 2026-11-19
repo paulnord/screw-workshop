@@ -1,0 +1,149 @@
+{
+  "schemaVersion": 1,
+  "rulesetVersion": "matter020-workshop-v1",
+  "id": "daily-2026-12-03-v1",
+  "name": "Offset bridges · 5 pieces",
+  "recipe": {
+    "id": "daily-2026-12-03-v1",
+    "name": "Offset bridges · 5 pieces",
+    "tip": "Plan the release order. Vacated mounting holes make room for the remaining screws.",
+    "pieces": [
+      {
+        "bar": [
+          [
+            61.5,
+            105.5
+          ],
+          [
+            110.5,
+            102.5
+          ]
+        ]
+      },
+      {
+        "bar": [
+          [
+            241,
+            104
+          ],
+          [
+            295,
+            104
+          ]
+        ]
+      },
+      {
+        "bar": [
+          [
+            65,
+            238
+          ],
+          [
+            121,
+            238
+          ]
+        ]
+      },
+      {
+        "bar": [
+          [
+            222.5,
+            229.5
+          ],
+          [
+            271.5,
+            246.5
+          ]
+        ]
+      },
+      {
+        "bar": [
+          [
+            102.5,
+            375.5
+          ],
+          [
+            207.5,
+            374.5
+          ]
+        ]
+      }
+    ],
+    "spareCount": 2,
+    "hidden": [],
+    "solution": [
+      [
+        9,
+        [
+          105,
+          35
+        ]
+      ],
+      [
+        8,
+        [
+          245,
+          35
+        ]
+      ],
+      [
+        7,
+        [
+          207.5,
+          374.5
+        ]
+      ],
+      [
+        6,
+        [
+          271.5,
+          246.5
+        ]
+      ],
+      [
+        5,
+        [
+          222.5,
+          229.5
+        ]
+      ],
+      [
+        4,
+        [
+          121,
+          238
+        ]
+      ],
+      [
+        3,
+        [
+          65,
+          238
+        ]
+      ],
+      [
+        2,
+        [
+          295,
+          104
+        ]
+      ],
+      [
+        1,
+        [
+          241,
+          104
+        ]
+      ],
+      [
+        0,
+        [
+          110.5,
+          102.5
+        ]
+      ]
+    ]
+  },
+  "targetMoves": 10,
+  "witnessPolicy": "settle-after-each-move-2400"
+}
