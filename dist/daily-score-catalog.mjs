@@ -265,5 +265,12 @@ export const dailyScoreCatalog=[
     "revision": "e07253039be0720ad76160923f41570beba127acb567abc26c6695963c281f9c",
     "targetMoves": 12,
     "name": "Corner foundry · 8 pieces"
+  },
+  {
+    "date": "2026-12-06",
+    "id": "daily-2026-12-06-v1",
+    "revision": "08cec8edcc8c9d00bda97de2f62e05894cba7f164dd8968c192e0715a6af851e",
+    "targetMoves": 12,
+    "name": "Corner foundry · 7 pieces"
   }
 ];
