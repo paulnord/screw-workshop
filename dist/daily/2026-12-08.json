@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "rulesetVersion": "matter020-workshop-v1",
+  "id": "daily-2026-12-08-v1",
+  "name": "Offset bridges · 4 pieces",
+  "recipe": {
+    "id": "daily-2026-12-08-v1",
+    "name": "Offset bridges · 4 pieces",
+    "tip": "Plan the release order. Vacated mounting holes make room for the remaining screws.",
+    "pieces": [
+      {
+        "bar": [
+          [
+            67,
+            111
+          ],
+          [
+            219,
+            107
+          ]
+        ]
+      },
+      {
+        "bar": [
+          [
+            75.5,
+            238.5
+          ],
+          [
+            134.5,
+            237.5
+          ]
+        ]
+      },
+      {
+        "bar": [
+          [
+            228.5,
+            245
+          ],
+          [
+            277.5,
+            231
+          ]
+        ]
+      },
+      {
+        "bar": [
+          [
+            69.5,
+            381.5
+          ],
+          [
+            236.5,
+            368.5
+          ]
+        ]
+      }
+    ],
+    "spareCount": 2,
+    "hidden": [],
+    "solution": [
+      [
+        7,
+        [
+          105,
+          35
+        ]
+      ],
+      [
+        6,
+        [
+          245,
+          35
+        ]
+      ],
+      [
+        1,
+        [
+          236.5,
+          368.5
+        ]
+      ],
+      [
+        0,
+        [
+          219,
+          107
+        ]
+      ],
+      [
+        5,
+        [
+          67,
+          111
+        ]
+      ],
+      [
+        4,
+        [
+          277.5,
+          231
+        ]
+      ],
+      [
+        3,
+        [
+          228.5,
+          245
+        ]
+      ],
+      [
+        2,
+        [
+          134.5,
+          237.5
+        ]
+      ]
+    ]
+  },
+  "targetMoves": 8,
+  "witnessPolicy": "settle-after-each-move-2400"
+}
