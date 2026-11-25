@@ -247,6 +247,12 @@
       "id": "daily-2026-12-08-v1",
       "url": "2026-12-08.json",
       "sha256": "f1388e6facf2aba56c9806de313882fbfab2b43a3ed7f654748a4e6b6100326d"
+    },
+    {
+      "date": "2026-12-09",
+      "id": "daily-2026-12-09-v1",
+      "url": "2026-12-09.json",
+      "sha256": "b6a4b2365d71b9e934989363d12b838eeef05bdde005d9f9b667e8dcbf16e366"
     }
   ]
 }
