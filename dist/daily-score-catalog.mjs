@@ -293,5 +293,12 @@ export const dailyScoreCatalog=[
     "revision": "b6a4b2365d71b9e934989363d12b838eeef05bdde005d9f9b667e8dcbf16e366",
     "targetMoves": 12,
     "name": "Corner foundry · 8 pieces"
+  },
+  {
+    "date": "2026-12-10",
+    "id": "daily-2026-12-10-v1",
+    "revision": "2b41c6dca5a1d70a35804d85bc218d6aa02d073299fc817a7aae4d8ed35cab6c",
+    "targetMoves": 10,
+    "name": "Mixed workshop · 5 pieces"
   }
 ];
