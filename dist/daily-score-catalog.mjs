@@ -300,5 +300,12 @@ export const dailyScoreCatalog=[
     "revision": "2b41c6dca5a1d70a35804d85bc218d6aa02d073299fc817a7aae4d8ed35cab6c",
     "targetMoves": 10,
     "name": "Mixed workshop · 5 pieces"
+  },
+  {
+    "date": "2026-12-11",
+    "id": "daily-2026-12-11-v1",
+    "revision": "fb76c4ca9ba13f95d42fc9f0bd8057a17acc283282c39d6e1e442914a2c9fef2",
+    "targetMoves": 10,
+    "name": "Weighted rails · 5 pieces"
   }
 ];
